@@ -3,6 +3,9 @@ import { samplePools } from "./data/samplePools.js";
 import { searchPools } from "./services/searchPools.js";
 import type { SearchQuery, SortBy } from "./types/index.js";
 
+/** Product cap: we do not search pools more than one hour away (for now). */
+const MAX_DRIVE_MINUTES = 60;
+
 /** Turn optional CLI word into sortBy, or undefined (kitchen defaults to distance). */
 function parseSortBy(arg: string | undefined): SortBy | undefined {
   if (arg === "cost") return "cost";
@@ -20,6 +23,14 @@ function parseMaxDriveMinutes(arg: string | undefined): number | undefined {
       `(Ignoring max drive "${arg}"; pass a positive number of minutes.)\n`
     );
     return undefined;
+  }
+
+  // Cap at one hour — product rule, not a technical limit
+  if (minutes > MAX_DRIVE_MINUTES) {
+    console.warn(
+      `(Max drive capped at ${MAX_DRIVE_MINUTES} min (1 hour); you passed ${minutes}.)\n`
+    );
+    return MAX_DRIVE_MINUTES;
   }
 
   return minutes;
@@ -93,7 +104,7 @@ const query: SearchQuery =
   parsed ?? {
     date: "2026-05-18", // Monday in sample data
     time: "06:30",
-    maxDriveMinutes: 30,
+    maxDriveMinutes: MAX_DRIVE_MINUTES, // demo: search within one hour
   };
 
 if (!parsed) {
