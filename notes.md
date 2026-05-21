@@ -208,10 +208,12 @@ flowchart LR
 - Glossary expanded: parse, args, `argv`, `??`, OR (`||`), `Record`, bracket lookup
 - Max drive from CLI: `npm run dev -- date time [distance|cost] [maxDriveMinutes]` (or `date time 20` for max drive only); kitchen filters; demo default **60 min**; values over 60 capped at 1 hour
 
+**Product priority:** Lane open at requested date/time is #1; distance/cost/sort are only for comparing pools that already match.
+
 **Next (tiny slice):**
 
 - Optional: Thursday lunch query (`npm run dev -- 2026-05-21 12:15`) to see Coronado lunch window
-- Or next product slice (web UI, one real pool schedule)
+- Or next product slice (web UI, one **real** pool schedule — lane windows must be trustworthy)
 
 **How to work with the agent:** Short steps · explain any new code · gray comments in files · wait for **got it** before the next chunk.
 

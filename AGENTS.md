@@ -21,7 +21,7 @@ You are helping me with this project. Follow the rules below in every conversati
 
 I am learning how to build with AI and am giving myself a prototype project. The project will address a pain point I had in the past as an athlete.
 
-I want to create an application that tells me local San Diego swim pool lap lane availability at the time I ask about. I want options listed based on distance and guest pass cost—I will ask for more information when we work on this further.
+I want to create an application that tells me local San Diego swim pool **lap lane availability (open or not) at the date and time I ask about**—that is the most important part of the project. Distance and guest pass cost help me choose among pools that already have a lane open; they are secondary. I will ask for more information when we work on this further.
 
 ## About Me
 

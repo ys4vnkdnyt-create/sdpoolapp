@@ -4,6 +4,16 @@
 
 An app that shows San Diego swim pool lap lane availability for a date and time you choose.
 
+## North star (priority order)
+
+**Lane opening at your date and time is the product.** Everything else supports that answer.
+
+1. **Is there a lap lane open when I want to swim?** — non-negotiable; wrong or stale here and the app fails
+2. **Which pools qualify** — only pools that pass #1 get listed
+3. **Help me choose among those** — distance, drive time, guest pass cost, sort (nice-to-have; never replace #1)
+
+If we cut scope, protect the funnel: match day + time window → lanes available. Defer nicer sorting, maps, and extra pools before we weaken lane-open signal.
+
 ---
 
 ## Problem
@@ -16,7 +26,7 @@ Likely a serious swimmer, triathlete, or someone who swims at different pools an
 
 ## Core job to be done
 
-When I want to swim laps, I need to know **where** I can get a lane **at the time I care about**, without calling around or showing up blind. I also want to know how much a guest pass might cost at each option and how far away each pool is (including travel time with traffic).
+When I want to swim laps, I need to know **whether a lap lane is actually open at the time I care about** and **where** that is—without calling around or showing up blind. After that, I want help comparing options: guest pass cost and how far away each pool is (including travel time with traffic).
 
 ---
 
