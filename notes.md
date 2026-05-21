@@ -206,16 +206,12 @@ flowchart LR
 - 4th fake pool (Coronado) in `samplePools.ts` — shows on Monday AM test query
 - Sort: CLI 4th arg `distance` \| `cost` (`parseSortBy`, `parseArgs`); `SearchQuery.sortBy`; kitchen sort branches
 - Glossary expanded: parse, args, `argv`, `??`, OR (`||`), `Record`, bracket lookup
-- Drive filter in kitchen uses `maxDriveMinutes` on `SearchQuery` (demo default **60 min** when no CLI args; CLI values above 60 are capped at 1 hour)
+- Max drive from CLI: `npm run dev -- date time [distance|cost] [maxDriveMinutes]` (or `date time 20` for max drive only); kitchen filters; demo default **60 min**; values over 60 capped at 1 hour
 
 **Next (tiny slice):**
 
 - Optional: Thursday lunch query (`npm run dev -- 2026-05-21 12:15`) to see Coronado lunch window
 - Or next product slice (web UI, one real pool schedule)
-
-**Done (later in project):**
-
-- `maxDriveMinutes` from CLI: `npm run dev -- date time [distance|cost] [maxDriveMinutes]` — also `date time 20` (max drive only)
 
 **How to work with the agent:** Short steps · explain any new code · gray comments in files · wait for **got it** before the next chunk.
 
