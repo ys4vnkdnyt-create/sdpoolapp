@@ -195,6 +195,35 @@ flowchart LR
 
 ## Resume here (next session)
 
+### Welcome back (quick refresh)
+
+**One sentence:** You type a date and time; the app lists San Diego pools that have a **lap lane open then**, with fake drive time and guest pass price.
+
+**North star:** Lane open at your date/time is **#1**. Distance, cost, and sort only help you pick among pools that already match.
+
+**How the code is organized (restaurant):** `index.ts` = counter · `searchPools.ts` = kitchen · `samplePools.ts` = pantry · `types/` = menu.
+
+**What’s built (V0):** 4 fake pools · sort nearest or cheapest (`distance` / `cost`) · max drive filter (default 60 min, hard cap 1 hour). All saved in git.
+
+**Run these first:**
+
+```bash
+cd "/Users/benstern/Prototype Exercise"
+npm run dev -- 2026-05-18 06:30
+npm run dev -- 2026-05-18 06:30 cost
+npm run dev -- 2026-05-18 06:30 distance 20
+```
+
+**Pick one next step:** Thursday lunch trace (`npm run dev -- 2026-05-21 12:15`) · one **real** pool schedule in the pantry · or start a simple web UI (same kitchen underneath).
+
+**Latest save:** `e4b6524` — lane opening documented as north star (`git log -1` to confirm).
+
+**Paste into a new Agent chat:**
+
+> I’m back on the SD lap lane project. Read `notes.md` **Welcome back** and **Resume here**, plus `AGENTS.md` and `VISION.md`. Lane open at date/time is the priority. Continue with the next tiny slice in notes.
+
+---
+
 **Use a new Agent chat** (not this thread). Open folder `Prototype Exercise`; Cursor reads `AGENTS.md` automatically.
 
 **Read first:** This file (funnel + glossary + diagrams above), `AGENTS.md`, `VISION.md`.
