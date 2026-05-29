@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SD Lap Lane Finder</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Screen 1: search (hero + date/time + radius) -->
+      <section id="screen-search" class="screen">
+        <header class="hero">
+          <img
+            class="hero__art"
+            src="/hero-swimmer.png"
+            alt="Swimmer doing freestyle"
+            width="320"
+            height="160"
+          />
+          <h1 class="hero__title">When do you want to swim?</h1>
+        </header>
+
+        <div class="panel">
+          <p class="label">Date</p>
+          <div id="date-pills" class="pill-row"></div>
+
+          <p class="label">Pick a time</p>
+          <div id="time-grid" class="time-grid"></div>
+
+          <div class="location-row">
+            <span class="location-row__pin">◎</span>
+            <div>
+              <p id="radius-label" class="location-row__primary">Within 5 miles</p>
+              <p class="location-row__secondary">San Diego, CA</p>
+            </div>
+          </div>
+          <input
+            id="radius-slider"
+            class="slider"
+            type="range"
+            min="1"
+            max="20"
+            value="5"
+            aria-label="Search radius in miles"
+          />
+          <div class="slider-labels">
+            <span>1 mi</span>
+            <span>20 mi</span>
+          </div>
+
+          <button id="find-lanes" type="button" class="btn btn--primary">
+            Find Open Lanes
+          </button>
+        </div>
+      </section>
+
+      <!-- Screen 2: results list -->
+      <section id="screen-results" class="screen" hidden>
+        <header class="results-bar">
+          <button id="back-to-search" type="button" class="btn-back" aria-label="Back">
+            ←
+          </button>
+          <h1 id="results-header" class="results-bar__title">Open lanes</h1>
+        </header>
+
+        <div class="panel panel--results">
+          <p class="label">Sort</p>
+          <div id="sort-pills" class="pill-row">
+            <button type="button" class="pill" data-sort="distance">Distance</button>
+            <button type="button" class="pill" data-sort="cost">Cost</button>
+          </div>
+
+          <div id="results-list" class="results-list"></div>
+          <p id="results-footer" class="results-footer"></p>
+        </div>
+      </section>
+
+      <nav class="bottom-nav" aria-label="Main">
+        <span class="bottom-nav__item bottom-nav__item--active">Search</span>
+        <span class="bottom-nav__item bottom-nav__item--muted">Saved</span>
+        <span class="bottom-nav__item bottom-nav__item--muted">Profile</span>
+      </nav>
+    </div>
+
+    <script type="module" src="/web/app.js"></script>
+  </body>
+</html>

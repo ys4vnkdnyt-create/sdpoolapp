@@ -8,15 +8,27 @@
 | `src/types/`    | Menu definitions — what a pool, search, and result must include |
 | `src/data/`     | Pantry — pool schedules (fake sample data for now)              |
 | `src/services/` | Kitchen — picks pools that match your date/time                 |
-| `src/index.ts`  | Counter — you ask; it prints answers in the terminal            |
+| `src/index.ts`  | Terminal counter — CLI; prints answers in the terminal        |
+| `src/server.ts` | Web counter — serves the browser page and `/api/search`         |
+| `src/web/app.ts`| Browser logic — date/time UI, calls the API, draws results      |
+| `public/`       | What you see — `index.html`, `styles.css`, `hero-swimmer.png`   |
 
 
 ## When you run the app
 
-1. You run a command (e.g. `npm run dev`)
+**Terminal (CLI):**
+
+1. `npm run dev` (optional: `-- date time`)
 2. TypeScript in `src/` compiles to JavaScript in `dist/`
-3. Node runs that JavaScript
+3. Node runs `dist/index.js`
 4. Load pools → search → print results
+
+**Browser (web UI):**
+
+1. `npm run web`
+2. Open **http://localhost:3000** in Chrome/Safari (edit files in Cursor; view the app in the browser)
+3. Node runs `dist/server.js` — serves `public/` and answers `/api/search`
+4. Click **Find Open Lanes** → browser requests API → same kitchen → results on screen 2
 
 ## Config files (not the app logic)
 
@@ -79,7 +91,26 @@ Example: Mon `2026-05-18` `06:30` → La Jolla + Mission Valley + Coronado; UCSD
 | `continue`                    | Skip rest of loop for this pool; move to next pool                 |
 | `.find()`                     | First schedule window that matches day + time                      |
 | Funnel                        | Each pool in or out: match window → drive filter → results → print |
+| **API**                       | **A**pplication **P**rogramming **I**nterface — an agreed way for two programs to ask each other for data. In this repo: the browser orders from `server.ts`; the server runs `searchPools()` and sends back a list. You don’t put kitchen logic in the browser. |
+| Request                       | The ask — e.g. browser: “lanes for 2026-05-18 at 09:00?” Implemented as a URL: `GET /api/search?date=…&time=…` |
+| Response                      | The answer the server sends back — here, JSON text with `query` and `results`. |
+| Endpoint                      | One “menu item” on the server — ours is **`/api/search`** (lane search only). |
+| `GET`                         | HTTP verb meaning “read data only” (no form body). Our search uses GET because date/time sit in the URL. |
+| JSON                          | Text shaped like `{ "name": "La Jolla YMCA", "lanesAvailable": 4 }` — easy for TypeScript/JavaScript to parse. |
+| `localhost`                   | “This computer.” **`localhost:3000`** = web app running on your machine while you develop (not on the public internet). |
+| `fetch()`                     | Browser built-in: send a request to a URL and get the response (used in `src/web/app.ts` for `/api/search`). |
+| `npm run web`                 | Build TypeScript, then start `dist/server.js` — open http://localhost:3000 to use the UI sample. |
 
+### API in this project (restaurant again)
+
+| Piece | File | Role |
+| ----- | ---- | ---- |
+| Customer | Browser + `src/web/app.ts` | Clicks Find Open Lanes |
+| Counter | `src/server.ts` | Receives `/api/search`, calls kitchen |
+| Kitchen | `src/services/searchPools.ts` | Same funnel as CLI |
+| Menu line | `GET /api/search?date=&time=&sortBy=&maxDriveMinutes=` | The only API endpoint in V0 |
+
+**Why use an API?** Same kitchen can serve CLI, web, and later a phone app — only the “how you order” changes (terminal args vs URL).
 
 ## Weekdays in code (`dayOfWeek`)
 
@@ -187,6 +218,8 @@ flowchart LR
 
 **Still building depth on:** line-by-line kitchen logic — revisit when we change that code.
 
+**Thursday lunch trace (2026-05-21 12:15):** Only Coronado — its pantry window is Thursday `12:00`–`13:30`. UCSD has Thursday AM only (`06:00`–`08:00`), so 12:15 is out. Contrast: Monday `2026-05-18` `12:15` → La Jolla only (Monday lunch `12:00`–`13:00`).
+
 **Product stance:** incremental slices + small ships (CLI → web → one real pool); tiny feature next.
 
 **Repo state:** All `src/` files have learning comments; `npm install` has been run at least once in this project.
@@ -214,7 +247,7 @@ npm run dev -- 2026-05-18 06:30 cost
 npm run dev -- 2026-05-18 06:30 distance 20
 ```
 
-**Pick one next step:** Thursday lunch trace (`npm run dev -- 2026-05-21 12:15`) · one **real** pool schedule in the pantry · or start a simple web UI (same kitchen underneath).
+**Pick one next step:** one **real** pool schedule in the pantry · or start a simple web UI (same kitchen underneath). *(Thursday lunch trace done — see **Session learnings**.)*
 
 **Latest save:** `e4b6524` — lane opening documented as north star (`git log -1` to confirm).
 
@@ -241,8 +274,12 @@ npm run dev -- 2026-05-18 06:30 distance 20
 
 **Next (tiny slice):**
 
-- Optional: Thursday lunch query (`npm run dev -- 2026-05-21 12:15`) to see Coronado lunch window
-- Or next product slice (web UI, one **real** pool schedule — lane windows must be trustworthy)
+1. **Web UI slice 1** — done: `npm run web` → http://localhost:3000 · screens 1–2 · hero `public/hero-swimmer.png` · screen 3 (lane grid, Reserve) later
+2. **One real pool** in pantry when lane data is ready (still #1)
+
+**Future (in `VISION.md`):** pool amenities · workouts/notes section · possible MySwimPro-style integration
+
+**Done this session:** Thursday lunch trace (`npm run dev -- 2026-05-21 12:15`); Monday lunch contrast (`2026-05-18 12:15`).
 
 **How to work with the agent:** Short steps · explain any new code · gray comments in files · wait for **got it** before the next chunk.
 

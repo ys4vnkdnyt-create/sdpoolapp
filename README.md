@@ -10,6 +10,9 @@ src/
   data/        Pool schedules (sample now; real sources later)
   services/    Business logic (search, sort) — no UI here
   index.ts     CLI demo (V0)
+  server.ts    Web server (browser UI + /api/search)
+  web/app.ts   Browser UI logic (screens 1–2)
+public/        HTML, CSS, hero image (served by server)
 ```
 
 **Later (without restructuring core logic):**
@@ -49,8 +52,17 @@ npm run dev -- 2026-05-18 06:30
 |---------|----------------|
 | `npm run build` | Compile TypeScript → `dist/` |
 | `npm run start` | Run compiled CLI |
-| `npm run dev` | Build + run (optional date/time args) |
+| `npm run dev` | Build + run CLI (optional date/time args) |
+| `npm run web` | Build + start browser UI at http://localhost:3000 |
 | `npm run typecheck` | Type-check without emitting files |
+
+### Web UI
+
+```bash
+npm run web
+```
+
+Open http://localhost:3000 — pick date/time, tap **Find Open Lanes**. Same `searchPools()` kitchen as the CLI.
 
 ## Learning path
 
