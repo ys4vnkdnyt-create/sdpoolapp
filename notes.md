@@ -274,8 +274,9 @@ npm run dev -- 2026-05-18 06:30 distance 20
 
 **Next (tiny slice):**
 
-1. **Web UI slice 1** — done: `npm run web` → http://localhost:3000 · screens 1–2 · hero `public/hero-swimmer.png` · screen 3 (lane grid, Reserve) later
-2. **One real pool** in pantry when lane data is ready (still #1)
+1. **Web UI slice 1** — done: `npm run web` → http://localhost:3000
+2. **Real pantry** — `src/data/pools/` (Ryan YMCA from PDF + Plunge from web); fake data in `samplePools.ts` for tests only
+3. **Next:** Mission Valley / other branches (need that branch’s PDF); screen 3; show `scheduleSource` in UI
 
 **Future (in `VISION.md`):** pool amenities · workouts/notes section · possible MySwimPro-style integration
 

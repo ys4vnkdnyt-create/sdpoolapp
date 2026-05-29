@@ -2,8 +2,8 @@
 import type { Pool } from "../types/index.js";
 
 /**
- * Pantry: fake San Diego pools for V0.
- * Swap this data later (PDF scrape, API) without changing searchPools().
+ * Fake San Diego pools — for learning/tests only.
+ * The live app uses real schedules in `pools/index.ts` (Ryan YMCA PDF + Plunge web).
  */
 export const samplePools: Pool[] = [
   {

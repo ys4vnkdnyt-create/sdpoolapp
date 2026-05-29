@@ -3,7 +3,7 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { samplePools } from "./data/samplePools.js";
+import { pools } from "./data/pools/index.js";
 import { searchPools } from "./services/searchPools.js";
 import type { PoolSearchResult, SearchQuery, SortBy } from "./types/index.js";
 
@@ -80,7 +80,7 @@ function handleApiSearch(
     return;
   }
 
-  const results = searchPools(samplePools, query);
+  const results = searchPools(pools, query);
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(
     JSON.stringify({

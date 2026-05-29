@@ -23,15 +23,89 @@ interface SearchResponse {
   results: SearchResultJson[];
 }
 
-/** Lap-swim times shown on screen 1 (24h HH:mm). */
-const TIME_SLOTS = [
-  "07:00",
-  "08:00",
-  "09:00",
-  "10:00",
-  "11:00",
-  "12:00",
-];
+/** First and last pickable time (24h). Typical lap-swim day; real pools may narrow later. */
+const TIME_SLOT_START = "05:00";
+const TIME_SLOT_END = "21:00";
+const TIME_SLOT_STEP_MINUTES = 30;
+
+/** Build every half-hour from start through end, e.g. 05:00 … 21:00. */
+function buildTimeSlots(
+  start: string,
+  end: string,
+  stepMinutes: number
+): string[] {
+  const slots: string[] = [];
+  let minutes = timeToMinutes(start);
+  const endMinutes = timeToMinutes(end);
+
+  while (minutes <= endMinutes) {
+    slots.push(minutesToTime(minutes));
+    minutes += stepMinutes;
+  }
+  return slots;
+}
+
+/** "06:30" → minutes since midnight (for slot math). */
+function timeToMinutes(time: string): number {
+  const [h, m] = time.split(":").map(Number);
+  return h * 60 + (m ?? 0);
+}
+
+/** Minutes since midnight → "06:30". */
+function minutesToTime(total: number): string {
+  const h = Math.floor(total / 60);
+  const m = total % 60;
+  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+}
+
+const TIME_SLOTS = buildTimeSlots(
+  TIME_SLOT_START,
+  TIME_SLOT_END,
+  TIME_SLOT_STEP_MINUTES
+);
+
+/** True when the chosen day is today (local calendar). */
+function isToday(isoDate: string): boolean {
+  return isoDate === dateForOffsetDays(0);
+}
+
+/**
+ * Earliest selectable time today: now rounded up to the next 30‑min mark.
+ * Example: 2:07 PM → first slot 2:30 PM; 2:00 PM exactly → 2:00 PM still OK.
+ */
+function earliestMinutesToday(): number {
+  const now = new Date();
+  let minutes = now.getHours() * 60 + now.getMinutes();
+  const remainder = minutes % TIME_SLOT_STEP_MINUTES;
+  if (remainder !== 0) {
+    minutes += TIME_SLOT_STEP_MINUTES - remainder;
+  }
+  return minutes;
+}
+
+/** Times to show for the selected date (hide past times on Today only). */
+function getVisibleTimeSlots(isoDate: string): string[] {
+  if (!isToday(isoDate)) {
+    return TIME_SLOTS;
+  }
+
+  const minMinutes = earliestMinutesToday();
+  const endMinutes = timeToMinutes(TIME_SLOT_END);
+  if (minMinutes > endMinutes) {
+    return [];
+  }
+
+  return TIME_SLOTS.filter((slot) => timeToMinutes(slot) >= minMinutes);
+}
+
+/** If the current pick is hidden (e.g. switched to Today), select the first visible slot. */
+function ensureSelectedTimeValid(): void {
+  const visible = getVisibleTimeSlots(selectedDate);
+  if (visible.length === 0) return;
+  if (!visible.includes(selectedTime)) {
+    selectedTime = visible[0];
+  }
+}
 
 /** Rough miles → minutes for V0 (real app would use maps). */
 function milesToDriveMinutes(miles: number): number {
@@ -98,7 +172,7 @@ const sortPills = document.getElementById("sort-pills")!;
 
 // --- State ---
 let selectedDate = dateForOffsetDays(0);
-let selectedTime = "09:00";
+let selectedTime = TIME_SLOTS[0];
 let selectedSort: "distance" | "cost" = "distance";
 let radiusMiles = 5;
 
@@ -121,6 +195,8 @@ function renderDatePills(): void {
     btn.addEventListener("click", () => {
       selectedDate = iso;
       renderDatePills();
+      ensureSelectedTimeValid();
+      renderTimeGrid();
     });
     datePills.appendChild(btn);
   }
@@ -130,7 +206,17 @@ function renderDatePills(): void {
 function renderTimeGrid(): void {
   timeGrid.innerHTML = "";
 
-  for (const slot of TIME_SLOTS) {
+  const slots = getVisibleTimeSlots(selectedDate);
+  if (slots.length === 0) {
+    timeGrid.innerHTML =
+      '<p class="time-grid__empty">No more lap-swim times left today. Try Tomorrow.</p>';
+    findButton.toggleAttribute("disabled", true);
+    return;
+  }
+
+  findButton.toggleAttribute("disabled", false);
+
+  for (const slot of slots) {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "time-slot";
@@ -242,6 +328,7 @@ sortPills.addEventListener("click", (e) => {
 
 // --- First paint ---
 renderDatePills();
+ensureSelectedTimeValid();
 renderTimeGrid();
 updateRadiusLabel();
 renderSortPills();

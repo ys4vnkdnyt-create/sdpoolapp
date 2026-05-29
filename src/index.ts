@@ -1,5 +1,5 @@
 // Counter: wires pantry + kitchen, prints to the terminal (CLI).
-import { samplePools } from "./data/samplePools.js";
+import { pools } from "./data/pools/index.js";
 import { searchPools } from "./services/searchPools.js";
 import type { SearchQuery, SortBy } from "./types/index.js";
 
@@ -113,5 +113,5 @@ if (!parsed) {
   );
 }
 
-const results = searchPools(samplePools, query);
+const results = searchPools(pools, query);
 printResults(query, results);

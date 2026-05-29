@@ -25,10 +25,26 @@ function isTimeInWindow(
 
 /** V0 placeholder drive times by pool id (replace with maps API later). */
 const ESTIMATED_DRIVE_MINUTES: Record<string, number> = {
+  "ryan-family-ymca": 20,
+  "plunge-san-diego": 22,
+  "allied-gardens-pool": 24,
+  "bud-kearns-pool": 14,
+  "carmel-mountain-pool": 32,
+  "carmel-valley-pool": 30,
+  "city-heights-pool": 16,
+  "clairemont-pool": 20,
+  "kearny-mesa-pool": 22,
+  "colina-del-sol-pool": 15,
+  "memorial-pool": 17,
+  "mlk-pool": 18,
+  "swanson-pool": 26,
+  "vista-terrace-pool": 30,
+  "tierrasanta-pool": 23,
+  // legacy sample ids (if you switch back to samplePools for demos)
   "la-jolla-ymca": 18,
   "mission-valley-ymca": 22,
   "ucsd-pool": 25,
-  "coronado-community": 28, // 4th pantry pool — must match pool.id in samplePools
+  "coronado-community": 28,
 };
 
 /** Look up fake minutes; ?? 30 = default if id is missing from the table. */

@@ -27,6 +27,13 @@ export interface LaneAvailabilityWindow {
   lanesAvailable: number;
 }
 
+/** Where weekly lane windows came from (PDF, web page, etc.). */
+export interface ScheduleSource {
+  label: string; // human-readable, e.g. "YMCA pool schedule PDF"
+  url: string;
+  effectiveDate: string; // ISO YYYY-MM-DD — "effective" date on the document
+}
+
 /** Everything we store about one pool. */
 export interface Pool {
   id: string; // stable key, e.g. for fake drive-time lookup
@@ -35,6 +42,7 @@ export interface Pool {
   location: GeoLocation;
   guestPass: GuestPassInfo;
   availability: LaneAvailabilityWindow[]; // list of weekly windows
+  scheduleSource?: ScheduleSource; // set when data is from a real published schedule
 }
 
 /** How to order results after the funnel (kitchen applies this at the end). */
