@@ -34,7 +34,7 @@
 
 - `**package.json**` — project name + npm shortcuts (`build`, `start`, `dev`)
 - `**tsconfig.json**` — TypeScript rules; `src/` → `dist/`
-- `**.gitignore**` — don’t commit `node_modules/` or `dist/`
+- `**.gitignore**` — don't commit `node_modules/` or `dist/`
 - `**README.md**` — how to install and run (for you)
 
 ## Main code files (read in this order)
@@ -66,19 +66,19 @@ Example: Mon `2026-05-18` `06:30` → La Jolla + Mission Valley + Coronado; UCSD
 | npm                           | Installs packages; runs scripts from `package.json`                |
 | `npm install`                 | Download `devDependencies` into `node_modules/`                    |
 | `devDependencies`             | Build tools (here: TypeScript), not the swim logic itself          |
-| `node_modules/`               | Installed packages; don’t edit; don’t commit                       |
+| `node_modules/`               | Installed packages; don't edit; don't commit                       |
 | `npm run dev`                 | Build (`tsc`) then run (`node dist/index.js`)                      |
 | Interface                     | Checklist for what fields an object must have                      |
 | `export` / `export interface` | Let other files import that type or value                          |
 | `import type`                 | Import types only (erased when compiled)                           |
 | `string`                      | Text in quotes, e.g. `"06:30"`                                     |
 | `string[]`                    | List of strings (e.g. command-line args)                           |
-| `const`                       | Named value you don’t reassign                                     |
+| `const`                       | Named value you don't reassign                                     |
 | `??` (nullish coalescing)     | If the left side is only `null` or `undefined`, use the right side. Example in kitchen: drive lookup, else `30`. Does not fall back on `0` or `""`. |
-| OR operator (two pipes)       | Logical OR, or “use fallback when left is falsy” (`null`, `undefined`, `0`, `""`, `false`). This repo uses `??` for defaults when only “missing” should count. Written in code as two pipe characters side by side. |
+| OR operator (two pipes)       | Logical OR, or "use fallback when left is falsy" (`null`, `undefined`, `0`, `""`, `false`). This repo uses `??` for defaults when only "missing" should count. Written in code as two pipe characters side by side. |
 | CLI                           | App you run in the terminal (text in, text out)                    |
 | Arguments (args)              | Extra words after the command that tell your app what to do. Example: `npm run dev -- 2026-05-18 06:30 cost` → args are `2026-05-18`, `06:30`, `cost`. Everything after `--` goes to your app, not npm. |
-| `argv`                        | Short for “argument vector” — the list of strings Node hands your program. Same idea as args; `process.argv` is that list in code. Index 2+ are usually *your* args (date, time, sort). |
+| `argv`                        | Short for "argument vector" — the list of strings Node hands your program. Same idea as args; `process.argv` is that list in code. Index 2+ are usually *your* args (date, time, sort). |
 | `process.argv`                | In Node: the actual `argv` array for this run (`[node path, script path, …your args]`). |
 | Parse                         | Read messy text input and turn it into structured fields the code can use (e.g. date, time, sort). Not a special keyword — we name helpers `parseSomething`. |
 | `parseArgs`                   | Counter: parse `argv` into a `SearchQuery` (`date`, `time`, optional `sortBy`, optional `maxDriveMinutes`); returns `null` if date/time missing |
@@ -91,13 +91,13 @@ Example: Mon `2026-05-18` `06:30` → La Jolla + Mission Valley + Coronado; UCSD
 | `continue`                    | Skip rest of loop for this pool; move to next pool                 |
 | `.find()`                     | First schedule window that matches day + time                      |
 | Funnel                        | Each pool in or out: match window → drive filter → results → print |
-| **API**                       | **A**pplication **P**rogramming **I**nterface — an agreed way for two programs to ask each other for data. In this repo: the browser orders from `server.ts`; the server runs `searchPools()` and sends back a list. You don’t put kitchen logic in the browser. |
-| Request                       | The ask — e.g. browser: “lanes for 2026-05-18 at 09:00?” Implemented as a URL: `GET /api/search?date=…&time=…` |
+| **API**                       | **A**pplication **P**rogramming **I**nterface — an agreed way for two programs to ask each other for data. In this repo: the browser orders from `server.ts`; the server runs `searchPools()` and sends back a list. You don't put kitchen logic in the browser. |
+| Request                       | The ask — e.g. browser: "lanes for 2026-05-18 at 09:00?" Implemented as a URL: `GET /api/search?date=…&time=…` |
 | Response                      | The answer the server sends back — here, JSON text with `query` and `results`. |
-| Endpoint                      | One “menu item” on the server — ours is **`/api/search`** (lane search only). |
-| `GET`                         | HTTP verb meaning “read data only” (no form body). Our search uses GET because date/time sit in the URL. |
+| Endpoint                      | One "menu item" on the server — ours is **`/api/search`** (lane search only). |
+| `GET`                         | HTTP verb meaning "read data only" (no form body). Our search uses GET because date/time sit in the URL. |
 | JSON                          | Text shaped like `{ "name": "La Jolla YMCA", "lanesAvailable": 4 }` — easy for TypeScript/JavaScript to parse. |
-| `localhost`                   | “This computer.” **`localhost:3000`** = web app running on your machine while you develop (not on the public internet). |
+| `localhost`                   | "This computer." **`localhost:3000`** = web app running on your machine while you develop (not on the public internet). |
 | `fetch()`                     | Browser built-in: send a request to a URL and get the response (used in `src/web/app.ts` for `/api/search`). |
 | `npm run web`                 | Build TypeScript, then start `dist/server.js` — open http://localhost:3000 to use the UI sample. |
 
@@ -110,7 +110,7 @@ Example: Mon `2026-05-18` `06:30` → La Jolla + Mission Valley + Coronado; UCSD
 | Kitchen | `src/services/searchPools.ts` | Same funnel as CLI |
 | Menu line | `GET /api/search?date=&time=&sortBy=&maxDriveMinutes=` | The only API endpoint in V0 |
 
-**Why use an API?** Same kitchen can serve CLI, web, and later a phone app — only the “how you order” changes (terminal args vs URL).
+**Why use an API?** Same kitchen can serve CLI, web, and later a phone app — only the "how you order" changes (terminal args vs URL).
 
 ## Weekdays in code (`dayOfWeek`)
 
@@ -120,7 +120,7 @@ Example: Mon `2026-05-18` `06:30` → La Jolla + Mission Valley + Coronado; UCSD
 
 How the pieces fit together. View in Cursor/GitHub preview, or paste the `mermaid` blocks into [mermaid.live](https://mermaid.live).
 
-### V0 today (what’s in the repo)
+### V0 today (what's in the repo)
 
 ```mermaid
 flowchart TB
@@ -228,71 +228,57 @@ flowchart LR
 
 ## Resume here (next session)
 
-### Welcome back (quick refresh)
-
-**One sentence:** You type a date and time; the app lists San Diego pools that have a **lap lane open then**, with fake drive time and guest pass price.
-
-**North star:** Lane open at your date/time is **#1**. Distance, cost, and sort only help you pick among pools that already match.
-
-**How the code is organized (restaurant):** `index.ts` = counter · `searchPools.ts` = kitchen · `samplePools.ts` = pantry · `types/` = menu.
-
-**What’s built (V0):** 4 fake pools · sort nearest or cheapest (`distance` / `cost`) · max drive filter (default 60 min, hard cap 1 hour). All saved in git.
-
-**Run these first:**
-
-```bash
-cd "/Users/benstern/Prototype Exercise"
-npm run dev -- 2026-05-18 06:30
-npm run dev -- 2026-05-18 06:30 cost
-npm run dev -- 2026-05-18 06:30 distance 20
-```
-
-**Pick one next step:** one **real** pool schedule in the pantry · or start a simple web UI (same kitchen underneath). *(Thursday lunch trace done — see **Session learnings**.)*
-
-**Latest save:** `e4b6524` — lane opening documented as north star (`git log -1` to confirm).
-
-**Paste into a new Agent chat:**
-
-> I’m back on the SD lap lane project. Read `notes.md` **Welcome back** and **Resume here**, plus `AGENTS.md` and `VISION.md`. Lane open at date/time is the priority. Continue with the next tiny slice in notes.
-
----
-
 **Use a new Agent chat** (not this thread). Open folder `Prototype Exercise`; Cursor reads `AGENTS.md` automatically.
 
-**Read first:** This file (funnel + glossary + diagrams above), `AGENTS.md`, `VISION.md`.
+**Read first:** This file (**Resume here** + funnel/glossary above), `AGENTS.md`, `VISION.md`.
 
-**Done (project so far):**
+### Welcome back / refresher
 
-- Walked all of `src/` (types → data → services → index); inline learning comments throughout
-- `npm install` + run & trace; funnel mental model + system diagrams in this file
-- 4th fake pool (Coronado) in `samplePools.ts` — shows on Monday AM test query
-- Sort: CLI 4th arg `distance` \| `cost` (`parseSortBy`, `parseArgs`); `SearchQuery.sortBy`; kitchen sort branches
-- Glossary expanded: parse, args, `argv`, `??`, OR (`||`), `Record`, bracket lookup
-- Max drive from CLI: `npm run dev -- date time [distance|cost] [maxDriveMinutes]` (or `date time 20` for max drive only); kitchen filters; demo default **60 min**; values over 60 capped at 1 hour
+**North star (one sentence):** You pick a date and time; the app tells you which San Diego pools have a **lap lane open then** — that is priority #1; distance and guest pass cost only help you choose among pools that already match.
 
-**Product priority:** Lane open at requested date/time is #1; distance/cost/sort are only for comparing pools that already match.
+**What's built now (May 2026):**
 
-**Next (tiny slice):**
+- **Web UI:** Screens 1–2, hero swimmer, date picker + Today/Tomorrow pills, time grid 5am–9pm (half-hour slots), hides past times on Today · `npm run web` → http://localhost:3000
+- **Real pantry:** 15 pools in `src/data/pools/` (12 city SD PDFs + Ryan YMCA + Plunge; Clairemont closure-only with empty availability; Vista Terrace added)
+- **PDF archive:** Source PDFs in `data/sources/`; `scheduleSource` on `Pool` type
+- **CLI + web** both load from `pools/index.ts` (not `samplePools`)
+- **Latest commit:** `e27d979` (real pools + web wiring)
+- **Uncommitted (dirty working tree):** date picker + Today/Tomorrow pills + hide-past-times — `public/index.html`, `public/styles.css`, `src/web/app.ts` (run `git status` to confirm)
+- **Push blocked:** No git remote configured yet — create a GitHub repo, then `git remote add origin <url>`
 
-1. **Web UI slice 1** — done: `npm run web` → http://localhost:3000
-2. **Real pantry** — `src/data/pools/` (Ryan YMCA from PDF + Plunge from web); fake data in `samplePools.ts` for tests only
-3. **Next:** Mission Valley / other branches (need that branch’s PDF); screen 3; show `scheduleSource` in UI
+**Sanity checks done:**
 
-**Future (in `VISION.md`):** pool amenities · workouts/notes section · possible MySwimPro-style integration
+- Ryan YMCA, Wed `2026-06-03`: `06:00` → 3 lanes · `09:00` → absent · `12:00` → 4 · `14:00` → 5 · `20:00` → 6 — matches data file
 
-**Done this session:** Thursday lunch trace (`npm run dev -- 2026-05-21 12:15`); Monday lunch contrast (`2026-05-18 12:15`).
+**Your priorities (expressed):**
+
+- **Scalability roadmap:** A JSON pools · B PDF ingest script · C PDF link on results (phone) · D SQLite + refresh · E deploy
+- Spot-check more pools
+- **Slice 1 next:** JSON loader + "View schedule" PDF button on result cards
 
 **How to work with the agent:** Short steps · explain any new code · gray comments in files · wait for **got it** before the next chunk.
 
-**Run commands (sanity check):**
+**Run commands:**
 
 ```bash
 cd "/Users/benstern/Prototype Exercise"
-npm run dev -- 2026-05-18 06:30
-npm run dev -- 2026-05-18 06:30 distance 20   # drops pools over 20 min (MV 22, Coronado 28)
+npm run web
+npm run dev -- 2026-06-03 12:00
+# Ryan YMCA sanity: Wed 2026-06-03 at 12:00 should show Ryan with 4 lanes
 ```
 
-**Paste into the new chat:**
+**Next (tiny slice):**
 
-> Resume the SD lap lane project. Read `notes.md` from **Resume here** and **Session learnings**. Coronado, CLI sort, and CLI max drive are done. Continue with the next tiny slice in notes.
+1. **Commit date picker** (if ready) — uncommitted changes in `public/index.html`, `public/styles.css`, `src/web/app.ts`
+2. **JSON loader + "View schedule"** — load pools from JSON; PDF button on each result card (uses `scheduleSource`)
+3. **Spot-check** more pools against source PDFs
+4. **GitHub remote** — create repo + `git remote add origin` so push works
+5. Later roadmap: PDF ingest script → SQLite + refresh → deploy
 
+**Future (in `VISION.md`):** pool amenities · workouts/notes section · possible MySwimPro-style integration
+
+**Paste into new Agent chat:**
+
+```
+I'm back on the SD lap lane project. Read notes.md "Resume here" and "Welcome back / refresher", plus AGENTS.md and VISION.md. Lane open at date/time is #1. Latest commit e27d979; date picker may be uncommitted — check git status. Continue with the next tiny slice: JSON loader + "View schedule" PDF button on result cards.
+```

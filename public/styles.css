@@ -108,6 +108,26 @@ body {
   color: var(--white);
 }
 
+.date-picker {
+  width: 100%;
+  margin: 0 0 1.25rem;
+  padding: 0.65rem 0.85rem;
+  border: 2px solid var(--card-border);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: inherit;
+  accent-color: var(--teal);
+}
+
+.date-picker:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-light);
+}
+
 .time-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

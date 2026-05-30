@@ -160,6 +160,7 @@ function fakeMilesFromDriveMinutes(minutes: number): string {
 const screenSearch = document.getElementById("screen-search")!;
 const screenResults = document.getElementById("screen-results")!;
 const datePills = document.getElementById("date-pills")!;
+const datePicker = document.getElementById("date-picker") as HTMLInputElement;
 const timeGrid = document.getElementById("time-grid")!;
 const radiusSlider = document.getElementById("radius-slider") as HTMLInputElement;
 const radiusLabel = document.getElementById("radius-label")!;
@@ -176,6 +177,34 @@ let selectedTime = TIME_SLOTS[0];
 let selectedSort: "distance" | "cost" = "distance";
 let radiusMiles = 5;
 
+/** Keep the native date input aligned with selectedDate. */
+function syncDatePickerValue(): void {
+  datePicker.value = selectedDate;
+}
+
+/** Block past dates — search is for today or future only. */
+function initDatePickerMin(): void {
+  datePicker.min = dateForOffsetDays(0);
+}
+
+/** Highlight Today/Tomorrow/+2 pills when selectedDate matches one of them. */
+function syncDatePillActiveState(): void {
+  const buttons = datePills.querySelectorAll<HTMLButtonElement>(".date-pill");
+  for (const btn of buttons) {
+    const iso = btn.dataset.date;
+    btn.classList.toggle("pill--active", iso === selectedDate);
+  }
+}
+
+/** Apply a new date from pills or the date input, then refresh time slots. */
+function setSelectedDate(iso: string): void {
+  selectedDate = iso;
+  syncDatePickerValue();
+  syncDatePillActiveState();
+  ensureSelectedTimeValid();
+  renderTimeGrid();
+}
+
 /** Build Today / Tomorrow / +2 day pills. */
 function renderDatePills(): void {
   const offsets = [0, 1, 2];
@@ -186,6 +215,7 @@ function renderDatePills(): void {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "pill date-pill";
+    btn.dataset.date = iso;
     if (iso === selectedDate) btn.classList.add("pill--active");
 
     if (offset === 0) btn.textContent = "Today";
@@ -193,10 +223,7 @@ function renderDatePills(): void {
     else btn.textContent = weekdayShort(iso);
 
     btn.addEventListener("click", () => {
-      selectedDate = iso;
-      renderDatePills();
-      ensureSelectedTimeValid();
-      renderTimeGrid();
+      setSelectedDate(iso);
     });
     datePills.appendChild(btn);
   }
@@ -314,6 +341,11 @@ async function runSearch(): Promise<void> {
 }
 
 // --- Wire up events ---
+datePicker.addEventListener("change", () => {
+  if (!datePicker.value) return;
+  setSelectedDate(datePicker.value);
+});
+
 radiusSlider.addEventListener("input", updateRadiusLabel);
 findButton.addEventListener("click", () => void runSearch());
 backButton.addEventListener("click", () => showScreen("search"));
@@ -327,7 +359,9 @@ sortPills.addEventListener("click", (e) => {
 });
 
 // --- First paint ---
+initDatePickerMin();
 renderDatePills();
+syncDatePickerValue();
 ensureSelectedTimeValid();
 renderTimeGrid();
 updateRadiusLabel();
