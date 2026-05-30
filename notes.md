@@ -99,6 +99,7 @@ Example: Mon `2026-05-18` `06:30` → La Jolla + Mission Valley + Coronado; UCSD
 | JSON                          | Text shaped like `{ "name": "La Jolla YMCA", "lanesAvailable": 4 }` — easy for TypeScript/JavaScript to parse. |
 | `localhost`                   | "This computer." **`localhost:3000`** = web app running on your machine while you develop (not on the public internet). |
 | `fetch()`                     | Browser built-in: send a request to a URL and get the response (used in `src/web/app.ts` for `/api/search`). |
+| **curl**                      | Terminal tool to fetch a URL and print the response — test the **API** without a browser. Same **Endpoint** as `fetch()`: e.g. `curl "http://localhost:3000/api/search?date=…&time=…"` sends a **GET** **Request**; server sends back **JSON** **Response**. |
 | `npm run web`                 | Build TypeScript, then start `dist/server.js` — open http://localhost:3000 to use the UI sample. |
 
 ### API in this project (restaurant again)
