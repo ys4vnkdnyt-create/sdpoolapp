@@ -1,0 +1,6 @@
+Hero image: public/hero-swimmer.png
+
+Created for the SD Lap Lane Finder project (original artwork for this app).
+You may use it in this project without attribution to a third-party stock site.
+
+Replaced a prior illustration that was not cleared for redistribution.

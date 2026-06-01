@@ -71,7 +71,11 @@ function parseArgs(argv: string[]): SearchQuery | null {
 }
 
 /** Print a human-readable list of search results (or a no-match message). */
-function printResults(query: SearchQuery, results: ReturnType<typeof searchPools>): void {
+function printResults(
+  query: SearchQuery,
+  output: ReturnType<typeof searchPools>
+): void {
+  const { results, noSchedulePools } = output;
   const sortLabel = query.sortBy === "cost" ? "cheapest guest pass" : "nearest";
   console.log(`\nLap lanes near you — ${query.date} at ${query.time}`);
   console.log(`Sorted by: ${sortLabel}`);
@@ -81,7 +85,7 @@ function printResults(query: SearchQuery, results: ReturnType<typeof searchPools
   console.log("");
 
   if (results.length === 0) {
-    console.log("No pools with lap lanes in that window (sample data only).\n");
+    console.log("No pools with lap lanes open in that window.\n");
     return;
   }
 
@@ -93,6 +97,18 @@ function printResults(query: SearchQuery, results: ReturnType<typeof searchPools
     console.log(`  Guest pass: $${r.guestPassCostUsd}`);
     console.log("");
   }
+
+  if (noSchedulePools.length > 0) {
+    console.log("Nearby — schedule not in app yet:");
+    for (const r of noSchedulePools) {
+      const closed = r.statusNote ? ` (${r.statusNote})` : "";
+      const url = r.pool.scheduleSource?.url;
+      console.log(`• ${r.pool.name}${closed}`);
+      console.log(`  Drive ~${r.estimatedDriveMinutes} min`);
+      if (url) console.log(`  ${url}`);
+      console.log("");
+    }
+  }
 }
 
 // --- Run once when Node starts this file ---
@@ -102,7 +118,7 @@ const parsed = parseArgs(process.argv);
 // Demo query if you did not pass date/time on the command line
 const query: SearchQuery =
   parsed ?? {
-    date: "2026-05-18", // Monday in sample data
+    date: "2026-06-03", // Wednesday with transcribed schedules in pools.json
     time: "06:30",
     maxDriveMinutes: MAX_DRIVE_MINUTES, // demo: search within one hour
   };
@@ -113,5 +129,5 @@ if (!parsed) {
   );
 }
 
-const results = searchPools(pools, query);
-printResults(query, results);
+const output = searchPools(pools, query);
+printResults(query, output);

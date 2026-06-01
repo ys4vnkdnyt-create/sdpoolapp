@@ -21,6 +21,8 @@ You are helping me with this project. Follow the rules below in every conversati
 
 **Pool schedule data:** Use **real data only** — transcribe from published PDFs or official pages (Ryan Family YMCA is the reference shape for `availability[]`). No broad fake weekly windows or placeholder grids. If a venue has no public lap schedule, set `availability` to `[]` so search excludes it until real data exists.
 
+**Gaps between schedule blocks:** On pool PDFs, empty time between two printed lap blocks usually still means lanes are open (not a closure). Search fills those gaps automatically (`expandScheduleGaps.ts`) using at least 1 lane and the smaller lane count of the blocks on either side.
+
 I am learning how to build with AI and am giving myself a prototype project. The project will address a pain point I had in the past as an athlete.
 
 I want to create an application that tells me local San Diego swim pool **lap lane availability (open or not) at the date and time I ask about**—that is the most important part of the project. Distance and guest pass cost help me choose among pools that already have a lane open; they are secondary. I will ask for more information when we work on this further.

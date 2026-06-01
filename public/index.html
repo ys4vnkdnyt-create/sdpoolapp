@@ -38,10 +38,19 @@
 
           <div class="location-row">
             <span class="location-row__pin">◎</span>
-            <div>
+            <div class="location-row__text">
               <p id="radius-label" class="location-row__primary">Within 5 miles</p>
-              <p class="location-row__secondary">San Diego, CA</p>
+              <p id="location-label" class="location-row__secondary">
+                Using your location when allowed
+              </p>
             </div>
+            <button
+              id="use-location"
+              type="button"
+              class="btn btn--location"
+            >
+              Use my location
+            </button>
           </div>
           <input
             id="radius-slider"
@@ -60,6 +69,38 @@
           <button id="find-lanes" type="button" class="btn btn--primary">
             Find Open Lanes
           </button>
+
+          <button
+            id="browse-pools"
+            type="button"
+            class="btn btn--secondary"
+          >
+            All pools — schedules &amp; contact
+          </button>
+        </div>
+      </section>
+
+      <!-- Screen: browse every pool (links + call) -->
+      <section id="screen-directory" class="screen" hidden>
+        <header class="results-bar">
+          <button
+            id="back-from-directory"
+            type="button"
+            class="btn-back"
+            aria-label="Back"
+          >
+            ←
+          </button>
+          <h1 class="results-bar__title">Pools &amp; schedules</h1>
+        </header>
+
+        <div class="panel panel--results">
+          <p class="directory-intro">
+            Open the official schedule or pool site to confirm lap swim times.
+            Call the front desk if you are unsure about guest passes or lane
+            availability.
+          </p>
+          <div id="directory-list" class="directory-list"></div>
         </div>
       </section>
 
@@ -80,6 +121,18 @@
           </div>
 
           <div id="results-list" class="results-list"></div>
+
+          <section id="no-schedule-section" class="no-schedule-section" hidden>
+            <h2 class="no-schedule-section__title">
+              Nearby — schedule not in app yet
+            </h2>
+            <p class="no-schedule-section__hint">
+              These pools are in your radius; lap times are not loaded yet. Check
+              their site for hours.
+            </p>
+            <div id="no-schedule-list" class="results-list"></div>
+          </section>
+
           <p id="results-footer" class="results-footer"></p>
         </div>
       </section>

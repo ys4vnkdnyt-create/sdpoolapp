@@ -45,6 +45,10 @@ export interface Pool {
   scheduleSource?: ScheduleSource; // set when data is from a real published schedule
   /** Military base pool — access may require ID / sponsor; UI shows * on name. */
   military?: boolean;
+  /** Facility homepage (hours, directions) — separate from schedule PDF when set. */
+  websiteUrl?: string;
+  /** Front desk / aquatics desk — shown as Call on pool cards. */
+  contactPhone?: string;
 }
 
 /** How to order results after the funnel (kitchen applies this at the end). */
@@ -54,9 +58,11 @@ export type SortBy = "distance" | "cost";
 export interface SearchQuery {
   date: string; // ISO YYYY-MM-DD
   time: string; // 24h HH:mm
-  maxDriveMinutes?: number; // skip pools farther than this (when set)
+  maxDriveMinutes?: number; // skip pools farther than this (placeholder drive table)
+  /** When set with userLocation, filter by straight-line miles (from radius slider). */
+  maxRadiusMiles?: number;
   sortBy?: SortBy; // optional; kitchen defaults to "distance" when omitted
-  userLocation?: GeoLocation; // reserved for real distance later
+  userLocation?: GeoLocation;
 }
 
 /** One line in the printed / UI results list. */
@@ -65,4 +71,24 @@ export interface PoolSearchResult {
   lanesAvailable: number;
   estimatedDriveMinutes: number;
   guestPassCostUsd: number;
+  /** Set when search used the user's GPS location for distance. */
+  distanceMiles?: number;
+}
+
+/** Nearby pool with no transcribed lap schedule — shown separately, not as "open". */
+export interface NoSchedulePoolResult {
+  pool: Pool;
+  estimatedDriveMinutes: number;
+  guestPassCostUsd: number;
+  /** Always false — signals empty availability[] in the pantry. */
+  hasScheduleData: false;
+  /** Short subtitle when notes/name imply closure (e.g. Clairemont). */
+  statusNote?: string;
+  distanceMiles?: number;
+}
+
+/** Full kitchen output: open lanes plus optional nearby venues without schedule data. */
+export interface SearchPoolsOutput {
+  results: PoolSearchResult[];
+  noSchedulePools: NoSchedulePoolResult[];
 }

@@ -25,6 +25,12 @@ function isPoolRecord(value: unknown): value is Pool {
   if (p.military !== undefined && typeof p.military !== "boolean") {
     return false;
   }
+  if (p.websiteUrl !== undefined && typeof p.websiteUrl !== "string") {
+    return false;
+  }
+  if (p.contactPhone !== undefined && typeof p.contactPhone !== "string") {
+    return false;
+  }
   return true;
 }
 

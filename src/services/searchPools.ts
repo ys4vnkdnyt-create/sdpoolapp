@@ -1,4 +1,17 @@
-import type { Pool, PoolSearchResult, SearchQuery } from "../types/index.js";
+import type {
+  GeoLocation,
+  NoSchedulePoolResult,
+  Pool,
+  PoolSearchResult,
+  SearchPoolsOutput,
+  SearchQuery,
+  SortBy,
+} from "../types/index.js";
+import {
+  distanceMiles,
+  milesToEstimatedDriveMinutes,
+} from "./distance.js";
+import { expandAvailabilityWithGaps } from "./expandScheduleGaps.js";
 
 /** Turn "06:30" into minutes since midnight so we can compare times as numbers. */
 function timeToMinutes(time: string): number {
@@ -107,49 +120,64 @@ function estimateDriveMinutes(pool: Pool): number {
   return ESTIMATED_DRIVE_MINUTES[pool.id] ?? 30;
 }
 
-/**
- * Kitchen: given all pools and a query, return matching pools sorted by
- * query.sortBy (distance or cost; defaults to distance).
- */
-export function searchPools(pools: Pool[], query: SearchQuery): PoolSearchResult[] {
-  const day = getDayOfWeek(query.date);
-  const requestMinutes = timeToMinutes(query.time);
+/** True when pool is within optional max-drive filter (reuse for both result buckets). */
+function isWithinMaxDrive(
+  estimatedDriveMinutes: number,
+  maxDriveMinutes: number | undefined
+): boolean {
+  if (maxDriveMinutes === undefined) return true;
+  return estimatedDriveMinutes <= maxDriveMinutes;
+}
 
-  const results: PoolSearchResult[] = [];
+/** True when pool is within the radius slider (GPS search). */
+function isWithinRadiusMiles(
+  miles: number,
+  maxRadiusMiles: number | undefined
+): boolean {
+  if (maxRadiusMiles === undefined) return true;
+  return miles <= maxRadiusMiles;
+}
 
-  for (const pool of pools) {
-    // find first schedule window that matches this weekday and time
-    const matchingWindow = pool.availability.find(
-      (w) =>
-        w.dayOfWeek === day &&
-        isTimeInWindow(requestMinutes, w.startTime, w.endTime)
-    );
-
-    if (!matchingWindow) continue; // no lane window → skip this pool
-
-    const estimatedDriveMinutes = estimateDriveMinutes(pool);
-
-    // optional filter: drop pools that are "too far" for this query
-    if (
-      query.maxDriveMinutes !== undefined &&
-      estimatedDriveMinutes > query.maxDriveMinutes
-    ) {
-      continue;
-    }
-
-    results.push({
-      pool,
-      lanesAvailable: matchingWindow.lanesAvailable,
-      estimatedDriveMinutes,
-      guestPassCostUsd: pool.guestPass.costUsd,
-    });
+/** Drive minutes + miles for one pool — GPS when userLocation set, else V0 table. */
+function poolDistanceMetrics(
+  pool: Pool,
+  userLocation: GeoLocation | undefined
+): { estimatedDriveMinutes: number; distanceMiles?: number } {
+  if (userLocation) {
+    const miles = distanceMiles(userLocation, pool.location);
+    return {
+      distanceMiles: Math.round(miles * 10) / 10,
+      estimatedDriveMinutes: milesToEstimatedDriveMinutes(miles),
+    };
   }
+  return { estimatedDriveMinutes: estimateDriveMinutes(pool) };
+}
 
-  // Default matches old behavior when CLI does not pass sortBy yet (Step 3)
-  const sortBy = query.sortBy ?? "distance";
+/** Apply radius / max-drive filter for the active distance mode. */
+function isWithinSearchRadius(
+  metrics: { estimatedDriveMinutes: number; distanceMiles?: number },
+  query: SearchQuery
+): boolean {
+  if (query.userLocation && query.maxRadiusMiles !== undefined) {
+    if (metrics.distanceMiles === undefined) return false;
+    return isWithinRadiusMiles(metrics.distanceMiles, query.maxRadiusMiles);
+  }
+  return isWithinMaxDrive(metrics.estimatedDriveMinutes, query.maxDriveMinutes);
+}
 
+/** Subtitle for venues that appear closed in name or guest-pass notes. */
+function poolStatusNote(pool: Pool): string | undefined {
+  const haystack = `${pool.name} ${pool.guestPass.notes ?? ""}`.toLowerCase();
+  if (haystack.includes("closed")) return "Closed";
+  return undefined;
+}
+
+/** Sort open-lane results by distance or guest-pass cost. */
+function sortOpenResults(
+  results: PoolSearchResult[],
+  sortBy: SortBy
+): PoolSearchResult[] {
   if (sortBy === "cost") {
-    // Cheapest guest pass first; if tie, nearer pool first
     return results.sort(
       (a, b) =>
         a.guestPassCostUsd - b.guestPassCostUsd ||
@@ -157,10 +185,84 @@ export function searchPools(pools: Pool[], query: SearchQuery): PoolSearchResult
     );
   }
 
-  // distance: nearer first; if tie, cheaper guest pass first
-  return results.sort(
-    (a, b) =>
-      a.estimatedDriveMinutes - b.estimatedDriveMinutes ||
-      a.guestPassCostUsd - b.guestPassCostUsd
-  );
+  return results.sort((a, b) => {
+    const distA = a.distanceMiles ?? a.estimatedDriveMinutes;
+    const distB = b.distanceMiles ?? b.estimatedDriveMinutes;
+    return distA - distB || a.guestPassCostUsd - b.guestPassCostUsd;
+  });
+}
+
+/** Collect in-radius pools with empty availability[] (not shown as lanes open). */
+function findNoSchedulePools(
+  pools: Pool[],
+  query: SearchQuery
+): NoSchedulePoolResult[] {
+  const noSchedule: NoSchedulePoolResult[] = [];
+
+  for (const pool of pools) {
+    if (pool.availability.length > 0) continue;
+
+    const metrics = poolDistanceMetrics(pool, query.userLocation);
+    if (!isWithinSearchRadius(metrics, query)) continue;
+
+    noSchedule.push({
+      pool,
+      estimatedDriveMinutes: metrics.estimatedDriveMinutes,
+      guestPassCostUsd: pool.guestPass.costUsd,
+      hasScheduleData: false,
+      statusNote: poolStatusNote(pool),
+      distanceMiles: metrics.distanceMiles,
+    });
+  }
+
+  // Always nearest-first for optional venues (independent of cost sort).
+  return noSchedule.sort((a, b) => {
+    const distA = a.distanceMiles ?? a.estimatedDriveMinutes;
+    const distB = b.distanceMiles ?? b.estimatedDriveMinutes;
+    return distA - distB;
+  });
+}
+
+/**
+ * Kitchen: given all pools and a query, return matching pools sorted by
+ * query.sortBy (distance or cost; defaults to distance), plus nearby pools
+ * with no schedule data when they fall within the radius filter.
+ */
+export function searchPools(pools: Pool[], query: SearchQuery): SearchPoolsOutput {
+  const day = getDayOfWeek(query.date);
+  const requestMinutes = timeToMinutes(query.time);
+
+  const results: PoolSearchResult[] = [];
+
+  for (const pool of pools) {
+    // Gaps between PDF blocks usually still mean lap lanes are open (see expandScheduleGaps).
+    const scheduleWindows = expandAvailabilityWithGaps(pool.availability);
+
+    // find first schedule window that matches this weekday and time
+    const matchingWindow = scheduleWindows.find(
+      (w) =>
+        w.dayOfWeek === day &&
+        isTimeInWindow(requestMinutes, w.startTime, w.endTime)
+    );
+
+    if (!matchingWindow) continue; // no lane window → skip this pool
+
+    const metrics = poolDistanceMetrics(pool, query.userLocation);
+    if (!isWithinSearchRadius(metrics, query)) continue;
+
+    results.push({
+      pool,
+      lanesAvailable: matchingWindow.lanesAvailable,
+      estimatedDriveMinutes: metrics.estimatedDriveMinutes,
+      guestPassCostUsd: pool.guestPass.costUsd,
+      distanceMiles: metrics.distanceMiles,
+    });
+  }
+
+  const sortBy = query.sortBy ?? "distance";
+
+  return {
+    results: sortOpenResults(results, sortBy),
+    noSchedulePools: findNoSchedulePools(pools, query),
+  };
 }

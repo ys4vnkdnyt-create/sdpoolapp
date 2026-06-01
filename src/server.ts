@@ -5,7 +5,14 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { pools } from "./data/pools/index.js";
 import { searchPools } from "./services/searchPools.js";
-import type { PoolSearchResult, SearchQuery, SortBy } from "./types/index.js";
+import { resolvePoolLinks } from "./services/poolLinks.js";
+import type {
+  GeoLocation,
+  NoSchedulePoolResult,
+  PoolSearchResult,
+  SearchQuery,
+  SortBy,
+} from "./types/index.js";
 
 const PORT = 3000;
 const MAX_DRIVE_MINUTES = 60;
@@ -23,6 +30,13 @@ interface ScheduleSourceJson {
   effectiveDate: string;
 }
 
+/** Schedule, website, and phone links for pool cards. */
+interface PoolLinksJson {
+  scheduleUrl?: string;
+  websiteUrl?: string;
+  contactPhone?: string;
+}
+
 /** One pool row we send to the browser (flat JSON, no nested Pool object). */
 interface SearchResultJson {
   poolId: string;
@@ -30,13 +44,80 @@ interface SearchResultJson {
   address: string;
   lanesAvailable: number;
   estimatedDriveMinutes: number;
+  distanceMiles: number;
   guestPassCostUsd: number;
   scheduleSource?: ScheduleSourceJson;
+  scheduleUrl?: string;
+  websiteUrl?: string;
+  contactPhone?: string;
   /** True when pool is on a military base — browser adds * to the name. */
   military?: boolean;
 }
 
-/** Turn kitchen results into simple JSON for the frontend. */
+/** Nearby pool with no lap schedule in the app (optional section below open lanes). */
+interface NoSchedulePoolJson {
+  poolId: string;
+  name: string;
+  address: string;
+  distanceMiles: number;
+  estimatedDriveMinutes: number;
+  guestPassCostUsd: number;
+  scheduleUrl?: string;
+  websiteUrl?: string;
+  contactPhone?: string;
+  hasScheduleData: false;
+  military?: boolean;
+  statusNote?: string;
+}
+
+/** One row in GET /api/pools (full directory for browse screen). */
+interface PoolDirectoryEntryJson {
+  poolId: string;
+  name: string;
+  address: string;
+  military?: boolean;
+  scheduleUrl?: string;
+  websiteUrl?: string;
+  contactPhone?: string;
+}
+
+/** Attach resolved links from pantry + org defaults. */
+function applyPoolLinksJson(
+  row: PoolLinksJson,
+  pool: (typeof pools)[number]
+): void {
+  const links = resolvePoolLinks(pool);
+  if (links.scheduleUrl) row.scheduleUrl = links.scheduleUrl;
+  if (links.websiteUrl) row.websiteUrl = links.websiteUrl;
+  if (links.contactPhone) row.contactPhone = links.contactPhone;
+}
+
+/** V0 placeholder: drive minutes → rough miles (matches browser cards). */
+function driveMinutesToMiles(minutes: number): number {
+  return Math.round((minutes / 3) * 10) / 10;
+}
+
+/** Turn no-schedule kitchen rows into JSON for the optional results section. */
+function noScheduleToJson(rows: NoSchedulePoolResult[]): NoSchedulePoolJson[] {
+  return rows.map((r) => {
+    const row: NoSchedulePoolJson = {
+      poolId: r.pool.id,
+      name: r.pool.name,
+      address: r.pool.address,
+      distanceMiles:
+        r.distanceMiles ?? driveMinutesToMiles(r.estimatedDriveMinutes),
+      estimatedDriveMinutes: r.estimatedDriveMinutes,
+      guestPassCostUsd: r.guestPassCostUsd,
+      hasScheduleData: false,
+    };
+    applyPoolLinksJson(row, r.pool);
+    if (r.pool.military) row.military = true;
+    if (r.statusNote) row.statusNote = r.statusNote;
+    return row;
+  });
+}
+
+/** Turn kitchen open-lane results into simple JSON for the frontend. */
 function resultsToJson(results: PoolSearchResult[]): SearchResultJson[] {
   return results.map((r) => {
     const row: SearchResultJson = {
@@ -45,6 +126,8 @@ function resultsToJson(results: PoolSearchResult[]): SearchResultJson[] {
       address: r.pool.address,
       lanesAvailable: r.lanesAvailable,
       estimatedDriveMinutes: r.estimatedDriveMinutes,
+      distanceMiles:
+        r.distanceMiles ?? driveMinutesToMiles(r.estimatedDriveMinutes),
       guestPassCostUsd: r.guestPassCostUsd,
     };
     // Only send schedule link when we have a published source (most real pools do).
@@ -54,8 +137,28 @@ function resultsToJson(results: PoolSearchResult[]): SearchResultJson[] {
     if (r.pool.military) {
       row.military = true;
     }
+    applyPoolLinksJson(row, r.pool);
     return row;
   });
+}
+
+/** Alphabetical list of all pools with schedule / website / phone links. */
+function handleApiPools(res: http.ServerResponse): void {
+  const entries: PoolDirectoryEntryJson[] = pools
+    .map((pool) => {
+      const row: PoolDirectoryEntryJson = {
+        poolId: pool.id,
+        name: pool.name,
+        address: pool.address,
+      };
+      if (pool.military) row.military = true;
+      applyPoolLinksJson(row, pool);
+      return row;
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end(JSON.stringify({ pools: entries }));
 }
 
 /** Parse sortBy query param; kitchen defaults to distance when missing. */
@@ -72,6 +175,27 @@ function parseMaxDriveMinutes(value: string | null): number | undefined {
   return Math.min(minutes, MAX_DRIVE_MINUTES);
 }
 
+/** Parse radius in miles from query (used with user GPS). */
+function parseMaxRadiusMiles(value: string | null): number | undefined {
+  if (!value) return undefined;
+  const miles = Number(value);
+  if (!Number.isFinite(miles) || miles <= 0) return undefined;
+  return Math.min(miles, 60);
+}
+
+/** Parse lat,lng from query when the browser shared the user's location. */
+function parseUserLocation(
+  latParam: string | null,
+  lngParam: string | null
+): GeoLocation | undefined {
+  if (!latParam || !lngParam) return undefined;
+  const lat = Number(latParam);
+  const lng = Number(lngParam);
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return undefined;
+  if (lat < -90 || lat > 90 || lng < -180 || lng > 180) return undefined;
+  return { lat, lng };
+}
+
 /** Build SearchQuery from URL search params. */
 function parseSearchQuery(url: URL): SearchQuery | null {
   const date = url.searchParams.get("date");
@@ -83,8 +207,18 @@ function parseSearchQuery(url: URL): SearchQuery | null {
   const maxDriveMinutes = parseMaxDriveMinutes(
     url.searchParams.get("maxDriveMinutes")
   );
+  const maxRadiusMiles = parseMaxRadiusMiles(
+    url.searchParams.get("maxRadiusMiles")
+  );
+  const userLocation = parseUserLocation(
+    url.searchParams.get("lat"),
+    url.searchParams.get("lng")
+  );
+
   if (sortBy) query.sortBy = sortBy;
   if (maxDriveMinutes !== undefined) query.maxDriveMinutes = maxDriveMinutes;
+  if (maxRadiusMiles !== undefined) query.maxRadiusMiles = maxRadiusMiles;
+  if (userLocation) query.userLocation = userLocation;
   return query;
 }
 
@@ -100,12 +234,13 @@ function handleApiSearch(
     return;
   }
 
-  const results = searchPools(pools, query);
+  const { results, noSchedulePools } = searchPools(pools, query);
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(
     JSON.stringify({
       query,
       results: resultsToJson(results),
+      noSchedulePools: noScheduleToJson(noSchedulePools),
     })
   );
 }
@@ -153,6 +288,11 @@ function handleRequest(req: http.IncomingMessage, res: http.ServerResponse): voi
 
   if (req.method === "GET" && url.pathname === "/api/search") {
     handleApiSearch(url, res);
+    return;
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/pools") {
+    handleApiPools(res);
     return;
   }
 
