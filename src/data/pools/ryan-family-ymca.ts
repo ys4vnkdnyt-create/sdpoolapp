@@ -7,15 +7,15 @@ import type { Pool } from "../../types/index.js";
  */
 export const ryanFamilyYmc: Pool = {
   id: "ryan-family-ymca",
-  name: "Ryan Family YMCA (outdoor lap pool)",
-  address: "4219 Fairmount Ave, San Diego, CA 92105",
-  location: { lat: 32.754, lng: -117.104 },
+  name: "Ryan Family YMCA (Point Loma, outdoor lap pool)",
+  address: "4390 Valeta St, San Diego, CA 92107",
+  location: { lat: 32.75, lng: -117.233 },
   guestPass: {
     costUsd: 15,
     notes: "YMCA day pass; verify at desk — members use membership",
   },
   scheduleSource: {
-    label: "YMCA SD County pool schedule PDF (Ryan outdoor lap pool)",
+    label: "Ryan Family YMCA (Point Loma) — outdoor lap pool schedule PDF (May 2026)",
     url: "https://www.ymcasd.org/wp-content/uploads/2025/09/05.2026-Pool-Schedule.pdf",
     effectiveDate: "2026-05-03",
   },

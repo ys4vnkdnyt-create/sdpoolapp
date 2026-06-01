@@ -1,0 +1,4749 @@
+[
+  {
+    "id": "ryan-family-ymca",
+    "name": "Ryan Family YMCA (Point Loma, outdoor lap pool)",
+    "address": "4390 Valeta St, San Diego, CA 92107",
+    "location": {
+      "lat": 32.75,
+      "lng": -117.233
+    },
+    "guestPass": {
+      "costUsd": 15,
+      "notes": "YMCA day pass; verify at desk — members use membership"
+    },
+    "scheduleSource": {
+      "label": "Ryan Family YMCA (Point Loma) — outdoor lap pool schedule PDF (May 2026)",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2025/09/05.2026-Pool-Schedule.pdf",
+      "effectiveDate": "2026-05-03"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 0,
+        "startTime": "08:00",
+        "endTime": "09:30",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "09:30",
+        "endTime": "13:30",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "14:00",
+        "endTime": "14:45",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "07:00",
+        "endTime": "08:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "09:00",
+        "endTime": "10:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "10:15",
+        "endTime": "11:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "11:00",
+        "endTime": "12:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "14:00",
+        "endTime": "14:25",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "14:25",
+        "endTime": "15:45",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "15:45",
+        "endTime": "16:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "19:15",
+        "endTime": "19:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "19:30",
+        "endTime": "20:45",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "08:00",
+        "endTime": "09:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "10:15",
+        "endTime": "11:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "11:00",
+        "endTime": "12:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "14:00",
+        "endTime": "14:25",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "14:25",
+        "endTime": "15:45",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "15:15",
+        "endTime": "16:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "19:00",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "19:30",
+        "endTime": "20:45",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:30",
+        "endTime": "06:30",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "09:30",
+        "endTime": "10:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "10:00",
+        "endTime": "11:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "11:00",
+        "endTime": "12:10",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "12:10",
+        "endTime": "14:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "14:00",
+        "endTime": "14:25",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "14:25",
+        "endTime": "15:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "15:15",
+        "endTime": "15:45",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "15:45",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "19:30",
+        "endTime": "20:45",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "08:00",
+        "endTime": "09:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "10:15",
+        "endTime": "11:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "11:00",
+        "endTime": "12:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "14:00",
+        "endTime": "14:25",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "14:25",
+        "endTime": "15:45",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "15:15",
+        "endTime": "16:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "19:00",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "19:30",
+        "endTime": "20:45",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "08:00",
+        "endTime": "09:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "10:15",
+        "endTime": "11:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "11:15",
+        "endTime": "12:15",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "12:15",
+        "endTime": "14:25",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "14:25",
+        "endTime": "16:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "16:00",
+        "endTime": "17:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "19:00",
+        "endTime": "20:45",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "07:00",
+        "endTime": "08:20",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "08:20",
+        "endTime": "12:40",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "13:00",
+        "endTime": "14:45",
+        "lanesAvailable": 5
+      }
+    ]
+  },
+  {
+    "id": "plunge-san-diego",
+    "name": "The Plunge San Diego",
+    "address": "3115 Ocean Front Walk, San Diego, CA 92109",
+    "location": {
+      "lat": 32.772,
+      "lng": -117.252
+    },
+    "guestPass": {
+      "costUsd": 15,
+      "notes": "Day pass from $15; 7×25yd lap lanes, published 7am–7pm daily — check calendar for closures."
+    },
+    "scheduleSource": {
+      "label": "The Plunge — lap swim hours (web)",
+      "url": "https://plungesandiego.com/schedule/",
+      "effectiveDate": "2026-05-29"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 0,
+        "startTime": "07:00",
+        "endTime": "19:00",
+        "lanesAvailable": 7
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "07:00",
+        "endTime": "19:00",
+        "lanesAvailable": 7
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "07:00",
+        "endTime": "19:00",
+        "lanesAvailable": 7
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "07:00",
+        "endTime": "19:00",
+        "lanesAvailable": 7
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "07:00",
+        "endTime": "19:00",
+        "lanesAvailable": 7
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "07:00",
+        "endTime": "19:00",
+        "lanesAvailable": 7
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "07:00",
+        "endTime": "19:00",
+        "lanesAvailable": 7
+      }
+    ]
+  },
+  {
+    "id": "allied-gardens-pool",
+    "name": "Allied Gardens Swimming Pool",
+    "address": "6707 Glenroy St, San Diego, CA 92120",
+    "location": {
+      "lat": 32.807,
+      "lng": -117.089
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Adult daily pass; child/senior $2.25. ~2 lap lanes assumed; city PDF lists lap swim times only — limited during programs."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — Allied Gardens pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/alliedgardenspoolprogram.pdf",
+      "effectiveDate": "2026-02-27"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "07:30",
+        "endTime": "12:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "13:30",
+        "endTime": "18:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "07:30",
+        "endTime": "12:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "13:30",
+        "endTime": "18:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "07:30",
+        "endTime": "12:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "13:30",
+        "endTime": "18:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "13:30",
+        "endTime": "19:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "13:30",
+        "endTime": "19:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "13:00",
+        "endTime": "16:00",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "carmel-mountain-pool",
+    "name": "Carmel Mountain Ranch Swimming Pool",
+    "address": "12159 World Trade Drive, San Diego, CA 92128",
+    "location": {
+      "lat": 32.957,
+      "lng": -117.083
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Adult daily pass; child/senior $2.25. ~2 lap lanes assumed; city PDF lists lap swim times only — limited during programs."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — Carmel Mountain pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/carmelmountainpoolprogram.pdf",
+      "effectiveDate": "2026-01-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "07:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "07:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "07:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "10:30",
+        "endTime": "18:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "10:30",
+        "endTime": "18:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "12:00",
+        "endTime": "16:00",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "bud-kearns-pool",
+    "name": "Bud Kearns Memorial Pool",
+    "address": "2229 Morley Field Drive, San Diego, CA 92104",
+    "location": {
+      "lat": 32.74,
+      "lng": -117.14
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Adult daily pass; child/senior/disabled $2.25. ~2 lap lanes assumed; city PDF lists lap swim times only — limited during programs."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — Bud Kearns pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/budkearnspoolprogram.pdf",
+      "effectiveDate": "2026-05-04"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "12:00",
+        "endTime": "19:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "12:00",
+        "endTime": "19:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "12:00",
+        "endTime": "19:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "10:15",
+        "endTime": "20:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "10:15",
+        "endTime": "20:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "10:15",
+        "endTime": "12:45",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "13:30",
+        "endTime": "15:30",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "carmel-valley-pool",
+    "name": "Carmel Valley Pool",
+    "address": "3777 Townsgate Drive, San Diego, CA 92130",
+    "location": {
+      "lat": 32.94,
+      "lng": -117.24
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Adult daily pass; child/senior/disabled $2.25. ~2 lap lanes assumed; city PDF lists lap swim times only — limited during programs."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — Carmel Valley pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/carmelvalleypoolprogram.pdf",
+      "effectiveDate": "2026-04-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 0,
+        "startTime": "13:00",
+        "endTime": "16:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "11:30",
+        "endTime": "14:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "15:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "11:30",
+        "endTime": "14:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "15:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "11:30",
+        "endTime": "14:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "15:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "11:30",
+        "endTime": "14:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "15:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "city-heights-pool",
+    "name": "City Heights Swim Center",
+    "address": "4380 Landis Street, San Diego, CA 92105",
+    "location": {
+      "lat": 32.74,
+      "lng": -117.097
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Adult daily pass; child/senior/disabled $2.25. ~2 lap lanes assumed; city PDF lists lap swim times only — limited during programs."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — City Heights pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/cityheightspoolprogram.pdf",
+      "effectiveDate": "2026-02-27"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "10:30",
+        "endTime": "12:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "13:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "10:30",
+        "endTime": "12:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "13:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "10:30",
+        "endTime": "12:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "13:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "10:30",
+        "endTime": "12:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "13:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "10:30",
+        "endTime": "12:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "13:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "12:00",
+        "endTime": "15:30",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "clairemont-pool",
+    "name": "Clairemont Pool",
+    "address": "3600 Clairemont Drive, San Diego, CA 92117",
+    "location": {
+      "lat": 32.824,
+      "lng": -117.203
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Adult daily pass when open; pool closed for renovations — no lap schedule. Call (858) 581-9923 for reopening."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — Clairemont pool program PDF (closure notice)",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/clairemontpoolprogram.pdf",
+      "effectiveDate": "2024-10-26"
+    },
+    "availability": []
+  },
+  {
+    "id": "colina-del-sol-pool",
+    "name": "Colina del Sol Pool",
+    "address": "4150 54th Place, San Diego, CA 92105",
+    "location": {
+      "lat": 32.754,
+      "lng": -117.084
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Adult daily pass; child/senior/disabled $2.25. ~2 lap lanes assumed; city PDF lists lap swim times only — limited during programs."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — Colina del Sol pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/colinadelsolpoolprogram.pdf",
+      "effectiveDate": "2026-03-10"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 2,
+        "startTime": "11:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "11:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "13:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "12:00",
+        "endTime": "16:00",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "kearny-mesa-pool",
+    "name": "Kearny Mesa Pool",
+    "address": "3170 Armstrong Street, San Diego, CA 92111",
+    "location": {
+      "lat": 32.822,
+      "lng": -117.158
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Adult daily pass; child/senior/disabled $2.25. ~2 lap lanes assumed; city PDF lists lap swim times only — limited during programs."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — Kearny Mesa pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/kearnymesapoolprogram.pdf",
+      "effectiveDate": "2026-03-09"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "14:30",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "14:30",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "12:00",
+        "endTime": "14:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "15:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "12:00",
+        "endTime": "14:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "15:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "12:00",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "15:30",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "mlk-pool",
+    "name": "Dr. Martin Luther King Jr. Pool",
+    "address": "6401 Skyline Dr, San Diego, CA 92114",
+    "location": {
+      "lat": 32.707,
+      "lng": -117.072
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Adult daily pass; child/senior/disabled $2.25. ~2 lap lanes assumed; city PDF lists lap swim times only — limited during programs."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — MLK pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/mlkpoolprogram.pdf",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 2,
+        "startTime": "11:00",
+        "endTime": "12:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "17:00",
+        "endTime": "18:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "11:00",
+        "endTime": "12:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "17:00",
+        "endTime": "18:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "12:30",
+        "endTime": "14:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "14:45",
+        "endTime": "16:15",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "12:30",
+        "endTime": "14:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "14:45",
+        "endTime": "16:15",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "13:45",
+        "endTime": "16:00",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "memorial-pool",
+    "name": "Memorial Pool",
+    "address": "2902 Marcy Ave, San Diego, CA 92113",
+    "location": {
+      "lat": 32.703,
+      "lng": -117.139
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Adult daily pass; child/senior/disabled $2.25. ~2 lap lanes assumed; city PDF lists lap swim times only — limited during programs."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — Memorial pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/memorialpoolprogram.pdf",
+      "effectiveDate": "2026-04-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "10:00",
+        "endTime": "16:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "10:00",
+        "endTime": "16:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "10:00",
+        "endTime": "16:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "10:00",
+        "endTime": "16:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "10:00",
+        "endTime": "16:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "12:00",
+        "endTime": "16:00",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "swanson-pool",
+    "name": "Swanson Swimming Pool",
+    "address": "3585 Governor Drive, San Diego, CA 92122",
+    "location": {
+      "lat": 32.864,
+      "lng": -117.223
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Adult daily pass; child/senior/disabled $2.25. ~2 lap lanes assumed; city PDF lists lap swim times only — limited during programs."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — Swanson pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/swansonpoolprogram.pdf",
+      "effectiveDate": "2026-03-14"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 3,
+        "startTime": "11:00",
+        "endTime": "15:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "11:00",
+        "endTime": "15:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "11:30",
+        "endTime": "16:00",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "tierrasanta-pool",
+    "name": "Tierrasanta Community Pool",
+    "address": "11238 Clairemont Mesa Blvd, San Diego, CA 92124",
+    "location": {
+      "lat": 32.834,
+      "lng": -117.107
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Adult daily pass; child/senior/disabled $2.25. ~2 lap lanes assumed; city PDF lists lap swim times only — limited during programs."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — Tierrasanta pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/tierrasantapoolprogram.pdf",
+      "effectiveDate": "2026-03-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "10:00",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "10:00",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "10:00",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "12:00",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "12:00",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "16:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "16:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "16:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "16:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "16:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "vista-terrace-pool",
+    "name": "Vista Terrace Pool",
+    "address": "301 Athey Ave, San Ysidro, CA 92173",
+    "location": {
+      "lat": 32.567,
+      "lng": -117.043
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Adult daily pass; child/senior/disabled $2.25. ~2 lap lanes assumed; city PDF lists lap swim times only — limited during programs."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — Vista Terrace pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/vistaterracepoolprogram.pdf",
+      "effectiveDate": "2026-04-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 0,
+        "startTime": "11:30",
+        "endTime": "16:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "14:00",
+        "endTime": "18:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "14:00",
+        "endTime": "18:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "14:00",
+        "endTime": "18:00",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "coggan-family-aquatic-complex",
+    "name": "Coggan Family Aquatic Complex",
+    "address": "800 Nautilus St, La Jolla, CA 92037",
+    "location": {
+      "lat": 32.852,
+      "lng": -117.275
+    },
+    "guestPass": {
+      "costUsd": 10,
+      "notes": "Day pass ~$10 adult; lap swim hours on website — lane count not published (using 1 lane minimum)."
+    },
+    "scheduleSource": {
+      "label": "Coggan Aquatic Complex — lap swim hours (web)",
+      "url": "https://www.cogganaquatics.org/lap-swim",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "15:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "15:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "15:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "15:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:00",
+        "endTime": "15:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "08:00",
+        "endTime": "14:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "08:00",
+        "endTime": "14:00",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "coronado-aquatics-center",
+    "name": "Coronado Community Aquatics Center",
+    "address": "1845 Strand Way, Coronado, CA 92118",
+    "location": {
+      "lat": 32.685,
+      "lng": -117.174
+    },
+    "guestPass": {
+      "costUsd": 8,
+      "notes": "City day pass; June 2026 PDF — limited lanes during programs (‡); lane count not published."
+    },
+    "scheduleSource": {
+      "label": "City of Coronado — Aquatics schedule PDF (from June 8, 2026)",
+      "url": "https://www.coronado.ca.us/DocumentCenter/View/9149",
+      "effectiveDate": "2026-06-08"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:30",
+        "endTime": "20:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:30",
+        "endTime": "20:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:30",
+        "endTime": "20:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "05:30",
+        "endTime": "20:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:30",
+        "endTime": "18:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "07:30",
+        "endTime": "16:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "10:00",
+        "endTime": "15:30",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "brian-bent-memorial-aquatics",
+    "name": "Brian Bent Memorial Aquatics Complex (BBMAC)",
+    "address": "818 6th St, Coronado, CA 92118",
+    "location": {
+      "lat": 32.698,
+      "lng": -117.179
+    },
+    "guestPass": {
+      "costUsd": 10,
+      "notes": "Drop-in $10; lap hours change daily — see BBMAC lap swim calendar. Below: Coronado Masters (CMA) M/W/F 6–7am only."
+    },
+    "scheduleSource": {
+      "label": "BBMAC — lap swim calendar + CMA masters (SI LMSC)",
+      "url": "https://bbmac.org/Lap-Swim/index.html",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "07:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "07:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:00",
+        "endTime": "07:00",
+        "lanesAvailable": 3
+      }
+    ]
+  },
+  {
+    "id": "mission-valley-ymca",
+    "name": "Mission Valley YMCA (lap pools)",
+    "address": "5505 Friars Rd, San Diego, CA 92110",
+    "location": {
+      "lat": 32.77,
+      "lng": -117.194
+    },
+    "guestPass": {
+      "costUsd": 25,
+      "notes": "YMCA day pass; outdoor/indoor lap — limited lanes during programs."
+    },
+    "scheduleSource": {
+      "label": "Mission Valley YMCA — pool schedule PDF (Fall 2025)",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2025/08/Pool-Schedule-Fall-2025.pdf",
+      "effectiveDate": "2025-08-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:00",
+        "endTime": "12:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:00",
+        "endTime": "12:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:00",
+        "endTime": "12:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "05:00",
+        "endTime": "12:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:00",
+        "endTime": "12:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "13:00",
+        "endTime": "16:15",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "13:00",
+        "endTime": "16:15",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "13:00",
+        "endTime": "16:15",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "13:00",
+        "endTime": "16:15",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "13:00",
+        "endTime": "16:15",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "18:00",
+        "endTime": "20:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "18:00",
+        "endTime": "20:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "18:00",
+        "endTime": "20:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "18:00",
+        "endTime": "20:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "18:00",
+        "endTime": "20:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "06:00",
+        "endTime": "17:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "07:00",
+        "endTime": "17:00",
+        "lanesAvailable": 5
+      }
+    ]
+  },
+  {
+    "id": "dan-mckinney-ymca",
+    "name": "Dan McKinney Family YMCA (La Jolla, lap pool)",
+    "address": "8355 Cliffridge Ave, La Jolla, CA 92037",
+    "location": {
+      "lat": 32.842,
+      "lng": -117.247
+    },
+    "guestPass": {
+      "costUsd": 25,
+      "notes": "YMCA day pass; outdoor lap pool + recreation pool — see PDF."
+    },
+    "scheduleSource": {
+      "label": "Dan McKinney Family YMCA — lap pool schedule PDF",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2025/08/August-11-31-DM-Pool-Schedule.pdf",
+      "effectiveDate": "2025-08-11"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "07:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "07:00",
+        "endTime": "16:00",
+        "lanesAvailable": 8
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "19:00",
+        "endTime": "20:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "07:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "07:00",
+        "endTime": "16:00",
+        "lanesAvailable": 8
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "19:00",
+        "endTime": "20:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "07:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "07:00",
+        "endTime": "16:00",
+        "lanesAvailable": 8
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "19:00",
+        "endTime": "20:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "07:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "07:00",
+        "endTime": "16:00",
+        "lanesAvailable": 8
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "19:00",
+        "endTime": "20:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:00",
+        "endTime": "07:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "07:00",
+        "endTime": "16:00",
+        "lanesAvailable": 8
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "19:00",
+        "endTime": "20:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "09:00",
+        "endTime": "17:00",
+        "lanesAvailable": 8
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "09:00",
+        "endTime": "17:00",
+        "lanesAvailable": 8
+      }
+    ]
+  },
+  {
+    "id": "toby-wells-ymca",
+    "name": "Toby Wells YMCA (indoor lap pool)",
+    "address": "5105 Overland Ave, San Diego, CA 92123",
+    "location": {
+      "lat": 32.83,
+      "lng": -117.13
+    },
+    "guestPass": {
+      "costUsd": 25,
+      "notes": "YMCA day pass; indoor lap pool — transcribed from branch winter 2025 PDF."
+    },
+    "scheduleSource": {
+      "label": "Toby Wells YMCA — pool schedule PDF (winter 2025)",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2025/02/Pool-Scedule-winter-2025.pdf",
+      "effectiveDate": "2025-01-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:30",
+        "endTime": "08:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "08:00",
+        "endTime": "09:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "10:00",
+        "endTime": "12:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "12:00",
+        "endTime": "14:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "14:00",
+        "endTime": "16:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "16:00",
+        "endTime": "20:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:30",
+        "endTime": "08:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "08:00",
+        "endTime": "09:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "09:00",
+        "endTime": "10:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "10:00",
+        "endTime": "12:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "12:00",
+        "endTime": "14:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "14:00",
+        "endTime": "16:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "16:00",
+        "endTime": "20:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:30",
+        "endTime": "08:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "08:00",
+        "endTime": "09:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "09:00",
+        "endTime": "10:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "10:00",
+        "endTime": "12:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "12:00",
+        "endTime": "14:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "14:00",
+        "endTime": "16:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "16:00",
+        "endTime": "20:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "05:30",
+        "endTime": "08:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "08:00",
+        "endTime": "09:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "09:00",
+        "endTime": "10:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "10:00",
+        "endTime": "12:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "12:00",
+        "endTime": "14:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "14:00",
+        "endTime": "16:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "16:00",
+        "endTime": "20:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:30",
+        "endTime": "08:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "08:00",
+        "endTime": "09:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "10:00",
+        "endTime": "12:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "12:00",
+        "endTime": "14:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "14:00",
+        "endTime": "16:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "16:00",
+        "endTime": "20:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "08:00",
+        "endTime": "13:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "08:00",
+        "endTime": "13:00",
+        "lanesAvailable": 3
+      }
+    ]
+  },
+  {
+    "id": "magdalena-ecke-ymca",
+    "name": "Magdalena Ecke Family YMCA (competition lap pool)",
+    "address": "200 Saxony Rd, Encinitas, CA 92024",
+    "location": {
+      "lat": 33.051,
+      "lng": -117.286
+    },
+    "guestPass": {
+      "costUsd": 25,
+      "notes": "YMCA day pass; competition pool lane counts on PDF."
+    },
+    "scheduleSource": {
+      "label": "Magdalena Ecke YMCA — pool schedule PDF (2026)",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2026/02/Pool_Schedule_Fly26_ME.pdf",
+      "effectiveDate": "2026-02-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:05",
+        "endTime": "06:00",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "07:15",
+        "endTime": "12:15",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "13:15",
+        "endTime": "16:00",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "18:00",
+        "endTime": "20:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:05",
+        "endTime": "06:00",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "07:15",
+        "endTime": "12:15",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "13:15",
+        "endTime": "16:00",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "18:00",
+        "endTime": "20:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:05",
+        "endTime": "06:00",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "07:15",
+        "endTime": "12:15",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "13:15",
+        "endTime": "16:00",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "18:00",
+        "endTime": "20:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "05:05",
+        "endTime": "06:00",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "07:15",
+        "endTime": "12:15",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "13:15",
+        "endTime": "16:00",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "18:00",
+        "endTime": "20:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:05",
+        "endTime": "06:00",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "07:15",
+        "endTime": "12:15",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "13:15",
+        "endTime": "16:00",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "18:00",
+        "endTime": "20:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "07:05",
+        "endTime": "12:15",
+        "lanesAvailable": 8
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "12:00",
+        "endTime": "16:45",
+        "lanesAvailable": 9
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "07:05",
+        "endTime": "16:45",
+        "lanesAvailable": 11
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "12:00",
+        "endTime": "13:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "12:00",
+        "endTime": "13:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "12:00",
+        "endTime": "13:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "12:00",
+        "endTime": "13:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "12:00",
+        "endTime": "13:15",
+        "lanesAvailable": 4
+      }
+    ]
+  },
+  {
+    "id": "south-bay-family-ymca",
+    "name": "South Bay Family YMCA (outdoor lap pool)",
+    "address": "1201 Paseo Magda, Chula Vista, CA 91910",
+    "location": {
+      "lat": 32.642,
+      "lng": -117.084
+    },
+    "guestPass": {
+      "costUsd": 25,
+      "notes": "YMCA day pass; competition pool — transcribed from May 2026 branch PDF (lanes noted per program)."
+    },
+    "scheduleSource": {
+      "label": "South Bay Family YMCA — pool schedule PDF (May 2026)",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2026/05/SB-Pool-Schedule-Untitled-Page.pdf",
+      "effectiveDate": "2026-05-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:30",
+        "endTime": "06:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:30",
+        "endTime": "06:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:30",
+        "endTime": "06:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "07:30",
+        "endTime": "08:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "07:30",
+        "endTime": "08:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "07:30",
+        "endTime": "08:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "07:30",
+        "endTime": "08:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "07:30",
+        "endTime": "08:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "08:15",
+        "endTime": "13:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "08:15",
+        "endTime": "13:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "08:15",
+        "endTime": "13:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "08:15",
+        "endTime": "13:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "08:15",
+        "endTime": "13:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "08:00",
+        "endTime": "14:45",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "09:00",
+        "endTime": "12:50",
+        "lanesAvailable": 3
+      }
+    ]
+  },
+  {
+    "id": "copley-price-ymca",
+    "name": "Copley-Price Family YMCA (outdoor lap pool)",
+    "address": "3901 Landis St, San Diego, CA 92105",
+    "location": {
+      "lat": 32.737,
+      "lng": -117.097
+    },
+    "guestPass": {
+      "costUsd": 25,
+      "notes": "YMCA day pass; outdoor + indoor pools — Spring 2025 PDF."
+    },
+    "scheduleSource": {
+      "label": "Copley-Price Family YMCA — pool schedule PDF (Spring 2025)",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2025/02/cp_pool_schedule_spring_2025.pdf",
+      "effectiveDate": "2025-02-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:00",
+        "endTime": "06:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "10:00",
+        "endTime": "13:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "13:00",
+        "endTime": "16:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:00",
+        "endTime": "10:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "10:00",
+        "endTime": "13:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "13:00",
+        "endTime": "16:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:00",
+        "endTime": "10:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "10:00",
+        "endTime": "13:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "13:00",
+        "endTime": "16:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "05:00",
+        "endTime": "10:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "10:00",
+        "endTime": "13:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "13:00",
+        "endTime": "16:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:00",
+        "endTime": "16:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "07:00",
+        "endTime": "13:30",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "07:00",
+        "endTime": "14:30",
+        "lanesAvailable": 6
+      }
+    ]
+  },
+  {
+    "id": "rancho-family-ymca",
+    "name": "Rancho Family YMCA (indoor lap pool)",
+    "address": "9410 Fairgrove Ln, San Diego, CA 92129",
+    "location": {
+      "lat": 32.959,
+      "lng": -117.061
+    },
+    "guestPass": {
+      "costUsd": 25,
+      "notes": "YMCA day pass; indoor main lap pool — transcribed from Spring 2026 branch PDF (lane counts in parentheses)."
+    },
+    "scheduleSource": {
+      "label": "Rancho Family YMCA — Spring pool schedule PDF (2026)",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2026/04/Spring-Pool-Schedule-2026-2.pdf",
+      "effectiveDate": "2026-04-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:30",
+        "endTime": "06:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:30",
+        "endTime": "06:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:30",
+        "endTime": "06:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:30",
+        "endTime": "06:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "05:30",
+        "endTime": "06:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:30",
+        "endTime": "06:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:30",
+        "endTime": "08:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:30",
+        "endTime": "08:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "08:15",
+        "endTime": "09:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "08:15",
+        "endTime": "09:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "16:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "16:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "16:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "16:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:00",
+        "endTime": "16:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "16:00",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "16:00",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "16:00",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "16:00",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "16:00",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "19:30",
+        "endTime": "20:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "19:30",
+        "endTime": "20:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "19:30",
+        "endTime": "20:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "19:30",
+        "endTime": "20:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "19:30",
+        "endTime": "20:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "20:00",
+        "endTime": "20:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "20:00",
+        "endTime": "20:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "20:00",
+        "endTime": "20:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "20:00",
+        "endTime": "20:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "20:00",
+        "endTime": "20:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "07:00",
+        "endTime": "13:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "18:00",
+        "endTime": "19:45",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "07:00",
+        "endTime": "13:00",
+        "lanesAvailable": 4
+      }
+    ]
+  },
+  {
+    "id": "24-hour-fitness-balboa",
+    "name": "24 Hour Fitness — Balboa Ultra-Sport (lap pool)",
+    "address": "7715 Balboa Ave, San Diego, CA 92111",
+    "location": {
+      "lat": 32.821,
+      "lng": -117.166
+    },
+    "guestPass": {
+      "costUsd": 20,
+      "notes": "Guest/day pass varies; no public lap-lane schedule — excluded from search until a source exists."
+    },
+    "scheduleSource": {
+      "label": "24 Hour Fitness — Balboa (no lane schedule published)",
+      "url": "https://www.24hourfitness.com/gyms/san-diego-ca/balboa-ultra-sport",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "24-hour-fitness-la-jolla-village",
+    "name": "24 Hour Fitness — La Jolla Village (lap pool)",
+    "address": "4425 La Jolla Village Dr, San Diego, CA 92122",
+    "location": {
+      "lat": 32.874,
+      "lng": -117.212
+    },
+    "guestPass": {
+      "costUsd": 20,
+      "notes": "Guest/day pass varies; no public lap-lane schedule — excluded from search until a source exists."
+    },
+    "scheduleSource": {
+      "label": "24 Hour Fitness — La Jolla Village (no lane schedule published)",
+      "url": "https://www.24hourfitness.com/gyms/san-diego-ca/la-jolla-village-sport",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "24-hour-fitness-rancho-penasquitos",
+    "name": "24 Hour Fitness — Rancho Peñasquitos (lap pool)",
+    "address": "10025 Carmel Mountain Rd, San Diego, CA 92129",
+    "location": {
+      "lat": 32.957,
+      "lng": -117.101
+    },
+    "guestPass": {
+      "costUsd": 20,
+      "notes": "Guest/day pass varies; no public lap-lane schedule — excluded from search until a source exists."
+    },
+    "scheduleSource": {
+      "label": "24 Hour Fitness — Rancho Peñasquitos (no lane schedule published)",
+      "url": "https://www.24hourfitness.com/gyms/san-diego-ca/rancho-penasquitos-sport",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "la-fitness-mission-valley",
+    "name": "LA Fitness — Mission Valley (pool)",
+    "address": "2348 Russell Park Way, Ste 100, San Diego, CA 92108",
+    "location": {
+      "lat": 32.769,
+      "lng": -117.148
+    },
+    "guestPass": {
+      "costUsd": 20,
+      "notes": "Guest/day pass varies; no public lap-lane schedule — excluded from search until a source exists."
+    },
+    "scheduleSource": {
+      "label": "LA Fitness — Mission Valley (no lane schedule published)",
+      "url": "https://www.lafitness.com/Pages/clubhome.aspx?clubid=1279",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "ucsd-canyonview-pool",
+    "name": "UC San Diego — Canyonview Aquatics Center",
+    "address": "330 S Sports Center Dr, La Jolla, CA 92093",
+    "location": {
+      "lat": 32.879,
+      "lng": -117.234
+    },
+    "guestPass": {
+      "costUsd": 15,
+      "notes": "Campus rec / masters drop-in; workout times from UCSD masters page — lane count not published."
+    },
+    "scheduleSource": {
+      "label": "UCSD Recreation — Masters Swimming workout schedule",
+      "url": "https://recreation.ucsd.edu/competitive-sports/masters/",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "07:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "07:30",
+        "endTime": "09:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "07:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "07:30",
+        "endTime": "09:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "07:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "07:30",
+        "endTime": "09:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "07:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "07:30",
+        "endTime": "09:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:00",
+        "endTime": "07:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "07:30",
+        "endTime": "09:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "18:00",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "18:00",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "18:00",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "18:00",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "07:30",
+        "endTime": "09:00",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "ned-baumer-pool",
+    "name": "Ned Baumer Aquatic Center (Mira Mesa)",
+    "address": "10440 Black Mountain Rd, San Diego, CA 92126",
+    "location": {
+      "lat": 32.912,
+      "lng": -117.113
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "City adult day pass; lap swim Mon–Thu 1:30–5:30pm, Sat 9am–2pm — lane count not in PDF."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — Ned Baumer pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/nedbaumerpoolprogram.pdf",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "13:30",
+        "endTime": "17:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "13:30",
+        "endTime": "17:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "13:30",
+        "endTime": "17:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "13:30",
+        "endTime": "17:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "09:00",
+        "endTime": "14:00",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "standley-aquatic-center",
+    "name": "Standley Aquatic Center (University City)",
+    "address": "3605 Governor Dr, San Diego, CA 92122",
+    "location": {
+      "lat": 32.864,
+      "lng": -117.222
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "City/school joint-use; lap swim per June 2026 PDF — lane count not listed."
+    },
+    "scheduleSource": {
+      "label": "City of San Diego — Standley pool program PDF",
+      "url": "https://www.sandiego.gov/sites/default/files/2024-04/standleypoolprogram.pdf",
+      "effectiveDate": "2026-06-08"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "09:30",
+        "endTime": "16:45",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "18:15",
+        "endTime": "20:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "09:30",
+        "endTime": "16:45",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "18:15",
+        "endTime": "20:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "07:00",
+        "endTime": "16:45",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "07:00",
+        "endTime": "16:45",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "11:00",
+        "endTime": "16:00",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "kroc-center-pool",
+    "name": "Salvation Army Kroc Center — aquatics",
+    "address": "6845 University Ave, San Diego, CA 92115",
+    "location": {
+      "lat": 32.714,
+      "lng": -117.067
+    },
+    "guestPass": {
+      "costUsd": 10,
+      "notes": "Kroc day pass; comp-pool lap swim varies — see sd.kroccenter.org lap swim calendar. Below: published masters workouts only."
+    },
+    "scheduleSource": {
+      "label": "Kroc Center San Diego — lap swim + USMS masters",
+      "url": "https://sd.kroccenter.org/kroc-san-diego/lap-swim/",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "07:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "07:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "08:45",
+        "endTime": "09:45",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "pardee-aquatics-center",
+    "name": "Pardee Aquatics Center (Solana Beach)",
+    "address": "533 Lomas Santa Fe Dr, Solana Beach, CA 92075",
+    "location": {
+      "lat": 32.991,
+      "lng": -117.269
+    },
+    "guestPass": {
+      "costUsd": 15,
+      "notes": "BGC day pass; lap swim from published Summer 2026 PDF (comp + rec pools; schedules change seasonally)."
+    },
+    "scheduleSource": {
+      "label": "Pardee Aquatics Center — Summer 2026 lap swim PDF (Jun 15–Aug 9)",
+      "url": "https://bgcgreatertogether.org/wp-content/uploads/2026/06/Summer-2026-Lap-Swim-Schedule-B_Patty-Mariscal.pdf",
+      "effectiveDate": "2026-06-15"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:00",
+        "endTime": "06:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "10:10",
+        "endTime": "11:40",
+        "lanesAvailable": 8
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "13:00",
+        "endTime": "14:20",
+        "lanesAvailable": 9
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:00",
+        "endTime": "08:45",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "19:00",
+        "endTime": "20:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "10:10",
+        "endTime": "11:40",
+        "lanesAvailable": 8
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "13:00",
+        "endTime": "14:20",
+        "lanesAvailable": 9
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "08:45",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "19:00",
+        "endTime": "20:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:00",
+        "endTime": "06:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "10:10",
+        "endTime": "11:40",
+        "lanesAvailable": 8
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "13:00",
+        "endTime": "14:20",
+        "lanesAvailable": 9
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:00",
+        "endTime": "08:45",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "19:00",
+        "endTime": "20:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "10:10",
+        "endTime": "11:40",
+        "lanesAvailable": 8
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "13:00",
+        "endTime": "14:20",
+        "lanesAvailable": 9
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "08:45",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "19:00",
+        "endTime": "20:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:00",
+        "endTime": "06:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "13:00",
+        "endTime": "16:30",
+        "lanesAvailable": 9
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:00",
+        "endTime": "08:45",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "10:00",
+        "endTime": "11:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "14:30",
+        "endTime": "16:30",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "10:45",
+        "endTime": "12:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "12:00",
+        "endTime": "16:15",
+        "lanesAvailable": 9
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "08:00",
+        "endTime": "16:15",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "08:00",
+        "endTime": "11:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "11:00",
+        "endTime": "16:15",
+        "lanesAvailable": 9
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "08:00",
+        "endTime": "16:15",
+        "lanesAvailable": 6
+      }
+    ]
+  },
+  {
+    "id": "lfjcc-pool",
+    "name": "Lawrence Family JCC — outdoor lap pool",
+    "address": "4126 Executive Dr, La Jolla, CA 92037",
+    "location": {
+      "lat": 32.869,
+      "lng": -117.229
+    },
+    "guestPass": {
+      "costUsd": 25,
+      "notes": "JCC guest pass; lap swim hours from lfjcc.org — fewer lanes Mon–Thu 3:30–6:30pm (swim team)."
+    },
+    "scheduleSource": {
+      "label": "Lawrence Family JCC — aquatics / lap swimming hours",
+      "url": "https://www.lfjcc.org/qualcomm/aquatics.aspx",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "15:30",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "15:30",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "15:30",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "15:30",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "18:30",
+        "endTime": "20:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "18:30",
+        "endTime": "20:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "18:30",
+        "endTime": "20:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "18:30",
+        "endTime": "20:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:00",
+        "endTime": "15:30",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "07:00",
+        "endTime": "17:30",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "07:00",
+        "endTime": "17:30",
+        "lanesAvailable": 3
+      }
+    ]
+  },
+  {
+    "id": "admiral-prout-pool",
+    "name": "Admiral Prout Pool (Naval Base San Diego)",
+    "address": "2375 Recreation Way, Bldg 3279, San Diego, CA 92136",
+    "location": {
+      "lat": 32.696,
+      "lng": -117.121
+    },
+    "military": true,
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Military ID required; lap swim M–F 5–8am & 11am–1pm per Navy Life / base directory — lane count not published."
+    },
+    "scheduleSource": {
+      "label": "Navy Life SW — Admiral Prout Pool (lap swim hours)",
+      "url": "https://sandiego.navylifesw.com/programs/f6791849-5d31-4c6b-b90e-458552792d33",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "05:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "mcas-miramar-pool",
+    "name": "MCAS Miramar 50-Meter Pool",
+    "address": "Bldg 2000, MCAS Miramar, San Diego, CA 92126",
+    "location": {
+      "lat": 32.881,
+      "lng": -117.143
+    },
+    "military": true,
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Military patrons; lap swim M–F 5–7am & 11am–1pm per MCCS — lane count not published."
+    },
+    "scheduleSource": {
+      "label": "MCAS Miramar — Pool / Water Survival Training (MCCS)",
+      "url": "https://www.basedirectory.com/mcas-miramar-directory/pool-water-survival-training",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:00",
+        "endTime": "07:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:00",
+        "endTime": "07:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:00",
+        "endTime": "07:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "05:00",
+        "endTime": "07:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:00",
+        "endTime": "07:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "admiral-baker-pool",
+    "name": "Admiral Baker Pool (Naval Medical Center San Diego)",
+    "address": "Balboa Naval Hospital, San Diego, CA 92134",
+    "location": {
+      "lat": 32.756,
+      "lng": -117.199
+    },
+    "military": true,
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Military & affiliates; NMCSD lap pool M–F 5:30–8:30am & 10am–7pm, Sat–Sun 12:30–4:30pm per base directory — lane count not published."
+    },
+    "scheduleSource": {
+      "label": "NMCSD Balboa Pool — Navy Life / base directory lap hours",
+      "url": "https://medcenter.navylifesw.com/programs/2dbe9a6d-d502-4e02-811c-3860f9c55028",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:30",
+        "endTime": "08:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:30",
+        "endTime": "08:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:30",
+        "endTime": "08:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "05:30",
+        "endTime": "08:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:30",
+        "endTime": "08:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "10:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "10:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "10:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "10:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "10:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "12:30",
+        "endTime": "16:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "12:30",
+        "endTime": "16:30",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "cameron-family-ymca",
+    "name": "Cameron Family YMCA (lap pool)",
+    "address": "10123 Riverwalk Dr, Santee, CA 92071",
+    "location": {
+      "lat": 32.838,
+      "lng": -116.99
+    },
+    "guestPass": {
+      "costUsd": 15,
+      "notes": "YMCA day pass; Santee residents $4/session at activity pool — see PDF."
+    },
+    "scheduleSource": {
+      "label": "Cameron Family YMCA — lap pool schedule PDF (June 2026)",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2026/05/Cameron-Pool-Schedule-for-First-Two-Weeks-of-June-2026.pdf",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:30",
+        "endTime": "07:20",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "10:05",
+        "endTime": "15:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:30",
+        "endTime": "07:20",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "10:05",
+        "endTime": "15:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:30",
+        "endTime": "07:20",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "10:05",
+        "endTime": "15:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "05:30",
+        "endTime": "07:20",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "10:05",
+        "endTime": "15:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:30",
+        "endTime": "07:20",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "10:05",
+        "endTime": "15:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "08:15",
+        "endTime": "09:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "13:00",
+        "endTime": "16:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "09:15",
+        "endTime": "12:30",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "border-view-family-ymca",
+    "name": "Border View Family YMCA (outdoor lap pool)",
+    "address": "3601 Arey Dr, San Diego, CA 92154",
+    "location": {
+      "lat": 32.567,
+      "lng": -117.038
+    },
+    "guestPass": {
+      "costUsd": 15,
+      "notes": "YMCA day pass ~$15–25; verify at desk — members use membership"
+    },
+    "scheduleSource": {
+      "label": "Border View Family YMCA — pool schedule PDF",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2025/02/pool_schedule_border_view_0125-v1.pdf",
+      "effectiveDate": "2025-02-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "07:00",
+        "endTime": "10:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "08:00",
+        "endTime": "12:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "16:00",
+        "endTime": "20:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "07:00",
+        "endTime": "10:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "16:00",
+        "endTime": "20:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "07:00",
+        "endTime": "09:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "08:00",
+        "endTime": "12:15",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "07:00",
+        "endTime": "10:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "16:00",
+        "endTime": "20:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "07:00",
+        "endTime": "10:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "16:00",
+        "endTime": "20:00",
+        "lanesAvailable": 4
+      }
+    ]
+  },
+  {
+    "id": "john-a-davis-family-ymca",
+    "name": "John A. Davis Family YMCA (lap pool)",
+    "address": "8881 Dallas St, La Mesa, CA 91942",
+    "location": {
+      "lat": 32.777,
+      "lng": -117.01
+    },
+    "guestPass": {
+      "costUsd": 15,
+      "notes": "YMCA day pass ~$15–25; verify at desk — members use membership"
+    },
+    "scheduleSource": {
+      "label": "John A. Davis Family YMCA — lap pool schedule PDF",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2025/10/Davis-November-Schedule.pdf",
+      "effectiveDate": "2025-11-02"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "10:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "11:00",
+        "endTime": "12:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "15:00",
+        "endTime": "18:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "10:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "11:00",
+        "endTime": "12:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "15:00",
+        "endTime": "18:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "10:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "11:00",
+        "endTime": "12:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "15:00",
+        "endTime": "18:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "10:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "11:00",
+        "endTime": "12:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "15:00",
+        "endTime": "18:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:00",
+        "endTime": "10:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "11:00",
+        "endTime": "12:15",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "15:00",
+        "endTime": "18:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "08:00",
+        "endTime": "10:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "10:00",
+        "endTime": "13:00",
+        "lanesAvailable": 3
+      }
+    ]
+  },
+  {
+    "id": "mcgrath-family-ymca",
+    "name": "McGrath Family YMCA (outdoor lap pool)",
+    "address": "1030 Sweetwater Springs Blvd, Spring Valley, CA 91977",
+    "location": {
+      "lat": 32.731,
+      "lng": -116.996
+    },
+    "guestPass": {
+      "costUsd": 15,
+      "notes": "YMCA day pass ~$15–25; verify at desk — members use membership"
+    },
+    "scheduleSource": {
+      "label": "McGrath Family YMCA — pool schedule PDF (Fall 2025)",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2025/08/McGrath-Pool-Schedule-Fall-2025-rev.-2.pdf",
+      "effectiveDate": "2025-08-18"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "07:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "07:00",
+        "endTime": "07:55",
+        "lanesAvailable": 10
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "09:00",
+        "endTime": "15:00",
+        "lanesAvailable": 10
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "15:00",
+        "endTime": "16:00",
+        "lanesAvailable": 8
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "12:00",
+        "lanesAvailable": 10
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "07:00",
+        "endTime": "15:00",
+        "lanesAvailable": 10
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "12:00",
+        "lanesAvailable": 10
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "07:00",
+        "endTime": "16:00",
+        "lanesAvailable": 10
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "08:00",
+        "endTime": "13:00",
+        "lanesAvailable": 8
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "08:00",
+        "endTime": "15:00",
+        "lanesAvailable": 10
+      }
+    ]
+  },
+  {
+    "id": "joe-mary-mottino-family-ymca",
+    "name": "Joe and Mary Mottino Family YMCA (outdoor lap pool)",
+    "address": "4701 Mesa Dr, Oceanside, CA 92056",
+    "location": {
+      "lat": 33.194,
+      "lng": -117.319
+    },
+    "guestPass": {
+      "costUsd": 15,
+      "notes": "YMCA day pass ~$15–25; verify at desk — members use membership"
+    },
+    "scheduleSource": {
+      "label": "Mottino Family YMCA — pool schedule PDF (Fall 2024)",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2024/11/mottino_pool_schedule_fall_2024.pdf",
+      "effectiveDate": "2024-11-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "12:45",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "12:45",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "12:45",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "12:45",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:00",
+        "endTime": "12:45",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "08:00",
+        "endTime": "12:45",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "08:00",
+        "endTime": "12:00",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "jackie-robinson-family-ymca",
+    "name": "Jackie Robinson Family YMCA (outdoor lap pool)",
+    "address": "151 YMCA Way, San Diego, CA 92102",
+    "location": {
+      "lat": 32.712,
+      "lng": -117.075
+    },
+    "guestPass": {
+      "costUsd": 15,
+      "notes": "YMCA day pass; outdoor lap pool — transcribed from branch Spring/Summer 2026 PDF."
+    },
+    "scheduleSource": {
+      "label": "Jackie Robinson Family YMCA — pool schedule PDF (Spring/Summer 2026)",
+      "url": "https://www.ymcasd.org/wp-content/uploads/2026/02/Pool-Schedule-Spring-Summer-2026.pdf",
+      "effectiveDate": "2026-02-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:30",
+        "endTime": "11:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:30",
+        "endTime": "11:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:30",
+        "endTime": "11:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:30",
+        "endTime": "11:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:30",
+        "endTime": "11:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "11:00",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "11:00",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "11:00",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "11:00",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "11:00",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "16:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "16:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "16:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "16:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "16:00",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "08:00",
+        "endTime": "13:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "12:00",
+        "endTime": "16:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "09:30",
+        "endTime": "12:30",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "alga-norte-aquatic-center",
+    "name": "Alga Norte Aquatic Center (Carlsbad)",
+    "address": "6565 Alicante Rd, Carlsbad, CA 92009",
+    "location": {
+      "lat": 33.129,
+      "lng": -117.254
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "City drop-in; competition + instructional pools — see daily pool-use calendar"
+    },
+    "scheduleSource": {
+      "label": "City of Carlsbad — pool use calendars (competition pool)",
+      "url": "https://www.carlsbadca.gov/departments/parks-recreation/aquatics/pool-use-calendars",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "carlsbad-monroe-swim-complex",
+    "name": "Carlsbad Community Swim Complex (Monroe St)",
+    "address": "3401 Monroe St, Carlsbad, CA 92008",
+    "location": {
+      "lat": 33.158,
+      "lng": -117.337
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Closed for reconstruction through summer 2026 — verify reopening"
+    },
+    "scheduleSource": {
+      "label": "City of Carlsbad — aquatics (Monroe St closure notice)",
+      "url": "https://www.carlsbadca.gov/departments/parks-recreation/aquatics",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "oceanside-brooks-street-pool",
+    "name": "Brooks Street Swim Center (Oceanside)",
+    "address": "130 Brooks St, Oceanside, CA 92054",
+    "location": {
+      "lat": 33.198,
+      "lng": -117.379
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "City drop-in; 7 lap lanes (~33⅓ yd) — lane count approximate"
+    },
+    "scheduleSource": {
+      "label": "City of Oceanside — Brooks Street Swim Center (lap swim hours)",
+      "url": "https://www.ci.oceanside.ca.us/Home/Components/FacilityDirectory/FacilityDirectory/2/693",
+      "effectiveDate": "2026-01-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "13:15",
+        "lanesAvailable": 7
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "13:15",
+        "lanesAvailable": 7
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "13:15",
+        "lanesAvailable": 7
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "13:15",
+        "lanesAvailable": 7
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:00",
+        "endTime": "13:15",
+        "lanesAvailable": 7
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "10:15",
+        "endTime": "13:15",
+        "lanesAvailable": 7
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "10:15",
+        "endTime": "13:15",
+        "lanesAvailable": 7
+      }
+    ]
+  },
+  {
+    "id": "oceanside-wagner-aquatic-center",
+    "name": "William A. Wagner Aquatic Center / El Corazon (Oceanside)",
+    "address": "3306 Senior Center Dr, Oceanside, CA 92056",
+    "location": {
+      "lat": 33.214,
+      "lng": -117.284
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "City drop-in; long-course Tue/Thu mornings — lane count not published (min 1)"
+    },
+    "scheduleSource": {
+      "label": "City of Oceanside — aquatics FAQ (Wagner lap swim hours)",
+      "url": "https://www.ci.oceanside.ca.us/government/parks-recreation/aquatics/frequently-asked-questions-aquatics",
+      "effectiveDate": "2026-01-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "09:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "09:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "09:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "09:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "09:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "10:00",
+        "endTime": "17:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "10:00",
+        "endTime": "17:00",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "oceanside-marshall-street-pool",
+    "name": "Marshall Street Swim Center (Oceanside, seasonal)",
+    "address": "1404 Marshall St, Oceanside, CA 92058",
+    "location": {
+      "lat": 33.196,
+      "lng": -117.358
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Summer-season outdoor pool — call 760-435-5535 for current lap hours"
+    },
+    "scheduleSource": {
+      "label": "City of Oceanside — aquatics (Marshall St seasonal)",
+      "url": "https://www.ci.oceanside.ca.us/government/parks-recreation/aquatics",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "poway-community-swim-center",
+    "name": "Poway Community Swim Center",
+    "address": "13094 Civic Center Dr, Poway, CA 92064",
+    "location": {
+      "lat": 32.954,
+      "lng": -117.038
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "City drop-in; 50m/25yd pool — hours change seasonally (see city page)"
+    },
+    "scheduleSource": {
+      "label": "City of Poway — Swim Center Hours (Apr 12–Jun 4, 2026 season)",
+      "url": "https://poway.org/504/Hours",
+      "effectiveDate": "2026-04-12"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "10:30",
+        "endTime": "19:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "10:30",
+        "endTime": "19:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "10:30",
+        "endTime": "19:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:30",
+        "endTime": "13:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "14:00",
+        "endTime": "19:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "05:30",
+        "endTime": "13:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "14:00",
+        "endTime": "19:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "10:30",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "10:30",
+        "endTime": "17:00",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "escondido-james-stone-pool",
+    "name": "James A. Stone Pool (Escondido)",
+    "address": "131 W Woodward Ave, Escondido, CA 92025",
+    "location": {
+      "lat": 33.124,
+      "lng": -117.081
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Cash drop-in; seasonal lap swim — max 24 swimmers, lanes not published (min 1)"
+    },
+    "scheduleSource": {
+      "label": "City of Escondido — aquatics (James Stone lap swim, summer season)",
+      "url": "https://www.escondido.gov/734/Aquatics",
+      "effectiveDate": "2025-04-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 2,
+        "startTime": "07:00",
+        "endTime": "10:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "07:00",
+        "endTime": "10:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "07:00",
+        "endTime": "10:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "07:00",
+        "endTime": "10:00",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "palomar-family-ymca",
+    "name": "Palomar Family YMCA (Escondido, outdoor pool)",
+    "address": "1050 N Broadway, Escondido, CA 92026",
+    "location": {
+      "lat": 33.137,
+      "lng": -117.08
+    },
+    "guestPass": {
+      "costUsd": 25,
+      "notes": "YMCA day pass; no public lane-grid PDF — call branch"
+    },
+    "scheduleSource": {
+      "label": "Palomar Family YMCA — branch page",
+      "url": "https://www.ymca.org/locations/palomar-family-ymca",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "las-posas-pool-san-marcos",
+    "name": "Las Posas Pool (Cerro de las Posas, San Marcos)",
+    "address": "1387 W Borden Rd, San Marcos, CA 92069",
+    "location": {
+      "lat": 33.16,
+      "lng": -117.187
+    },
+    "guestPass": {
+      "costUsd": 4,
+      "notes": "City drop-in or Splash Pass; lane count not published (min 1)"
+    },
+    "scheduleSource": {
+      "label": "City of San Marcos — Pools & Programs (lap swim)",
+      "url": "https://www.sanmarcosca.gov/Parks-Recreation/Pools-Programs",
+      "effectiveDate": "2026-01-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:30",
+        "endTime": "10:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "16:30",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:30",
+        "endTime": "10:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "16:30",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:30",
+        "endTime": "10:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "16:30",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:30",
+        "endTime": "10:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "16:30",
+        "endTime": "19:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "06:30",
+        "endTime": "14:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "06:30",
+        "endTime": "14:30",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "woodland-park-pool-san-marcos",
+    "name": "Woodland Park Pool (San Marcos)",
+    "address": "671 Woodland Pkwy, San Marcos, CA 92069",
+    "location": {
+      "lat": 33.15,
+      "lng": -117.132
+    },
+    "guestPass": {
+      "costUsd": 4,
+      "notes": "Reopening for summer 2026 — verify hours at city aquatics page"
+    },
+    "scheduleSource": {
+      "label": "City of San Marcos — Woodland Park Pool (seasonal reopening)",
+      "url": "https://www.sanmarcosca.gov/Parks-Recreation/Find-Parks-Pools-Facilities/Woodland-Park-Pool",
+      "effectiveDate": "2026-06-15"
+    },
+    "availability": []
+  },
+  {
+    "id": "vista-wave-aquatic",
+    "name": "The Wave Waterpark (Vista, competition pool lap swim)",
+    "address": "101 Wave Dr, Vista, CA 92084",
+    "location": {
+      "lat": 33.2,
+      "lng": -117.074
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Lap swim drop-in $5; seasonal program — verify on city/wave site"
+    },
+    "scheduleSource": {
+      "label": "City of Vista / Wave Waterpark — lap swim program (M/W/F mornings)",
+      "url": "https://www.thewavewaterpark.com/programs/lap-swim",
+      "effectiveDate": "2026-04-13"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "chula-vista-loma-verde-aquatic",
+    "name": "Loma Verde Aquatic Center (Chula Vista)",
+    "address": "1420 Loma Ln, Chula Vista, CA 91911",
+    "location": {
+      "lat": 32.604,
+      "lng": -117.048
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "City aquatics; 50m competition pool — call 619-409-1988 for lap grid"
+    },
+    "scheduleSource": {
+      "label": "City of Chula Vista — Loma Verde Aquatic Center",
+      "url": "https://www.chulavistaca.gov/departments/parks-and-recreation/community-centers/loma-verde-aquatic-center",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "chula-vista-parkway-aquatic",
+    "name": "Parkway Aquatic Center (Chula Vista)",
+    "address": "385 Parkway, Chula Vista, CA 91910",
+    "location": {
+      "lat": 32.627,
+      "lng": -117.084
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Seasonal lap swim — check city site; no lockers"
+    },
+    "scheduleSource": {
+      "label": "City of Chula Vista — Parkway Aquatic Center",
+      "url": "https://www.chulavistaca.gov/departments/parks-and-recreation/community-centers/parkway-aquatic-center",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "national-city-las-palmas-pool",
+    "name": "Las Palmas Pool (National City)",
+    "address": "1800 E 22nd St, National City, CA 91950",
+    "location": {
+      "lat": 32.661,
+      "lng": -117.098
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Short-term pool schedule PDFs on city site — transcribe when current"
+    },
+    "scheduleSource": {
+      "label": "City of National City — Las Palmas Pool",
+      "url": "https://www.nationalcityca.gov/government/community-services/las-palmas-pool",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "la-mesa-municipal-pool",
+    "name": "La Mesa Municipal Pool",
+    "address": "5100 Memorial Dr, La Mesa, CA 91941",
+    "location": {
+      "lat": 32.759,
+      "lng": -117.023
+    },
+    "guestPass": {
+      "costUsd": 6,
+      "notes": "City drop-in; spring hours Mar 16–Jun 12, 2026 on website"
+    },
+    "scheduleSource": {
+      "label": "City of La Mesa — Aquatics (spring 2026 lap swim)",
+      "url": "https://www.cityoflamesa.us/915/Aquatics",
+      "effectiveDate": "2026-03-16"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "08:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "11:30",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "08:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "11:30",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "08:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "11:30",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "08:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "11:30",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:00",
+        "endTime": "08:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "11:30",
+        "endTime": "15:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "18:00",
+        "endTime": "19:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "18:00",
+        "endTime": "19:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "18:00",
+        "endTime": "19:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "18:00",
+        "endTime": "19:30",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "usd-sports-center-pool",
+    "name": "USD Sports Center Pool (outdoor)",
+    "address": "5998 Alcala Park, San Diego, CA 92110",
+    "location": {
+      "lat": 32.772,
+      "lng": -117.189
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Campus recreation — no public lap-lane grid published"
+    },
+    "scheduleSource": {
+      "label": "USD Campus Recreation — aquatics",
+      "url": "https://www.sandiego.edu/campus-recreation/recreation-classes/aquatics-swimming.php",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "southwestern-college-aquatics",
+    "name": "Southwestern College Wellness & Aquatic Complex",
+    "address": "900 Otay Lakes Rd, Chula Vista, CA 91910",
+    "location": {
+      "lat": 32.64,
+      "lng": -116.982
+    },
+    "guestPass": {
+      "costUsd": 10,
+      "notes": "Community college facility — contact SWCWAC for public lap hours"
+    },
+    "scheduleSource": {
+      "label": "Southwestern College — Wellness & Aquatic Complex",
+      "url": "https://www.swccd.edu/swc-community/wellness-and-aquatics-complex/index.aspx",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "camp-pendleton-13-area-pool",
+    "name": "Camp Pendleton 13 Area Pool",
+    "address": "Bldg 1315, Vandegrift Blvd, Camp Pendleton, CA 92058",
+    "location": {
+      "lat": 33.304,
+      "lng": -117.451
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Base access required; active duty free — see MCCS aquatics"
+    },
+    "scheduleSource": {
+      "label": "MCCS Camp Pendleton — 13 Area Pool (lap swim & unit PT)",
+      "url": "https://pendleton.usmc-mccs.org/recreation-fitness/recreation/aquatics/13-area-pool",
+      "effectiveDate": "2026-06-01"
+    },
+    "military": true,
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "11:00",
+        "endTime": "13:00",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "el-cajon-fletcher-hills-pool",
+    "name": "Fletcher Hills Recreation Center Pool (El Cajon)",
+    "address": "2345 Center Pl, El Cajon, CA 92020",
+    "location": {
+      "lat": 32.79,
+      "lng": -116.962
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "City recreation; lane count not published (min 1)"
+    },
+    "scheduleSource": {
+      "label": "City of El Cajon — Fletcher Hills recreation (pool hours via SI LMSC / city)",
+      "url": "https://www.cityofelcajon.us/your-government/departments/recreation/recreation-centers",
+      "effectiveDate": "2026-01-01"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "14:15",
+        "endTime": "18:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "14:15",
+        "endTime": "18:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "14:15",
+        "endTime": "18:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "14:15",
+        "endTime": "18:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "13:00",
+        "endTime": "18:00",
+        "lanesAvailable": 1
+      }
+    ]
+  },
+  {
+    "id": "grossmont-high-school-pool",
+    "name": "Grossmont High School Pool (GUHSD public lap)",
+    "address": "1100 Murray Dr, El Cajon, CA 92020",
+    "location": {
+      "lat": 32.82,
+      "lng": -117.007
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Seasonal GUHSD aquatics brochure — transcribe when posted"
+    },
+    "scheduleSource": {
+      "label": "Grossmont Union HS District — aquatics",
+      "url": "https://www.guhsd.net/Departments/Business-Services/Facilities-and-Construction/Aquatics/index.html",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "helix-high-school-pool",
+    "name": "Helix High School Pool (La Mesa, GUHSD)",
+    "address": "7323 University Ave, La Mesa, CA 91942",
+    "location": {
+      "lat": 32.761,
+      "lng": -117.008
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Call GUHSD aquatics 619-644-8172 for seasonal lap hours"
+    },
+    "scheduleSource": {
+      "label": "GUHSD aquatics — Helix High School",
+      "url": "https://www.guhsd.net/Departments/Business-Services/Facilities-and-Construction/Aquatics/Locations/index.html",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "santee-santana-high-school-pool",
+    "name": "Santana High School Pool (Santee, GUHSD)",
+    "address": "9915 Magnolia Ave, Santee, CA 92071",
+    "location": {
+      "lat": 32.845,
+      "lng": -116.985
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Seasonal GUHSD lap swim — see district aquatics brochure"
+    },
+    "scheduleSource": {
+      "label": "GUHSD aquatics — Santana High School",
+      "url": "https://www.guhsd.net/Departments/Business-Services/Facilities-and-Construction/Aquatics/index.html",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "lakeside-el-capitan-pool",
+    "name": "El Capitan High School Pool (Lakeside, GUHSD)",
+    "address": "10410 Ashwood St, Lakeside, CA 92040",
+    "location": {
+      "lat": 32.857,
+      "lng": -116.922
+    },
+    "guestPass": {
+      "costUsd": 5,
+      "notes": "Seasonal GUHSD lap swim — see district aquatics brochure"
+    },
+    "scheduleSource": {
+      "label": "GUHSD aquatics — El Capitan High School",
+      "url": "https://www.guhsd.net/Departments/Business-Services/Facilities-and-Construction/Aquatics/index.html",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "scripps-ranch-swim-racquet-club",
+    "name": "Scripps Ranch Swim & Racquet Club (private)",
+    "address": "9875 Aviary Dr, San Diego, CA 92131",
+    "location": {
+      "lat": 32.913,
+      "lng": -117.091
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Private club — call 858-271-6222 for guest/lap policy"
+    },
+    "scheduleSource": {
+      "label": "Scripps Ranch SRC — private club",
+      "url": "http://www.srsrc.com/",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  },
+  {
+    "id": "poway-rancho-arbolitos-pool",
+    "name": "Rancho Arbolitos Swim & Tennis Club (private, Poway)",
+    "address": "14343 Silverset St, Poway, CA 92064",
+    "location": {
+      "lat": 32.939,
+      "lng": -117.05
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Private club — call for lap swim / guest access"
+    },
+    "scheduleSource": {
+      "label": "Rancho Arbolitos — private club",
+      "url": "http://ranchoarbolitos.com/",
+      "effectiveDate": "2026-06-01"
+    },
+    "availability": []
+  }
+]

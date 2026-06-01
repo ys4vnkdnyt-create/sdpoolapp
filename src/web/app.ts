@@ -3,6 +3,13 @@
  * Calls GET /api/search — kitchen logic stays on the server.
  */
 
+/** Published schedule link (PDF or web page) from the pantry. */
+interface ScheduleSourceJson {
+  label: string;
+  url: string;
+  effectiveDate: string;
+}
+
 /** Shape of each pool row from /api/search (matches server JSON). */
 interface SearchResultJson {
   poolId: string;
@@ -11,6 +18,9 @@ interface SearchResultJson {
   lanesAvailable: number;
   estimatedDriveMinutes: number;
   guestPassCostUsd: number;
+  scheduleSource?: ScheduleSourceJson;
+  /** Military base pool — show * and access note in results. */
+  military?: boolean;
 }
 
 interface SearchResponse {
@@ -279,14 +289,37 @@ function renderSortPills(): void {
   }
 }
 
+/** "View schedule" link when the pantry has a published source URL. */
+function renderScheduleButton(source: ScheduleSourceJson | undefined): string {
+  if (!source?.url) return "";
+
+  const title = escapeHtml(source.label);
+  return `
+      <a
+        class="pool-card__schedule"
+        href="${escapeHtml(source.url)}"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="${title}"
+      >View schedule</a>`;
+}
+
+/** Pool display name — asterisk marks military bases (access may be restricted). */
+function formatPoolName(r: SearchResultJson): string {
+  const label = r.military ? `${r.name} *` : r.name;
+  return escapeHtml(label);
+}
+
 /** One pool card on screen 2. */
 function renderResultCard(r: SearchResultJson): string {
   const miles = fakeMilesFromDriveMinutes(r.estimatedDriveMinutes);
+  const scheduleBtn = renderScheduleButton(r.scheduleSource);
+
   return `
     <article class="pool-card" data-pool-id="${r.poolId}">
       <div class="pool-card__top">
         <div>
-          <h2 class="pool-card__name">${escapeHtml(r.name)}</h2>
+          <h2 class="pool-card__name">${formatPoolName(r)}</h2>
           <p class="pool-card__meta">${escapeHtml(r.address)}</p>
         </div>
         <span class="badge badge--open">• ${r.lanesAvailable} Open</span>
@@ -295,7 +328,7 @@ function renderResultCard(r: SearchResultJson): string {
         <span>◎ ${miles} mi</span>
         <span>⏱ ${r.estimatedDriveMinutes} min</span>
         <span>$ ${r.guestPassCostUsd} drop-in</span>
-      </div>
+      </div>${scheduleBtn}
     </article>
   `;
 }
@@ -332,11 +365,15 @@ async function runSearch(): Promise<void> {
 
   if (data.results.length === 0) {
     resultsList.innerHTML = `<p class="empty">No pools with lap lanes in that window (sample data only).</p>`;
+    resultsFooter.textContent = `End of results within ${radiusMiles} miles (sample drive times).`;
   } else {
     resultsList.innerHTML = data.results.map(renderResultCard).join("");
+    const hasMilitary = data.results.some((r) => r.military);
+    const militaryNote = hasMilitary
+      ? " * Military pool — base access / ID may be required."
+      : "";
+    resultsFooter.textContent = `End of results within ${radiusMiles} miles (sample drive times).${militaryNote}`;
   }
-
-  resultsFooter.textContent = `End of results within ${radiusMiles} miles (sample drive times).`;
   showScreen("results");
 }
 

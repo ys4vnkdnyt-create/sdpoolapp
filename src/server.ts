@@ -16,6 +16,13 @@ const PROJECT_ROOT = path.join(SERVER_DIR, "..");
 const PUBLIC_DIR = path.join(PROJECT_ROOT, "public");
 const WEB_APP_JS = path.join(SERVER_DIR, "web", "app.js");
 
+/** Schedule link we pass through to the browser (from pool pantry). */
+interface ScheduleSourceJson {
+  label: string;
+  url: string;
+  effectiveDate: string;
+}
+
 /** One pool row we send to the browser (flat JSON, no nested Pool object). */
 interface SearchResultJson {
   poolId: string;
@@ -24,18 +31,31 @@ interface SearchResultJson {
   lanesAvailable: number;
   estimatedDriveMinutes: number;
   guestPassCostUsd: number;
+  scheduleSource?: ScheduleSourceJson;
+  /** True when pool is on a military base — browser adds * to the name. */
+  military?: boolean;
 }
 
 /** Turn kitchen results into simple JSON for the frontend. */
 function resultsToJson(results: PoolSearchResult[]): SearchResultJson[] {
-  return results.map((r) => ({
-    poolId: r.pool.id,
-    name: r.pool.name,
-    address: r.pool.address,
-    lanesAvailable: r.lanesAvailable,
-    estimatedDriveMinutes: r.estimatedDriveMinutes,
-    guestPassCostUsd: r.guestPassCostUsd,
-  }));
+  return results.map((r) => {
+    const row: SearchResultJson = {
+      poolId: r.pool.id,
+      name: r.pool.name,
+      address: r.pool.address,
+      lanesAvailable: r.lanesAvailable,
+      estimatedDriveMinutes: r.estimatedDriveMinutes,
+      guestPassCostUsd: r.guestPassCostUsd,
+    };
+    // Only send schedule link when we have a published source (most real pools do).
+    if (r.pool.scheduleSource) {
+      row.scheduleSource = r.pool.scheduleSource;
+    }
+    if (r.pool.military) {
+      row.military = true;
+    }
+    return row;
+  });
 }
 
 /** Parse sortBy query param; kitchen defaults to distance when missing. */

@@ -43,6 +43,8 @@ export interface Pool {
   guestPass: GuestPassInfo;
   availability: LaneAvailabilityWindow[]; // list of weekly windows
   scheduleSource?: ScheduleSource; // set when data is from a real published schedule
+  /** Military base pool — access may require ID / sponsor; UI shows * on name. */
+  military?: boolean;
 }
 
 /** How to order results after the funnel (kitchen applies this at the end). */

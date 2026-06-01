@@ -5,7 +5,7 @@
   "description": "San Diego lap lane availability prototype",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && mkdir -p dist/data/pools && cp src/data/pools/pools.json dist/data/pools/pools.json",
     "start": "node dist/index.js",
     "dev": "npm run build && npm run start",
     "web": "npm run build && node dist/server.js",

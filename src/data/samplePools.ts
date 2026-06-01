@@ -5,6 +5,7 @@ import type { Pool } from "../types/index.js";
  * Fake San Diego pools — for learning/tests only.
  * The live app uses real schedules in `pools/index.ts` (Ryan YMCA PDF + Plunge web).
  */
+/** Demo-only fake pools — NOT used by CLI or web (see `data/pools/index.ts`). */
 export const samplePools: Pool[] = [
   {
     id: "la-jolla-ymca",

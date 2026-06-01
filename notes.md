@@ -6,7 +6,7 @@
 | Folder / file   | Role                                                            |
 | --------------- | --------------------------------------------------------------- |
 | `src/types/`    | Menu definitions — what a pool, search, and result must include |
-| `src/data/`     | Pantry — pool schedules (fake sample data for now)              |
+| `src/data/`     | Pantry — `pools.json` real schedules only (`samplePools.ts` is demo-only) |
 | `src/services/` | Kitchen — picks pools that match your date/time                 |
 | `src/index.ts`  | Terminal counter — CLI; prints answers in the terminal        |
 | `src/server.ts` | Web counter — serves the browser page and `/api/search`         |
@@ -240,7 +240,7 @@ flowchart LR
 **What's built now (May 2026):**
 
 - **Web UI:** Screens 1–2, hero swimmer, date picker + Today/Tomorrow pills, time grid 5am–9pm (half-hour slots), hides past times on Today · `npm run web` → http://localhost:3000
-- **Real pantry:** 15 pools in `src/data/pools/` (12 city SD PDFs + Ryan YMCA + Plunge; Clairemont closure-only with empty availability; Vista Terrace added)
+- **Real pantry:** `src/data/pools/pools.json` via `loadPools.ts` — **real data only** (no placeholder grids). Pools with `availability: []` are excluded from search until a schedule is transcribed. Ryan Family YMCA is the gold-standard block shape; gyms/BBMAC/Jackie Robinson/Rancho/etc. stay out of search until sources exist.
 - **PDF archive:** Source PDFs in `data/sources/`; `scheduleSource` on `Pool` type
 - **CLI + web** both load from `pools/index.ts` (not `samplePools`)
 - **Latest commit:** `e27d979` (real pools + web wiring)
@@ -268,13 +268,61 @@ npm run dev -- 2026-06-03 12:00
 # Ryan YMCA sanity: Wed 2026-06-03 at 12:00 should show Ryan with 4 lanes
 ```
 
+**YMCA SD County — 14 lap-pool branches (Jun 1 2026 audit):** All **14** on [aquatic-facilities](https://www.ymcasd.org/programs/swim/aquatic-facilities/) have non-empty `availability[]` from branch PDFs. **Ryan (Point Loma)** = `ryan-family-ymca` only — removed duplicate `peninsula-family-ymca` (same branch; schedule was on Ryan with wrong Fairmount address, now **4390 Valeta St**). **Palomar** (Escondido) is in pantry but **not** one of the 14 aquatic branches — `availability: []` until a public lane grid exists.
+
+| Pool id | Status | Source |
+|---------|--------|--------|
+| ryan-family-ymca | **real** | `05.2026-Pool-Schedule.pdf` (lane-level; Point Loma) |
+| cameron / copley-price / magdalena / border-view / davis / mcgrath / mottino | **real** | Branch PDFs (some URLs still 2024–2025; grids transcribed) |
+| toby-wells-ymca | **real** | Winter 2025 branch PDF (lane counts) |
+| mission-valley-ymca / dan-mckinney-ymca | **real** | Branch PDFs (some broad blocks) |
+| south-bay-family-ymca | **real** | SB-Pool-Schedule May 2026 (lane counts per program) |
+| jackie-robinson-family-ymca | **real** | Pool-Schedule-Spring-Summer-2026.pdf |
+| rancho-family-ymca | **real** | Spring-Pool-Schedule-2026-2.pdf |
+| palomar-family-ymca | **empty** | No public lane-grid PDF — call branch |
+| pardee-aquatics-center | **real** | BGC Summer 2026 lap PDF (Jun 15–Aug 9) |
+| lfjcc-pool | **real** | lfjcc.org/qualcomm/aquatics.aspx (hours; limited lanes during team) |
+| kroc-center-pool | **partial** | USMS masters Tu/F 6–7am, Sun 8:45–9:45; full lap via Kroc calendar |
+| City pools (allied → vista) | **real** | sandiego.gov PDFs (~2 lanes assumed where PDF omits count) |
+| clairemont-pool | **empty-awaiting** | Closed per city PDF |
+| ned-baumer-pool / standley-aquatic-center | **real** | City PDFs (June 2026); lane count = 1 (not in PDF) |
+| plunge-san-diego | **real** | Website: 7 lanes, 7am–7pm daily |
+| coronado-aquatics-center | **real** | DocumentCenter/9149 (June 8+ 2026; min 1 lane) |
+| coggan-family-aquatic-complex | **real** | Website hours; min 1 lane (count not published) |
+| ucsd-canyonview-pool | **real** | Masters page workout times; min 1 lane |
+| brian-bent-memorial-aquatics | **partial** | BBMAC daily calendar; CMA M/W/F 6–7am (SI LMSC) |
+| 24hr + LA Fitness (4) | **empty-awaiting** | No public lap schedule on club sites |
+| mcas-miramar-pool | **partial** | MCCS M–F 5–7am & 11am–1pm; min 1 lane |
+| admiral-prout-pool | **real** | Navy/base directory M–F lap 5–8am & 11am–1pm; min 1 lane |
+| admiral-baker-pool | **real** | NMCSD directory M–F lap windows; min 1 lane |
+
+**Thirteen-pool pass (Jun 1 2026):** `scripts/patch-thirteen-pools.mjs` + updated `enforce-real-data.mjs`. **48 / 70** searchable (was **31 / 44** before county merge on this branch). Wed `2026-06-03` `10:00` → Jackie Robinson **6 lanes**, Rancho **4**, South Bay **3**; gyms/Clairemont still absent.
+
+**Spot-check:** Tue `2026-06-02` `14:00` → Ned Baumer **1 lane**; Wed `12:00` → 23 pools; gyms/BBMAC **absent** from search.
+
+**County expansion (Jun 1 2026):** `scripts/patch-county-expansion.mjs` — **70 pools** in `pools.json` (**40 searchable** with non-empty `availability`). Added **26** venues (9 with transcribed lap grids).
+
+| New pool id | Schedule quality | Source |
+|-------------|------------------|--------|
+| oceanside-brooks-street-pool | **real** | City facility page (M–F 6am–1:15pm, Sa/Su 10:15am–1:15pm) |
+| oceanside-wagner-aquatic-center | **real** | City aquatics FAQ (broad windows; min 1 lane) |
+| poway-community-swim-center | **real** | poway.org/504/Hours (Apr 12–Jun 4, 2026 season) |
+| la-mesa-municipal-pool | **real** | cityoflamesa.us aquatics (spring 2026 lap table) |
+| las-posas-pool-san-marcos | **real** | sanmarcosca.gov Pools & Programs |
+| vista-wave-aquatic | **real** | Lap program M/W/F 6–8am (city/Wave; lane min 1) |
+| escondido-james-stone-pool | **real** | escondido.gov aquatics (summer Tu/Th/Sa/Su 7–10am) |
+| camp-pendleton-13-area-pool | **real** | MCCS 13 Area Pool lap table (`military: true`) |
+| el-cajon-fletcher-hills-pool | **partial** | City/LMSC hours; lane count not published |
+| alga-norte, carlsbad-monroe, marshall, palomar, woodland, loma-verde, parkway, las-palmas, usd, southwestern, GUHSD (3), private clubs (2) | **empty** | Listed in pantry; excluded until schedule transcribed |
+
+**Smoke (Jun 1 pass):** Wed `2026-06-03` `12:00` → **28** pools (was ~23). North County: Brooks, Wagner, Poway, La Mesa **open**; Las Posas **closed** at noon (correct per M–Th morning/evening windows). `npm run build` + `typecheck` OK.
+
 **Next (tiny slice):**
 
-1. **Commit date picker** (if ready) — uncommitted changes in `public/index.html`, `public/styles.css`, `src/web/app.ts`
-2. **JSON loader + "View schedule"** — load pools from JSON; PDF button on each result card (uses `scheduleSource`)
-3. **Spot-check** more pools against source PDFs
-4. **GitHub remote** — create repo + `git remote add origin` so push works
-5. Later roadmap: PDF ingest script → SQLite + refresh → deploy
+1. **Commit** pool data + docs when ready — `git status`
+2. **Manual PDF work:** Refresh stale YMCA PDF URLs when branches publish; BBMAC daily calendar; Pardee/LFJCC/Kroc full grids; Palomar if schedule appears
+3. **GitHub remote** — create repo + `git remote add origin`
+4. Later: PDF ingest script → SQLite + refresh → deploy
 
 **Future (in `VISION.md`):** pool amenities · workouts/notes section · possible MySwimPro-style integration
 

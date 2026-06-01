@@ -309,10 +309,29 @@ body {
   font-weight: 600;
 }
 
+.pool-card__schedule {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--teal-dark);
+  background: var(--teal-light);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.pool-card__schedule:hover {
+  background: #d4eef0;
+}
+
 .results-footer {
   text-align: center;
   font-size: 0.75rem;
   color: var(--muted);
+  line-height: 1.4;
+  padding: 0 0.5rem;
   margin: 1.25rem 0 0;
 }
 
