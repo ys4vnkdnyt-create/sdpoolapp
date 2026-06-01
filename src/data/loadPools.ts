@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { Pool } from "../types/index.js";
+import { normalizeExplicitBlocks } from "../services/scheduleWindows.js";
 
 /** Folder containing this file after compile (dist/data/). */
 const DATA_DIR = path.dirname(fileURLToPath(import.meta.url));
@@ -51,5 +52,9 @@ export function loadPoolsFromJson(
     }
   }
 
-  return parsed;
+  // Merge overlaps / touching rows on each weekday (does not add gap windows).
+  return parsed.map((pool) => ({
+    ...pool,
+    availability: normalizeExplicitBlocks(pool.availability),
+  }));
 }

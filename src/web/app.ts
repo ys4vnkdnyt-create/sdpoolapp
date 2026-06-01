@@ -43,17 +43,6 @@ interface NoSchedulePoolJson {
   statusNote?: string;
 }
 
-/** One pool in the browse-all directory (GET /api/pools). */
-interface PoolDirectoryEntry {
-  poolId: string;
-  name: string;
-  address: string;
-  military?: boolean;
-  scheduleUrl?: string;
-  websiteUrl?: string;
-  contactPhone?: string;
-}
-
 interface SearchResponse {
   query: {
     date: string;
@@ -199,7 +188,6 @@ function formatDistanceMiles(miles: number): string {
 // --- DOM refs ---
 const screenSearch = document.getElementById("screen-search")!;
 const screenResults = document.getElementById("screen-results")!;
-const screenDirectory = document.getElementById("screen-directory")!;
 const datePills = document.getElementById("date-pills")!;
 const datePicker = document.getElementById("date-picker") as HTMLInputElement;
 const timeGrid = document.getElementById("time-grid")!;
@@ -208,10 +196,7 @@ const radiusLabel = document.getElementById("radius-label")!;
 const locationLabel = document.getElementById("location-label")!;
 const useLocationButton = document.getElementById("use-location")!;
 const findButton = document.getElementById("find-lanes")!;
-const browsePoolsButton = document.getElementById("browse-pools")!;
 const backButton = document.getElementById("back-to-search")!;
-const backFromDirectoryButton = document.getElementById("back-from-directory")!;
-const directoryList = document.getElementById("directory-list")!;
 const resultsHeader = document.getElementById("results-header")!;
 const resultsList = document.getElementById("results-list")!;
 const noScheduleSection = document.getElementById("no-schedule-section")!;
@@ -315,11 +300,10 @@ function updateRadiusLabel(): void {
   radiusLabel.textContent = `Within ${radiusMiles} miles`;
 }
 
-/** Show search, results, or pool directory screen. */
-function showScreen(which: "search" | "results" | "directory"): void {
+/** Show search or results screen. */
+function showScreen(which: "search" | "results"): void {
   screenSearch.hidden = which !== "search";
   screenResults.hidden = which !== "results";
-  screenDirectory.hidden = which !== "directory";
 }
 
 /** Highlight the active sort pill. */
@@ -346,37 +330,29 @@ function phoneToTelHref(phone: string): string {
   return digits.length === 10 ? `tel:+1${digits}` : `tel:${digits}`;
 }
 
-/** Schedule, pool website, and call buttons for a card. */
-function renderPoolActions(links: {
+/**
+ * Search-result cards only: official schedule link + call the pool.
+ * (Not shown on a separate browse-all list — only pools in your search.)
+ */
+function renderSearchResultActions(links: {
   scheduleUrl?: string;
   websiteUrl?: string;
   contactPhone?: string;
 }): string {
   const parts: string[] = [];
-  const scheduleUrl = links.scheduleUrl;
-  const websiteUrl = links.websiteUrl;
+  const scheduleLink = links.scheduleUrl ?? links.websiteUrl;
 
-  if (scheduleUrl) {
+  if (scheduleLink) {
     parts.push(
-      `<a class="pool-card__action pool-card__action--schedule" href="${escapeHtml(scheduleUrl)}" target="_blank" rel="noopener noreferrer">View schedule</a>`
-    );
-  }
-
-  if (websiteUrl && websiteUrl !== scheduleUrl) {
-    parts.push(
-      `<a class="pool-card__action pool-card__action--website" href="${escapeHtml(websiteUrl)}" target="_blank" rel="noopener noreferrer">Pool website</a>`
-    );
-  } else if (!scheduleUrl && websiteUrl) {
-    parts.push(
-      `<a class="pool-card__action pool-card__action--website" href="${escapeHtml(websiteUrl)}" target="_blank" rel="noopener noreferrer">Pool website</a>`
+      `<a class="pool-card__action pool-card__action--schedule" href="${escapeHtml(scheduleLink)}" target="_blank" rel="noopener noreferrer">View schedule</a>`
     );
   }
 
   if (links.contactPhone) {
     const tel = phoneToTelHref(links.contactPhone);
-    const label = formatPhoneDisplay(links.contactPhone);
+    const phoneLabel = formatPhoneDisplay(links.contactPhone);
     parts.push(
-      `<a class="pool-card__action pool-card__action--call" href="${escapeHtml(tel)}">Call ${escapeHtml(label)}</a>`
+      `<a class="pool-card__action pool-card__action--call" href="${escapeHtml(tel)}" title="Call ${escapeHtml(phoneLabel)}">Call pool</a>`
     );
   }
 
@@ -399,7 +375,7 @@ function renderMilitaryDescription(military?: boolean): string {
 /** One pool card on screen 2. */
 function renderResultCard(r: SearchResultJson): string {
   const miles = formatDistanceMiles(r.distanceMiles);
-  const actions = renderPoolActions({
+  const actions = renderSearchResultActions({
     scheduleUrl: r.scheduleUrl ?? r.scheduleSource?.url,
     websiteUrl: r.websiteUrl,
     contactPhone: r.contactPhone,
@@ -431,7 +407,7 @@ function renderNoScheduleCard(p: NoSchedulePoolJson): string {
     ? `<p class="pool-card__status">${escapeHtml(p.statusNote)}</p>`
     : "";
   const militaryNote = renderMilitaryDescription(p.military);
-  const actions = renderPoolActions({
+  const actions = renderSearchResultActions({
     scheduleUrl: p.scheduleUrl,
     websiteUrl: p.websiteUrl,
     contactPhone: p.contactPhone,
@@ -454,43 +430,6 @@ function renderNoScheduleCard(p: NoSchedulePoolJson): string {
       </div>${actions}
     </article>
   `;
-}
-
-/** Compact directory row (browse-all screen). */
-function renderDirectoryItem(p: PoolDirectoryEntry): string {
-  const actions = renderPoolActions({
-    scheduleUrl: p.scheduleUrl,
-    websiteUrl: p.websiteUrl,
-    contactPhone: p.contactPhone,
-  });
-  const militaryNote = renderMilitaryDescription(p.military);
-
-  return `
-    <article class="directory-item" data-pool-id="${p.poolId}">
-      <h2 class="directory-item__name">${formatPoolName(p.name, p.military)}</h2>
-      <p class="directory-item__meta">${escapeHtml(p.address)}</p>
-      ${militaryNote}
-      ${actions}
-    </article>
-  `;
-}
-
-/** Load every pool with schedule / website / phone links. */
-async function loadPoolDirectory(): Promise<void> {
-  directoryList.innerHTML = `<p class="empty">Loading pools…</p>`;
-  const res = await fetch("/api/pools");
-  if (!res.ok) {
-    directoryList.innerHTML = `<p class="empty">Could not load pool list.</p>`;
-    return;
-  }
-
-  const data = (await res.json()) as { pools: PoolDirectoryEntry[] };
-  if (data.pools.length === 0) {
-    directoryList.innerHTML = `<p class="empty">No pools in the directory.</p>`;
-    return;
-  }
-
-  directoryList.innerHTML = data.pools.map(renderDirectoryItem).join("");
 }
 
 /** Show or hide the optional no-schedule section below open-lane results. */
@@ -638,12 +577,7 @@ useLocationButton.addEventListener("click", () => {
   })();
 });
 findButton.addEventListener("click", () => void runSearch());
-browsePoolsButton.addEventListener("click", () => {
-  showScreen("directory");
-  void loadPoolDirectory();
-});
 backButton.addEventListener("click", () => showScreen("search"));
-backFromDirectoryButton.addEventListener("click", () => showScreen("search"));
 
 sortPills.addEventListener("click", (e) => {
   const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-sort]");

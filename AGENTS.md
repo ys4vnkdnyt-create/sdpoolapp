@@ -21,7 +21,12 @@ You are helping me with this project. Follow the rules below in every conversati
 
 **Pool schedule data:** Use **real data only** — transcribe from published PDFs or official pages (Ryan Family YMCA is the reference shape for `availability[]`). No broad fake weekly windows or placeholder grids. If a venue has no public lap schedule, set `availability` to `[]` so search excludes it until real data exists.
 
-**Gaps between schedule blocks:** On pool PDFs, empty time between two printed lap blocks usually still means lanes are open (not a closure). Search fills those gaps automatically (`expandScheduleGaps.ts`) using at least 1 lane and the smaller lane count of the blocks on either side.
+**Transcribing schedules (per weekday):**
+- Transcribe **each day separately** from the PDF — never copy Monday’s grid onto Tuesday.
+- One printed row with a lane count = **one** `availability` window (e.g. Thu 5:30–10:15 with 6 lanes, not three short fragments).
+- At load, `normalizeExplicitBlocks()` merges overlapping or back-to-back rows on the **same day** and keeps the **higher** lane count.
+
+**Gaps between schedule blocks:** Blank time between two printed blocks on the **same day** usually still means lap lanes are open. Search uses `prepareAvailabilityForSearch()` in `scheduleWindows.ts`: normalize, then fill gaps using the **higher** lane count from either neighboring block (at least 1).
 
 I am learning how to build with AI and am giving myself a prototype project. The project will address a pain point I had in the past as an athlete.
 

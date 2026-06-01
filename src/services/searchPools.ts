@@ -11,7 +11,7 @@ import {
   distanceMiles,
   milesToEstimatedDriveMinutes,
 } from "./distance.js";
-import { expandAvailabilityWithGaps } from "./expandScheduleGaps.js";
+import { prepareAvailabilityForSearch } from "./scheduleWindows.js";
 
 /** Turn "06:30" into minutes since midnight so we can compare times as numbers. */
 function timeToMinutes(time: string): number {
@@ -235,8 +235,8 @@ export function searchPools(pools: Pool[], query: SearchQuery): SearchPoolsOutpu
   const results: PoolSearchResult[] = [];
 
   for (const pool of pools) {
-    // Gaps between PDF blocks usually still mean lap lanes are open (see expandScheduleGaps).
-    const scheduleWindows = expandAvailabilityWithGaps(pool.availability);
+    // Normalize per-day PDF rows, then treat gaps between blocks as open (scheduleWindows.ts).
+    const scheduleWindows = prepareAvailabilityForSearch(pool.availability);
 
     // find first schedule window that matches this weekday and time
     const matchingWindow = scheduleWindows.find(

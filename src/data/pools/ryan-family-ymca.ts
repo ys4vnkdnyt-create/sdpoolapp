@@ -59,7 +59,7 @@ export const ryanFamilyYmc: Pool = {
     { dayOfWeek: 3, startTime: "19:30", endTime: "20:45", lanesAvailable: 6 },
 
     // —— Thursday (4) ——
-    { dayOfWeek: 4, startTime: "08:00", endTime: "09:00", lanesAvailable: 6 },
+    { dayOfWeek: 4, startTime: "05:30", endTime: "10:15", lanesAvailable: 6 },
     { dayOfWeek: 4, startTime: "10:15", endTime: "11:00", lanesAvailable: 3 },
     { dayOfWeek: 4, startTime: "11:00", endTime: "12:00", lanesAvailable: 6 },
     { dayOfWeek: 4, startTime: "14:00", endTime: "14:25", lanesAvailable: 5 },
