@@ -190,6 +190,7 @@ const screenSearch = document.getElementById("screen-search")!;
 const screenResults = document.getElementById("screen-results")!;
 const datePills = document.getElementById("date-pills")!;
 const datePicker = document.getElementById("date-picker") as HTMLInputElement;
+const timeCarousel = document.getElementById("time-carousel")!;
 const timePicker = document.getElementById("time-picker") as HTMLInputElement;
 const timeHint = document.getElementById("time-hint")!;
 const locationLabel = document.getElementById("location-label")!;
@@ -225,13 +226,81 @@ function initDatePickerMin(): void {
   datePicker.min = dateForOffsetDays(0);
 }
 
-/** Sync native time input and min/max for iOS Safari. */
-function syncTimePicker(): void {
+/** 30-minute slots from 5:00 AM through 9:00 PM that are valid for the chosen date. */
+function availableTimeSlots(isoDate: string): string[] {
+  if (isPastEndOfDayToday(isoDate)) return [];
+
+  const minM = timeToMinutes(minTimeForDate(isoDate));
+  const maxM = timeToMinutes(TIME_MAX);
+  const slots: string[] = [];
+
+  for (let m = timeToMinutes(TIME_MIN); m <= maxM; m += TIME_STEP_MINUTES) {
+    if (m >= minM) slots.push(minutesToTime(m));
+  }
+  return slots;
+}
+
+/** Scroll the carousel so the selected slot sits near the center. */
+function scrollTimeSlotIntoView(time: string, smooth = true): void {
+  const el = timeCarousel.querySelector<HTMLElement>(`[data-time="${time}"]`);
+  if (!el) return;
+  el.scrollIntoView({
+    inline: "center",
+    block: "nearest",
+    behavior: smooth ? "smooth" : "auto",
+  });
+}
+
+/** Build horizontal time chips for the current date (respects today’s min time). */
+function renderTimeCarousel(): void {
+  const slots = availableTimeSlots(selectedDate);
+  timeCarousel.innerHTML = "";
+
+  if (slots.length === 0) {
+    timeCarousel.setAttribute("aria-disabled", "true");
+    return;
+  }
+
+  timeCarousel.removeAttribute("aria-disabled");
+
+  for (const time of slots) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "time-slot";
+    btn.dataset.time = time;
+    btn.setAttribute("aria-pressed", String(time === selectedTime));
+    if (time === selectedTime) btn.classList.add("time-slot--active");
+    btn.textContent = formatTime12h(time);
+
+    btn.addEventListener("click", () => {
+      setSelectedTime(time);
+    });
+    timeCarousel.appendChild(btn);
+  }
+
+  scrollTimeSlotIntoView(selectedTime, false);
+}
+
+/** Highlight the active time chip without rebuilding the whole carousel. */
+function syncTimeCarouselActiveState(): void {
+  const buttons = timeCarousel.querySelectorAll<HTMLButtonElement>(".time-slot");
+  for (const btn of buttons) {
+    const isActive = btn.dataset.time === selectedTime;
+    btn.classList.toggle("time-slot--active", isActive);
+    btn.setAttribute("aria-pressed", String(isActive));
+  }
+  scrollTimeSlotIntoView(selectedTime);
+}
+
+/** Sync carousel, hidden native input, and search button state. */
+function syncTimeControls(): void {
   const pastEnd = isPastEndOfDayToday(selectedDate);
 
   if (pastEnd) {
     timePicker.value = "";
     timePicker.disabled = true;
+    timeCarousel.innerHTML = "";
+    timeCarousel.setAttribute("aria-disabled", "true");
     timeHint.hidden = false;
     timeHint.textContent =
       "No more lap-swim times left today. Try Tomorrow or another date.";
@@ -248,6 +317,21 @@ function syncTimePicker(): void {
   timePicker.max = TIME_MAX;
   timePicker.step = String(TIME_STEP_MINUTES * 60);
   timePicker.value = selectedTime;
+
+  const slots = availableTimeSlots(selectedDate);
+  const needsRebuild =
+    timeCarousel.children.length !== slots.length ||
+    slots.some(
+      (t, i) =>
+        (timeCarousel.children[i] as HTMLButtonElement | undefined)?.dataset
+          .time !== t
+    );
+
+  if (needsRebuild) {
+    renderTimeCarousel();
+  } else {
+    syncTimeCarouselActiveState();
+  }
 }
 
 /** Highlight Today/Tomorrow/+2 date pills when selectedDate matches one of them. */
@@ -264,7 +348,7 @@ function setSelectedDate(iso: string): void {
   selectedDate = iso;
   syncDatePickerValue();
   syncDatePillActiveState();
-  syncTimePicker();
+  syncTimeControls();
 }
 
 /** Build Today / Tomorrow / +2 day pills (soft card style in CSS). */
@@ -294,11 +378,16 @@ function renderDatePills(): void {
   }
 }
 
-/** Read time from the native picker and snap to 30-minute steps. */
+/** Set swim time (snapped to 30 min) and refresh carousel + hidden input. */
+function setSelectedTime(time: string): void {
+  selectedTime = snapTimeToStep(time);
+  syncTimeControls();
+}
+
+/** Read time from the hidden native picker (fallback) and snap to 30-minute steps. */
 function setSelectedTimeFromPicker(): void {
   if (!timePicker.value) return;
-  selectedTime = snapTimeToStep(timePicker.value);
-  syncTimePicker();
+  setSelectedTime(timePicker.value);
 }
 
 /** Show search or results screen. */
@@ -603,7 +692,7 @@ initDatePickerMin();
 renderDatePills();
 syncDatePickerValue();
 ensureSelectedTimeValid();
-syncTimePicker();
+syncTimeControls();
 renderSortPills();
 showScreen("search");
 setLocationLabel(

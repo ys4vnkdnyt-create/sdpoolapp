@@ -326,7 +326,7 @@ function getLanIpv4Addresses(): string[] {
   const addrs: string[] = [];
   for (const ifaces of Object.values(nets)) {
     for (const net of ifaces ?? []) {
-      const isV4 = net.family === "IPv4" || net.family === 4;
+      const isV4 = String(net.family) === "IPv4" || String(net.family) === "4";
       if (isV4 && !net.internal) addrs.push(net.address);
     }
   }

@@ -1,0 +1,10 @@
+# Render Blueprint — free web service for the mobile UI
+services:
+  - type: web
+    name: sd-lap-lane-finder
+    runtime: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:web
+    envVars:
+      - key: NODE_VERSION
+        value: "22"

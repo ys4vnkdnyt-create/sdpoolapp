@@ -1,0 +1,18 @@
+{
+  "name": "SD Lap Lane Finder",
+  "short_name": "Lap Lanes",
+  "description": "Find open lap lanes at San Diego pools",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#edf8fb",
+  "theme_color": "#42b8c8",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

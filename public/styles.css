@@ -187,7 +187,8 @@ body {
   background: var(--white);
   color: var(--navy);
   font-weight: 600;
-  font-size: 1rem;
+  /* 16px+ stops iOS Safari from zooming when focusing date/time inputs */
+  font-size: 16px;
   font-family: inherit;
   accent-color: var(--teal);
   box-shadow: var(--shadow-sm);
@@ -199,10 +200,93 @@ body {
   box-shadow: 0 0 0 3px var(--teal-light);
 }
 
-.time-picker {
-  /* iOS Safari: ensure time control uses full width */
-  -webkit-appearance: none;
-  appearance: none;
+/* Horizontal time carousel — primary time picker on mobile */
+.time-carousel {
+  margin: 0 -0.35rem 1.1rem;
+}
+
+.time-carousel__track {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-inline: 1.25rem;
+  padding: 0.2rem 1.25rem 0.55rem;
+  scrollbar-width: none;
+}
+
+.time-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.time-carousel__track:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--teal-light);
+  border-radius: var(--radius);
+}
+
+.time-slot {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap-min);
+  min-width: 5.25rem;
+  padding: 0.55rem 1rem;
+  border: 2px solid var(--card-border);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--navy);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.time-slot:hover {
+  border-color: var(--teal);
+  background: var(--teal-light);
+}
+
+.time-slot:active {
+  transform: scale(0.98);
+}
+
+.time-slot--active {
+  border-color: var(--teal);
+  background: linear-gradient(
+    165deg,
+    var(--teal-light) 0%,
+    var(--deck-cyan) 100%
+  );
+  color: var(--teal-dark);
+  font-weight: 700;
+  box-shadow: var(--shadow-primary);
+}
+
+.time-slot:focus-visible {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-light);
+}
+
+/* Hidden native time input — keeps picker logic as fallback */
+.time-picker--fallback {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .field-hint {

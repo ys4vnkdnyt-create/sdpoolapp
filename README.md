@@ -54,6 +54,8 @@ npm run dev -- 2026-05-18 06:30
 | `npm run start` | Run compiled CLI |
 | `npm run dev` | Build + run CLI (optional date/time args) |
 | `npm run web` | Build + start browser UI at http://localhost:3000 |
+| `npm run start:web` | Run web server only (after `npm run build`; used on Render) |
+| `npm run tunnel` | Cloudflare quick tunnel to localhost:3000 (app must be running) |
 | `npm run typecheck` | Type-check without emitting files |
 
 ### Web UI
@@ -63,6 +65,8 @@ npm run web
 ```
 
 Open http://localhost:3000 — pick date/time, tap **Find Open Lanes**. Same `searchPools()` kitchen as the CLI.
+
+**On your phone:** see [MOBILE.md](./MOBILE.md) (same Wi‑Fi, Add to Home Screen, tunnel, or Render deploy).
 
 ## Learning path
 

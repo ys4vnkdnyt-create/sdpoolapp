@@ -49,13 +49,22 @@
             aria-label="Pick a swim date"
           />
 
-          <label class="label" for="time-picker">Time</label>
+          <p class="label" id="time-label">Time</p>
+          <div class="time-carousel" aria-labelledby="time-label">
+            <div
+              id="time-carousel"
+              class="time-carousel__track"
+              role="group"
+              aria-label="Swim time options"
+            ></div>
+          </div>
           <input
             id="time-picker"
-            class="field-input time-picker"
+            class="time-picker time-picker--fallback"
             type="time"
             step="1800"
-            aria-label="Pick a swim time"
+            tabindex="-1"
+            aria-hidden="true"
           />
           <p id="time-hint" class="field-hint" hidden></p>
 

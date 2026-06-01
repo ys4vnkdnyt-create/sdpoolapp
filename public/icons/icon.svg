@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Lap lane waves">
+  <rect width="512" height="512" rx="96" fill="#42b8c8"/>
+  <path fill="#edf8fb" d="M64 280c48-32 96-32 144 0s96 32 144 0 96-32 144 0v80H64v-80z"/>
+  <path fill="#ffffff" opacity="0.9" d="M64 200c40-24 80-24 120 0s80 24 120 0 80-24 120 0v48H64v-48z"/>
+  <rect x="156" y="120" width="200" height="28" rx="14" fill="#1a3642"/>
+</svg>
