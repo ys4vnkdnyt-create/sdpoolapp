@@ -69,8 +69,11 @@ On Render, `PORT` is set automatically; `start:web` runs `dist/server.js`.
 
 **Troubleshooting**
 
-| Problem | Fix |
-|--------|-----|
-| Phone cannot load `http://192.…` | Same Wi‑Fi? Mac firewall blocking Node? Try tunnel (Option 3). |
-| Page loads but search fails | Phone must reach your Mac; tunnel/deploy must stay running. |
-| Inputs zoom on focus (iOS) | Should not happen — inputs use 16px font. Reload after updates. |
+
+| Problem                          | Fix                                                             |
+| -------------------------------- | --------------------------------------------------------------- |
+| Phone cannot load `http://192.…` | Same Wi‑Fi? Mac firewall blocking Node? Try tunnel (Option 3).  |
+| Page loads but search fails      | Phone must reach your Mac; tunnel/deploy must stay running.     |
+| Inputs zoom on focus (iOS)       | Should not happen — inputs use 16px font. Reload after updates. |
+
+

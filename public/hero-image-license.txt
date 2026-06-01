@@ -4,3 +4,9 @@ Created for the SD Lap Lane Finder project (original artwork for this app).
 You may use it in this project without attribution to a third-party stock site.
 
 Replaced a prior illustration that was not cleared for redistribution.
+
+June 2026: AI edit from the restored original — same pose, scene, and cap;
+only the swimsuit recolored to hot pink (reference: public/hero-swimmer.png at HEAD).
+
+June 2026: AI edit — swim cap recolored to match hot pink swimsuit (#FF1493);
+pose, water, skin, and background unchanged.

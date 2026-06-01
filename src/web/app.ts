@@ -57,7 +57,7 @@ interface SearchResponse {
 /** Earliest and latest pickable swim time (24h). */
 const TIME_MIN = "05:00";
 const TIME_MAX = "21:00";
-const TIME_STEP_MINUTES = 30;
+const TIME_STEP_MINUTES = 15;
 
 /**
  * Fixed radius sent to the API — no slider in the UI.
@@ -78,12 +78,15 @@ function minutesToTime(total: number): string {
   return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
 }
 
-/** Round a time string to the nearest 30-minute step within min/max. */
-function snapTimeToStep(time: string): string {
+/**
+ * Round up to the next 15-minute boundary for lap-schedule search.
+ * 6:07 → 6:15; 6:15 stays 6:15. Clamped to TIME_MIN–TIME_MAX.
+ */
+function roundUpTo15Min(time: string): string {
   let minutes = timeToMinutes(time);
   const remainder = minutes % TIME_STEP_MINUTES;
   if (remainder !== 0) {
-    minutes += remainder < TIME_STEP_MINUTES / 2 ? -remainder : TIME_STEP_MINUTES - remainder;
+    minutes += TIME_STEP_MINUTES - remainder;
   }
   const minM = timeToMinutes(TIME_MIN);
   const maxM = timeToMinutes(TIME_MAX);
@@ -96,46 +99,76 @@ function isToday(isoDate: string): boolean {
   return isoDate === dateForOffsetDays(0);
 }
 
-/**
- * Earliest selectable time today: now rounded up to the next 30‑min mark.
- * Example: 2:07 PM → 2:30 PM; 2:00 PM exactly → 2:00 PM still OK.
- */
-function earliestMinutesToday(): number {
+/** Earliest selectable time today: now rounded up to the next whole minute. */
+function earliestMinutesTodayPicker(): number {
   const now = new Date();
   let minutes = now.getHours() * 60 + now.getMinutes();
-  const remainder = minutes % TIME_STEP_MINUTES;
-  if (remainder !== 0) {
-    minutes += TIME_STEP_MINUTES - remainder;
+  if (now.getSeconds() > 0 || now.getMilliseconds() > 0) {
+    minutes += 1;
   }
   return minutes;
 }
 
-/** Min time for the native picker on the selected date. */
+/** Min time for wheels / native picker on the selected date (minute precision). */
 function minTimeForDate(isoDate: string): string {
   if (!isToday(isoDate)) return TIME_MIN;
-  const earliest = earliestMinutesToday();
+  const earliest = earliestMinutesTodayPicker();
   const end = timeToMinutes(TIME_MAX);
   if (earliest > end) return TIME_MAX;
   return minutesToTime(earliest);
 }
 
-/** True when no lap-swim times remain today. */
-function isPastEndOfDayToday(isoDate: string): boolean {
-  return isToday(isoDate) && earliestMinutesToday() > timeToMinutes(TIME_MAX);
+/** Earliest 15-minute slot on the wheel for the chosen date. */
+function minSlotTimeForDate(isoDate: string): string {
+  return roundUpTo15Min(minTimeForDate(isoDate));
 }
 
-/** If the current pick is out of range, move it to the earliest valid time. */
-function ensureSelectedTimeValid(): void {
+/** Snap a time onto the 15-minute grid (round up, same as search). */
+function snapTimeToStep(time: string): string {
+  return roundUpTo15Min(time);
+}
+
+/** Default wheel time on load: now, rounded up to the next 15 minutes. */
+function defaultPickedTimeForDate(isoDate: string): string {
+  const now = new Date();
+  const nowTime = minutesToTime(now.getHours() * 60 + now.getMinutes());
+  let time = roundUpTo15Min(nowTime);
+  const minM = timeToMinutes(TIME_MIN);
+  const maxM = timeToMinutes(TIME_MAX);
+  let minutes = timeToMinutes(time);
+  minutes = Math.max(minM, Math.min(maxM, minutes));
+  time = minutesToTime(minutes);
+  if (isToday(isoDate) && timeToMinutes(time) < timeToMinutes(minSlotTimeForDate(isoDate))) {
+    time = minSlotTimeForDate(isoDate);
+  }
+  return time;
+}
+
+/** True when no lap-swim times remain today. */
+function isPastEndOfDayToday(isoDate: string): boolean {
+  return (
+    isToday(isoDate) &&
+    earliestMinutesTodayPicker() > timeToMinutes(TIME_MAX)
+  );
+}
+
+/** Clamp wheel pick to bounds; refresh search time (15-min round-up). */
+function ensurePickedTimeValid(): void {
   if (isPastEndOfDayToday(selectedDate)) return;
 
-  const min = minTimeForDate(selectedDate);
-  if (timeToMinutes(selectedTime) < timeToMinutes(min)) {
-    selectedTime = min;
+  const min = minSlotTimeForDate(selectedDate);
+  if (timeToMinutes(pickedTime) < timeToMinutes(min)) {
+    pickedTime = min;
   }
-  if (timeToMinutes(selectedTime) > timeToMinutes(TIME_MAX)) {
-    selectedTime = TIME_MAX;
+  if (timeToMinutes(pickedTime) > timeToMinutes(TIME_MAX)) {
+    pickedTime = TIME_MAX;
   }
-  selectedTime = snapTimeToStep(selectedTime);
+  selectedTime = roundUpTo15Min(pickedTime);
+}
+
+/** True when the wheel pick differs from the time sent to search. */
+function isTimeRoundedForSearch(): boolean {
+  return pickedTime !== selectedTime;
 }
 
 /** Default map center when the user has not shared GPS (downtown San Diego). */
@@ -190,7 +223,12 @@ const screenSearch = document.getElementById("screen-search")!;
 const screenResults = document.getElementById("screen-results")!;
 const datePills = document.getElementById("date-pills")!;
 const datePicker = document.getElementById("date-picker") as HTMLInputElement;
-const timeCarousel = document.getElementById("time-carousel")!;
+const timePickerWrap = document.getElementById("time-picker-wrap")!;
+const timeTrigger = document.getElementById("time-trigger") as HTMLButtonElement;
+const timeTriggerLabel = document.getElementById("time-trigger-label")!;
+const timePickerPopover = document.getElementById("time-picker-popover")!;
+const timeDoneButton = document.getElementById("time-done") as HTMLButtonElement;
+const timeWheel = document.getElementById("time-wheel")!;
 const timePicker = document.getElementById("time-picker") as HTMLInputElement;
 const timeHint = document.getElementById("time-hint")!;
 const locationLabel = document.getElementById("location-label")!;
@@ -208,8 +246,12 @@ const sortPills = document.getElementById("sort-pills")!;
 
 // --- State ---
 let selectedDate = dateForOffsetDays(0);
-/** Default morning lap swim; updated when date changes or picker moves. */
-let selectedTime = "06:00";
+/** Time shown on the slot wheel (15-minute steps). */
+let pickedTime = defaultPickedTimeForDate(dateForOffsetDays(0));
+/** Rounded-up time sent to GET /api/search (30-minute steps). */
+let selectedTime = roundUpTo15Min(pickedTime);
+/** Whether the vertical slot wheel is expanded. */
+let timePickerOpen = false;
 /** Distance first when GPS or fallback lat/lng is sent. */
 let selectedSort: "distance" | "cost" = "distance";
 /** Set when geolocation succeeds; search uses real distance from here. */
@@ -226,11 +268,18 @@ function initDatePickerMin(): void {
   datePicker.min = dateForOffsetDays(0);
 }
 
-/** 30-minute slots from 5:00 AM through 9:00 PM that are valid for the chosen date. */
+/** Cache key so we know when to rebuild slot rows. */
+let timeWheelBuiltKey = "";
+
+/** True while we scroll the wheel from code (avoids scroll-end feedback loops). */
+let timeWheelScrollFromCode = false;
+let timeWheelScrollTimer: number | undefined;
+
+/** 15-minute slots from 5:00 AM through 9:00 PM valid for the chosen date. */
 function availableTimeSlots(isoDate: string): string[] {
   if (isPastEndOfDayToday(isoDate)) return [];
 
-  const minM = timeToMinutes(minTimeForDate(isoDate));
+  const minM = timeToMinutes(minSlotTimeForDate(isoDate));
   const maxM = timeToMinutes(TIME_MAX);
   const slots: string[] = [];
 
@@ -240,67 +289,219 @@ function availableTimeSlots(isoDate: string): string[] {
   return slots;
 }
 
-/** Scroll the carousel so the selected slot sits near the center. */
-function scrollTimeSlotIntoView(time: string, smooth = true): void {
-  const el = timeCarousel.querySelector<HTMLElement>(`[data-time="${time}"]`);
-  if (!el) return;
-  el.scrollIntoView({
-    inline: "center",
-    block: "nearest",
+/** Slot buttons in the wheel (empty when past end of day). */
+function timeWheelItems(): HTMLButtonElement[] {
+  return [...timeWheel.querySelectorAll<HTMLButtonElement>(".time-wheel__item")];
+}
+
+/** Index of the row whose center is closest to the wheel viewport center. */
+function timeWheelIndexFromScroll(): number {
+  const items = timeWheelItems();
+  if (!items.length) return 0;
+
+  const viewport = timeWheel.getBoundingClientRect();
+  const centerY = viewport.top + viewport.height / 2;
+  let bestIndex = 0;
+  let bestDistance = Infinity;
+
+  items.forEach((item, i) => {
+    const row = item.getBoundingClientRect();
+    const rowCenterY = row.top + row.height / 2;
+    const distance = Math.abs(rowCenterY - centerY);
+    if (distance < bestDistance) {
+      bestDistance = distance;
+      bestIndex = i;
+    }
+  });
+
+  return bestIndex;
+}
+
+/** True when the row at index is already centered in the wheel viewport. */
+function isTimeWheelRowCentered(index: number): boolean {
+  const item = timeWheelItems()[index];
+  if (!item) return true;
+
+  const viewport = timeWheel.getBoundingClientRect();
+  const centerY = viewport.top + viewport.height / 2;
+  const row = item.getBoundingClientRect();
+  const rowCenterY = row.top + row.height / 2;
+  return Math.abs(rowCenterY - centerY) <= 2;
+}
+
+/** Scroll a row into the center band (reliable on iOS Safari). */
+function scrollTimeWheelToIndex(index: number, smooth = true): void {
+  const item = timeWheelItems()[index];
+  if (!item) return;
+
+  timeWheelScrollFromCode = true;
+  item.scrollIntoView({
+    block: "center",
+    inline: "nearest",
     behavior: smooth ? "smooth" : "auto",
+  });
+  window.setTimeout(() => {
+    timeWheelScrollFromCode = false;
+  }, smooth ? 400 : 60);
+}
+
+/** Scroll so the chosen slot sits in the center row. */
+function scrollTimeSlotIntoView(time: string, smooth = true): void {
+  const slots = availableTimeSlots(selectedDate);
+  const index = slots.indexOf(snapTimeToStep(time));
+  if (index < 0) return;
+  scrollTimeWheelToIndex(index, smooth);
+}
+
+/** After layout, center the default / current slot (open + rebuild). */
+function scrollTimeSlotAfterLayout(time: string, smooth = false): void {
+  const run = () => scrollTimeSlotIntoView(time, smooth);
+  requestAnimationFrame(() => {
+    requestAnimationFrame(run);
   });
 }
 
-/** Build horizontal time chips for the current date (respects today’s min time). */
-function renderTimeCarousel(): void {
+/** After the user scrolls, snap to the nearest row and update pickedTime. */
+function applyTimeFromWheelScroll(): void {
+  if (timeWheelScrollFromCode) return;
+
   const slots = availableTimeSlots(selectedDate);
-  timeCarousel.innerHTML = "";
+  if (!slots.length) return;
+
+  const index = timeWheelIndexFromScroll();
+
+  if (!isTimeWheelRowCentered(index)) {
+    scrollTimeWheelToIndex(index, true);
+  }
+
+  const time = slots[index];
+  if (time !== pickedTime) {
+    pickedTime = time;
+    selectedTime = roundUpTo15Min(pickedTime);
+    syncTimePickerAndHint();
+  }
+  syncTimeWheelActiveState(false);
+}
+
+/** Show hint when search uses a rounded-up 15-minute time. */
+function syncTimeSearchHint(): void {
+  if (isPastEndOfDayToday(selectedDate)) return;
+
+  if (isTimeRoundedForSearch()) {
+    timeHint.hidden = false;
+    timeHint.textContent = `Schedule search uses ${formatTime12h(selectedTime)} (rounded up from ${formatTime12h(pickedTime)}).`;
+  } else {
+    timeHint.hidden = true;
+    timeHint.textContent = "";
+  }
+}
+
+/** Update the collapsed time button label on the search screen. */
+function syncTimeTriggerLabel(): void {
+  timeTriggerLabel.textContent = formatTime12h(pickedTime);
+}
+
+/** Expand the 15-minute slot wheel. */
+function openTimePicker(): void {
+  if (timePickerOpen || isPastEndOfDayToday(selectedDate)) return;
+  timePickerOpen = true;
+  timePickerPopover.hidden = false;
+  timePickerWrap.classList.add("time-picker-wrap--open");
+  timeTrigger.setAttribute("aria-expanded", "true");
+  scrollTimeSlotAfterLayout(pickedTime, false);
+}
+
+/** Collapse the slot wheel after Done or an outside tap. */
+function closeTimePicker(): void {
+  if (!timePickerOpen) return;
+  timePickerOpen = false;
+  timePickerPopover.hidden = true;
+  timePickerWrap.classList.remove("time-picker-wrap--open");
+  timeTrigger.setAttribute("aria-expanded", "false");
+  syncTimeTriggerLabel();
+  syncTimeSearchHint();
+}
+
+/** Keep hidden native input aligned with wheel pick. */
+function syncTimePickerAndHint(): void {
+  timePicker.min = minTimeForDate(selectedDate);
+  timePicker.max = TIME_MAX;
+  timePicker.step = String(TIME_STEP_MINUTES * 60);
+  timePicker.value = pickedTime;
+  syncTimeTriggerLabel();
+  syncTimeSearchHint();
+}
+
+/** Build vertical slot rows for the current date. */
+function renderTimeWheel(): void {
+  const slots = availableTimeSlots(selectedDate);
+  timeWheel.innerHTML = "";
 
   if (slots.length === 0) {
-    timeCarousel.setAttribute("aria-disabled", "true");
+    timeWheel.setAttribute("aria-disabled", "true");
     return;
   }
 
-  timeCarousel.removeAttribute("aria-disabled");
+  timeWheel.removeAttribute("aria-disabled");
+
+  if (!slots.includes(pickedTime)) {
+    pickedTime = slots[0];
+    selectedTime = roundUpTo15Min(pickedTime);
+  }
 
   for (const time of slots) {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "time-slot";
+    btn.className = "time-wheel__item";
     btn.dataset.time = time;
-    btn.setAttribute("aria-pressed", String(time === selectedTime));
-    if (time === selectedTime) btn.classList.add("time-slot--active");
+    btn.setAttribute("role", "option");
+    btn.setAttribute("aria-selected", String(time === pickedTime));
+    if (time === pickedTime) btn.classList.add("time-wheel__item--active");
     btn.textContent = formatTime12h(time);
 
     btn.addEventListener("click", () => {
-      setSelectedTime(time);
+      const slots = availableTimeSlots(selectedDate);
+      const index = slots.indexOf(time);
+      if (index < 0) return;
+
+      pickedTime = snapTimeToStep(time);
+      selectedTime = roundUpTo15Min(pickedTime);
+      scrollTimeWheelToIndex(index, true);
+      syncTimeWheelActiveState(false);
+      syncTimePickerAndHint();
     });
-    timeCarousel.appendChild(btn);
+    timeWheel.appendChild(btn);
   }
 
-  scrollTimeSlotIntoView(selectedTime, false);
+  timeWheelBuiltKey = `${selectedDate}-${minSlotTimeForDate(selectedDate)}`;
+  scrollTimeSlotAfterLayout(pickedTime, false);
 }
 
-/** Highlight the active time chip without rebuilding the whole carousel. */
-function syncTimeCarouselActiveState(): void {
-  const buttons = timeCarousel.querySelectorAll<HTMLButtonElement>(".time-slot");
-  for (const btn of buttons) {
-    const isActive = btn.dataset.time === selectedTime;
-    btn.classList.toggle("time-slot--active", isActive);
-    btn.setAttribute("aria-pressed", String(isActive));
-  }
-  scrollTimeSlotIntoView(selectedTime);
+/** Highlight the centered / selected row without rebuilding the wheel. */
+function syncTimeWheelActiveState(scrollIntoView = true): void {
+  const buttons = timeWheelItems();
+  const index = timeWheelIndexFromScroll();
+  buttons.forEach((btn, i) => {
+    const isActive = btn.dataset.time === pickedTime;
+    btn.classList.toggle("time-wheel__item--active", isActive);
+    btn.classList.toggle("time-wheel__item--centered", i === index);
+    btn.setAttribute("aria-selected", String(isActive));
+  });
+  if (scrollIntoView) scrollTimeSlotIntoView(pickedTime, false);
 }
 
-/** Sync carousel, hidden native input, and search button state. */
+/** Sync wheel, trigger, hidden input, hint, and search button state. */
 function syncTimeControls(): void {
   const pastEnd = isPastEndOfDayToday(selectedDate);
 
   if (pastEnd) {
     timePicker.value = "";
     timePicker.disabled = true;
-    timeCarousel.innerHTML = "";
-    timeCarousel.setAttribute("aria-disabled", "true");
+    timeTrigger.disabled = true;
+    timeWheel.innerHTML = "";
+    timeWheelBuiltKey = "";
+    timeWheel.setAttribute("aria-disabled", "true");
+    closeTimePicker();
     timeHint.hidden = false;
     timeHint.textContent =
       "No more lap-swim times left today. Try Tomorrow or another date.";
@@ -309,29 +510,30 @@ function syncTimeControls(): void {
   }
 
   timePicker.disabled = false;
-  timeHint.hidden = true;
+  timeTrigger.disabled = false;
   findButton.toggleAttribute("disabled", false);
 
-  ensureSelectedTimeValid();
-  timePicker.min = minTimeForDate(selectedDate);
-  timePicker.max = TIME_MAX;
-  timePicker.step = String(TIME_STEP_MINUTES * 60);
-  timePicker.value = selectedTime;
+  ensurePickedTimeValid();
+  syncTimeTriggerLabel();
 
+  const wheelKey = `${selectedDate}-${minSlotTimeForDate(selectedDate)}`;
   const slots = availableTimeSlots(selectedDate);
   const needsRebuild =
-    timeCarousel.children.length !== slots.length ||
+    wheelKey !== timeWheelBuiltKey ||
+    timeWheel.children.length !== slots.length ||
     slots.some(
       (t, i) =>
-        (timeCarousel.children[i] as HTMLButtonElement | undefined)?.dataset
-          .time !== t
+        (timeWheel.children[i] as HTMLButtonElement | undefined)?.dataset.time !==
+        t
     );
 
   if (needsRebuild) {
-    renderTimeCarousel();
+    renderTimeWheel();
   } else {
-    syncTimeCarouselActiveState();
+    syncTimeWheelActiveState();
   }
+
+  syncTimePickerAndHint();
 }
 
 /** Highlight Today/Tomorrow/+2 date pills when selectedDate matches one of them. */
@@ -378,16 +580,17 @@ function renderDatePills(): void {
   }
 }
 
-/** Set swim time (snapped to 30 min) and refresh carousel + hidden input. */
-function setSelectedTime(time: string): void {
-  selectedTime = snapTimeToStep(time);
+/** Set swim time (15-minute slot) and refresh wheel + search time. */
+function setPickedTime(time: string): void {
+  pickedTime = snapTimeToStep(time);
+  ensurePickedTimeValid();
   syncTimeControls();
 }
 
-/** Read time from the hidden native picker (fallback) and snap to 30-minute steps. */
-function setSelectedTimeFromPicker(): void {
+/** Read time from the hidden native picker (fallback). */
+function setPickedTimeFromPicker(): void {
   if (!timePicker.value) return;
-  setSelectedTime(timePicker.value);
+  setPickedTime(timePicker.value);
 }
 
 /** Show search or results screen. */
@@ -661,12 +864,43 @@ datePicker.addEventListener("change", () => {
 });
 
 timePicker.addEventListener("change", () => {
-  setSelectedTimeFromPicker();
+  setPickedTimeFromPicker();
 });
 
 timePicker.addEventListener("input", () => {
-  setSelectedTimeFromPicker();
+  setPickedTimeFromPicker();
 });
+
+timeTrigger.addEventListener("click", () => {
+  if (timePickerOpen) closeTimePicker();
+  else openTimePicker();
+});
+
+timeDoneButton.addEventListener("click", () => {
+  closeTimePicker();
+});
+
+document.addEventListener("pointerdown", (e) => {
+  if (!timePickerOpen) return;
+  const target = e.target as Node;
+  if (!timePickerWrap.contains(target)) closeTimePicker();
+});
+
+timeWheel.addEventListener("scrollend", () => {
+  applyTimeFromWheelScroll();
+});
+timeWheel.addEventListener(
+  "scroll",
+  () => {
+    if (timeWheelScrollFromCode) return;
+    syncTimeWheelActiveState(false);
+    window.clearTimeout(timeWheelScrollTimer);
+    timeWheelScrollTimer = window.setTimeout(() => {
+      applyTimeFromWheelScroll();
+    }, 120);
+  },
+  { passive: true }
+);
 
 useLocationButton.addEventListener("click", () => {
   void (async () => {
@@ -691,7 +925,8 @@ sortPills.addEventListener("click", (e) => {
 initDatePickerMin();
 renderDatePills();
 syncDatePickerValue();
-ensureSelectedTimeValid();
+ensurePickedTimeValid();
+syncTimeTriggerLabel();
 syncTimeControls();
 renderSortPills();
 showScreen("search");

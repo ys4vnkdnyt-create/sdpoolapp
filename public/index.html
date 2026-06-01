@@ -26,13 +26,13 @@
       <!-- Screen 1: search (date, time, location) -->
       <section id="screen-search" class="screen">
         <header class="hero">
-          <img
-            class="hero__art"
-            src="/hero-swimmer.png"
-            alt="Swimmer doing freestyle"
-            width="344"
-            height="224"
-          />
+          <div class="hero__art-wrap">
+            <img
+              class="hero__art"
+              src="/hero-swimmer.png"
+              alt="Swimmer doing freestyle"
+            />
+          </div>
           <h1 class="hero__title">When do you want to swim?</h1>
           <p class="hero__subtitle">Find open lap lanes near you</p>
         </header>
@@ -50,19 +50,53 @@
           />
 
           <p class="label" id="time-label">Time</p>
-          <div class="time-carousel" aria-labelledby="time-label">
+          <div
+            id="time-picker-wrap"
+            class="time-picker-wrap"
+            aria-labelledby="time-label"
+          >
+            <button
+              id="time-trigger"
+              type="button"
+              class="time-trigger"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-controls="time-picker-popover"
+            >
+              <span id="time-trigger-label" class="time-trigger__label"></span>
+              <span class="time-trigger__chevron" aria-hidden="true">▾</span>
+            </button>
             <div
-              id="time-carousel"
-              class="time-carousel__track"
-              role="group"
-              aria-label="Swim time options"
-            ></div>
+              id="time-picker-popover"
+              class="time-picker-popover"
+              hidden
+            >
+              <div class="time-wheel">
+                <div class="time-wheel__frame">
+                  <div class="time-wheel__highlight" aria-hidden="true"></div>
+                  <div
+                    id="time-wheel"
+                    class="time-wheel__scroll"
+                    role="listbox"
+                    aria-label="Swim time, 15-minute steps"
+                    tabindex="0"
+                  ></div>
+                </div>
+              </div>
+              <button
+                id="time-done"
+                type="button"
+                class="btn btn--secondary time-picker__done"
+              >
+                Done
+              </button>
+            </div>
           </div>
           <input
             id="time-picker"
             class="time-picker time-picker--fallback"
             type="time"
-            step="1800"
+            step="60"
             tabindex="-1"
             aria-hidden="true"
           />
