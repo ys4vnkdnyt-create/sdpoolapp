@@ -54,29 +54,18 @@ interface SearchResponse {
   noSchedulePools?: NoSchedulePoolJson[];
 }
 
-/** First and last pickable time (24h). Typical lap-swim day; real pools may narrow later. */
-const TIME_SLOT_START = "05:00";
-const TIME_SLOT_END = "21:00";
-const TIME_SLOT_STEP_MINUTES = 30;
+/** Earliest and latest pickable swim time (24h). */
+const TIME_MIN = "05:00";
+const TIME_MAX = "21:00";
+const TIME_STEP_MINUTES = 30;
 
-/** Build every half-hour from start through end, e.g. 05:00 … 21:00. */
-function buildTimeSlots(
-  start: string,
-  end: string,
-  stepMinutes: number
-): string[] {
-  const slots: string[] = [];
-  let minutes = timeToMinutes(start);
-  const endMinutes = timeToMinutes(end);
+/**
+ * Fixed radius sent to the API — no slider in the UI.
+ * 40 mi covers metro San Diego + North County suburbs; results are sorted by distance.
+ */
+const SEARCH_RADIUS_MILES = 40;
 
-  while (minutes <= endMinutes) {
-    slots.push(minutesToTime(minutes));
-    minutes += stepMinutes;
-  }
-  return slots;
-}
-
-/** "06:30" → minutes since midnight (for slot math). */
+/** "06:30" → minutes since midnight (for time bounds). */
 function timeToMinutes(time: string): number {
   const [h, m] = time.split(":").map(Number);
   return h * 60 + (m ?? 0);
@@ -89,11 +78,18 @@ function minutesToTime(total: number): string {
   return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
 }
 
-const TIME_SLOTS = buildTimeSlots(
-  TIME_SLOT_START,
-  TIME_SLOT_END,
-  TIME_SLOT_STEP_MINUTES
-);
+/** Round a time string to the nearest 30-minute step within min/max. */
+function snapTimeToStep(time: string): string {
+  let minutes = timeToMinutes(time);
+  const remainder = minutes % TIME_STEP_MINUTES;
+  if (remainder !== 0) {
+    minutes += remainder < TIME_STEP_MINUTES / 2 ? -remainder : TIME_STEP_MINUTES - remainder;
+  }
+  const minM = timeToMinutes(TIME_MIN);
+  const maxM = timeToMinutes(TIME_MAX);
+  minutes = Math.max(minM, Math.min(maxM, minutes));
+  return minutesToTime(minutes);
+}
 
 /** True when the chosen day is today (local calendar). */
 function isToday(isoDate: string): boolean {
@@ -102,40 +98,44 @@ function isToday(isoDate: string): boolean {
 
 /**
  * Earliest selectable time today: now rounded up to the next 30‑min mark.
- * Example: 2:07 PM → first slot 2:30 PM; 2:00 PM exactly → 2:00 PM still OK.
+ * Example: 2:07 PM → 2:30 PM; 2:00 PM exactly → 2:00 PM still OK.
  */
 function earliestMinutesToday(): number {
   const now = new Date();
   let minutes = now.getHours() * 60 + now.getMinutes();
-  const remainder = minutes % TIME_SLOT_STEP_MINUTES;
+  const remainder = minutes % TIME_STEP_MINUTES;
   if (remainder !== 0) {
-    minutes += TIME_SLOT_STEP_MINUTES - remainder;
+    minutes += TIME_STEP_MINUTES - remainder;
   }
   return minutes;
 }
 
-/** Times to show for the selected date (hide past times on Today only). */
-function getVisibleTimeSlots(isoDate: string): string[] {
-  if (!isToday(isoDate)) {
-    return TIME_SLOTS;
-  }
-
-  const minMinutes = earliestMinutesToday();
-  const endMinutes = timeToMinutes(TIME_SLOT_END);
-  if (minMinutes > endMinutes) {
-    return [];
-  }
-
-  return TIME_SLOTS.filter((slot) => timeToMinutes(slot) >= minMinutes);
+/** Min time for the native picker on the selected date. */
+function minTimeForDate(isoDate: string): string {
+  if (!isToday(isoDate)) return TIME_MIN;
+  const earliest = earliestMinutesToday();
+  const end = timeToMinutes(TIME_MAX);
+  if (earliest > end) return TIME_MAX;
+  return minutesToTime(earliest);
 }
 
-/** If the current pick is hidden (e.g. switched to Today), select the first visible slot. */
+/** True when no lap-swim times remain today. */
+function isPastEndOfDayToday(isoDate: string): boolean {
+  return isToday(isoDate) && earliestMinutesToday() > timeToMinutes(TIME_MAX);
+}
+
+/** If the current pick is out of range, move it to the earliest valid time. */
 function ensureSelectedTimeValid(): void {
-  const visible = getVisibleTimeSlots(selectedDate);
-  if (visible.length === 0) return;
-  if (!visible.includes(selectedTime)) {
-    selectedTime = visible[0];
+  if (isPastEndOfDayToday(selectedDate)) return;
+
+  const min = minTimeForDate(selectedDate);
+  if (timeToMinutes(selectedTime) < timeToMinutes(min)) {
+    selectedTime = min;
   }
+  if (timeToMinutes(selectedTime) > timeToMinutes(TIME_MAX)) {
+    selectedTime = TIME_MAX;
+  }
+  selectedTime = snapTimeToStep(selectedTime);
 }
 
 /** Default map center when the user has not shared GPS (downtown San Diego). */
@@ -190,11 +190,12 @@ const screenSearch = document.getElementById("screen-search")!;
 const screenResults = document.getElementById("screen-results")!;
 const datePills = document.getElementById("date-pills")!;
 const datePicker = document.getElementById("date-picker") as HTMLInputElement;
-const timeGrid = document.getElementById("time-grid")!;
-const radiusSlider = document.getElementById("radius-slider") as HTMLInputElement;
-const radiusLabel = document.getElementById("radius-label")!;
+const timePicker = document.getElementById("time-picker") as HTMLInputElement;
+const timeHint = document.getElementById("time-hint")!;
 const locationLabel = document.getElementById("location-label")!;
 const useLocationButton = document.getElementById("use-location")!;
+/** Label span inside the location button (text updates when GPS is on). */
+const useLocationLabel = useLocationButton.querySelector<HTMLElement>(".btn__label")!;
 const findButton = document.getElementById("find-lanes")!;
 const backButton = document.getElementById("back-to-search")!;
 const resultsHeader = document.getElementById("results-header")!;
@@ -206,9 +207,10 @@ const sortPills = document.getElementById("sort-pills")!;
 
 // --- State ---
 let selectedDate = dateForOffsetDays(0);
-let selectedTime = TIME_SLOTS[0];
+/** Default morning lap swim; updated when date changes or picker moves. */
+let selectedTime = "06:00";
+/** Distance first when GPS or fallback lat/lng is sent. */
 let selectedSort: "distance" | "cost" = "distance";
-let radiusMiles = 5;
 /** Set when geolocation succeeds; search uses real distance from here. */
 let userLocation: { lat: number; lng: number } | null = null;
 let locationStatus: "pending" | "ready" | "denied" | "unsupported" = "pending";
@@ -223,25 +225,49 @@ function initDatePickerMin(): void {
   datePicker.min = dateForOffsetDays(0);
 }
 
-/** Highlight Today/Tomorrow/+2 pills when selectedDate matches one of them. */
+/** Sync native time input and min/max for iOS Safari. */
+function syncTimePicker(): void {
+  const pastEnd = isPastEndOfDayToday(selectedDate);
+
+  if (pastEnd) {
+    timePicker.value = "";
+    timePicker.disabled = true;
+    timeHint.hidden = false;
+    timeHint.textContent =
+      "No more lap-swim times left today. Try Tomorrow or another date.";
+    findButton.toggleAttribute("disabled", true);
+    return;
+  }
+
+  timePicker.disabled = false;
+  timeHint.hidden = true;
+  findButton.toggleAttribute("disabled", false);
+
+  ensureSelectedTimeValid();
+  timePicker.min = minTimeForDate(selectedDate);
+  timePicker.max = TIME_MAX;
+  timePicker.step = String(TIME_STEP_MINUTES * 60);
+  timePicker.value = selectedTime;
+}
+
+/** Highlight Today/Tomorrow/+2 date pills when selectedDate matches one of them. */
 function syncDatePillActiveState(): void {
   const buttons = datePills.querySelectorAll<HTMLButtonElement>(".date-pill");
   for (const btn of buttons) {
     const iso = btn.dataset.date;
-    btn.classList.toggle("pill--active", iso === selectedDate);
+    btn.classList.toggle("date-pill--active", iso === selectedDate);
   }
 }
 
-/** Apply a new date from pills or the date input, then refresh time slots. */
+/** Apply a new date from pills or the date input, then refresh time bounds. */
 function setSelectedDate(iso: string): void {
   selectedDate = iso;
   syncDatePickerValue();
   syncDatePillActiveState();
-  ensureSelectedTimeValid();
-  renderTimeGrid();
+  syncTimePicker();
 }
 
-/** Build Today / Tomorrow / +2 day pills. */
+/** Build Today / Tomorrow / +2 day pills (soft card style in CSS). */
 function renderDatePills(): void {
   const offsets = [0, 1, 2];
   datePills.innerHTML = "";
@@ -250,13 +276,16 @@ function renderDatePills(): void {
     const iso = dateForOffsetDays(offset);
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "pill date-pill";
+    btn.className = "date-pill";
     btn.dataset.date = iso;
-    if (iso === selectedDate) btn.classList.add("pill--active");
+    if (iso === selectedDate) btn.classList.add("date-pill--active");
 
-    if (offset === 0) btn.textContent = "Today";
-    else if (offset === 1) btn.textContent = "Tomorrow";
-    else btn.textContent = weekdayShort(iso);
+    let label: string;
+    if (offset === 0) label = "Today";
+    else if (offset === 1) label = "Tomorrow";
+    else label = weekdayShort(iso);
+
+    btn.innerHTML = `<span class="date-pill__label">${label}</span>`;
 
     btn.addEventListener("click", () => {
       setSelectedDate(iso);
@@ -265,39 +294,11 @@ function renderDatePills(): void {
   }
 }
 
-/** Build the time slot grid on screen 1. */
-function renderTimeGrid(): void {
-  timeGrid.innerHTML = "";
-
-  const slots = getVisibleTimeSlots(selectedDate);
-  if (slots.length === 0) {
-    timeGrid.innerHTML =
-      '<p class="time-grid__empty">No more lap-swim times left today. Try Tomorrow.</p>';
-    findButton.toggleAttribute("disabled", true);
-    return;
-  }
-
-  findButton.toggleAttribute("disabled", false);
-
-  for (const slot of slots) {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "time-slot";
-    if (slot === selectedTime) btn.classList.add("time-slot--active");
-    btn.textContent = formatTime12h(slot);
-
-    btn.addEventListener("click", () => {
-      selectedTime = slot;
-      renderTimeGrid();
-    });
-    timeGrid.appendChild(btn);
-  }
-}
-
-/** Update "Within X miles" label when slider moves. */
-function updateRadiusLabel(): void {
-  radiusMiles = Number(radiusSlider.value);
-  radiusLabel.textContent = `Within ${radiusMiles} miles`;
+/** Read time from the native picker and snap to 30-minute steps. */
+function setSelectedTimeFromPicker(): void {
+  if (!timePicker.value) return;
+  selectedTime = snapTimeToStep(timePicker.value);
+  syncTimePicker();
 }
 
 /** Show search or results screen. */
@@ -452,7 +453,7 @@ function escapeHtml(text: string): string {
   return div.innerHTML;
 }
 
-/** Update the location line under the radius slider. */
+/** Update the location status line on the search screen. */
 function setLocationLabel(text: string): void {
   locationLabel.textContent = text;
 }
@@ -484,10 +485,10 @@ function locationErrorMessage(err: unknown): string {
       return "Location denied — allow this site in browser settings, or tap the lock icon in the address bar.";
     }
     if (err.code === err.POSITION_UNAVAILABLE) {
-      return "Location unavailable — check Wi‑Fi or try outdoors; using San Diego center.";
+      return "Location unavailable — using San Diego center; pools still sorted by distance from there.";
     }
     if (err.code === err.TIMEOUT) {
-      return "Location timed out — try again; using San Diego center for now.";
+      return "Location timed out — using San Diego center for now.";
     }
   }
   if (err instanceof Error && err.message === "unsupported") {
@@ -503,14 +504,14 @@ async function ensureUserLocationFromGesture(): Promise<void> {
   try {
     userLocation = await requestUserLocation();
     locationStatus = "ready";
-    setLocationLabel("Searching from your current location");
-    useLocationButton.textContent = "Location on";
+    setLocationLabel("Pools will be sorted by distance from you");
+    useLocationLabel.textContent = "Location on";
     useLocationButton.setAttribute("aria-pressed", "true");
   } catch (err) {
     locationStatus = "denied";
     userLocation = DEFAULT_USER_LOCATION;
     setLocationLabel(locationErrorMessage(err));
-    useLocationButton.textContent = "Use my location";
+    useLocationLabel.textContent = "Use my location";
     useLocationButton.setAttribute("aria-pressed", "false");
   }
 }
@@ -520,11 +521,15 @@ async function runSearch(): Promise<void> {
   // Browsers only show the Allow/Deny prompt after a click (Find Open Lanes counts).
   await ensureUserLocationFromGesture();
 
+  if (isPastEndOfDayToday(selectedDate)) {
+    return;
+  }
+
   const params = new URLSearchParams({
     date: selectedDate,
     time: selectedTime,
     sortBy: selectedSort,
-    maxRadiusMiles: String(radiusMiles),
+    maxRadiusMiles: String(SEARCH_RADIUS_MILES),
   });
 
   const origin = userLocation ?? DEFAULT_USER_LOCATION;
@@ -545,19 +550,18 @@ async function runSearch(): Promise<void> {
   );
 
   if (data.results.length === 0) {
-    resultsList.innerHTML = `<p class="empty">No pools with lap lanes open in that window. Try a wider radius or another time.</p>`;
+    resultsList.innerHTML = `<p class="empty">No pools with lap lanes open at that time. Try another time or date.</p>`;
   } else {
     resultsList.innerHTML = data.results.map(renderResultCard).join("");
   }
 
   renderNoScheduleSection(data.noSchedulePools);
 
-  const allRows = [...data.results, ...(data.noSchedulePools ?? [])];
   const locationHint =
     locationStatus === "ready"
-      ? " Distances are from your location."
-      : " Distances use San Diego center until you allow location.";
-  resultsFooter.textContent = `End of results within ${radiusMiles} miles (estimated drive times).${locationHint}`;
+      ? " Sorted closest first from your location."
+      : " Sorted by distance from San Diego center until you allow location.";
+  resultsFooter.textContent = `Showing pools within about ${SEARCH_RADIUS_MILES} miles.${locationHint}`;
   showScreen("results");
 }
 
@@ -567,7 +571,14 @@ datePicker.addEventListener("change", () => {
   setSelectedDate(datePicker.value);
 });
 
-radiusSlider.addEventListener("input", updateRadiusLabel);
+timePicker.addEventListener("change", () => {
+  setSelectedTimeFromPicker();
+});
+
+timePicker.addEventListener("input", () => {
+  setSelectedTimeFromPicker();
+});
+
 useLocationButton.addEventListener("click", () => {
   void (async () => {
     useLocationButton.setAttribute("disabled", "true");
@@ -592,11 +603,10 @@ initDatePickerMin();
 renderDatePills();
 syncDatePickerValue();
 ensureSelectedTimeValid();
-renderTimeGrid();
-updateRadiusLabel();
+syncTimePicker();
 renderSortPills();
 showScreen("search");
 setLocationLabel(
-  "Tap «Use my location» or «Find Open Lanes» — your browser will ask to allow"
+  "Tap either button — your browser will ask to allow location"
 );
 userLocation = DEFAULT_USER_LOCATION;

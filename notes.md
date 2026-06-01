@@ -237,34 +237,40 @@ flowchart LR
 
 **North star (one sentence):** You pick a date and time; the app tells you which San Diego pools have a **lap lane open then** — that is priority #1; distance and guest pass cost only help you choose among pools that already match.
 
-**What's built now (May 2026):**
+**What's built now (Jun 2026):**
 
-- **Web UI:** Screens 1–2, hero swimmer, date picker + Today/Tomorrow pills, time grid 5am–9pm (half-hour slots), hides past times on Today · `npm run web` → http://localhost:3000
-- **Real pantry:** `src/data/pools/pools.json` via `loadPools.ts` — **real data only** (no placeholder grids). Pools with `availability: []` are excluded from search until a schedule is transcribed. Ryan Family YMCA is the gold-standard block shape; gyms/BBMAC/Jackie Robinson/Rancho/etc. stay out of search until sources exist.
-- **PDF archive:** Source PDFs in `data/sources/`; `scheduleSource` on `Pool` type
-- **CLI + web** both load from `pools/index.ts` (not `samplePools`)
-- **Latest commit:** `e27d979` (real pools + web wiring)
-- **Uncommitted (dirty working tree):** date picker + Today/Tomorrow pills + hide-past-times — `public/index.html`, `public/styles.css`, `src/web/app.ts` (run `git status` to confirm)
-- **Push blocked:** No git remote configured yet — create a GitHub repo, then `git remote add origin <url>`
+- **Web UI:** Screens 1–2, hero swimmer, date picker + Today/Tomorrow pills, time grid 5am–9pm (half-hour slots), hides past times on Today
+- **Real pantry:** `src/data/pools/pools.json` via `loadPools.ts` — **real data only** (no placeholder grids). Pools with `availability: []` are excluded from search until a schedule is transcribed. **Ryan Family YMCA** (`ryan-family-ymca.ts`) is the gold-standard per-weekday shape; most other pools live in `pools.json`.
+- **Schedule pipeline:** `scheduleWindows.ts` — normalize overlapping rows, fill gaps between blocks (higher neighbor lane count, min 1). `scripts/normalize-pools-json.mjs` + `scripts/audit-pool-schedules.mjs` for bulk cleanup and copy-paste detection.
+- **Search cards:** **View schedule** (opens `scheduleSource` URL) + **Call pool** only — no extra JSON-loader slice needed.
+- **PDF archive:** Source PDFs in `data/sources/`; `scheduleSource` on each pool in `pools.json`
+- **CLI + web** both load real pools (not `samplePools`)
+- **Latest commit:** `a9d55c5` — normalize per-day schedules in `pools.json`, add `scheduleWindows.ts`, fix Ryan Thursday morning block, audit/normalize scripts, simplify result-card actions
+- **Working tree:** clean on `main` (verify: `git status`)
+- **Pantry size:** **69** pools — **48 searchable** (non-empty `availability[]`), **21 empty** (excluded from search)
+- **Push:** No git remote configured yet — create a GitHub repo, then `git remote add origin <url>`
 
 **Sanity checks done:**
 
-- Ryan YMCA, Wed `2026-06-03`: `06:00` → 3 lanes · `09:00` → absent · `12:00` → 4 · `14:00` → 5 · `20:00` → 6 — matches data file
+- Ryan YMCA, Wed `2026-06-03`: `06:00` → 3 lanes · `09:00` → absent · `12:00` → 4 · `14:00` → 5 · `20:00` → 6 — matches `ryan-family-ymca.ts`
+- Schedule audit (`node scripts/audit-pool-schedules.mjs`): **28** pools flagged — same weekday grid on 4+ days; needs PDF spot-check (Ryan is **not** flagged — per-day transcription OK)
 
 **Your priorities (expressed):**
 
-- **Scalability roadmap:** A JSON pools · B PDF ingest script · C PDF link on results (phone) · D SQLite + refresh · E deploy
-- Spot-check more pools
-- **Slice 1 next:** JSON loader + "View schedule" PDF button on result cards
+- **Scalability roadmap:** A JSON pools (done) · B PDF ingest script · C PDF link on results (done via View schedule) · D SQLite + refresh · E deploy
+- **Next:** PDF spot-check audit-flagged pools (transcribe each weekday separately — confirm with you before editing `pools.json`)
+- **Empty-pool transcription (high value):** `palomar-family-ymca`, `carlsbad-monroe-swim-complex`, `alga-norte-aquatic-center` — North County / YMCA gaps with no public grid yet
 
-**How to work with the agent:** Short steps · explain any new code · gray comments in files · wait for **got it** before the next chunk.
+**How to work with the agent:** Short steps · explain any new code · gray comments in files · wait for **got it** before the next chunk · **no `pools.json` schedule edits without your OK**
 
 **Run commands:**
 
 ```bash
 cd "/Users/benstern/Prototype Exercise"
-npm run web
+npm run build && npm run web
+# → http://localhost:3000
 npm run dev -- 2026-06-03 12:00
+node scripts/audit-pool-schedules.mjs
 # Ryan YMCA sanity: Wed 2026-06-03 at 12:00 should show Ryan with 4 lanes
 ```
 
@@ -319,15 +325,16 @@ npm run dev -- 2026-06-03 12:00
 
 **Next (tiny slice):**
 
-1. **Commit** pool data + docs when ready — `git status`
-2. **Manual PDF work:** Refresh stale YMCA PDF URLs when branches publish; BBMAC daily calendar; Pardee/LFJCC/Kroc full grids; Palomar if schedule appears
-3. **GitHub remote** — create repo + `git remote add origin`
-4. Later: PDF ingest script → SQLite + refresh → deploy
+1. **PDF spot-check:** Run audit script; pick one flagged YMCA (e.g. Magdalena, Mission Valley, Rancho) — open branch PDF, transcribe **each weekday separately**, then update `pools.json` after you approve
+2. **Empty pools:** Palomar / Carlsbad Monroe / Alga Norte when a public lap grid appears
+3. **Stale sources:** Refresh YMCA PDF URLs when branches publish; BBMAC daily calendar; Pardee/LFJCC/Kroc fuller grids
+4. **GitHub remote** — create repo + `git remote add origin`
+5. Later: PDF ingest script → SQLite + refresh → deploy
 
 **Future (in `VISION.md`):** pool amenities · workouts/notes section · possible MySwimPro-style integration
 
 **Paste into new Agent chat:**
 
 ```
-I'm back on the SD lap lane project. Read notes.md "Resume here" and "Welcome back / refresher", plus AGENTS.md and VISION.md. Lane open at date/time is #1. Latest commit e27d979; date picker may be uncommitted — check git status. Continue with the next tiny slice: JSON loader + "View schedule" PDF button on result cards.
+I'm back on the SD lap lane project. Read notes.md "Resume here", AGENTS.md, and VISION.md. Lane open at date/time is #1. Latest commit a9d55c5 on main, clean tree. 48/69 pools searchable. Continue: audit-flagged PDF spot-checks (node scripts/audit-pool-schedules.mjs) or empty-pool transcription — confirm before editing pools.json.
 ```

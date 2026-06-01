@@ -1,6 +1,7 @@
 // Web counter: serves the browser UI and runs the kitchen for /api/search.
 import http from "node:http";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { pools } from "./data/pools/index.js";
@@ -14,7 +15,9 @@ import type {
   SortBy,
 } from "./types/index.js";
 
-const PORT = 3000;
+/** Listen on all interfaces so phones on the same Wi‑Fi can connect (override with HOST). */
+const HOST = process.env.HOST ?? "0.0.0.0";
+const PORT = Number(process.env.PORT) || 3000;
 const MAX_DRIVE_MINUTES = 60;
 
 // Folders next to compiled server.js (dist/server.js → dist/../public)
@@ -252,6 +255,7 @@ const MIME_TYPES: Record<string, string> = {
   ".png": "image/png",
   ".svg": "image/svg+xml",
   ".ico": "image/x-icon",
+  ".webmanifest": "application/manifest+json",
 };
 
 /** Safe path under a root folder (blocks .. traversal). */
@@ -316,9 +320,32 @@ function handleRequest(req: http.IncomingMessage, res: http.ServerResponse): voi
   res.end("Not found");
 }
 
+/** IPv4 LAN addresses (for “open on phone” hints in the terminal). */
+function getLanIpv4Addresses(): string[] {
+  const nets = os.networkInterfaces();
+  const addrs: string[] = [];
+  for (const ifaces of Object.values(nets)) {
+    for (const net of ifaces ?? []) {
+      const isV4 = net.family === "IPv4" || net.family === 4;
+      if (isV4 && !net.internal) addrs.push(net.address);
+    }
+  }
+  return addrs;
+}
+
 const server = http.createServer(handleRequest);
 
-server.listen(PORT, () => {
+server.listen(PORT, HOST, () => {
   console.log(`\nSD Lap Lane Finder — web UI`);
-  console.log(`Open http://localhost:${PORT} in your browser\n`);
+  console.log(`On this Mac:  http://localhost:${PORT}`);
+  const lan = getLanIpv4Addresses();
+  if (lan.length > 0) {
+    console.log(`On your phone (same Wi‑Fi):`);
+    for (const ip of lan) {
+      console.log(`  http://${ip}:${PORT}`);
+    }
+  } else {
+    console.log(`On your phone: use your Mac’s Wi‑Fi IP with port ${PORT}`);
+  }
+  console.log(`\nSee MOBILE.md for tunnel / deploy options.\n`);
 });

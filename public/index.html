@@ -2,23 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#42b8c8" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="default"
+    />
+    <meta name="apple-mobile-web-app-title" content="Lap Lanes" />
+    <meta name="description" content="Find open lap lanes at San Diego pools" />
     <title>SD Lap Lane Finder</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/icon.svg" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <div class="app">
-      <!-- Screen 1: search (hero + date/time + radius) -->
+      <!-- Screen 1: search (date, time, location) -->
       <section id="screen-search" class="screen">
         <header class="hero">
           <img
             class="hero__art"
             src="/hero-swimmer.png"
             alt="Swimmer doing freestyle"
-            width="320"
-            height="160"
+            width="344"
+            height="224"
           />
           <h1 class="hero__title">When do you want to swim?</h1>
+          <p class="hero__subtitle">Find open lap lanes near you</p>
         </header>
 
         <div class="panel">
@@ -28,47 +44,40 @@
           <label class="label" for="date-picker">Or pick a date</label>
           <input
             id="date-picker"
-            class="date-picker"
+            class="field-input date-picker"
             type="date"
             aria-label="Pick a swim date"
           />
 
-          <p class="label">Pick a time</p>
-          <div id="time-grid" class="time-grid"></div>
+          <label class="label" for="time-picker">Time</label>
+          <input
+            id="time-picker"
+            class="field-input time-picker"
+            type="time"
+            step="1800"
+            aria-label="Pick a swim time"
+          />
+          <p id="time-hint" class="field-hint" hidden></p>
 
-          <div class="location-row">
-            <span class="location-row__pin">◎</span>
-            <div class="location-row__text">
-              <p id="radius-label" class="location-row__primary">Within 5 miles</p>
-              <p id="location-label" class="location-row__secondary">
-                Using your location when allowed
-              </p>
-            </div>
+          <div class="search-actions">
+            <button
+              id="find-lanes"
+              type="button"
+              class="btn btn--primary"
+            >
+              <span class="btn__label">Find Open Lanes</span>
+            </button>
             <button
               id="use-location"
               type="button"
-              class="btn btn--location"
+              class="btn btn--secondary btn--compact btn--location"
             >
-              Use my location
+              <span class="btn__label">Use my location</span>
             </button>
           </div>
-          <input
-            id="radius-slider"
-            class="slider"
-            type="range"
-            min="1"
-            max="20"
-            value="5"
-            aria-label="Search radius in miles"
-          />
-          <div class="slider-labels">
-            <span>1 mi</span>
-            <span>20 mi</span>
-          </div>
-
-          <button id="find-lanes" type="button" class="btn btn--primary">
-            Find Open Lanes
-          </button>
+          <p id="location-label" class="location-hint" aria-live="polite">
+            Optional — sorts pools by distance from you
+          </p>
         </div>
       </section>
 
@@ -95,8 +104,8 @@
               Nearby — schedule not in app yet
             </h2>
             <p class="no-schedule-section__hint">
-              These pools are in your radius; lap times are not loaded yet. Use
-              View schedule or Call pool on each card to confirm hours.
+              These pools are nearby; lap times are not loaded yet. Use View
+              schedule or Call pool on each card to confirm hours.
             </p>
             <div id="no-schedule-list" class="results-list"></div>
           </section>
