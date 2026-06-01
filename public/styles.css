@@ -54,6 +54,12 @@ body {
   flex-direction: column;
 }
 
+/* Results screen — bar and panel are separate rounded cards */
+#screen-results {
+  min-height: 0;
+  margin-bottom: 0.5rem;
+}
+
 /* Screen 1 hero — shallow pool water (light, not dark teal) */
 .hero {
   --hero-fade-top: #f0fafc;
@@ -214,6 +220,11 @@ body {
 .panel--results {
   /* ~15% tighter than default panel — matches compact results header */
   padding: 0.64rem 1.06rem 1.28rem;
+  min-height: 0;
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
 }
 
 .panel--results .label {
@@ -620,10 +631,18 @@ body {
   transform: scale(0.98);
 }
 
+/* Location on — same aqua gradient as sort pills / Find Open Lanes */
 .btn--location[aria-pressed="true"] {
   color: var(--text);
-  background: linear-gradient(180deg, var(--teal) 0%, var(--teal-dark) 100%);
-  border-color: var(--teal-dark);
+  font-weight: 700;
+  border-color: var(--teal);
+  background: linear-gradient(
+    165deg,
+    var(--teal-light) 0%,
+    var(--deck-cyan) 38%,
+    #8edce8 72%,
+    #5ecad8 100%
+  );
 }
 
 .btn--location:disabled {
@@ -639,11 +658,16 @@ body {
   line-height: 1.35;
 }
 
-/* Screen 2 header — light pool-water bar (~15% more compact) */
+/* Screen 2 header — standalone rounded card (~15% more compact) */
 .results-bar {
   display: flex;
   align-items: center;
   gap: 0.43rem;
+  flex-shrink: 0;
+  margin-bottom: 0.5rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
   background: linear-gradient(
     165deg,
     #f0fafc 0%,
@@ -670,7 +694,7 @@ body {
 
 .results-bar__title {
   margin: 0;
-  font-size: 1.19rem;
+  font-size: 1.04125rem;
   font-weight: 700;
   flex: 1;
   line-height: 1.25;
@@ -758,22 +782,15 @@ body {
 }
 
 .pool-card__action--schedule,
-.pool-card__action--website {
+.pool-card__action--website,
+.pool-card__action--call {
   background: var(--teal-light);
 }
 
 .pool-card__action--schedule:hover,
-.pool-card__action--website:hover {
-  background: var(--deck-cyan);
-}
-
-.pool-card__action--call {
-  background: var(--teal-dark);
-  border-color: var(--teal-dark);
-}
-
+.pool-card__action--website:hover,
 .pool-card__action--call:hover {
-  background: #247d8a;
+  background: var(--deck-cyan);
 }
 
 .results-footer {

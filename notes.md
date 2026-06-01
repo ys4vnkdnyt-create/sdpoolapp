@@ -237,7 +237,7 @@ flowchart LR
 
 **North star:** You pick a date and time; the app shows which San Diego pools have a **lap lane open then**. Distance and guest pass cost only help you choose among pools that already match.
 
-**Latest commit:** `13b35e8` — mobile UI polish: time wheel, grey helper text, hero image, and related layout tweaks on small screens.
+**Latest commit:** `ef30875` — results UI: Open Lanes bar/panel as separate rounded cards, smaller header title, full weekday names on date pills, aqua “Use My Location” when on, Call button matches Schedule/Website teal.
 
 **Working tree:** Clean on `main` (verify with `git status`).
 
@@ -260,5 +260,5 @@ On your phone, follow **MOBILE.md** (local URL or tunnel as documented there).
 **Paste into new Agent chat:**
 
 ```
-I'm back on the SD Lap Lane Finder in Prototype Exercise. Read notes.md ("Resume here"), AGENTS.md, and VISION.md. HEAD is 13b35e8 (mobile UI polish — time wheel, grey text, hero); the tree is clean. Run with npm run web; use MOBILE.md on my phone. I want to give feedback on the San Diego app UX and behavior — stay SD-only, not multi-city. Explain changes; confirm before editing pools.json schedules.
+I'm back on the SD Lap Lane Finder in Prototype Exercise. Read notes.md ("Resume here"), AGENTS.md, and VISION.md. HEAD is ef30875 (Open Lanes bar rounding, date pill weekdays, location/call button colors); the tree is clean. Run with npm run web; use MOBILE.md on my phone. I want to give feedback on the San Diego app UX and behavior — stay SD-only, not multi-city. Explain changes; confirm before editing pools.json schedules.
 ```

@@ -184,10 +184,16 @@ function dateForOffsetDays(offset: number): string {
   return `${y}-${m}-${day}`;
 }
 
-/** Short label for a date pill, e.g. "Wed". */
+/** Short weekday for results header when not Today/Tomorrow, e.g. "Wed". */
 function weekdayShort(isoDate: string): string {
   const d = new Date(`${isoDate}T12:00:00`);
   return d.toLocaleDateString("en-US", { weekday: "short" });
+}
+
+/** Full weekday for date pills, e.g. "Wednesday". */
+function weekdayFull(isoDate: string): string {
+  const d = new Date(`${isoDate}T12:00:00`);
+  return d.toLocaleDateString("en-US", { weekday: "long" });
 }
 
 /** "9:00 AM" from "09:00". */
@@ -210,7 +216,7 @@ function formatResultsHeader(date: string, time: string): string {
   else if (date === tomorrow) dayLabel = "Tomorrow";
   else dayLabel = weekdayShort(date);
 
-  return `Open lanes for ${dayLabel} · ${formatTime12h(time)}`;
+  return `Open Lanes for ${dayLabel} · ${formatTime12h(time)}`;
 }
 
 /** Format miles for a result card (API sends real miles when GPS was used). */
@@ -569,7 +575,7 @@ function renderDatePills(): void {
     let label: string;
     if (offset === 0) label = "Today";
     else if (offset === 1) label = "Tomorrow";
-    else label = weekdayShort(iso);
+    else label = weekdayFull(iso);
 
     btn.innerHTML = `<span class="date-pill__label">${label}</span>`;
 
@@ -803,7 +809,7 @@ async function ensureUserLocationFromGesture(): Promise<void> {
     locationStatus = "denied";
     userLocation = DEFAULT_USER_LOCATION;
     setLocationLabel(locationErrorMessage(err));
-    useLocationLabel.textContent = "Use my location";
+    useLocationLabel.textContent = "Use My Location";
     useLocationButton.setAttribute("aria-pressed", "false");
   }
 }
