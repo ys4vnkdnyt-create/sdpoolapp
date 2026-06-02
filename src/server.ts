@@ -268,10 +268,11 @@ function safeFilePath(root: string, relativePath: string): string | null {
   return full;
 }
 
-/** Read a file and send it, or 404. */
+/** Read a file and send it, or 404. Optional extra response headers (e.g. no-cache). */
 function sendFile(
   filePath: string,
-  res: http.ServerResponse
+  res: http.ServerResponse,
+  extraHeaders?: Record<string, string>
 ): void {
   fs.readFile(filePath, (err, data) => {
     if (err) {
@@ -281,10 +282,20 @@ function sendFile(
     }
     const ext = path.extname(filePath);
     const contentType = MIME_TYPES[ext] ?? "application/octet-stream";
-    res.writeHead(200, { "Content-Type": contentType });
+    res.writeHead(200, {
+      "Content-Type": contentType,
+      ...extraHeaders,
+    });
     res.end(data);
   });
 }
+
+/** Browsers often cache app.js — force revalidate so hearts/favorites UI updates. */
+const NO_CACHE_HEADERS = {
+  "Cache-Control": "no-cache, no-store, must-revalidate",
+  Pragma: "no-cache",
+  Expires: "0",
+};
 
 /** Route each HTTP request to API or static files. */
 function handleRequest(req: http.IncomingMessage, res: http.ServerResponse): void {
@@ -300,9 +311,9 @@ function handleRequest(req: http.IncomingMessage, res: http.ServerResponse): voi
     return;
   }
 
-  // Compiled browser TypeScript
+  // Compiled browser TypeScript (?v= query is cache-bust only; path is still /web/app.js)
   if (req.method === "GET" && url.pathname === "/web/app.js") {
-    sendFile(WEB_APP_JS, res);
+    sendFile(WEB_APP_JS, res, NO_CACHE_HEADERS);
     return;
   }
 
@@ -312,7 +323,9 @@ function handleRequest(req: http.IncomingMessage, res: http.ServerResponse): voi
 
   const publicFile = safeFilePath(PUBLIC_DIR, relativePath);
   if (publicFile) {
-    sendFile(publicFile, res);
+    const noCache =
+      relativePath === "index.html" || relativePath === "styles.css";
+    sendFile(publicFile, res, noCache ? NO_CACHE_HEADERS : undefined);
     return;
   }
 
@@ -322,15 +335,20 @@ function handleRequest(req: http.IncomingMessage, res: http.ServerResponse): voi
 
 /** IPv4 LAN addresses (for “open on phone” hints in the terminal). */
 function getLanIpv4Addresses(): string[] {
-  const nets = os.networkInterfaces();
-  const addrs: string[] = [];
-  for (const ifaces of Object.values(nets)) {
-    for (const net of ifaces ?? []) {
-      const isV4 = String(net.family) === "IPv4" || String(net.family) === "4";
-      if (isV4 && !net.internal) addrs.push(net.address);
+  try {
+    const nets = os.networkInterfaces();
+    const addrs: string[] = [];
+    for (const ifaces of Object.values(nets)) {
+      for (const net of ifaces ?? []) {
+        const isV4 = String(net.family) === "IPv4" || String(net.family) === "4";
+        if (isV4 && !net.internal) addrs.push(net.address);
+      }
     }
+    return addrs;
+  } catch {
+    // os.networkInterfaces() can fail in restricted environments; server still runs.
+    return [];
   }
-  return addrs;
 }
 
 const server = http.createServer(handleRequest);

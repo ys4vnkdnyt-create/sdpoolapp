@@ -101,8 +101,72 @@ Example: Mon `2026-05-18` `06:30` → La Jolla + Mission Valley + Coronado; UCSD
 | `fetch()`                     | Browser built-in: send a request to a URL and get the response (used in `src/web/app.ts` for `/api/search`). |
 | **curl**                      | Terminal tool to fetch a URL and print the response — test the **API** without a browser. Same **Endpoint** as `fetch()`: e.g. `curl "http://localhost:3000/api/search?date=…&time=…"` sends a **GET** **Request**; server sends back **JSON** **Response**. |
 | `npm run web`                 | Build TypeScript, then start `dist/server.js` — open http://localhost:3000 to use the UI sample. |
+| HTML                          | Page skeleton — boxes and labels in `public/index.html` (what exists on screen before JavaScript runs). |
+| CSS                           | Paint and layout — colors, spacing, fonts in `public/styles.css`. |
+| DOM                           | **D**ocument **O**bject **M**odel — the live page the browser builds from HTML; TypeScript reads and updates it. |
+| `hidden`                      | HTML attribute that hides an element until JavaScript removes it (used on `#screen-favorites` until you tap Favorites). |
+| `getElementById()`            | TypeScript helper: grab one page element by its `id` (e.g. `favorites-list`). The `!` after means “this exists.” |
+| `classList.toggle()`          | Turn a CSS class on or off — e.g. highlight the active bottom-nav tab. |
+| `localStorage`                | Browser storage that keeps data after you close the tab (used for saved ♡ pools). |
+| `sessionStorage`              | Browser storage for one visit only — common fallback in Safari private mode. |
+| `FavoriteEntry`               | TypeScript interface: `{ poolId, name }` — one saved pool in storage. |
+| `togglePoolFavorite()`        | Add or remove a pool from favorites; saves to storage; returns `true` / `false` / `null` (save failed). |
+| `renderFavoritesScreen()`     | Read storage → build HTML for `#favorites-list` (or empty message) → wire heart buttons. |
+| `showScreen()`                | Show one of three tabs: `"search"`, `"results"`, or `"favorites"`; hides the others. |
+| `var(--bg)`                   | CSS shared color (`#edf8fb`, light pool-water) — Favorites header and panel both use it so they look like one block. |
+| Modifier class (`--favorites`)| Extra class that tweaks a base style for one screen only (e.g. `.results-bar--favorites`). |
+| `.map()` / `.join("")`        | Build HTML from an array: `.map()` makes one string per item; `.join("")` glues them into one block for `innerHTML`. |
+| `async` / `await`             | Wait for slow work (e.g. `fetch("/api/pools")` for addresses) before finishing `renderFavoritesScreen()`. |
+| `wireFavoriteButtons()`       | Attach tap handlers to each ♥ button (works reliably on iPhone Safari). |
+| `innerHTML`                   | Replace everything inside an element with new HTML text (how the favorites list gets drawn). |
 
-### API in this project (restaurant again)
+### Favorites tab (browser)
+
+Three layers work together:
+
+| Layer | File | Job |
+| ----- | ---- | --- |
+| Structure | `public/index.html` | `#screen-favorites`, title bar, hint line, empty `#favorites-list` |
+| Look | `public/styles.css` | `.results-bar--favorites` + `.panel--favorites` share `var(--bg)`; no gap between title and “Saved with ♡…” |
+| Behavior | `src/web/app.ts` | Save/load hearts, switch tabs, build list cards |
+
+**Page pieces (`index.html`):**
+
+- `#screen-favorites` — whole Favorites tab (starts `hidden`)
+- `#favorites-hint` — “Saved with ♡ on search results” (or a Safari storage warning)
+- `#favorites-list` — starts empty; TypeScript fills it with saved pool cards
+
+**What happens when you tap Favorites:**
+
+1. `openFavoritesScreen()` → `showScreen("favorites")` (hide Home/Results)
+2. Check whether the browser can save data (`probeFavoritesStorage()`)
+3. Set hint text → `renderFavoritesScreen()` loads from storage and paints cards
+
+**What happens when you tap ♡ on a search result:**
+
+1. `handleFavoriteHeartTap()` reads `data-pool-id` and `data-pool-name` from the button
+2. `togglePoolFavorite()` adds or removes `{ poolId, name }` in storage
+3. Heart icon updates; if you’re on Favorites, the list redraws
+
+**Storage fallback order:** `localStorage` (keeps after close) → `sessionStorage` (one visit) → in-memory array (if Safari blocks storage).
+
+**CSS fix (no white gap):** Header had `margin-bottom` showing white `.app` background between “Favorites” and the hint. Set `margin-bottom: 0` and the same flat `var(--bg)` on header + panel so they read as one block.
+
+```mermaid
+flowchart TD
+  A[Tap Favorites in bottom nav] --> B[openFavoritesScreen]
+  B --> C[showScreen favorites]
+  B --> D[renderFavoritesScreen]
+  D --> E[loadFavoriteEntries from storage]
+  E --> F{Any saved?}
+  F -->|No| G[Show empty message]
+  F -->|Yes| H[Build cards + fetch addresses]
+
+  I[Tap heart on search result] --> J[togglePoolFavorite]
+  J --> K[saveFavoriteEntries]
+  K --> L[Heart icon updates]
+```
+
 
 | Piece | File | Role |
 | ----- | ---- | ---- |

@@ -174,6 +174,14 @@ function isTimeRoundedForSearch(): boolean {
 /** Default map center when the user has not shared GPS (downtown San Diego). */
 const DEFAULT_USER_LOCATION = { lat: 32.7157, lng: -117.1611 };
 
+/** Browser storage key for favorited pools (pool id + display name). */
+const FAVORITES_STORAGE_KEY = "sd-lap-lane-favorites";
+
+interface FavoriteEntry {
+  poolId: string;
+  name: string;
+}
+
 /** ISO date YYYY-MM-DD for today + offset days. */
 function dateForOffsetDays(offset: number): string {
   const d = new Date();
@@ -227,6 +235,12 @@ function formatDistanceMiles(miles: number): string {
 // --- DOM refs ---
 const screenSearch = document.getElementById("screen-search")!;
 const screenResults = document.getElementById("screen-results")!;
+const screenFavorites = document.getElementById("screen-favorites")!;
+const homeFavoritesSection = document.getElementById("home-favorites")!;
+const homeFavoritesList = document.getElementById("home-favorites-list")!;
+const favoritesList = document.getElementById("favorites-list")!;
+const favoritesHint = document.getElementById("favorites-hint")!;
+const navFavoritesButton = document.getElementById("nav-favorites") as HTMLButtonElement;
 const datePills = document.getElementById("date-pills")!;
 const datePicker = document.getElementById("date-picker") as HTMLInputElement;
 const timePickerWrap = document.getElementById("time-picker-wrap")!;
@@ -238,11 +252,8 @@ const timeWheel = document.getElementById("time-wheel")!;
 const timePicker = document.getElementById("time-picker") as HTMLInputElement;
 const timeHint = document.getElementById("time-hint")!;
 const locationLabel = document.getElementById("location-label")!;
-const useLocationButton = document.getElementById("use-location")!;
-/** Label span inside the location button (text updates when GPS is on). */
-const useLocationLabel = useLocationButton.querySelector<HTMLElement>(".btn__label")!;
 const findButton = document.getElementById("find-lanes")!;
-const backButton = document.getElementById("back-to-search")!;
+const navSearchButton = document.getElementById("nav-search") as HTMLButtonElement;
 const resultsHeader = document.getElementById("results-header")!;
 const resultsList = document.getElementById("results-list")!;
 const noScheduleSection = document.getElementById("no-schedule-section")!;
@@ -263,6 +274,14 @@ let selectedSort: "distance" | "cost" = "distance";
 /** Set when geolocation succeeds; search uses real distance from here. */
 let userLocation: { lat: number; lng: number } | null = null;
 let locationStatus: "pending" | "ready" | "denied" | "unsupported" = "pending";
+/** Where favorites are saved: local, session (Safari private), or memory. */
+let favoritesStorageKind: "local" | "session" | "memory" = "memory";
+/** True after the first storage probe (Safari private mode, etc.). */
+let favoritesStorageProbed = false;
+/** Last-resort in-memory list when Safari blocks all web storage. */
+let favoritesMemoryStore: FavoriteEntry[] = [];
+/** Avoid double heart toggle from touchend + click on iOS Safari. */
+let lastFavoriteTapMs = 0;
 
 /** Keep the native date input aligned with selectedDate. */
 function syncDatePickerValue(): void {
@@ -599,10 +618,122 @@ function setPickedTimeFromPicker(): void {
   setPickedTime(timePicker.value);
 }
 
-/** Show search or results screen. */
-function showScreen(which: "search" | "results"): void {
+type AppScreen = "search" | "results" | "favorites";
+
+/** Pool row from GET /api/pools (address for favorites list). */
+interface PoolDirectoryEntryJson {
+  poolId: string;
+  name: string;
+  address: string;
+  military?: boolean;
+}
+
+/** Show home, lane results, or favorites; update bottom nav highlight. */
+function showScreen(which: AppScreen): void {
   screenSearch.hidden = which !== "search";
   screenResults.hidden = which !== "results";
+  screenFavorites.hidden = which !== "favorites";
+  navSearchButton.classList.toggle("bottom-nav__item--active", which === "search");
+  navFavoritesButton.classList.toggle(
+    "bottom-nav__item--active",
+    which === "favorites"
+  );
+  if (which === "search") {
+    void renderHomeFavorites();
+  }
+}
+
+/** Load pool directory once (names + addresses for favorites cards). */
+async function fetchPoolDirectory(): Promise<PoolDirectoryEntryJson[]> {
+  const res = await fetch("/api/pools");
+  if (!res.ok) return [];
+  const data = (await res.json()) as { pools: PoolDirectoryEntryJson[] };
+  return data.pools ?? [];
+}
+
+/** One saved pool card (Favorites tab and Home). */
+function renderFavoriteCardHtml(
+  entry: FavoriteEntry,
+  meta?: PoolDirectoryEntryJson
+): string {
+  const address = meta?.address
+    ? `<p class="favorite-card__meta">${escapeHtml(meta.address)}</p>`
+    : "";
+  return `
+    <article class="favorite-card" data-pool-id="${escapeHtml(entry.poolId)}">
+      <div class="favorite-card__row">
+        <h2 class="favorite-card__name">${escapeHtml(entry.name)}</h2>
+        <button type="button" class="pool-card__favorite" data-pool-id="${escapeAttr(entry.poolId)}" data-pool-name="${escapeAttr(entry.name)}" aria-label="Remove from favorites" aria-pressed="true">♥</button>
+      </div>
+      ${address}
+      <button type="button" class="btn btn--secondary favorite-card__check" data-check-pool-id="${escapeHtml(entry.poolId)}">
+        Check open lanes now
+      </button>
+    </article>
+  `;
+}
+
+/** Draw favorite cards into any list container (shared by Home + Favorites tab). */
+async function paintFavoritesList(
+  container: HTMLElement,
+  entries: FavoriteEntry[]
+): Promise<void> {
+  if (entries.length === 0) {
+    container.innerHTML = "";
+    return;
+  }
+
+  let directory: PoolDirectoryEntryJson[] = [];
+  try {
+    directory = await fetchPoolDirectory();
+  } catch {
+    /* show names only */
+  }
+
+  container.innerHTML = entries
+    .map((entry) =>
+      renderFavoriteCardHtml(
+        entry,
+        directory.find((p) => p.poolId === entry.poolId)
+      )
+    )
+    .join("");
+  wireFavoriteButtons(container);
+}
+
+/** Home screen: show saved pools when the list is not empty. */
+async function renderHomeFavorites(): Promise<void> {
+  const entries = loadFavoriteEntries();
+  if (entries.length === 0) {
+    homeFavoritesSection.hidden = true;
+    homeFavoritesList.innerHTML = "";
+    return;
+  }
+  homeFavoritesSection.hidden = false;
+  await paintFavoritesList(homeFavoritesList, entries);
+}
+
+/** Paint the favorites screen from localStorage + pantry addresses. */
+async function renderFavoritesScreen(): Promise<void> {
+  const entries = loadFavoriteEntries();
+  if (entries.length === 0) {
+    favoritesList.innerHTML = `<p class="empty">No favorites yet. Run a search, then tap ♡ on a pool to save it here.</p>`;
+    return;
+  }
+
+  await paintFavoritesList(favoritesList, entries);
+}
+
+/** Open favorites tab and refresh the list. */
+async function openFavoritesScreen(): Promise<void> {
+  showScreen("favorites");
+  if (!probeFavoritesStorage()) {
+    showFavoritesStorageError();
+    return;
+  }
+  const notice = favoritesStorageNotice();
+  favoritesHint.textContent = notice ?? "Saved with ♡ on search results";
+  await renderFavoritesScreen();
 }
 
 /** Highlight the active sort pill. */
@@ -671,6 +802,227 @@ function renderMilitaryDescription(military?: boolean): string {
   return `<p class="pool-card__military">Military base pool — base access or military ID may be required.</p>`;
 }
 
+/** Parse JSON array of favorite entries. */
+function parseFavoriteEntries(raw: string | null): FavoriteEntry[] {
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(
+      (x): x is FavoriteEntry =>
+        typeof x === "object" &&
+        x !== null &&
+        typeof (x as FavoriteEntry).poolId === "string" &&
+        typeof (x as FavoriteEntry).name === "string"
+    );
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Safari private mode can throw on setItem OR accept writes that do not persist.
+ * Verify with read-back; fall back to sessionStorage, then memory.
+ */
+function probeStorageCandidate(storage: Storage): boolean {
+  try {
+    const probe = "__sd_lane_fav_probe__";
+    storage.setItem(probe, "ok");
+    if (storage.getItem(probe) !== "ok") return false;
+    storage.removeItem(probe);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/** Pick the best storage backend for this browser (runs once at load). */
+function probeFavoritesStorage(): boolean {
+  if (favoritesStorageProbed) return true;
+
+  if (probeStorageCandidate(localStorage)) {
+    favoritesStorageKind = "local";
+  } else if (probeStorageCandidate(sessionStorage)) {
+    favoritesStorageKind = "session";
+  } else {
+    favoritesStorageKind = "memory";
+  }
+  favoritesStorageProbed = true;
+  return true;
+}
+
+/** Active Storage API, or null when using the in-memory fallback. */
+function favoritesStorage(): Storage | null {
+  if (favoritesStorageKind === "local") return localStorage;
+  if (favoritesStorageKind === "session") return sessionStorage;
+  return null;
+}
+
+/** Read saved favorites (localStorage, sessionStorage, or memory). */
+function loadFavoriteEntries(): FavoriteEntry[] {
+  probeFavoritesStorage();
+  const storage = favoritesStorage();
+  if (storage) {
+    return parseFavoriteEntries(storage.getItem(FAVORITES_STORAGE_KEY));
+  }
+  return [...favoritesMemoryStore];
+}
+
+/** Persist favorites; false only when every backend fails. */
+function saveFavoriteEntries(entries: FavoriteEntry[]): boolean {
+  probeFavoritesStorage();
+  const storage = favoritesStorage();
+  if (storage) {
+    try {
+      storage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(entries));
+      if (
+        storage.getItem(FAVORITES_STORAGE_KEY) !== JSON.stringify(entries)
+      ) {
+        favoritesStorageKind = "memory";
+        favoritesMemoryStore = [...entries];
+        return true;
+      }
+      return true;
+    } catch {
+      favoritesStorageKind = "memory";
+    }
+  }
+  favoritesMemoryStore = [...entries];
+  return true;
+}
+
+/** Hint when Safari private mode only allows session-scoped saves. */
+function favoritesStorageNotice(): string | null {
+  if (favoritesStorageKind === "session") {
+    return "Favorites save for this visit only (Safari private mode). Use a normal window to keep them after refresh.";
+  }
+  if (favoritesStorageKind === "memory") {
+    return "Favorites work until you close this tab. Turn off Private Browsing to save them longer.";
+  }
+  return null;
+}
+
+/** Tell the user when favorites cannot be saved. */
+function showFavoritesStorageError(): void {
+  const msg =
+    "Could not save favorites — in Safari try a non-private window, or Settings → Safari → allow website data.";
+  favoritesHint.textContent = msg;
+  if (!screenFavorites.hidden) {
+    favoritesList.innerHTML = `<p class="empty">${escapeHtml(msg)}</p>`;
+  }
+}
+
+/** True when this pool id is already in favorites. */
+function isPoolFavorite(poolId: string): boolean {
+  return loadFavoriteEntries().some((e) => e.poolId === poolId);
+}
+
+/**
+ * Add or remove a favorite.
+ * Returns true when now favorited, false when removed, null when save failed.
+ */
+function togglePoolFavorite(poolId: string, name: string): boolean | null {
+  let entries = loadFavoriteEntries();
+  const existing = entries.findIndex((e) => e.poolId === poolId);
+  if (existing >= 0) {
+    entries = entries.filter((e) => e.poolId !== poolId);
+    if (!saveFavoriteEntries(entries)) {
+      showFavoritesStorageError();
+      return null;
+    }
+    return false;
+  }
+  entries.push({ poolId, name });
+  if (!saveFavoriteEntries(entries)) {
+    showFavoritesStorageError();
+    return null;
+  }
+  return true;
+}
+
+/** Escape text for HTML attribute values (data-pool-id, data-pool-name). */
+function escapeAttr(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;");
+}
+
+/** Read pool id + name from a heart button (getAttribute avoids dataset quirks). */
+function favoriteTapFromButton(
+  btn: HTMLButtonElement
+): { poolId: string; poolName: string } | null {
+  const poolId = btn.getAttribute("data-pool-id");
+  if (!poolId) return null;
+  let poolName = btn.getAttribute("data-pool-name") ?? "";
+  if (!poolName.trim()) {
+    const card = btn.closest(".pool-card, .favorite-card");
+    const nameEl = card?.querySelector(".pool-card__name, .favorite-card__name");
+    poolName = (nameEl?.textContent ?? "").replace(/\s+\*$/, "").trim();
+  }
+  if (!poolName) return null;
+  return { poolId, poolName };
+}
+
+/** Handle one heart tap on results or favorites list. */
+function handleFavoriteHeartTap(btn: HTMLButtonElement): void {
+  const ids = favoriteTapFromButton(btn);
+  if (!ids) return;
+  const result = togglePoolFavorite(ids.poolId, ids.poolName);
+  if (result === null) return;
+  syncFavoriteButton(btn, result);
+  const notice = favoritesStorageNotice();
+  if (!screenFavorites.hidden) {
+    if (notice) favoritesHint.textContent = notice;
+    void renderFavoritesScreen();
+  }
+  if (!screenSearch.hidden) {
+    void renderHomeFavorites();
+  }
+}
+
+/** Safari often sets event.target to the ♡ text node, not the button — use parent. */
+function eventTargetElement(e: Event): Element | null {
+  const t = e.target;
+  if (t instanceof Element) return t;
+  if (t instanceof Text) return t.parentElement;
+  return null;
+}
+
+/** Attach tap handlers directly to each heart (reliable on iOS Safari). */
+function wireFavoriteButtons(container: ParentNode): void {
+  container.querySelectorAll<HTMLButtonElement>(".pool-card__favorite").forEach((btn) => {
+    const onTap = (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const now = Date.now();
+      if (now - lastFavoriteTapMs < 400) return;
+      lastFavoriteTapMs = now;
+      handleFavoriteHeartTap(btn);
+    };
+    btn.addEventListener("click", onTap);
+    btn.addEventListener("touchend", onTap, { passive: false });
+  });
+}
+
+/** Tiny heart control beside the pool name. */
+function renderFavoriteButton(poolId: string, poolName: string): string {
+  const on = isPoolFavorite(poolId);
+  const label = on ? "Remove from favorites" : "Add to favorites";
+  const symbol = on ? "♥" : "♡";
+  return `<button type="button" class="pool-card__favorite" data-pool-id="${escapeAttr(poolId)}" data-pool-name="${escapeAttr(poolName)}" aria-label="${escapeAttr(label)}" aria-pressed="${on ? "true" : "false"}">${symbol}</button>`;
+}
+
+/** Sync heart icon and aria after toggle without re-running search. */
+function syncFavoriteButton(btn: HTMLButtonElement, favorited: boolean): void {
+  btn.setAttribute("aria-pressed", favorited ? "true" : "false");
+  btn.setAttribute(
+    "aria-label",
+    favorited ? "Remove from favorites" : "Add to favorites"
+  );
+  btn.textContent = favorited ? "♥" : "♡";
+}
+
 /** One pool card on screen 2. */
 function renderResultCard(r: SearchResultJson): string {
   const miles = formatDistanceMiles(r.distanceMiles);
@@ -685,7 +1037,10 @@ function renderResultCard(r: SearchResultJson): string {
     <article class="pool-card" data-pool-id="${r.poolId}">
       <div class="pool-card__top">
         <div>
-          <h2 class="pool-card__name">${formatPoolName(r.name, r.military)}</h2>
+          <div class="pool-card__name-row">
+            <h2 class="pool-card__name">${formatPoolName(r.name, r.military)}</h2>
+            ${renderFavoriteButton(r.poolId, r.name)}
+          </div>
           <p class="pool-card__meta">${escapeHtml(r.address)}</p>
           ${militaryNote}
         </div>
@@ -716,7 +1071,10 @@ function renderNoScheduleCard(p: NoSchedulePoolJson): string {
     <article class="pool-card pool-card--no-schedule" data-pool-id="${p.poolId}">
       <div class="pool-card__top">
         <div>
-          <h2 class="pool-card__name">${formatPoolName(p.name, p.military)}</h2>
+          <div class="pool-card__name-row">
+            <h2 class="pool-card__name">${formatPoolName(p.name, p.military)}</h2>
+            ${renderFavoriteButton(p.poolId, p.name)}
+          </div>
           ${subtitle}
           <p class="pool-card__meta">${escapeHtml(p.address)}</p>
           ${militaryNote}
@@ -742,6 +1100,7 @@ function renderNoScheduleSection(pools: NoSchedulePoolJson[] | undefined): void 
 
   noScheduleSection.hidden = false;
   noScheduleList.innerHTML = rows.map(renderNoScheduleCard).join("");
+  wireFavoriteButtons(noScheduleList);
 }
 
 /** Prevent HTML injection from pool names in sample data. */
@@ -780,7 +1139,7 @@ function requestUserLocation(): Promise<{ lat: number; lng: number }> {
 function locationErrorMessage(err: unknown): string {
   if (err instanceof GeolocationPositionError) {
     if (err.code === err.PERMISSION_DENIED) {
-      return "Location denied — allow this site in browser settings, or tap the lock icon in the address bar.";
+      return "Location denied — showing pools sorted from San Diego center.";
     }
     if (err.code === err.POSITION_UNAVAILABLE) {
       return "Location unavailable — using San Diego center; pools still sorted by distance from there.";
@@ -795,29 +1154,38 @@ function locationErrorMessage(err: unknown): string {
   return "Could not get location — using San Diego center.";
 }
 
-/** Request GPS after user taps a button (required by Chrome/Safari). */
+/** Request GPS after Find Open Lanes tap (required by Chrome/Safari). */
 async function ensureUserLocationFromGesture(): Promise<void> {
   if (locationStatus === "ready" && userLocation) return;
+  // After deny/unsupported, keep SD center — don’t re-prompt every search.
+  if (locationStatus === "denied" || locationStatus === "unsupported") {
+    userLocation = DEFAULT_USER_LOCATION;
+    return;
+  }
 
   try {
     userLocation = await requestUserLocation();
     locationStatus = "ready";
-    setLocationLabel("Pools will be sorted by distance from you");
-    useLocationLabel.textContent = "Location on";
-    useLocationButton.setAttribute("aria-pressed", "true");
+    setLocationLabel("Sorted by distance from you");
   } catch (err) {
-    locationStatus = "denied";
+    locationStatus =
+      err instanceof Error && err.message === "unsupported"
+        ? "unsupported"
+        : "denied";
     userLocation = DEFAULT_USER_LOCATION;
     setLocationLabel(locationErrorMessage(err));
-    useLocationLabel.textContent = "Use My Location";
-    useLocationButton.setAttribute("aria-pressed", "false");
   }
 }
 
 /** Call the server kitchen and paint screen 2. */
 async function runSearch(): Promise<void> {
-  // Browsers only show the Allow/Deny prompt after a click (Find Open Lanes counts).
+  findButton.setAttribute("disabled", "true");
+  if (locationStatus === "pending") {
+    setLocationLabel("Getting your location…");
+  }
+  // Browsers only show the Allow/Deny prompt after a tap on Find Open Lanes.
   await ensureUserLocationFromGesture();
+  findButton.removeAttribute("disabled");
 
   if (isPastEndOfDayToday(selectedDate)) {
     return;
@@ -851,6 +1219,7 @@ async function runSearch(): Promise<void> {
     resultsList.innerHTML = `<p class="empty">No pools with lap lanes open at that time. Try another time or date.</p>`;
   } else {
     resultsList.innerHTML = data.results.map(renderResultCard).join("");
+    wireFavoriteButtons(resultsList);
   }
 
   renderNoScheduleSection(data.noSchedulePools);
@@ -858,7 +1227,7 @@ async function runSearch(): Promise<void> {
   const locationHint =
     locationStatus === "ready"
       ? " Sorted closest first from your location."
-      : " Sorted by distance from San Diego center until you allow location.";
+      : " Sorted by distance from San Diego center.";
   resultsFooter.textContent = `Showing pools within about ${SEARCH_RADIUS_MILES} miles.${locationHint}`;
   showScreen("results");
 }
@@ -908,19 +1277,33 @@ timeWheel.addEventListener(
   { passive: true }
 );
 
-useLocationButton.addEventListener("click", () => {
-  void (async () => {
-    useLocationButton.setAttribute("disabled", "true");
-    setLocationLabel("Getting your location…");
-    await ensureUserLocationFromGesture();
-    useLocationButton.removeAttribute("disabled");
-  })();
-});
 findButton.addEventListener("click", () => void runSearch());
-backButton.addEventListener("click", () => showScreen("search"));
+navSearchButton.addEventListener("click", () => showScreen("search"));
+navFavoritesButton.addEventListener("click", () => void openFavoritesScreen());
+
+/** Favorites lists: check-lanes button (hearts wired when cards are painted). */
+function onFavoriteListAction(e: Event): void {
+  const el = eventTargetElement(e);
+  if (!el) return;
+  if (el.closest(".pool-card__favorite")) return;
+  const check = el.closest<HTMLButtonElement>("[data-check-pool-id]");
+  if (check?.dataset.checkPoolId) {
+    e.preventDefault();
+    void runSearch();
+  }
+}
+
+screenFavorites.addEventListener("click", onFavoriteListAction);
+screenFavorites.addEventListener("touchend", onFavoriteListAction, {
+  passive: false,
+});
+homeFavoritesSection.addEventListener("click", onFavoriteListAction);
+homeFavoritesSection.addEventListener("touchend", onFavoriteListAction, {
+  passive: false,
+});
 
 sortPills.addEventListener("click", (e) => {
-  const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-sort]");
+  const btn = eventTargetElement(e)?.closest<HTMLButtonElement>("[data-sort]");
   if (!btn?.dataset.sort) return;
   selectedSort = btn.dataset.sort as "distance" | "cost";
   renderSortPills();
@@ -928,6 +1311,7 @@ sortPills.addEventListener("click", (e) => {
 });
 
 // --- First paint ---
+probeFavoritesStorage();
 initDatePickerMin();
 renderDatePills();
 syncDatePickerValue();
@@ -936,7 +1320,8 @@ syncTimeTriggerLabel();
 syncTimeControls();
 renderSortPills();
 showScreen("search");
+void renderHomeFavorites();
 setLocationLabel(
-  "Tap either button — your browser will ask to allow location"
+  "Tap Find Open Lanes — we’ll ask for your location to sort by distance"
 );
 userLocation = DEFAULT_USER_LOCATION;
