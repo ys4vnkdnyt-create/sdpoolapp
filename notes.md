@@ -33,7 +33,7 @@
 ## Config files (not the app logic)
 
 - `**package.json`** — project name + npm shortcuts (`build`, `start`, `dev`)
-- `**tsconfig.json**` — TypeScript rules; `src/` → `dist/`
+- `**tsconfig.json`** — TypeScript rules; `src/` → `dist/`
 - `**.gitignore**` — don't commit `node_modules/` or `dist/`
 - `**README.md**` — how to install and run (for you)
 
@@ -97,7 +97,7 @@ Example: Mon `2026-05-18` `06:30` → La Jolla + Mission Valley + Coronado; UCSD
 | Endpoint                       | One "menu item" on the server — ours is `**/api/search`** (lane search only).                                                                                                                                                                                    |
 | `GET`                          | HTTP verb meaning "read data only" (no form body). Our search uses GET because date/time sit in the URL.                                                                                                                                                         |
 | JSON                           | Text shaped like `{ "name": "La Jolla YMCA", "lanesAvailable": 4 }` — easy for TypeScript/JavaScript to parse.                                                                                                                                                   |
-| `localhost`                    | "This computer." `**localhost:3000**` = web app running on your machine while you develop (not on the public internet).                                                                                                                                          |
+| `localhost`                    | "This computer." `**localhost:3000`** = web app running on your machine while you develop (not on the public internet).                                                                                                                                          |
 | `fetch()`                      | Browser built-in: send a request to a URL and get the response (used in `src/web/app.ts` for `/api/search`).                                                                                                                                                     |
 | **curl**                       | Terminal tool to fetch a URL and print the response — test the **API** without a browser. Same **Endpoint** as `fetch()`: e.g. `curl "http://localhost:3000/api/search?date=…&time=…"` sends a **GET** **Request**; server sends back **JSON** **Response**.     |
 | `npm run web`                  | Build TypeScript, then start `dist/server.js` — open [http://localhost:3000](http://localhost:3000) to use the UI sample.                                                                                                                                        |
@@ -279,19 +279,17 @@ flowchart LR
 
 ---
 
-Michelle Feedback:
+## Michelle feedback
 
+Notes from real user testing:
 
+1. **Results header looks like a button** — The “Open Lanes” heading is styled like a primary call-to-action, not a page title. It should read clearly as a heading.
+2. **Time picker is slow for other times** — Selecting any time other than right now requires too much scrolling on the wheel. We need a faster way to jump to a time.
+3. **Explain why a pool is excluded** — When a pool doesn’t appear in open-lane results, show why it was filtered out (for example: no lanes open at that time).
+4. **Simplify favorites on Home** — Don’t show favorites above **Find Open Lanes**; that placement is confusing. Show favorited pools in search results with a heart instead. If a favorite isn’t open at the chosen time, still surface it and explain why not.
+5. **Favorites shouldn’t require another search tap** — Checking a saved pool from Favorites shouldn’t force the user to press **Find Open Lanes** again; one tap should be enough.
 
-- The "Open lanes" heading looks exactly like a primary CTA (button)
-
-- The time picker is hard to use if...you want to select a time that is not the CURRENT time! takes me way too long to scroll
-
-
-
-
-
-
+---
 
 ## Session learnings (saved)
 
@@ -343,11 +341,13 @@ Analytics is wired but **off locally** unless you set a key. Keys never go in gi
 
 **Env vars (Render → Environment):**
 
-| Variable | Required | Notes |
-| -------- | -------- | ----- |
-| `POSTHOG_KEY` | Yes (to enable) | Project API key from PostHog (`phc_…`) |
-| `POSTHOG_HOST` | No | Default `https://us.i.posthog.com` |
-| `POSTHOG_FEEDBACK_SURVEY_ID` | No | Survey ID — **Feedback** button opens this popover |
+
+| Variable                     | Required        | Notes                                              |
+| ---------------------------- | --------------- | -------------------------------------------------- |
+| `POSTHOG_KEY`                | Yes (to enable) | Project API key from PostHog (`phc_…`)             |
+| `POSTHOG_HOST`               | No              | Default `https://us.i.posthog.com`                 |
+| `POSTHOG_FEEDBACK_SURVEY_ID` | No              | Survey ID — **Feedback** button opens this popover |
+
 
 Local test: `POSTHOG_KEY=phc_your_key npm run web`
 
@@ -359,13 +359,15 @@ Local test: `POSTHOG_KEY=phc_your_key npm run web`
 
 **Events tracked:**
 
-| Event | When |
-| ----- | ---- |
-| `app_loaded` | Page load (when key is set) |
-| `screen_view` | Home, results, or favorites screen |
-| `search_submitted` | Search finished — date, time, sort, result count (no GPS) |
-| `favorite_toggled` | Heart tapped — pool id + favorited |
-| `feedback_link_clicked` | **Feedback** link tapped (above bottom nav) |
+
+| Event                   | When                                                      |
+| ----------------------- | --------------------------------------------------------- |
+| `app_loaded`            | Page load (when key is set)                               |
+| `screen_view`           | Home, results, or favorites screen                        |
+| `search_submitted`      | Search finished — date, time, sort, result count (no GPS) |
+| `favorite_toggled`      | Heart tapped — pool id + favorited                        |
+| `feedback_link_clicked` | **Feedback** link tapped (above bottom nav)               |
+
 
 **Your to-do in PostHog (one-time):**
 
@@ -374,9 +376,9 @@ Local test: `POSTHOG_KEY=phc_your_key npm run web`
 3. **Surveys** → **New survey** → **Popover** (mobile-friendly).
 4. Add question(s), e.g. “What would make this app more useful?”
 5. **Release conditions** — pick one:
-   - **Automatic** — show after N page views or on a delay
-   - **Event-triggered** — release on event `feedback_link_clicked`
-   - **Feedback button** — copy survey ID into `POSTHOG_FEEDBACK_SURVEY_ID` on Render
+  - **Automatic** — show after N page views or on a delay
+  - **Event-triggered** — release on event `feedback_link_clicked`
+  - **Feedback button** — copy survey ID into `POSTHOG_FEEDBACK_SURVEY_ID` on Render
 6. Set survey to **Active** → save.
 7. Use the app on your Render URL → confirm events in PostHog **Activity**.
 
@@ -386,7 +388,7 @@ Full detail also in **MOBILE.md** → “PostHog (analytics + surveys)”.
 
 ---
 
-**Focus next session:** Finish PostHog dashboard setup (steps above), then your feedback on the **San Diego** web app — UX, copy, and search behavior. Stay SD-only; do not expand into multi-city work unless you ask for it.
+**Focus next session:** Finish PostHog dashboard setup (steps above), then work through **Michelle feedback** (section above Session learnings) on the **San Diego** web app — UX, copy, and search behavior. Stay SD-only; do not expand into multi-city work unless you ask for it.
 
 **Still true under the hood:** Real schedules in `pools.json` via `loadPools.ts`; `scheduleWindows.ts` normalizes and fills gaps; pools with empty `availability[]` are excluded from search. **No `pools.json` schedule edits without your OK.**
 
@@ -395,6 +397,6 @@ Full detail also in **MOBILE.md** → “PostHog (analytics + surveys)”.
 **Paste into new Agent chat:**
 
 ```
-I'm back on the SD Lap Lane Finder in Prototype Exercise. Read notes.md ("Resume here"), AGENTS.md, and VISION.md. PostHog integration is in the working tree (not committed) — see notes.md for env vars and dashboard steps. HEAD is 1ac13d4 (favorites); run npm run web; use MOBILE.md on my phone. Help me finish PostHog setup and/or give feedback on the San Diego app UX — stay SD-only, not multi-city. Explain changes; confirm before editing pools.json schedules.
+I'm back on the SD Lap Lane Finder in Prototype Exercise. Read notes.md ("Resume here" and "Michelle feedback"), AGENTS.md, and VISION.md. PostHog integration is in the working tree (not committed) — see notes.md for env vars and dashboard steps. HEAD is 1ac13d4 (favorites); run npm run web; use MOBILE.md on my phone. Start with Michelle feedback (five UX items above Session learnings). Stay SD-only, not multi-city. Explain changes; confirm before editing pools.json schedules.
 ```
 
