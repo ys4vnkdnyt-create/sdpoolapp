@@ -68,6 +68,8 @@ Open http://localhost:3000 — pick date/time, tap **Find Open Lanes**. Same `se
 
 **On your phone:** see [MOBILE.md](./MOBILE.md) (same Wi‑Fi, Add to Home Screen, tunnel, or Render deploy).
 
+**Analytics (PostHog):** optional; set `POSTHOG_KEY` on Render — see [MOBILE.md](./MOBILE.md#posthog-analytics--surveys).
+
 ## Learning path
 
 1. Read `src/types/index.ts` — data shapes the whole app uses

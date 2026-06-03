@@ -24,7 +24,18 @@ const MAX_DRIVE_MINUTES = 60;
 const SERVER_DIR = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.join(SERVER_DIR, "..");
 const PUBLIC_DIR = path.join(PROJECT_ROOT, "public");
-const WEB_APP_JS = path.join(SERVER_DIR, "web", "app.js");
+/** Compiled browser TypeScript (app.js, analytics.js, …). */
+const WEB_DIR = path.join(SERVER_DIR, "web");
+/** Browser bundle for import map (no webpack — served from node_modules). */
+const POSTHOG_JS = path.join(
+  PROJECT_ROOT,
+  "node_modules",
+  "posthog-js",
+  "dist",
+  "module.js"
+);
+
+const DEFAULT_POSTHOG_HOST = "https://us.i.posthog.com";
 
 /** Schedule link we pass through to the browser (from pool pantry). */
 interface ScheduleSourceJson {
@@ -225,6 +236,32 @@ function parseSearchQuery(url: URL): SearchQuery | null {
   return query;
 }
 
+/** Browsers often cache app.js — force revalidate so hearts/favorites UI updates. */
+const NO_CACHE_HEADERS = {
+  "Cache-Control": "no-cache, no-store, must-revalidate",
+  Pragma: "no-cache",
+  Expires: "0",
+};
+
+/** Inject PostHog key/host from env — empty key means analytics off in the browser. */
+function handleAnalyticsConfig(res: http.ServerResponse): void {
+  const apiKey = process.env.POSTHOG_KEY?.trim() ?? "";
+  const apiHost =
+    process.env.POSTHOG_HOST?.trim() || DEFAULT_POSTHOG_HOST;
+  const feedbackSurveyId =
+    process.env.POSTHOG_FEEDBACK_SURVEY_ID?.trim() ?? "";
+
+  const config: Record<string, string> = { apiKey, apiHost };
+  if (feedbackSurveyId) config.feedbackSurveyId = feedbackSurveyId;
+
+  const body = `window.__ANALYTICS_CONFIG__ = ${JSON.stringify(config)};\n`;
+  res.writeHead(200, {
+    "Content-Type": "application/javascript; charset=utf-8",
+    ...NO_CACHE_HEADERS,
+  });
+  res.end(body);
+}
+
 /** JSON response for GET /api/search. */
 function handleApiSearch(
   url: URL,
@@ -290,13 +327,6 @@ function sendFile(
   });
 }
 
-/** Browsers often cache app.js — force revalidate so hearts/favorites UI updates. */
-const NO_CACHE_HEADERS = {
-  "Cache-Control": "no-cache, no-store, must-revalidate",
-  Pragma: "no-cache",
-  Expires: "0",
-};
-
 /** Route each HTTP request to API or static files. */
 function handleRequest(req: http.IncomingMessage, res: http.ServerResponse): void {
   const url = new URL(req.url ?? "/", `http://localhost:${PORT}`);
@@ -311,10 +341,24 @@ function handleRequest(req: http.IncomingMessage, res: http.ServerResponse): voi
     return;
   }
 
-  // Compiled browser TypeScript (?v= query is cache-bust only; path is still /web/app.js)
-  if (req.method === "GET" && url.pathname === "/web/app.js") {
-    sendFile(WEB_APP_JS, res, NO_CACHE_HEADERS);
+  if (req.method === "GET" && url.pathname === "/config/analytics.js") {
+    handleAnalyticsConfig(res);
     return;
+  }
+
+  if (req.method === "GET" && url.pathname === "/vendor/posthog-js.js") {
+    sendFile(POSTHOG_JS, res, NO_CACHE_HEADERS);
+    return;
+  }
+
+  // Compiled browser modules under dist/web/ (?v= on app.js is cache-bust only)
+  if (req.method === "GET" && url.pathname.startsWith("/web/")) {
+    const relative = url.pathname.slice("/web/".length);
+    const webFile = safeFilePath(WEB_DIR, relative);
+    if (webFile) {
+      sendFile(webFile, res, NO_CACHE_HEADERS);
+      return;
+    }
   }
 
   // Static files from public/ (default index.html)

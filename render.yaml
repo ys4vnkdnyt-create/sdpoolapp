@@ -8,3 +8,13 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "22"
+      # PostHog (optional — leave POSTHOG_KEY empty to disable analytics locally)
+      # Create a project at https://posthog.com → Project settings → Project API key (phc_...)
+      - key: POSTHOG_KEY
+        sync: false
+      # US cloud default; EU example: https://eu.i.posthog.com
+      - key: POSTHOG_HOST
+        value: https://us.i.posthog.com
+      # Optional: survey id from PostHog → Surveys → copy id for Feedback button
+      - key: POSTHOG_FEEDBACK_SURVEY_ID
+        sync: false

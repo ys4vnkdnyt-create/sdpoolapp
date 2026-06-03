@@ -65,6 +65,42 @@ PORT=3000 npm run start:web
 
 On Render, `PORT` is set automatically; `start:web` runs `dist/server.js`.
 
+### PostHog (analytics + surveys)
+
+The app sends anonymous usage events and can show PostHog **Surveys** (feedback). Keys are **not** in git — the server injects them at runtime.
+
+**Environment variables (Render → your service → Environment):**
+
+| Variable | Required | Purpose |
+| -------- | -------- | ------- |
+| `POSTHOG_KEY` | Yes (for production analytics) | Project API key from PostHog (`phc_…`) |
+| `POSTHOG_HOST` | No | API host (default `https://us.i.posthog.com`; EU use `https://eu.i.posthog.com`) |
+| `POSTHOG_FEEDBACK_SURVEY_ID` | No | Survey id for the in-app **Feedback** button |
+
+Leave `POSTHOG_KEY` empty on your Mac for local dev — analytics stays off.
+
+**Dashboard setup (one-time):**
+
+1. Sign up at [posthog.com](https://posthog.com) and create a project.
+2. **Project settings** → copy the **Project API key** (`phc_…`) into Render as `POSTHOG_KEY`. Redeploy.
+3. **Surveys** → **New survey** (e.g. “App feedback”, popover or widget).
+4. **Targeting** — show on your Render URL (or “All users”) so the SDK can display it automatically after init.
+5. Optional: copy the survey **ID** into `POSTHOG_FEEDBACK_SURVEY_ID` so the **Feedback** link opens that survey on tap.
+6. In PostHog, confirm events: `app_loaded`, `screen_view`, `search_submitted`, `favorite_toggled`, `feedback_link_clicked`.
+
+Surveys are handled by `posthog-js` once initialized; no extra code beyond the Feedback button.
+
+### Location (GPS) on your phone
+
+Browsers treat **https** and **localhost** as secure. A home Wi‑Fi link like `http://192.168.50.156:3000` is **not** secure, so **iPhone Safari will not use GPS** there — search still works, sorted from downtown San Diego.
+
+**To get real “sort by distance from you” on a phone:**
+
+1. **Tunnel (quick):** `npx cloudflared tunnel --url http://localhost:3000` → open the `https://…trycloudflare.com` URL on your phone.
+2. **Render deploy:** public `https://….onrender.com` URL (Option 4 above).
+
+The app shows a short hint when GPS isn’t available and always falls back to San Diego center.
+
 ---
 
 **Troubleshooting**
@@ -73,6 +109,8 @@ On Render, `PORT` is set automatically; `start:web` runs `dist/server.js`.
 | Problem                          | Fix                                                             |
 | -------------------------------- | --------------------------------------------------------------- |
 | Phone cannot load `http://192.…` | Same Wi‑Fi? Mac firewall blocking Node? Try tunnel (Option 3).  |
+| Page loads but buttons dead      | Restart server: `npm run web` after `npm run build` (needs fresh JS). |
+| Location never works on phone    | `http://192.…` blocks GPS — use https tunnel or Render (see above). |
 | Page loads but search fails      | Phone must reach your Mac; tunnel/deploy must stay running.     |
 | Inputs zoom on focus (iOS)       | Should not happen — inputs use 16px font. Reload after updates. |
 

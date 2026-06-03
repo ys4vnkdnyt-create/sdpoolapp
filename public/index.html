@@ -33,8 +33,8 @@
               alt="Swimmer doing freestyle"
             />
           </div>
-          <h1 class="hero__title">When do you want to swim?</h1>
-          <p class="hero__subtitle">Find open lap lanes near you</p>
+          <h1 class="hero__title">Find open swim lanes</h1>
+          <p class="hero__subtitle">You want to swim laps, not watch water aerobics!</p>
         </header>
 
         <div class="panel">
@@ -167,6 +167,12 @@
         </div>
       </section>
 
+      <div class="app-footer">
+        <button type="button" id="feedback-link" class="feedback-link">
+          Feedback
+        </button>
+      </div>
+
       <nav class="bottom-nav" aria-label="Main">
         <button
           id="nav-search"
@@ -185,6 +191,14 @@
       </nav>
     </div>
 
-    <script type="module" src="/web/app.js?v=favorites6"></script>
+    <script src="/config/analytics.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "posthog-js": "/vendor/posthog-js.js"
+        }
+      }
+    </script>
+    <script type="module" src="/web/app.js?v=posthog2"></script>
   </body>
 </html>

@@ -2,6 +2,13 @@
  * Browser front counter: screens 1 (search) and 2 (results).
  * Calls GET /api/search — kitchen logic stays on the server.
  */
+import {
+  initAnalytics,
+  trackFavoriteToggled,
+  trackScreenView,
+  trackSearchSubmitted,
+  triggerFeedback,
+} from "./analytics.js";
 
 /** Published schedule link (PDF or web page) from the pantry. */
 interface ScheduleSourceJson {
@@ -241,6 +248,7 @@ const homeFavoritesList = document.getElementById("home-favorites-list")!;
 const favoritesList = document.getElementById("favorites-list")!;
 const favoritesHint = document.getElementById("favorites-hint")!;
 const navFavoritesButton = document.getElementById("nav-favorites") as HTMLButtonElement;
+const feedbackButton = document.getElementById("feedback-link") as HTMLButtonElement;
 const datePills = document.getElementById("date-pills")!;
 const datePicker = document.getElementById("date-picker") as HTMLInputElement;
 const timePickerWrap = document.getElementById("time-picker-wrap")!;
@@ -638,6 +646,7 @@ function showScreen(which: AppScreen): void {
     "bottom-nav__item--active",
     which === "favorites"
   );
+  trackScreenView(which);
   if (which === "search") {
     void renderHomeFavorites();
   }
@@ -970,6 +979,7 @@ function handleFavoriteHeartTap(btn: HTMLButtonElement): void {
   if (!ids) return;
   const result = togglePoolFavorite(ids.poolId, ids.poolName);
   if (result === null) return;
+  trackFavoriteToggled(ids.poolId, result);
   syncFavoriteButton(btn, result);
   const notice = favoritesStorageNotice();
   if (!screenFavorites.hidden) {
@@ -1115,11 +1125,24 @@ function setLocationLabel(text: string): void {
   locationLabel.textContent = text;
 }
 
+/** Browsers only expose GPS on https or localhost — not on http://192.168.x.x. */
+function geolocationAvailable(): boolean {
+  return window.isSecureContext && typeof navigator.geolocation !== "undefined";
+}
+
+/** Hint before first search — explains http:// LAN limitation on phones. */
+function defaultLocationHint(): string {
+  if (!window.isSecureContext) {
+    return "This link is not https, so your phone can’t use GPS — search still works, sorted from downtown San Diego.";
+  }
+  return "Tap Find Open Lanes — we’ll ask for your location to sort by distance";
+}
+
 /** Ask the browser for GPS (must run after a tap — browsers block silent requests). */
 function requestUserLocation(): Promise<{ lat: number; lng: number }> {
   return new Promise((resolve, reject) => {
-    if (!navigator.geolocation) {
-      reject(new Error("unsupported"));
+    if (!geolocationAvailable()) {
+      reject(new Error("insecure"));
       return;
     }
     // enableHighAccuracy false = faster fix indoors; true often times out on laptops.
@@ -1137,8 +1160,14 @@ function requestUserLocation(): Promise<{ lat: number; lng: number }> {
 
 /** Turn a GeolocationPositionError into text the user can act on. */
 function locationErrorMessage(err: unknown): string {
+  if (err instanceof Error && err.message === "insecure") {
+    return "GPS needs https — using downtown San Diego. See MOBILE.md for tunnel or Render.";
+  }
   if (err instanceof GeolocationPositionError) {
     if (err.code === err.PERMISSION_DENIED) {
+      if (!window.isSecureContext) {
+        return "GPS needs https on your phone — using downtown San Diego. Try a tunnel or Render link.";
+      }
       return "Location denied — showing pools sorted from San Diego center.";
     }
     if (err.code === err.POSITION_UNAVAILABLE) {
@@ -1163,13 +1192,21 @@ async function ensureUserLocationFromGesture(): Promise<void> {
     return;
   }
 
+  if (!geolocationAvailable()) {
+    locationStatus = "unsupported";
+    userLocation = DEFAULT_USER_LOCATION;
+    setLocationLabel(locationErrorMessage(new Error("insecure")));
+    return;
+  }
+
   try {
     userLocation = await requestUserLocation();
     locationStatus = "ready";
     setLocationLabel("Sorted by distance from you");
   } catch (err) {
     locationStatus =
-      err instanceof Error && err.message === "unsupported"
+      err instanceof Error &&
+      (err.message === "unsupported" || err.message === "insecure")
         ? "unsupported"
         : "denied";
     userLocation = DEFAULT_USER_LOCATION;
@@ -1210,6 +1247,12 @@ async function runSearch(): Promise<void> {
   }
 
   const data = (await res.json()) as SearchResponse;
+  trackSearchSubmitted({
+    date: data.query.date,
+    time: data.query.time,
+    sort_by: data.query.sortBy ?? selectedSort,
+    results_count: data.results.length,
+  });
   resultsHeader.textContent = formatResultsHeader(
     data.query.date,
     data.query.time
@@ -1310,18 +1353,24 @@ sortPills.addEventListener("click", (e) => {
   void runSearch();
 });
 
-// --- First paint ---
-probeFavoritesStorage();
-initDatePickerMin();
-renderDatePills();
-syncDatePickerValue();
-ensurePickedTimeValid();
-syncTimeTriggerLabel();
-syncTimeControls();
-renderSortPills();
-showScreen("search");
-void renderHomeFavorites();
-setLocationLabel(
-  "Tap Find Open Lanes — we’ll ask for your location to sort by distance"
-);
-userLocation = DEFAULT_USER_LOCATION;
+/** Wire UI and run first paint after PostHog init (no-op when POSTHOG_KEY unset). */
+function bootApp(): void {
+  initAnalytics();
+
+  probeFavoritesStorage();
+  initDatePickerMin();
+  renderDatePills();
+  syncDatePickerValue();
+  ensurePickedTimeValid();
+  syncTimeTriggerLabel();
+  syncTimeControls();
+  renderSortPills();
+  showScreen("search");
+  void renderHomeFavorites();
+  setLocationLabel(defaultLocationHint());
+  userLocation = DEFAULT_USER_LOCATION;
+
+  feedbackButton.addEventListener("click", () => triggerFeedback());
+}
+
+bootApp();

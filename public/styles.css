@@ -959,6 +959,31 @@ body {
   color: var(--text-muted);
 }
 
+.app-footer {
+  display: flex;
+  justify-content: center;
+  padding: 0.35rem 1rem 0;
+  background: var(--white);
+}
+
+.feedback-link {
+  min-height: var(--tap-min);
+  padding: 0.35rem 0.75rem;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.feedback-link:hover {
+  color: var(--text);
+}
+
 .bottom-nav {
   display: flex;
   flex-wrap: wrap;
