@@ -6,6 +6,7 @@ import type {
   SearchPoolsOutput,
   SearchQuery,
   SortBy,
+  UnavailablePoolResult,
 } from "../types/index.js";
 import {
   distanceMiles,
@@ -192,6 +193,91 @@ function sortOpenResults(
   });
 }
 
+/** Short weekday name for exclusion messages. */
+const WEEKDAY_NAMES = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+] as const;
+
+/** "09:00" → "9:00 AM" for user-facing schedule hints. */
+function formatTime12h(time24: string): string {
+  const [hStr, mStr] = time24.split(":");
+  let h = Number(hStr);
+  const m = mStr ?? "00";
+  const ampm = h >= 12 ? "PM" : "AM";
+  if (h === 0) h = 12;
+  else if (h > 12) h -= 12;
+  return `${h}:${m} ${ampm}`;
+}
+
+/** Explain why a pool with schedule data is not in open-lane results. */
+function exclusionReasonForPool(
+  day: 0 | 1 | 2 | 3 | 4 | 5 | 6,
+  dayWindows: ReturnType<typeof prepareAvailabilityForSearch>
+): string {
+  const dayName = WEEKDAY_NAMES[day];
+
+  if (dayWindows.length === 0) {
+    return `No lap swim scheduled on ${dayName}s.`;
+  }
+
+  const ranges = dayWindows
+    .map(
+      (w) =>
+        `${formatTime12h(w.startTime)}–${formatTime12h(w.endTime)}`
+    )
+    .join(", ");
+
+  return `No lap lanes open at your time. ${dayName} lap swim: ${ranges}.`;
+}
+
+/** In-radius pools with schedule but no lane window at the requested date/time. */
+function findUnavailablePools(
+  pools: Pool[],
+  query: SearchQuery,
+  openPoolIds: Set<string>
+): UnavailablePoolResult[] {
+  const day = getDayOfWeek(query.date);
+  const requestMinutes = timeToMinutes(query.time);
+  const unavailable: UnavailablePoolResult[] = [];
+
+  for (const pool of pools) {
+    if (openPoolIds.has(pool.id)) continue;
+    if (pool.availability.length === 0) continue;
+
+    const scheduleWindows = prepareAvailabilityForSearch(pool.availability);
+    const matchingWindow = scheduleWindows.find(
+      (w) =>
+        w.dayOfWeek === day &&
+        isTimeInWindow(requestMinutes, w.startTime, w.endTime)
+    );
+    if (matchingWindow) continue;
+
+    const metrics = poolDistanceMetrics(pool, query.userLocation);
+    if (!isWithinSearchRadius(metrics, query)) continue;
+
+    const dayWindows = scheduleWindows.filter((w) => w.dayOfWeek === day);
+    unavailable.push({
+      pool,
+      estimatedDriveMinutes: metrics.estimatedDriveMinutes,
+      guestPassCostUsd: pool.guestPass.costUsd,
+      distanceMiles: metrics.distanceMiles,
+      exclusionReason: exclusionReasonForPool(day, dayWindows),
+    });
+  }
+
+  return unavailable.sort((a, b) => {
+    const distA = a.distanceMiles ?? a.estimatedDriveMinutes;
+    const distB = b.distanceMiles ?? b.estimatedDriveMinutes;
+    return distA - distB;
+  });
+}
+
 /** Collect in-radius pools with empty availability[] (not shown as lanes open). */
 function findNoSchedulePools(
   pools: Pool[],
@@ -260,9 +346,11 @@ export function searchPools(pools: Pool[], query: SearchQuery): SearchPoolsOutpu
   }
 
   const sortBy = query.sortBy ?? "distance";
+  const openPoolIds = new Set(results.map((r) => r.pool.id));
 
   return {
     results: sortOpenResults(results, sortBy),
     noSchedulePools: findNoSchedulePools(pools, query),
+    unavailablePools: findUnavailablePools(pools, query, openPoolIds),
   };
 }

@@ -217,14 +217,81 @@ body {
   flex: 1;
 }
 
-/* Home screen — saved pools below the search form */
-.home-favorites {
-  padding: 0 1.25rem 1.25rem;
-  background: var(--bg);
+.time-picker__jump-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
 }
 
-.home-favorites__label {
+.hour-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
   margin-bottom: 0.5rem;
+}
+
+.hour-pill {
+  min-height: 36px;
+  min-width: 2.75rem;
+  padding: 0.25rem 0.45rem;
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hour-pill:hover {
+  border-color: var(--teal);
+  color: var(--text);
+}
+
+.hour-pill--active {
+  border-color: var(--teal);
+  background: var(--teal-light);
+  color: var(--text);
+}
+
+.time-native-trigger {
+  display: block;
+  width: 100%;
+  margin: 0 0 0.65rem;
+  padding: 0.45rem 0;
+  border: none;
+  background: transparent;
+  color: var(--teal-dark);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.time-native-trigger:hover {
+  color: var(--teal);
+}
+
+.pool-card--unavailable {
+  border-color: color-mix(in srgb, var(--card-border) 80%, var(--text-muted));
+}
+
+.pool-card--unavailable .badge--closed {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.pool-card__exclusion {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  line-height: 1.4;
 }
 
 .panel--results {
@@ -660,32 +727,23 @@ body {
   line-height: 1.35;
 }
 
-/* Screen 2 header — standalone rounded card (~15% more compact) */
+/* Screen 2 header — plain page title (not a CTA button) */
 .results-bar {
   display: flex;
   align-items: center;
-  gap: 0.43rem;
   flex-shrink: 0;
-  margin-bottom: 0.5rem;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  background: linear-gradient(
-    165deg,
-    #f0fafc 0%,
-    #d4f0f7 32%,
-    #8edce8 68%,
-    #5ecad8 100%
-  );
-  color: var(--text);
-  padding: max(0.72rem, env(safe-area-inset-top)) 0.85rem 0.72rem;
+  margin-bottom: 0.35rem;
+  padding: max(0.65rem, env(safe-area-inset-top)) 1rem 0.35rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .results-bar__title {
   margin: 0;
   width: 100%;
-  text-align: center;
-  font-size: 1.04125rem;
+  text-align: left;
+  font-size: 1.35rem;
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.02em;
@@ -933,11 +991,20 @@ body {
   border-top: 2px dashed var(--card-border);
 }
 
+.no-schedule-section__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
 .no-schedule-section__title {
   margin: 0;
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text);
+  flex: 1;
+  min-width: 0;
 }
 
 .no-schedule-section__hint {
@@ -945,6 +1012,52 @@ body {
   font-size: 0.75rem;
   color: var(--text-muted);
   line-height: 1.4;
+}
+
+/* Collapse / expand control for optional result sections */
+.section-toggle {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: var(--tap-min);
+  padding: 0.35rem 0.85rem;
+  border: 2px solid var(--card-border);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.section-toggle:hover {
+  border-color: var(--teal);
+  background: var(--teal-light);
+}
+
+.section-toggle[aria-expanded="true"] .section-toggle__chevron {
+  transform: rotate(180deg);
+}
+
+.section-toggle__chevron {
+  display: inline-block;
+  font-size: 0.7rem;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+
+/* Reveal extra pool cards in open / unavailable lists */
+.results-see-more {
+  display: block;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 999px;
 }
 
 .pool-card--no-schedule {

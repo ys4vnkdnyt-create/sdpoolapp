@@ -91,4 +91,16 @@ export interface NoSchedulePoolResult {
 export interface SearchPoolsOutput {
   results: PoolSearchResult[];
   noSchedulePools: NoSchedulePoolResult[];
+  /** In-radius pools with schedule data but no lap lanes at the requested time. */
+  unavailablePools: UnavailablePoolResult[];
+}
+
+/** Pool has transcribed schedule but no matching lane window for this query. */
+export interface UnavailablePoolResult {
+  pool: Pool;
+  estimatedDriveMinutes: number;
+  guestPassCostUsd: number;
+  distanceMiles?: number;
+  /** Plain-language reason shown on the results card. */
+  exclusionReason: string;
 }

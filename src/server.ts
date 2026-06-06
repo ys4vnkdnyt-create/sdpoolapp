@@ -13,6 +13,7 @@ import type {
   PoolSearchResult,
   SearchQuery,
   SortBy,
+  UnavailablePoolResult,
 } from "./types/index.js";
 
 /** Listen on all interfaces so phones on the same Wi‑Fi can connect (override with HOST). */
@@ -84,6 +85,21 @@ interface NoSchedulePoolJson {
   statusNote?: string;
 }
 
+/** Pool with schedule data but no lap lanes at the requested time. */
+interface UnavailablePoolJson {
+  poolId: string;
+  name: string;
+  address: string;
+  distanceMiles: number;
+  estimatedDriveMinutes: number;
+  guestPassCostUsd: number;
+  scheduleUrl?: string;
+  websiteUrl?: string;
+  contactPhone?: string;
+  military?: boolean;
+  exclusionReason: string;
+}
+
 /** One row in GET /api/pools (full directory for browse screen). */
 interface PoolDirectoryEntryJson {
   poolId: string;
@@ -127,6 +143,27 @@ function noScheduleToJson(rows: NoSchedulePoolResult[]): NoSchedulePoolJson[] {
     applyPoolLinksJson(row, r.pool);
     if (r.pool.military) row.military = true;
     if (r.statusNote) row.statusNote = r.statusNote;
+    return row;
+  });
+}
+
+/** Turn unavailable kitchen rows into JSON for the results UI. */
+function unavailableToJson(
+  rows: UnavailablePoolResult[]
+): UnavailablePoolJson[] {
+  return rows.map((r) => {
+    const row: UnavailablePoolJson = {
+      poolId: r.pool.id,
+      name: r.pool.name,
+      address: r.pool.address,
+      distanceMiles:
+        r.distanceMiles ?? driveMinutesToMiles(r.estimatedDriveMinutes),
+      estimatedDriveMinutes: r.estimatedDriveMinutes,
+      guestPassCostUsd: r.guestPassCostUsd,
+      exclusionReason: r.exclusionReason,
+    };
+    applyPoolLinksJson(row, r.pool);
+    if (r.pool.military) row.military = true;
     return row;
   });
 }
@@ -274,13 +311,17 @@ function handleApiSearch(
     return;
   }
 
-  const { results, noSchedulePools } = searchPools(pools, query);
+  const { results, noSchedulePools, unavailablePools } = searchPools(
+    pools,
+    query
+  );
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(
     JSON.stringify({
       query,
       results: resultsToJson(results),
       noSchedulePools: noScheduleToJson(noSchedulePools),
+      unavailablePools: unavailableToJson(unavailablePools),
     })
   );
 }

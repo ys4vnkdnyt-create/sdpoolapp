@@ -71,6 +71,15 @@
               class="time-picker-popover"
               hidden
             >
+              <p class="label time-picker__jump-label">Jump to hour</p>
+              <div id="time-hour-pills" class="hour-pill-row"></div>
+              <button
+                type="button"
+                id="time-native-trigger"
+                class="time-native-trigger"
+              >
+                Type a time
+              </button>
               <div class="time-wheel">
                 <div class="time-wheel__frame">
                   <div class="time-wheel__highlight" aria-hidden="true"></div>
@@ -117,11 +126,6 @@
             Tap to search — we’ll ask for your location to sort by distance
           </p>
         </div>
-
-        <section id="home-favorites" class="home-favorites" hidden>
-          <p class="label home-favorites__label">Your favorites</p>
-          <div id="home-favorites-list" class="favorites-list"></div>
-        </section>
       </section>
 
       <!-- Screen 2: results list -->
@@ -138,16 +142,74 @@
           </div>
 
           <div id="results-list" class="results-list"></div>
+          <button
+            type="button"
+            id="results-see-more"
+            class="btn btn--secondary results-see-more"
+            hidden
+          >
+            See more
+          </button>
 
-          <section id="no-schedule-section" class="no-schedule-section" hidden>
+          <section id="favorite-unavailable-section" class="no-schedule-section" hidden>
             <h2 class="no-schedule-section__title">
-              Nearby — schedule not in app yet
+              Your favorites — not open at this time
             </h2>
             <p class="no-schedule-section__hint">
-              These pools are nearby; lap times are not loaded yet. Use View
-              schedule or Call pool on each card to confirm hours.
+              Saved pools that don’t have lap lanes open for your search.
             </p>
-            <div id="no-schedule-list" class="results-list"></div>
+            <div id="favorite-unavailable-list" class="results-list"></div>
+            <button
+              type="button"
+              id="favorite-unavailable-see-more"
+              class="btn btn--secondary results-see-more"
+              hidden
+            >
+              See more
+            </button>
+          </section>
+
+          <section id="unavailable-section" class="no-schedule-section" hidden>
+            <h2 class="no-schedule-section__title">
+              Not open at this time
+            </h2>
+            <p class="no-schedule-section__hint">
+              These pools have lap schedules in the app but no lanes open at your chosen time.
+            </p>
+            <div id="unavailable-list" class="results-list"></div>
+            <button
+              type="button"
+              id="unavailable-see-more"
+              class="btn btn--secondary results-see-more"
+              hidden
+            >
+              See more
+            </button>
+          </section>
+
+          <section id="no-schedule-section" class="no-schedule-section" hidden>
+            <div class="no-schedule-section__header">
+              <h2 class="no-schedule-section__title">
+                Nearby — schedule not in app yet
+              </h2>
+              <button
+                type="button"
+                id="no-schedule-toggle"
+                class="section-toggle"
+                aria-expanded="false"
+                aria-controls="no-schedule-body"
+              >
+                <span id="no-schedule-toggle-label" class="section-toggle__label">Show</span>
+                <span class="section-toggle__chevron" aria-hidden="true">▾</span>
+              </button>
+            </div>
+            <div id="no-schedule-body" class="no-schedule-section__body" hidden>
+              <p class="no-schedule-section__hint">
+                These pools are nearby; lap times are not loaded yet. Use View
+                schedule or Call pool on each card to confirm hours.
+              </p>
+              <div id="no-schedule-list" class="results-list"></div>
+            </div>
           </section>
 
           <p id="results-footer" class="results-footer"></p>

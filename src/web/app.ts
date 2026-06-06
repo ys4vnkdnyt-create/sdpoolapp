@@ -50,6 +50,21 @@ interface NoSchedulePoolJson {
   statusNote?: string;
 }
 
+/** Pool with schedule but no lap lanes at the requested time. */
+interface UnavailablePoolJson {
+  poolId: string;
+  name: string;
+  address: string;
+  distanceMiles: number;
+  estimatedDriveMinutes: number;
+  guestPassCostUsd: number;
+  scheduleUrl?: string;
+  websiteUrl?: string;
+  contactPhone?: string;
+  military?: boolean;
+  exclusionReason: string;
+}
+
 interface SearchResponse {
   query: {
     date: string;
@@ -59,7 +74,11 @@ interface SearchResponse {
   };
   results: SearchResultJson[];
   noSchedulePools?: NoSchedulePoolJson[];
+  unavailablePools?: UnavailablePoolJson[];
 }
+
+/** Pool cards shown before "See more" on open / unavailable lists. */
+const INITIAL_VISIBLE_COUNT = 5;
 
 /** Earliest and latest pickable swim time (24h). */
 const TIME_MIN = "05:00";
@@ -243,8 +262,6 @@ function formatDistanceMiles(miles: number): string {
 const screenSearch = document.getElementById("screen-search")!;
 const screenResults = document.getElementById("screen-results")!;
 const screenFavorites = document.getElementById("screen-favorites")!;
-const homeFavoritesSection = document.getElementById("home-favorites")!;
-const homeFavoritesList = document.getElementById("home-favorites-list")!;
 const favoritesList = document.getElementById("favorites-list")!;
 const favoritesHint = document.getElementById("favorites-hint")!;
 const navFavoritesButton = document.getElementById("nav-favorites") as HTMLButtonElement;
@@ -256,6 +273,8 @@ const timeTrigger = document.getElementById("time-trigger") as HTMLButtonElement
 const timeTriggerLabel = document.getElementById("time-trigger-label")!;
 const timePickerPopover = document.getElementById("time-picker-popover")!;
 const timeDoneButton = document.getElementById("time-done") as HTMLButtonElement;
+const timeHourPills = document.getElementById("time-hour-pills")!;
+const timeNativeTrigger = document.getElementById("time-native-trigger") as HTMLButtonElement;
 const timeWheel = document.getElementById("time-wheel")!;
 const timePicker = document.getElementById("time-picker") as HTMLInputElement;
 const timeHint = document.getElementById("time-hint")!;
@@ -264,7 +283,19 @@ const findButton = document.getElementById("find-lanes")!;
 const navSearchButton = document.getElementById("nav-search") as HTMLButtonElement;
 const resultsHeader = document.getElementById("results-header")!;
 const resultsList = document.getElementById("results-list")!;
+const resultsSeeMore = document.getElementById("results-see-more") as HTMLButtonElement;
+const favoriteUnavailableSection = document.getElementById("favorite-unavailable-section")!;
+const favoriteUnavailableList = document.getElementById("favorite-unavailable-list")!;
+const favoriteUnavailableSeeMore = document.getElementById(
+  "favorite-unavailable-see-more"
+) as HTMLButtonElement;
+const unavailableSection = document.getElementById("unavailable-section")!;
+const unavailableList = document.getElementById("unavailable-list")!;
+const unavailableSeeMore = document.getElementById("unavailable-see-more") as HTMLButtonElement;
 const noScheduleSection = document.getElementById("no-schedule-section")!;
+const noScheduleToggle = document.getElementById("no-schedule-toggle") as HTMLButtonElement;
+const noScheduleToggleLabel = document.getElementById("no-schedule-toggle-label")!;
+const noScheduleBody = document.getElementById("no-schedule-body")!;
 const noScheduleList = document.getElementById("no-schedule-list")!;
 const resultsFooter = document.getElementById("results-footer")!;
 const sortPills = document.getElementById("sort-pills")!;
@@ -290,6 +321,19 @@ let favoritesStorageProbed = false;
 let favoritesMemoryStore: FavoriteEntry[] = [];
 /** Avoid double heart toggle from touchend + click on iOS Safari. */
 let lastFavoriteTapMs = 0;
+/** Expanded open-lane cards beyond the first INITIAL_VISIBLE_COUNT. */
+let openResultsExpanded = false;
+/** Expanded "not open" cards (non-favorites). */
+let unavailableExpanded = false;
+/** Expanded favorite "not open" cards. */
+let favoriteUnavailableExpanded = false;
+/** Whether the no-schedule section body is visible. */
+let noScheduleExpanded = false;
+/** Full open-lane rows from the last search (for re-slicing on See more). */
+let lastOpenResults: SearchResultJson[] = [];
+/** Full unavailable rows for favorites / others (re-sliced on See more). */
+let lastFavoriteUnavailable: UnavailablePoolJson[] = [];
+let lastOtherUnavailable: UnavailablePoolJson[] = [];
 
 /** Keep the native date input aligned with selectedDate. */
 function syncDatePickerValue(): void {
@@ -320,6 +364,62 @@ function availableTimeSlots(isoDate: string): string[] {
     if (m >= minM) slots.push(minutesToTime(m));
   }
   return slots;
+}
+
+/** Hour labels for jump pills (5 AM through 9 PM). */
+function hourPillValues(): number[] {
+  const startH = timeToMinutes(TIME_MIN) / 60;
+  const endH = timeToMinutes(TIME_MAX) / 60;
+  const hours: number[] = [];
+  for (let h = startH; h <= endH; h += 1) hours.push(h);
+  return hours;
+}
+
+/** Short label for an hour pill, e.g. "6a", "12p", "9p". */
+function formatHourPillLabel(hour24: number): string {
+  if (hour24 === 0) return "12a";
+  if (hour24 < 12) return `${hour24}a`;
+  if (hour24 === 12) return "12p";
+  return `${hour24 - 12}p`;
+}
+
+/** Highlight the pill matching the picked hour. */
+function syncHourPillActiveState(): void {
+  const hour = Math.floor(timeToMinutes(pickedTime) / 60);
+  timeHourPills.querySelectorAll<HTMLButtonElement>(".hour-pill").forEach((btn) => {
+    btn.classList.toggle("hour-pill--active", Number(btn.dataset.hour) === hour);
+  });
+}
+
+/** Build hour shortcut row above the slot wheel. */
+function renderHourPills(): void {
+  timeHourPills.innerHTML = "";
+  for (const hour of hourPillValues()) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "hour-pill";
+    btn.dataset.hour = String(hour);
+    btn.textContent = formatHourPillLabel(hour);
+    btn.addEventListener("click", () => jumpToHour(hour));
+    timeHourPills.appendChild(btn);
+  }
+  syncHourPillActiveState();
+}
+
+/** Jump the wheel to the first valid slot in the chosen hour. */
+function jumpToHour(hour: number): void {
+  const slots = availableTimeSlots(selectedDate);
+  const hourStart = hour * 60;
+  const first = slots.find((t) => timeToMinutes(t) >= hourStart);
+  if (!first) return;
+
+  pickedTime = first;
+  selectedTime = roundUpTo15Min(pickedTime);
+  const index = slots.indexOf(first);
+  if (index >= 0) scrollTimeWheelToIndex(index, false);
+  syncTimeWheelActiveState(false);
+  syncTimePickerAndHint();
+  syncHourPillActiveState();
 }
 
 /** Slot buttons in the wheel (empty when past end of day). */
@@ -412,6 +512,7 @@ function applyTimeFromWheelScroll(): void {
     pickedTime = time;
     selectedTime = roundUpTo15Min(pickedTime);
     syncTimePickerAndHint();
+    syncHourPillActiveState();
   }
   syncTimeWheelActiveState(false);
 }
@@ -441,6 +542,7 @@ function openTimePicker(): void {
   timePickerPopover.hidden = false;
   timePickerWrap.classList.add("time-picker-wrap--open");
   timeTrigger.setAttribute("aria-expanded", "true");
+  renderHourPills();
   scrollTimeSlotAfterLayout(pickedTime, false);
 }
 
@@ -618,6 +720,7 @@ function setPickedTime(time: string): void {
   pickedTime = snapTimeToStep(time);
   ensurePickedTimeValid();
   syncTimeControls();
+  syncHourPillActiveState();
 }
 
 /** Read time from the hidden native picker (fallback). */
@@ -647,9 +750,6 @@ function showScreen(which: AppScreen): void {
     which === "favorites"
   );
   trackScreenView(which);
-  if (which === "search") {
-    void renderHomeFavorites();
-  }
 }
 
 /** Load pool directory once (names + addresses for favorites cards). */
@@ -708,18 +808,6 @@ async function paintFavoritesList(
     )
     .join("");
   wireFavoriteButtons(container);
-}
-
-/** Home screen: show saved pools when the list is not empty. */
-async function renderHomeFavorites(): Promise<void> {
-  const entries = loadFavoriteEntries();
-  if (entries.length === 0) {
-    homeFavoritesSection.hidden = true;
-    homeFavoritesList.innerHTML = "";
-    return;
-  }
-  homeFavoritesSection.hidden = false;
-  await paintFavoritesList(homeFavoritesList, entries);
 }
 
 /** Paint the favorites screen from localStorage + pantry addresses. */
@@ -986,9 +1074,6 @@ function handleFavoriteHeartTap(btn: HTMLButtonElement): void {
     if (notice) favoritesHint.textContent = notice;
     void renderFavoritesScreen();
   }
-  if (!screenSearch.hidden) {
-    void renderHomeFavorites();
-  }
 }
 
 /** Safari often sets event.target to the ♡ text node, not the button — use parent. */
@@ -1099,6 +1184,181 @@ function renderNoScheduleCard(p: NoSchedulePoolJson): string {
   `;
 }
 
+/** Card for a pool with schedule but no lanes open at search time. */
+function renderUnavailableCard(p: UnavailablePoolJson): string {
+  const militaryNote = renderMilitaryDescription(p.military);
+  const actions = renderSearchResultActions({
+    scheduleUrl: p.scheduleUrl,
+    websiteUrl: p.websiteUrl,
+    contactPhone: p.contactPhone,
+  });
+
+  return `
+    <article class="pool-card pool-card--unavailable" data-pool-id="${p.poolId}">
+      <div class="pool-card__top">
+        <div>
+          <div class="pool-card__name-row">
+            <h2 class="pool-card__name">${formatPoolName(p.name, p.military)}</h2>
+            ${renderFavoriteButton(p.poolId, p.name)}
+          </div>
+          <p class="pool-card__exclusion">${escapeHtml(p.exclusionReason)}</p>
+          <p class="pool-card__meta">${escapeHtml(p.address)}</p>
+          ${militaryNote}
+        </div>
+        <span class="badge badge--closed">Not open</span>
+      </div>
+      <div class="pool-card__stats">
+        <span>◎ ${p.distanceMiles.toFixed(1)} mi</span>
+        <span>⏱ ${p.estimatedDriveMinutes} min</span>
+        <span>$ ${p.guestPassCostUsd} drop-in</span>
+      </div>${actions}
+    </article>
+  `;
+}
+
+/** Reset list expansion when a new search runs. */
+function resetResultsExpandState(): void {
+  openResultsExpanded = false;
+  unavailableExpanded = false;
+  favoriteUnavailableExpanded = false;
+  noScheduleExpanded = false;
+  lastOpenResults = [];
+  lastFavoriteUnavailable = [];
+  lastOtherUnavailable = [];
+}
+
+/** Slice a list for first paint; return how many rows stay hidden. */
+function sliceForDisplay<T>(
+  items: T[],
+  expanded: boolean,
+  limit = INITIAL_VISIBLE_COUNT
+): { visible: T[]; hiddenCount: number } {
+  if (expanded || items.length <= limit) {
+    return { visible: items, hiddenCount: 0 };
+  }
+  return { visible: items.slice(0, limit), hiddenCount: items.length - limit };
+}
+
+/** Show, hide, or label a See more button for a truncated list. */
+function syncSeeMoreButton(
+  btn: HTMLButtonElement,
+  hiddenCount: number,
+  noun: string
+): void {
+  if (hiddenCount <= 0) {
+    btn.hidden = true;
+    return;
+  }
+  btn.hidden = false;
+  btn.textContent = `See ${hiddenCount} more ${noun}`;
+}
+
+/** Paint open-lane cards (first 5 until See more). */
+function renderOpenResults(results: SearchResultJson[]): void {
+  lastOpenResults = results;
+  const { visible, hiddenCount } = sliceForDisplay(results, openResultsExpanded);
+
+  if (results.length === 0) {
+    resultsList.innerHTML = `<p class="empty">No pools with lap lanes open at that time. Try another time or date.</p>`;
+    resultsSeeMore.hidden = true;
+    return;
+  }
+
+  resultsList.innerHTML = visible.map(renderResultCard).join("");
+  wireFavoriteButtons(resultsList);
+  syncSeeMoreButton(resultsSeeMore, hiddenCount, "pools");
+}
+
+/** Reveal all open-lane cards after See more. */
+function expandOpenResults(): void {
+  openResultsExpanded = true;
+  renderOpenResults(lastOpenResults);
+}
+
+/** Favorited pools that have schedule but aren’t open at search time. */
+function renderFavoriteUnavailableSection(
+  unavailable: UnavailablePoolJson[] | undefined
+): void {
+  const favoriteIds = new Set(loadFavoriteEntries().map((e) => e.poolId));
+  const rows = (unavailable ?? []).filter((p) => favoriteIds.has(p.poolId));
+  lastFavoriteUnavailable = rows;
+
+  if (rows.length === 0) {
+    favoriteUnavailableSection.hidden = true;
+    favoriteUnavailableList.innerHTML = "";
+    favoriteUnavailableSeeMore.hidden = true;
+    return;
+  }
+
+  const { visible, hiddenCount } = sliceForDisplay(
+    rows,
+    favoriteUnavailableExpanded
+  );
+
+  favoriteUnavailableSection.hidden = false;
+  favoriteUnavailableList.innerHTML = visible.map(renderUnavailableCard).join("");
+  wireFavoriteButtons(favoriteUnavailableList);
+  syncSeeMoreButton(favoriteUnavailableSeeMore, hiddenCount, "favorites");
+}
+
+/** Re-render favorite-unavailable cards from cached rows. */
+function expandFavoriteUnavailableResults(): void {
+  favoriteUnavailableExpanded = true;
+  const { visible, hiddenCount } = sliceForDisplay(
+    lastFavoriteUnavailable,
+    true
+  );
+  favoriteUnavailableList.innerHTML = visible.map(renderUnavailableCard).join("");
+  wireFavoriteButtons(favoriteUnavailableList);
+  syncSeeMoreButton(favoriteUnavailableSeeMore, hiddenCount, "favorites");
+}
+
+/** Re-render other-unavailable cards from cached rows. */
+function expandOtherUnavailableResults(): void {
+  unavailableExpanded = true;
+  const { visible, hiddenCount } = sliceForDisplay(lastOtherUnavailable, true);
+  unavailableList.innerHTML = visible.map(renderUnavailableCard).join("");
+  wireFavoriteButtons(unavailableList);
+  syncSeeMoreButton(unavailableSeeMore, hiddenCount, "pools");
+}
+
+/** Other in-radius pools not open at search time. */
+function renderOtherUnavailableSection(
+  unavailable: UnavailablePoolJson[] | undefined
+): void {
+  const favoriteIds = new Set(loadFavoriteEntries().map((e) => e.poolId));
+  const rows = (unavailable ?? []).filter((p) => !favoriteIds.has(p.poolId));
+  lastOtherUnavailable = rows;
+
+  if (rows.length === 0) {
+    unavailableSection.hidden = true;
+    unavailableList.innerHTML = "";
+    unavailableSeeMore.hidden = true;
+    return;
+  }
+
+  const { visible, hiddenCount } = sliceForDisplay(rows, unavailableExpanded);
+
+  unavailableSection.hidden = false;
+  unavailableList.innerHTML = visible.map(renderUnavailableCard).join("");
+  wireFavoriteButtons(unavailableList);
+  syncSeeMoreButton(unavailableSeeMore, hiddenCount, "pools");
+}
+
+/** Sync no-schedule collapse toggle and optional pool count in the title. */
+function syncNoScheduleCollapse(poolCount: number): void {
+  noScheduleToggle.setAttribute("aria-expanded", noScheduleExpanded ? "true" : "false");
+  noScheduleBody.hidden = !noScheduleExpanded;
+  noScheduleToggleLabel.textContent = noScheduleExpanded ? "Hide" : "Show";
+  const title = noScheduleSection.querySelector(".no-schedule-section__title");
+  if (title) {
+    title.textContent =
+      poolCount > 0
+        ? `Nearby — schedule not in app yet (${poolCount})`
+        : "Nearby — schedule not in app yet";
+  }
+}
+
 /** Show or hide the optional no-schedule section below open-lane results. */
 function renderNoScheduleSection(pools: NoSchedulePoolJson[] | undefined): void {
   const rows = pools ?? [];
@@ -1111,6 +1371,13 @@ function renderNoScheduleSection(pools: NoSchedulePoolJson[] | undefined): void 
   noScheduleSection.hidden = false;
   noScheduleList.innerHTML = rows.map(renderNoScheduleCard).join("");
   wireFavoriteButtons(noScheduleList);
+  syncNoScheduleCollapse(rows.length);
+}
+
+/** Expand or collapse the no-schedule section body. */
+function toggleNoScheduleSection(): void {
+  noScheduleExpanded = !noScheduleExpanded;
+  syncNoScheduleCollapse(noScheduleList.querySelectorAll(".pool-card").length);
 }
 
 /** Prevent HTML injection from pool names in sample data. */
@@ -1242,11 +1509,18 @@ async function runSearch(): Promise<void> {
   const res = await fetch(`/api/search?${params}`);
   if (!res.ok) {
     resultsList.innerHTML = `<p class="empty">Search failed. Is the server running?</p>`;
+    resultsSeeMore.hidden = true;
+    favoriteUnavailableSection.hidden = true;
+    favoriteUnavailableSeeMore.hidden = true;
+    unavailableSection.hidden = true;
+    unavailableSeeMore.hidden = true;
+    noScheduleSection.hidden = true;
     showScreen("results");
     return;
   }
 
   const data = (await res.json()) as SearchResponse;
+  resetResultsExpandState();
   trackSearchSubmitted({
     date: data.query.date,
     time: data.query.time,
@@ -1258,14 +1532,11 @@ async function runSearch(): Promise<void> {
     data.query.time
   );
 
-  if (data.results.length === 0) {
-    resultsList.innerHTML = `<p class="empty">No pools with lap lanes open at that time. Try another time or date.</p>`;
-  } else {
-    resultsList.innerHTML = data.results.map(renderResultCard).join("");
-    wireFavoriteButtons(resultsList);
-  }
+  renderOpenResults(data.results);
 
   renderNoScheduleSection(data.noSchedulePools);
+  renderFavoriteUnavailableSection(data.unavailablePools);
+  renderOtherUnavailableSection(data.unavailablePools);
 
   const locationHint =
     locationStatus === "ready"
@@ -1273,6 +1544,18 @@ async function runSearch(): Promise<void> {
       : " Sorted by distance from San Diego center.";
   resultsFooter.textContent = `Showing pools within about ${SEARCH_RADIUS_MILES} miles.${locationHint}`;
   showScreen("results");
+}
+
+/** From Favorites: use today + next slot, then search and show results in one tap. */
+async function checkFavoritePoolNow(): Promise<void> {
+  selectedDate = dateForOffsetDays(0);
+  pickedTime = defaultPickedTimeForDate(selectedDate);
+  selectedTime = roundUpTo15Min(pickedTime);
+  syncDatePickerValue();
+  syncDatePillActiveState();
+  syncTimeControls();
+  closeTimePicker();
+  await runSearch();
 }
 
 // --- Wire up events ---
@@ -1296,6 +1579,15 @@ timeTrigger.addEventListener("click", () => {
 
 timeDoneButton.addEventListener("click", () => {
   closeTimePicker();
+});
+
+timeNativeTrigger.addEventListener("click", () => {
+  timePicker.removeAttribute("aria-hidden");
+  if (typeof timePicker.showPicker === "function") {
+    timePicker.showPicker();
+  } else {
+    timePicker.click();
+  }
 });
 
 document.addEventListener("pointerdown", (e) => {
@@ -1332,16 +1624,12 @@ function onFavoriteListAction(e: Event): void {
   const check = el.closest<HTMLButtonElement>("[data-check-pool-id]");
   if (check?.dataset.checkPoolId) {
     e.preventDefault();
-    void runSearch();
+    void checkFavoritePoolNow();
   }
 }
 
 screenFavorites.addEventListener("click", onFavoriteListAction);
 screenFavorites.addEventListener("touchend", onFavoriteListAction, {
-  passive: false,
-});
-homeFavoritesSection.addEventListener("click", onFavoriteListAction);
-homeFavoritesSection.addEventListener("touchend", onFavoriteListAction, {
   passive: false,
 });
 
@@ -1352,6 +1640,13 @@ sortPills.addEventListener("click", (e) => {
   renderSortPills();
   void runSearch();
 });
+
+resultsSeeMore.addEventListener("click", () => expandOpenResults());
+unavailableSeeMore.addEventListener("click", () => expandOtherUnavailableResults());
+favoriteUnavailableSeeMore.addEventListener("click", () =>
+  expandFavoriteUnavailableResults()
+);
+noScheduleToggle.addEventListener("click", () => toggleNoScheduleSection());
 
 /** Wire UI and run first paint after PostHog init (no-op when POSTHOG_KEY unset). */
 function bootApp(): void {
@@ -1366,7 +1661,6 @@ function bootApp(): void {
   syncTimeControls();
   renderSortPills();
   showScreen("search");
-  void renderHomeFavorites();
   setLocationLabel(defaultLocationHint());
   userLocation = DEFAULT_USER_LOCATION;
 
