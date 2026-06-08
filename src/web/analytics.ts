@@ -19,6 +19,7 @@ declare global {
 }
 
 let analyticsReady = false;
+let feedbackToastTimer = 0;
 
 /** True when PostHog was initialized with a project key. */
 export function isAnalyticsReady(): boolean {
@@ -79,16 +80,69 @@ export function trackFavoriteToggled(poolId: string, favorited: boolean): void {
   trackEvent("favorite_toggled", { pool_id: poolId, favorited });
 }
 
-/** Feedback link — event for survey triggers; optional forced popover survey. */
-export function triggerFeedback(): void {
-  trackEvent("feedback_link_clicked");
+/** Brief message when Feedback is tapped but no PostHog survey is available yet. */
+function showFeedbackToast(message: string): void {
+  let toast = document.getElementById("feedback-toast");
+  if (!toast) {
+    toast = document.createElement("p");
+    toast.id = "feedback-toast";
+    toast.className = "feedback-toast";
+    toast.setAttribute("role", "status");
+    toast.hidden = true;
+    document.body.appendChild(toast);
+  }
 
-  const surveyId = window.__ANALYTICS_CONFIG__?.feedbackSurveyId?.trim();
-  if (!surveyId || !analyticsReady) return;
+  toast.textContent = message;
+  toast.hidden = false;
+  window.clearTimeout(feedbackToastTimer);
+  feedbackToastTimer = window.setTimeout(() => {
+    toast!.hidden = true;
+  }, 4500);
+}
 
+/** Open a PostHog popover survey by id (ignores delay/URL rules for the Feedback button). */
+function openFeedbackSurvey(surveyId: string): void {
   posthog.displaySurvey(surveyId, {
     displayType: DisplaySurveyType.Popover,
     ignoreConditions: true,
     ignoreDelay: true,
+  });
+}
+
+/** Try env survey id, then any active survey that matches after the click event. */
+function tryShowFeedbackSurvey(): void {
+  const envSurveyId = window.__ANALYTICS_CONFIG__?.feedbackSurveyId?.trim();
+  if (envSurveyId) {
+    openFeedbackSurvey(envSurveyId);
+    return;
+  }
+
+  // Reload after feedback_link_clicked so event-triggered surveys can match.
+  posthog.getActiveMatchingSurveys((surveys) => {
+    const match = surveys[0];
+    if (match?.id) {
+      openFeedbackSurvey(match.id);
+      return;
+    }
+
+    showFeedbackToast(
+      "Thanks — feedback isn't set up yet. We'll add a short form here soon."
+    );
+  }, true);
+}
+
+/** Feedback button — fires analytics event and opens a PostHog survey when configured. */
+export function triggerFeedback(): void {
+  if (!analyticsReady) {
+    showFeedbackToast("Feedback isn't available right now. Try again later.");
+    return;
+  }
+
+  trackEvent("feedback_link_clicked");
+
+  // Surveys load async; wait for the bundle, then run once per tap.
+  const unsubscribe = posthog.onSurveysLoaded(() => {
+    unsubscribe();
+    tryShowFeedbackSurvey();
   });
 }

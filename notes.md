@@ -319,11 +319,29 @@ Notes from real user testing:
 
 **North star:** You pick a date and time; the app shows which San Diego pools have a **lap lane open then**. Distance and guest pass cost only help you choose among pools that already match.
 
-**Latest commit:** `1ac13d4` — pool favorites with Home shortcut and polished Favorites tab.
+**Latest commit:** `5d8d08e` — Michelle UX (results header, time picker, exclusions, favorites), see-more/collapsed sections, PostHog in code. **Working tree clean.**
 
-**Working tree (not committed):** PostHog analytics + feedback surveys were added in the last session. Changed files include `src/web/analytics.ts` (new), `src/web/app.ts`, `src/server.ts`, `public/index.html`, `public/styles.css`, `package.json`, `render.yaml`, `MOBILE.md`, `README.md`. Verify with `git status`.
+**GitHub username:** `ys4vnkdnyt-create`  
+**Repo (created):** [ys4vnkdnyt-create/sdpoolapp](https://github.com/ys4vnkdnyt-create/sdpoolapp)  
+**Remote (already set):** `https://github.com/ys4vnkdnyt-create/sdpoolapp.git`
 
-**Run the app:**
+**Blocked:** Push to GitHub (403 — token lacks write permission), then Render + PostHog.
+
+**403 error you saw:** `Permission to ys4vnkdnyt-create/sdpoolapp.git denied to ys4vnkdnyt-create` — GitHub recognizes your username; the **token/password is read-only or wrong**. Not a repo-name problem.
+
+**Full fix steps:** see **`scripts/github-push-help.md`**
+
+**Short version:**
+1. Keychain Access → delete all **github.com** passwords
+2. [Classic token](https://github.com/settings/tokens) → check **`repo`** → copy `ghp_…`
+3. `git push -u origin main` — username `ys4vnkdnyt-create`, password = **token** (not Apple password)
+
+**After push succeeds → Render:**
+1. [dashboard.render.com](https://dashboard.render.com) → **New +** → **Blueprint** → connect **sdpoolapp** → **Apply**
+2. **Environment** → `POSTHOG_KEY` = your `phc_…` key → redeploy
+3. Confirm events in PostHog **Activity**
+
+**Run the app locally:**
 
 ```bash
 cd "/Users/benstern/Prototype Exercise"
@@ -388,15 +406,11 @@ Full detail also in **MOBILE.md** → “PostHog (analytics + surveys)”.
 
 ---
 
-**Focus next session:** Finish PostHog dashboard setup (steps above), then work through **Michelle feedback** (section above Session learnings) on the **San Diego** web app — UX, copy, and search behavior. Stay SD-only; do not expand into multi-city work unless you ask for it.
-
-**Still true under the hood:** Real schedules in `pools.json` via `loadPools.ts`; `scheduleWindows.ts` normalizes and fills gaps; pools with empty `availability[]` are excluded from search. **No `pools.json` schedule edits without your OK.**
-
-**How to work with the agent:** Short steps · explain any new code · gray comments in files · wait for **got it** before the next chunk.
+**Focus next session:** Finish GitHub push → Render Blueprint → PostHog key on Render. App UX (Michelle feedback + see-more) is done for now.
 
 **Paste into new Agent chat:**
 
 ```
-I'm back on the SD Lap Lane Finder in Prototype Exercise. Read notes.md ("Resume here" and "Michelle feedback"), AGENTS.md, and VISION.md. PostHog integration is in the working tree (not committed) — see notes.md for env vars and dashboard steps. HEAD is 1ac13d4 (favorites); run npm run web; use MOBILE.md on my phone. Start with Michelle feedback (five UX items above Session learnings). Stay SD-only, not multi-city. Explain changes; confirm before editing pools.json schedules.
+I'm back on SD Lap Lane Finder. Read notes.md ("Resume here"). Latest commit 5d8d08e. GitHub user ys4vnkdnyt-create — need help finishing push to sd-lap-lane-finder repo, then Render deploy and POSTHOG_KEY. Don't paste secrets in chat.
 ```
 
