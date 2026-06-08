@@ -22,6 +22,11 @@
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
+    <script>
+      // Run before paint so iOS Safari does not restore scroll to the footer.
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      scrollTo(0, 0);
+    </script>
     <div class="app">
       <!-- Screen 1: search (date, time, location) -->
       <section id="screen-search" class="screen">
@@ -261,6 +266,6 @@
         }
       }
     </script>
-    <script type="module" src="/web/app.js?v=posthog2"></script>
+    <script type="module" src="/web/app.js?v=scroll-top"></script>
   </body>
 </html>

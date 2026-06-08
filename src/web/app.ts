@@ -462,15 +462,17 @@ function isTimeWheelRowCentered(index: number): boolean {
   return Math.abs(rowCenterY - centerY) <= 2;
 }
 
-/** Scroll a row into the center band (reliable on iOS Safari). */
+/** Scroll a row into the center band — only move the wheel, not the whole page. */
 function scrollTimeWheelToIndex(index: number, smooth = true): void {
   const item = timeWheelItems()[index];
   if (!item) return;
 
+  const targetTop =
+    item.offsetTop - timeWheel.clientHeight / 2 + item.offsetHeight / 2;
+
   timeWheelScrollFromCode = true;
-  item.scrollIntoView({
-    block: "center",
-    inline: "nearest",
+  timeWheel.scrollTo({
+    top: Math.max(0, targetTop),
     behavior: smooth ? "smooth" : "auto",
   });
   window.setTimeout(() => {
@@ -609,7 +611,10 @@ function renderTimeWheel(): void {
   }
 
   timeWheelBuiltKey = `${selectedDate}-${minSlotTimeForDate(selectedDate)}`;
-  scrollTimeSlotAfterLayout(pickedTime, false);
+  // Only scroll the wheel when the picker is open — avoids iOS page jumps on load.
+  if (!timePickerPopover.hidden) {
+    scrollTimeSlotAfterLayout(pickedTime, false);
+  }
 }
 
 /** Highlight the centered / selected row without rebuilding the wheel. */
@@ -622,7 +627,9 @@ function syncTimeWheelActiveState(scrollIntoView = true): void {
     btn.classList.toggle("time-wheel__item--centered", i === index);
     btn.setAttribute("aria-selected", String(isActive));
   });
-  if (scrollIntoView) scrollTimeSlotIntoView(pickedTime, false);
+  if (scrollIntoView && !timePickerPopover.hidden) {
+    scrollTimeSlotIntoView(pickedTime, false);
+  }
 }
 
 /** Sync wheel, trigger, hidden input, hint, and search button state. */
@@ -739,6 +746,29 @@ interface PoolDirectoryEntryJson {
   military?: boolean;
 }
 
+/** Reset window scroll — iOS Safari often ignores a single window.scrollTo call. */
+function scrollAppToTop(): void {
+  const root = document.scrollingElement;
+  if (root) root.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  window.scrollTo(0, 0);
+}
+
+/** Scroll now and again after paint (covers late iOS layout jumps). */
+function scrollAppToTopAfterLayout(): void {
+  scrollAppToTop();
+  requestAnimationFrame(() => {
+    scrollAppToTop();
+    requestAnimationFrame(scrollAppToTop);
+  });
+}
+
+// iOS back-forward cache can restore an old scroll position after refresh.
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) scrollAppToTopAfterLayout();
+});
+
 /** Show home, lane results, or favorites; update bottom nav highlight. */
 function showScreen(which: AppScreen): void {
   screenSearch.hidden = which !== "search";
@@ -750,6 +780,7 @@ function showScreen(which: AppScreen): void {
     which === "favorites"
   );
   trackScreenView(which);
+  scrollAppToTopAfterLayout();
 }
 
 /** Load pool directory once (names + addresses for favorites cards). */
@@ -1650,6 +1681,11 @@ noScheduleToggle.addEventListener("click", () => toggleNoScheduleSection());
 
 /** Wire UI and run first paint after PostHog init (no-op when POSTHOG_KEY unset). */
 function bootApp(): void {
+  // Stop the browser from restoring scroll to the footer after a refresh.
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
   initAnalytics();
 
   probeFavoritesStorage();
@@ -1658,13 +1694,15 @@ function bootApp(): void {
   syncDatePickerValue();
   ensurePickedTimeValid();
   syncTimeTriggerLabel();
+  showScreen("search");
   syncTimeControls();
   renderSortPills();
-  showScreen("search");
   setLocationLabel(defaultLocationHint());
   userLocation = DEFAULT_USER_LOCATION;
 
   feedbackButton.addEventListener("click", () => triggerFeedback());
+
+  scrollAppToTopAfterLayout();
 }
 
 bootApp();

@@ -36,6 +36,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Stop iOS from re-scrolling when hidden screens collapse on load. */
+html {
+  overflow-anchor: none;
+}
+
 .app {
   max-width: 430px;
   margin: 0 auto;
@@ -52,6 +57,11 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+/* .screen { display: flex } overrides the native [hidden] rule — keep inactive screens out of layout. */
+.screen[hidden] {
+  display: none !important;
 }
 
 /* Results screen — bar and panel are separate rounded cards */
