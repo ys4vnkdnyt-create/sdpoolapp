@@ -85,12 +85,6 @@ const TIME_MIN = "05:00";
 const TIME_MAX = "21:00";
 const TIME_STEP_MINUTES = 15;
 
-/**
- * Fixed radius sent to the API — no slider in the UI.
- * 40 mi covers metro San Diego + North County suburbs; results are sorted by distance.
- */
-const SEARCH_RADIUS_MILES = 40;
-
 /** "06:30" → minutes since midnight (for time bounds). */
 function timeToMinutes(time: string): number {
   const [h, m] = time.split(":").map(Number);
@@ -1530,7 +1524,6 @@ async function runSearch(): Promise<void> {
     date: selectedDate,
     time: selectedTime,
     sortBy: selectedSort,
-    maxRadiusMiles: String(SEARCH_RADIUS_MILES),
   });
 
   const origin = userLocation ?? DEFAULT_USER_LOCATION;
@@ -1573,7 +1566,7 @@ async function runSearch(): Promise<void> {
     locationStatus === "ready"
       ? " Sorted closest first from your location."
       : " Sorted by distance from San Diego center.";
-  resultsFooter.textContent = `Showing pools within about ${SEARCH_RADIUS_MILES} miles.${locationHint}`;
+  resultsFooter.textContent = `Showing all pools in the app.${locationHint}`;
   showScreen("results");
 }
 
