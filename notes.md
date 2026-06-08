@@ -406,11 +406,25 @@ Full detail also in **MOBILE.md** → “PostHog (analytics + surveys)”.
 
 ---
 
-**Focus next session:** Finish GitHub push → Render Blueprint → PostHog key on Render. App UX (Michelle feedback + see-more) is done for now.
+## Roadmap
+
+**Now** — Friends test; read PostHog + feedback  
+**Next** — Fix top 3 confusions from testers  
+**Then** — Add real schedules for pools people actually search  
+**After** — Show source / last updated so answers feel trustworthy  
+**Later** — Drive time, better guest-pass costs, radius filter  
+
+**Not now** — Multi-city, workouts, accounts, big redesign  
+
+**Priority:** lane open at your time → more pools with real data → everything else
+
+---
+
+**Focus next session:** Friend-test feedback → roadmap **Next** items. Live app: https://lapfinder.onrender.com · latest commit on `main`.
 
 **Paste into new Agent chat:**
 
 ```
-I'm back on SD Lap Lane Finder. Read notes.md ("Resume here"). Latest commit 5d8d08e. GitHub user ys4vnkdnyt-create — need help finishing push to sd-lap-lane-finder repo, then Render deploy and POSTHOG_KEY. Don't paste secrets in chat.
+I'm back on SD Lap Lane Finder. Read notes.md ("Resume here" + Roadmap). Live: lapfinder.onrender.com. Repo: ys4vnkdnyt-create/sdpoolapp. Don't paste secrets in chat.
 ```
 
