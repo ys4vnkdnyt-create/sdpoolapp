@@ -42,8 +42,8 @@ export function initAnalytics(): void {
 
   posthog.init(cfg.apiKey, {
     api_host: cfg.apiHost || "https://us.i.posthog.com",
-    // Surveys extension is on by default — popover surveys show per dashboard rules.
-    capture_pageview: false,
+    // Native pageview on first load — fills PostHog DAU / Page views tiles.
+    capture_pageview: true,
     persistence: "localStorage+cookie",
   });
 
@@ -60,12 +60,12 @@ function trackEvent(
   posthog.capture(name, properties);
 }
 
-/** Standard PostHog pageview — powers DAU / Page views on the default dashboard. */
+/** Standard PostHog pageview when user moves between SPA screens (after first load). */
 function capturePageView(screen: "search" | "results" | "favorites"): void {
   if (!analyticsReady) return;
-  // Hash distinguishes SPA screens; URL stays the same for everyone with the link.
   posthog.capture("$pageview", {
     screen,
+    $pathname: `/${screen}`,
     $current_url: `${window.location.origin}${window.location.pathname}#${screen}`,
   });
 }
