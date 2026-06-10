@@ -52,7 +52,7 @@ export function initAnalytics(): void {
 }
 
 /** Fire a custom event when analytics is active. */
-export function trackEvent(
+function trackEvent(
   name: string,
   properties?: Record<string, string | number | boolean>
 ): void {
@@ -60,8 +60,19 @@ export function trackEvent(
   posthog.capture(name, properties);
 }
 
+/** Standard PostHog pageview — powers DAU / Page views on the default dashboard. */
+function capturePageView(screen: "search" | "results" | "favorites"): void {
+  if (!analyticsReady) return;
+  // Hash distinguishes SPA screens; URL stays the same for everyone with the link.
+  posthog.capture("$pageview", {
+    screen,
+    $current_url: `${window.location.origin}${window.location.pathname}#${screen}`,
+  });
+}
+
 /** Screen change from showScreen() — search, results, or favorites. */
 export function trackScreenView(screen: "search" | "results" | "favorites"): void {
+  capturePageView(screen);
   trackEvent("screen_view", { screen });
 }
 
@@ -109,7 +120,7 @@ function openFeedbackSurvey(surveyId: string): void {
   });
 }
 
-/** Try env survey id, then any active survey that matches after the click event. */
+/** Try env survey id, then matching surveys, then any active popover/API survey. */
 function tryShowFeedbackSurvey(): void {
   const envSurveyId = window.__ANALYTICS_CONFIG__?.feedbackSurveyId?.trim();
   if (envSurveyId) {
@@ -117,17 +128,28 @@ function tryShowFeedbackSurvey(): void {
     return;
   }
 
-  // Reload after feedback_link_clicked so event-triggered surveys can match.
-  posthog.getActiveMatchingSurveys((surveys) => {
-    const match = surveys[0];
-    if (match?.id) {
-      openFeedbackSurvey(match.id);
-      return;
-    }
+  const openFirstSurvey = (
+    surveys: Array<{ id?: string; type?: string }>
+  ): boolean => {
+    const match =
+      surveys.find((s) => s.type === "popover" || s.type === "api") ??
+      surveys[0];
+    if (!match?.id) return false;
+    openFeedbackSurvey(match.id);
+    return true;
+  };
 
-    showFeedbackToast(
-      "Thanks — feedback isn't set up yet. We'll add a short form here soon."
-    );
+  // Event-triggered surveys may not match immediately after the click event.
+  posthog.getActiveMatchingSurveys((surveys) => {
+    if (openFirstSurvey(surveys)) return;
+
+    posthog.getSurveys((allSurveys) => {
+      if (openFirstSurvey(allSurveys)) return;
+
+      showFeedbackToast(
+        "Thanks — feedback isn't set up yet. We'll add a short form here soon."
+      );
+    }, true);
   }, true);
 }
 
@@ -140,9 +162,12 @@ export function triggerFeedback(): void {
 
   trackEvent("feedback_link_clicked");
 
-  // Surveys load async; wait for the bundle, then run once per tap.
-  const unsubscribe = posthog.onSurveysLoaded(() => {
-    unsubscribe();
-    tryShowFeedbackSurvey();
-  });
+  // Surveys load async; retry once so event-triggered rules can catch up.
+  const run = (): void => {
+    posthog.onSurveysLoaded(() => {
+      tryShowFeedbackSurvey();
+    });
+  };
+  run();
+  window.setTimeout(run, 400);
 }
