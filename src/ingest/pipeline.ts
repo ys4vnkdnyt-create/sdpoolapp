@@ -60,9 +60,14 @@ export async function runIngestPipeline(
   if (options.retryNoSchedule) {
     report.lines.push("Mode: retry schedule for pools with availability: []");
     let attempted = 0;
+    let skipped = 0;
     for (const pool of merged) {
       if (pool.availability.length > 0) continue;
       if (!pool.websiteUrl && !pool.scheduleSource?.url) continue;
+      if (options.skip > 0 && skipped < options.skip) {
+        skipped += 1;
+        continue;
+      }
       if (options.limit > 0 && attempted >= options.limit) break;
       attempted += 1;
 
@@ -75,6 +80,19 @@ export async function runIngestPipeline(
       applyScheduleAttempt(pool, result, { preserveSourceOnMiss: true });
       tallyScheduleResult(report, pool.name, result);
       await sleep(ingestDelayMs());
+    }
+  } else if (options.poolId) {
+    const pool = merged.find((p) => p.id === options.poolId);
+    if (!pool) {
+      report.lines.push(`Pool not found in ${options.poolsFile}: ${options.poolId}`);
+    } else {
+      report.lines.push(`Mode: single pool — ${pool.name} (${pool.id})`);
+      if (!pool.websiteUrl && pool.scheduleSource?.url) {
+        pool.websiteUrl = pool.scheduleSource.url;
+      }
+      const result = await ingestScheduleForPool(pool, options.skipTranscribe);
+      applyScheduleAttempt(pool, result, { preserveSourceOnMiss: true });
+      tallyScheduleResult(report, pool.name, result);
     }
   } else {
     report.lines.push("Discovering pools via OpenStreetMap…");

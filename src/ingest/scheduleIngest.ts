@@ -51,18 +51,108 @@ function isValidWindow(w: LaneAvailabilityWindow): boolean {
   return true;
 }
 
+/** True when a URL path ends in .pdf (query strings ignored). */
+function isPdfUrl(url: string): boolean {
+  try {
+    return new URL(url).pathname.toLowerCase().endsWith(".pdf");
+  } catch {
+    return url.toLowerCase().includes(".pdf");
+  }
+}
+
+/** Fetch and optionally transcribe one known PDF schedule URL. */
+async function ingestPdfUrl(
+  pool: Pool,
+  pdfUrl: string,
+  skipTranscribe: boolean,
+  existingSource?: ScheduleSource
+): Promise<ScheduleAttemptResult> {
+  const scheduleSource: ScheduleSource =
+    existingSource ?? buildScheduleSource(pool.name, pdfUrl, "pdf");
+
+  if (skipTranscribe || !process.env.OPENAI_API_KEY?.trim()) {
+    return {
+      availability: [],
+      scheduleSource,
+      status: "pdf_only",
+      detail:
+        "PDF found — set OPENAI_API_KEY to auto-transcribe, or transcribe manually",
+    };
+  }
+
+  const pdfText = await fetchPdfScheduleText(pdfUrl);
+  if (!pdfText) {
+    return {
+      availability: [],
+      scheduleSource,
+      status: "pdf_only",
+      detail:
+        "PDF found but could not read or validate — link saved; transcribe manually",
+    };
+  }
+
+  try {
+    const windows = await transcribeScheduleWithOpenAI(
+      pool.name,
+      pdfUrl,
+      pdfText
+    );
+    const valid = windows.filter(isValidWindow);
+    if (valid.length === 0) {
+      return {
+        availability: [],
+        scheduleSource,
+        status: "pdf_only",
+        detail: "LLM returned no valid lap windows from PDF — link saved",
+      };
+    }
+    return {
+      availability: normalizeExplicitBlocks(valid),
+      scheduleSource,
+      status: "transcribed",
+    };
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    return {
+      availability: [],
+      scheduleSource,
+      status: "fetch_failed",
+      detail: `PDF transcription failed: ${msg}`,
+    };
+  }
+}
+
 /** Attempt to find and transcribe a lap schedule for one pool. */
 export async function ingestScheduleForPool(
   pool: Pool,
   skipTranscribe: boolean
 ): Promise<ScheduleAttemptResult> {
-  const startUrl = pool.websiteUrl;
+  const storedPdfUrl =
+    pool.scheduleSource?.url && isPdfUrl(pool.scheduleSource.url)
+      ? pool.scheduleSource.url
+      : undefined;
+  if (storedPdfUrl) {
+    return ingestPdfUrl(pool, storedPdfUrl, skipTranscribe, pool.scheduleSource);
+  }
+
+  const startUrl = pool.websiteUrl ?? pool.scheduleSource?.url;
   if (!startUrl) {
     return { availability: [], status: "no_source", detail: "No website URL" };
   }
 
   const found = await findBestScheduleUrl(startUrl);
   if (!found) {
+    if (pool.scheduleSource?.url) {
+      if (isPdfUrl(pool.scheduleSource.url)) {
+        return ingestPdfUrl(pool, pool.scheduleSource.url, skipTranscribe, pool.scheduleSource);
+      }
+      return {
+        availability: [],
+        scheduleSource: pool.scheduleSource,
+        status: "pdf_only",
+        detail: "Stored schedule link kept — could not scrape website for updates",
+      };
+    }
     return {
       availability: [],
       status: "no_source",
@@ -77,54 +167,7 @@ export async function ingestScheduleForPool(
   );
 
   if (found.kind === "pdf") {
-    if (skipTranscribe || !process.env.OPENAI_API_KEY?.trim()) {
-      return {
-        availability: [],
-        scheduleSource,
-        status: "pdf_only",
-        detail:
-          "PDF found — set OPENAI_API_KEY to auto-transcribe, or transcribe manually",
-      };
-    }
-
-    const pdfText = await fetchPdfScheduleText(found.url);
-    if (!pdfText) {
-      return {
-        availability: [],
-        status: "no_source",
-        detail: "PDF is not a lap schedule (or could not read it)",
-      };
-    }
-
-    try {
-      const windows = await transcribeScheduleWithOpenAI(
-        pool.name,
-        found.url,
-        pdfText
-      );
-      const valid = windows.filter(isValidWindow);
-      if (valid.length === 0) {
-        return {
-          availability: [],
-          scheduleSource,
-          status: "no_source",
-          detail: "LLM returned no valid lap windows from PDF",
-        };
-      }
-      return {
-        availability: normalizeExplicitBlocks(valid),
-        scheduleSource,
-        status: "transcribed",
-      };
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : String(err);
-      return {
-        availability: [],
-        scheduleSource,
-        status: "fetch_failed",
-        detail: `PDF transcription failed: ${msg}`,
-      };
-    }
+    return ingestPdfUrl(pool, found.url, skipTranscribe, scheduleSource);
   }
 
   const pageText = await fetchSchedulePageText(found.url);
@@ -183,9 +226,20 @@ export function applyScheduleAttempt(
   result: ScheduleAttemptResult,
   options?: { preserveSourceOnMiss?: boolean }
 ): void {
-  pool.availability = result.availability;
+  // Keep existing lanes when a retry misses — do not wipe good pantry data.
+  if (result.status === "transcribed" || result.availability.length > 0) {
+    pool.availability = result.availability;
+  } else if (pool.availability.length === 0) {
+    pool.availability = result.availability;
+  }
 
   if (!result.scheduleSource) return;
+
+  // PDF/HTML source found but not transcribed — always save the link for the UI.
+  if (result.status === "pdf_only") {
+    pool.scheduleSource = result.scheduleSource;
+    return;
+  }
 
   const preserve = options?.preserveSourceOnMiss ?? false;
   if (preserve && result.availability.length === 0 && pool.scheduleSource) {

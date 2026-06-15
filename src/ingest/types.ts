@@ -24,6 +24,10 @@ export interface IngestOptions {
   retryNoSchedule: boolean;
   /** Skip OpenAI even when OPENAI_API_KEY is set. */
   skipTranscribe: boolean;
+  /** Re-run schedule ingest for one pantry pool id (e.g. ryan-family-ymca). */
+  poolId?: string;
+  /** Skip the first N pools in retry-no-schedule mode. */
+  skip: number;
 }
 
 /** One pool row returned from OpenStreetMap discovery. */
