@@ -978,8 +978,22 @@ function phoneToTelHref(phone: string): string {
   return digits.length === 10 ? `tel:+1${digits}` : `tel:${digits}`;
 }
 
+/** True when the URL points at a PDF schedule (path ends in .pdf). */
+function isPdfScheduleUrl(url: string): boolean {
+  try {
+    return new URL(url).pathname.toLowerCase().endsWith(".pdf");
+  } catch {
+    return url.toLowerCase().includes(".pdf");
+  }
+}
+
+/** Avoid showing two buttons that open the same page. */
+function isSamePoolLink(a: string, b: string): boolean {
+  return a.trim() === b.trim();
+}
+
 /**
- * Search-result cards only: official schedule link + call the pool.
+ * Search-result cards only: schedule/PDF link, optional website, and call the pool.
  * (Not shown on a separate browse-all list — only pools in your search.)
  */
 function renderSearchResultActions(links: {
@@ -988,17 +1002,29 @@ function renderSearchResultActions(links: {
   contactPhone?: string;
 }): string {
   const parts: string[] = [];
-  const scheduleLink = links.scheduleUrl ?? links.websiteUrl;
+  const { scheduleUrl, websiteUrl, contactPhone } = links;
 
-  if (scheduleLink) {
+  if (scheduleUrl) {
+    const pdf = isPdfScheduleUrl(scheduleUrl);
+    const label = pdf ? "Open PDF" : "View schedule";
+    const actionClass = pdf
+      ? "pool-card__action pool-card__action--pdf"
+      : "pool-card__action pool-card__action--schedule";
     parts.push(
-      `<a class="pool-card__action pool-card__action--schedule" href="${escapeHtml(scheduleLink)}" target="_blank" rel="noopener noreferrer">View schedule</a>`
+      `<a class="${actionClass}" href="${escapeHtml(scheduleUrl)}" target="_blank" rel="noopener noreferrer">${label}</a>`
     );
   }
 
-  if (links.contactPhone) {
-    const tel = phoneToTelHref(links.contactPhone);
-    const phoneLabel = formatPhoneDisplay(links.contactPhone);
+  // Separate website link when it differs from the schedule/PDF URL.
+  if (websiteUrl && (!scheduleUrl || !isSamePoolLink(websiteUrl, scheduleUrl))) {
+    parts.push(
+      `<a class="pool-card__action pool-card__action--website" href="${escapeHtml(websiteUrl)}" target="_blank" rel="noopener noreferrer">Website</a>`
+    );
+  }
+
+  if (contactPhone) {
+    const tel = phoneToTelHref(contactPhone);
+    const phoneLabel = formatPhoneDisplay(contactPhone);
     parts.push(
       `<a class="pool-card__action pool-card__action--call" href="${escapeHtml(tel)}" title="Call ${escapeHtml(phoneLabel)}">Call pool</a>`
     );

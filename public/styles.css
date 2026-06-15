@@ -894,10 +894,22 @@ html {
   background: var(--teal-light);
 }
 
+/* PDF schedules — slightly stronger so the stopgap link stands out. */
+.pool-card__action--pdf {
+  background: var(--deck-cyan);
+  border-color: var(--teal);
+  color: var(--teal-dark);
+}
+
 .pool-card__action--schedule:hover,
 .pool-card__action--website:hover,
 .pool-card__action--call:hover {
   background: var(--deck-cyan);
+}
+
+.pool-card__action--pdf:hover {
+  background: var(--teal-light);
+  border-color: var(--teal-dark);
 }
 
 /* Favorites screen — header + hint share one flat background */
