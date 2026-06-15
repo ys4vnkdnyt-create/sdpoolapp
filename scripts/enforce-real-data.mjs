@@ -1,5 +1,5 @@
 /**
- * Enforce real-data-only policy on pools.json:
+ * Enforce real-data-only policy on san-diego.json:
  * - Fix transcribed schedules from published PDFs/pages
  * - Clear availability[] where no public lane-level schedule exists
  * Run: node scripts/enforce-real-data.mjs
@@ -8,7 +8,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
-const jsonPath = join(dirname(fileURLToPath(import.meta.url)), "../src/data/pools/pools.json");
+const jsonPath = join(dirname(fileURLToPath(import.meta.url)), "../src/data/pools/san-diego.json");
 const pools = JSON.parse(readFileSync(jsonPath, "utf8"));
 
 /** Find pool by id; throws if missing. */

@@ -2,19 +2,21 @@
   "name": "sd-lap-lane-finder",
   "version": "0.1.0",
   "private": true,
-  "description": "San Diego lap lane availability prototype",
+  "description": "Lap lane availability by region (San Diego first)",
   "type": "module",
   "scripts": {
-    "build": "tsc && mkdir -p dist/data/pools && cp src/data/pools/pools.json dist/data/pools/pools.json",
+    "build": "tsc && mkdir -p dist/data/pools && cp src/data/pools/*.json dist/data/pools/",
     "start": "node dist/index.js",
     "start:web": "node dist/server.js",
     "dev": "npm run build && npm run start",
     "web": "npm run build && node dist/server.js",
+    "ingest": "npm run build && node dist/ingest/cli.js",
     "tunnel": "bash scripts/tunnel.sh",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
+    "pdf-parse": "^1.1.1",
     "typescript": "^5.7.2"
   },
   "dependencies": {

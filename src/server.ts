@@ -4,12 +4,19 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { pools } from "./data/pools/index.js";
+import {
+  getDefaultRegion,
+  getPoolsForRegion,
+  getRegionById,
+  listRegionsPublic,
+} from "./data/poolRegistry.js";
 import { searchPools } from "./services/searchPools.js";
 import { resolvePoolLinks } from "./services/poolLinks.js";
+import { resolveRegionForLocation } from "./services/resolveRegion.js";
 import type {
   GeoLocation,
   NoSchedulePoolResult,
+  Pool,
   PoolSearchResult,
   SearchQuery,
   SortBy,
@@ -112,10 +119,7 @@ interface PoolDirectoryEntryJson {
 }
 
 /** Attach resolved links from pantry + org defaults. */
-function applyPoolLinksJson(
-  row: PoolLinksJson,
-  pool: (typeof pools)[number]
-): void {
+function applyPoolLinksJson(row: PoolLinksJson, pool: Pool): void {
   const links = resolvePoolLinks(pool);
   if (links.scheduleUrl) row.scheduleUrl = links.scheduleUrl;
   if (links.websiteUrl) row.websiteUrl = links.websiteUrl;
@@ -193,8 +197,11 @@ function resultsToJson(results: PoolSearchResult[]): SearchResultJson[] {
   });
 }
 
-/** Alphabetical list of all pools with schedule / website / phone links. */
-function handleApiPools(res: http.ServerResponse): void {
+/** Alphabetical pool directory for one region (favorites cards). */
+function handleApiPools(url: URL, res: http.ServerResponse): void {
+  const region = resolveRegionFromRequest(url);
+  const pools = getPoolsForRegion(region.id);
+
   const entries: PoolDirectoryEntryJson[] = pools
     .map((pool) => {
       const row: PoolDirectoryEntryJson = {
@@ -209,7 +216,73 @@ function handleApiPools(res: http.ServerResponse): void {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   res.writeHead(200, { "Content-Type": "application/json" });
-  res.end(JSON.stringify({ pools: entries }));
+  res.end(JSON.stringify({ region: { id: region.id, displayName: region.displayName }, pools: entries }));
+}
+
+type LocationSource = "user" | "fallback";
+
+/** Parse whether lat/lng came from real GPS or a region fallback center. */
+function parseLocationSource(value: string | null): LocationSource {
+  return value === "user" ? "user" : "fallback";
+}
+
+/** Pick region from GPS, or default region when the browser sent a fallback location. */
+function resolveRegionFromRequest(url: URL): {
+  id: string;
+  displayName: string;
+} {
+  const locationSource = parseLocationSource(
+    url.searchParams.get("locationSource")
+  );
+  const userLocation = parseUserLocation(
+    url.searchParams.get("lat"),
+    url.searchParams.get("lng")
+  );
+  const regionIdParam = url.searchParams.get("regionId");
+
+  if (regionIdParam) {
+    const byId = getRegionById(regionIdParam);
+    if (byId) {
+      return { id: byId.id, displayName: byId.displayName };
+    }
+  }
+
+  if (locationSource === "user" && userLocation) {
+    const match = resolveRegionForLocation(userLocation);
+    if (match) {
+      return { id: match.id, displayName: match.displayName };
+    }
+  }
+
+  const fallback = getDefaultRegion();
+  return { id: fallback.id, displayName: fallback.displayName };
+}
+
+/** Region for search — null when GPS user is outside all supported regions. */
+function resolveSearchRegion(
+  userLocation: GeoLocation | undefined,
+  locationSource: LocationSource
+): {
+  region: { id: string; displayName: string } | null;
+  noRegionNearby: boolean;
+} {
+  if (locationSource !== "user" || !userLocation) {
+    const fallback = getDefaultRegion();
+    return {
+      region: { id: fallback.id, displayName: fallback.displayName },
+      noRegionNearby: false,
+    };
+  }
+
+  const match = resolveRegionForLocation(userLocation);
+  if (!match) {
+    return { region: null, noRegionNearby: true };
+  }
+
+  return {
+    region: { id: match.id, displayName: match.displayName },
+    noRegionNearby: false,
+  };
 }
 
 /** Parse sortBy query param; kitchen defaults to distance when missing. */
@@ -299,6 +372,20 @@ function handleAnalyticsConfig(res: http.ServerResponse): void {
   res.end(body);
 }
 
+/** Inject region list + default id for the browser (no secrets). */
+function handleAppConfig(res: http.ServerResponse): void {
+  const defaultRegion = getDefaultRegion();
+  const body = `window.__APP_CONFIG__ = ${JSON.stringify({
+    defaultRegionId: defaultRegion.id,
+    regions: listRegionsPublic(),
+  })};\n`;
+  res.writeHead(200, {
+    "Content-Type": "application/javascript; charset=utf-8",
+    ...NO_CACHE_HEADERS,
+  });
+  res.end(body);
+}
+
 /** JSON response for GET /api/search. */
 function handleApiSearch(
   url: URL,
@@ -311,14 +398,40 @@ function handleApiSearch(
     return;
   }
 
+  const locationSource = parseLocationSource(
+    url.searchParams.get("locationSource")
+  );
+  const { region, noRegionNearby } = resolveSearchRegion(
+    query.userLocation,
+    locationSource
+  );
+
+  if (noRegionNearby || !region) {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(
+      JSON.stringify({
+        query,
+        region: null,
+        noRegionNearby: true,
+        results: [],
+        noSchedulePools: [],
+        unavailablePools: [],
+      })
+    );
+    return;
+  }
+
+  const regionPools = getPoolsForRegion(region.id);
   const { results, noSchedulePools, unavailablePools } = searchPools(
-    pools,
+    regionPools,
     query
   );
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(
     JSON.stringify({
       query,
+      region,
+      noRegionNearby: false,
       results: resultsToJson(results),
       noSchedulePools: noScheduleToJson(noSchedulePools),
       unavailablePools: unavailableToJson(unavailablePools),
@@ -378,7 +491,12 @@ function handleRequest(req: http.IncomingMessage, res: http.ServerResponse): voi
   }
 
   if (req.method === "GET" && url.pathname === "/api/pools") {
-    handleApiPools(res);
+    handleApiPools(url, res);
+    return;
+  }
+
+  if (req.method === "GET" && url.pathname === "/config/app.js") {
+    handleAppConfig(res);
     return;
   }
 
@@ -439,7 +557,7 @@ function getLanIpv4Addresses(): string[] {
 const server = http.createServer(handleRequest);
 
 server.listen(PORT, HOST, () => {
-  console.log(`\nSD Lap Lane Finder — web UI`);
+  console.log(`\nLap Lane Finder — web UI`);
   console.log(`On this Mac:  http://localhost:${PORT}`);
   const lan = getLanIpv4Addresses();
   if (lan.length > 0) {

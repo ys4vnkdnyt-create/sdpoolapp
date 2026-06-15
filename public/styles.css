@@ -638,6 +638,15 @@ html {
   line-height: 1;
 }
 
+.region-label {
+  margin: 0.55rem 0 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+  text-align: center;
+}
+
 .location-hint {
   margin: 0.4rem 0 0;
   font-size: 0.72rem;

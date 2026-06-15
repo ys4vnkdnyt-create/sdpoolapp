@@ -1,5 +1,5 @@
 /**
- * Patch pools.json with transcribed schedules (YMCA Toby Wells, city Ned/Standley,
+ * Patch san-diego.json with transcribed schedules (YMCA Toby Wells, city Ned/Standley,
  * Coronado June 2026, Coggan web hours, gym notes). Run: node scripts/patch-schedules-2026.mjs
  */
 import { readFileSync, writeFileSync } from "node:fs";
@@ -7,7 +7,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const jsonPath = join(root, "src/data/pools/pools.json");
+const jsonPath = join(root, "src/data/pools/san-diego.json");
 const pools = JSON.parse(readFileSync(jsonPath, "utf8"));
 
 /** Replace one pool entry by id. */
@@ -309,4 +309,4 @@ upsert({
 });
 
 writeFileSync(jsonPath, `${JSON.stringify(pools, null, 2)}\n`);
-console.log("Patched schedule windows in pools.json");
+console.log("Patched schedule windows in san-diego.json");

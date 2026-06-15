@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const jsonPath = join(root, "src/data/pools/pools.json");
+const jsonPath = join(root, "src/data/pools/san-diego.json");
 const pools = JSON.parse(readFileSync(jsonPath, "utf8"));
 
 const YMCA_GUEST = {
@@ -389,4 +389,4 @@ for (const id of ["john-a-davis-family-ymca", "border-view-family-ymca"]) {
 }
 
 writeFileSync(jsonPath, `${JSON.stringify(pools, null, 2)}\n`);
-console.log("Patched pools.json — YMCA count:", pools.filter((p) => p.id.includes("ymca")).length);
+console.log("Patched san-diego.json — YMCA count:", pools.filter((p) => p.id.includes("ymca")).length);

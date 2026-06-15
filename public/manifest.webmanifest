@@ -1,7 +1,7 @@
 {
-  "name": "SD Lap Lane Finder",
+  "name": "Lap Lane Finder",
   "short_name": "Lap Lanes",
-  "description": "Find open lap lanes at San Diego pools",
+  "description": "Find open lap lanes at pools near you",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#edf8fb",

@@ -8,7 +8,7 @@ import { dirname, join } from "node:path";
 
 const jsonPath = join(
   dirname(fileURLToPath(import.meta.url)),
-  "../src/data/pools/pools.json"
+  "../src/data/pools/san-diego.json"
 );
 const pools = JSON.parse(readFileSync(jsonPath, "utf8"));
 
@@ -539,4 +539,4 @@ upsert({
 
 writeFileSync(jsonPath, `${JSON.stringify(pools, null, 2)}\n`);
 const searchable = pools.filter((p) => p.availability.length > 0).length;
-console.log(`pools.json: ${pools.length} pools, ${searchable} searchable (non-empty availability)`);
+console.log(`san-diego.json: ${pools.length} pools, ${searchable} searchable (non-empty availability)`);

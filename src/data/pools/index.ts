@@ -1,8 +1,5 @@
 /**
- * Pantry: pools loaded from pools.json (see ../loadPools.ts).
- * Per-pool .ts files remain as human-readable source until a PDF ingest script writes JSON.
+ * Pantry entry: pools for the default region (see poolRegistry.ts for multi-region).
+ * Per-pool .ts files remain as human-readable source until ingest scripts write JSON.
  */
-import { loadPoolsFromJson } from "../loadPools.js";
-
-/** All pools the app searches (CLI + web). */
-export const pools = loadPoolsFromJson();
+export { getPoolsForRegion, pools } from "../poolRegistry.js";

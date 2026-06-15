@@ -8,8 +8,8 @@ import { normalizeExplicitBlocks } from "../services/scheduleWindows.js";
 /** Folder containing this file after compile (dist/data/). */
 const DATA_DIR = path.dirname(fileURLToPath(import.meta.url));
 
-/** Default pantry file — kept next to per-pool TS sources until ingest script exists. */
-const POOLS_JSON_PATH = path.join(DATA_DIR, "pools", "pools.json");
+/** Default pantry file when no path is passed (San Diego region). */
+const POOLS_JSON_PATH = path.join(DATA_DIR, "pools", "san-diego.json");
 
 /** Quick shape check so a bad JSON file fails loudly at startup. */
 function isPoolRecord(value: unknown): value is Pool {

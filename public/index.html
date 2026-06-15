@@ -14,8 +14,8 @@
       content="default"
     />
     <meta name="apple-mobile-web-app-title" content="Lap Lanes" />
-    <meta name="description" content="Find open lap lanes at San Diego pools" />
-    <title>SD Lap Lane Finder</title>
+    <meta name="description" content="Find open lap lanes at pools near you" />
+    <title>Lap Lane Finder</title>
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/icons/icon.svg" />
@@ -127,8 +127,9 @@
               <span class="btn__label">Find Open Lanes</span>
             </button>
           </div>
+          <p id="region-label" class="region-label" hidden></p>
           <p id="location-label" class="location-hint" aria-live="polite">
-            Tap to search — we’ll ask for your location to sort by distance
+            Tap Find Open Lanes — we’ll ask for your location to find pools near you
           </p>
         </div>
       </section>
@@ -258,6 +259,7 @@
       </nav>
     </div>
 
+    <script src="/config/app.js"></script>
     <script src="/config/analytics.js"></script>
     <script type="importmap">
       {
@@ -266,6 +268,6 @@
         }
       }
     </script>
-    <script type="module" src="/web/app.js?v=pageview2"></script>
+    <script type="module" src="/web/app.js?v=region1"></script>
   </body>
 </html>

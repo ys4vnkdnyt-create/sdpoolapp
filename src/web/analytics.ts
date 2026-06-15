@@ -20,6 +20,15 @@ declare global {
 
 let analyticsReady = false;
 let feedbackToastTimer = 0;
+/** Active metro region id for PostHog event properties (set after GPS search). */
+let analyticsRegionId: string | null = null;
+
+/** Attach region id to analytics events once the server resolves GPS region. */
+export function setAnalyticsRegion(regionId: string | null): void {
+  analyticsRegionId = regionId;
+  if (!analyticsReady || !regionId) return;
+  posthog.register({ region: regionId });
+}
 
 /** True when PostHog was initialized with a project key. */
 export function isAnalyticsReady(): boolean {
@@ -57,7 +66,11 @@ function trackEvent(
   properties?: Record<string, string | number | boolean>
 ): void {
   if (!analyticsReady) return;
-  posthog.capture(name, properties);
+  const props =
+    analyticsRegionId !== null
+      ? { ...properties, region: analyticsRegionId }
+      : properties;
+  posthog.capture(name, props);
 }
 
 /** Standard PostHog pageview when user moves between SPA screens (after first load). */
@@ -82,8 +95,12 @@ export function trackSearchSubmitted(props: {
   time: string;
   sort_by: "distance" | "cost";
   results_count: number;
+  region?: string | null;
 }): void {
-  trackEvent("search_submitted", props);
+  trackEvent("search_submitted", {
+    ...props,
+    region: props.region ?? analyticsRegionId ?? "unknown",
+  });
 }
 
 /** Heart tapped on a pool card. */

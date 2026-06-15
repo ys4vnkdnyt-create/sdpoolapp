@@ -3871,11 +3871,12 @@
       "notes": "Seasonal GUHSD aquatics brochure — transcribe when posted"
     },
     "scheduleSource": {
-      "label": "Grossmont Union HS District — aquatics",
+      "label": "GUHSD aquatics — Grossmont High School",
       "url": "https://www.guhsd.net/Departments/Business-Services/Facilities-and-Construction/Aquatics/index.html",
       "effectiveDate": "2026-06-01"
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.guhsd.net/Departments/Business-Services/Facilities-and-Construction/Aquatics/index.html"
   },
   {
     "id": "helix-high-school-pool",
@@ -3894,7 +3895,8 @@
       "url": "https://www.guhsd.net/Departments/Business-Services/Facilities-and-Construction/Aquatics/Locations/index.html",
       "effectiveDate": "2026-06-01"
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.guhsd.net/Departments/Business-Services/Facilities-and-Construction/Aquatics/Locations/index.html"
   },
   {
     "id": "santee-santana-high-school-pool",
@@ -3913,7 +3915,8 @@
       "url": "https://www.guhsd.net/Departments/Business-Services/Facilities-and-Construction/Aquatics/index.html",
       "effectiveDate": "2026-06-01"
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.guhsd.net/Departments/Business-Services/Facilities-and-Construction/Aquatics/index.html"
   },
   {
     "id": "lakeside-el-capitan-pool",
@@ -3932,7 +3935,8 @@
       "url": "https://www.guhsd.net/Departments/Business-Services/Facilities-and-Construction/Aquatics/index.html",
       "effectiveDate": "2026-06-01"
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.guhsd.net/Departments/Business-Services/Facilities-and-Construction/Aquatics/index.html"
   },
   {
     "id": "scripps-ranch-swim-racquet-club",
@@ -3947,11 +3951,12 @@
       "notes": "Private club — call 858-271-6222 for guest/lap policy"
     },
     "scheduleSource": {
-      "label": "Scripps Ranch SRC — private club",
-      "url": "http://www.srsrc.com/",
-      "effectiveDate": "2026-06-01"
+      "label": "Scripps Ranch Swim & Racquet Club (private) — lap schedule page (ingest agent; verify before trusting)",
+      "url": "https://www.srsrc.com/swim",
+      "effectiveDate": "2026-06-15"
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "http://www.srsrc.com/"
   },
   {
     "id": "poway-rancho-arbolitos-pool",
@@ -3966,10 +3971,11 @@
       "notes": "Private club — call for lap swim / guest access"
     },
     "scheduleSource": {
-      "label": "Rancho Arbolitos — private club",
-      "url": "http://ranchoarbolitos.com/",
-      "effectiveDate": "2026-06-01"
+      "label": "Rancho Arbolitos Swim & Tennis Club (private, Poway) — lap schedule page (ingest agent; verify before trusting)",
+      "url": "https://www.ranchoarbolitos.com/swimming",
+      "effectiveDate": "2026-06-15"
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "http://ranchoarbolitos.com/"
   }
 ]

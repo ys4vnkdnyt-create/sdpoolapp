@@ -7,7 +7,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
-const POOLS_PATH = path.join(ROOT, "src/data/pools/pools.json");
+const POOLS_PATH = path.join(ROOT, "src/data/pools/san-diego.json");
 
 /** Fingerprint one weekday's windows for comparison. */
 function dayFingerprint(windows, day) {

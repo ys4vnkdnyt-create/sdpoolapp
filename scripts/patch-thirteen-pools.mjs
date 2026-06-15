@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const jsonPath = join(dirname(fileURLToPath(import.meta.url)), "../src/data/pools/pools.json");
+const jsonPath = join(dirname(fileURLToPath(import.meta.url)), "../src/data/pools/san-diego.json");
 const pools = JSON.parse(readFileSync(jsonPath, "utf8"));
 
 /** Find pool by id. */

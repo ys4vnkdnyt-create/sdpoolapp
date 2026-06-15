@@ -1,5 +1,5 @@
 /**
- * Rewrite pools.json with normalizeExplicitBlocks (merge overlaps / touching rows per day).
+ * Rewrite san-diego.json with normalizeExplicitBlocks (merge overlaps / touching rows per day).
  * Does NOT add gap windows — those are applied at search time only.
  * Run: node scripts/normalize-pools-json.mjs
  */
@@ -11,7 +11,7 @@ import { normalizeExplicitBlocks } from "../dist/services/scheduleWindows.js";
 const POOLS_PATH = path.join(
   path.dirname(fileURLToPath(import.meta.url)),
   "..",
-  "src/data/pools/pools.json"
+  "src/data/pools/san-diego.json"
 );
 
 const pools = JSON.parse(fs.readFileSync(POOLS_PATH, "utf-8"));

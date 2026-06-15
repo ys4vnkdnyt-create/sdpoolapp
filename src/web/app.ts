@@ -4,11 +4,33 @@
  */
 import {
   initAnalytics,
+  setAnalyticsRegion,
   trackFavoriteToggled,
   trackScreenView,
   trackSearchSubmitted,
   triggerFeedback,
 } from "./analytics.js";
+
+/** Region row from /config/app.js (injected by the server). */
+interface RegionConfigJson {
+  id: string;
+  displayName: string;
+  center: { lat: number; lng: number };
+  maxDistanceMiles: number;
+  poolCount: number;
+}
+
+/** App config from GET /config/app.js. */
+interface AppConfig {
+  defaultRegionId: string;
+  regions: RegionConfigJson[];
+}
+
+declare global {
+  interface Window {
+    __APP_CONFIG__?: AppConfig;
+  }
+}
 
 /** Published schedule link (PDF or web page) from the pantry. */
 interface ScheduleSourceJson {
@@ -72,6 +94,8 @@ interface SearchResponse {
     sortBy?: "distance" | "cost";
     maxDriveMinutes?: number;
   };
+  region: { id: string; displayName: string } | null;
+  noRegionNearby?: boolean;
   results: SearchResultJson[];
   noSchedulePools?: NoSchedulePoolJson[];
   unavailablePools?: UnavailablePoolJson[];
@@ -191,11 +215,36 @@ function isTimeRoundedForSearch(): boolean {
   return pickedTime !== selectedTime;
 }
 
-/** Default map center when the user has not shared GPS (downtown San Diego). */
-const DEFAULT_USER_LOCATION = { lat: 32.7157, lng: -117.1611 };
+/** Read region list from the inline script the server serves. */
+function readAppConfig(): AppConfig {
+  const cfg = window.__APP_CONFIG__;
+  if (!cfg?.regions?.length) {
+    throw new Error("Missing __APP_CONFIG__ — is /config/app.js loaded?");
+  }
+  return cfg;
+}
 
-/** Browser storage key for favorited pools (pool id + display name). */
-const FAVORITES_STORAGE_KEY = "sd-lap-lane-favorites";
+/** Default region when GPS is unavailable (first deploy: San Diego). */
+function getDefaultRegionConfig(): RegionConfigJson {
+  const cfg = readAppConfig();
+  const match = cfg.regions.find((r) => r.id === cfg.defaultRegionId);
+  return match ?? cfg.regions[0];
+}
+
+/** Map center used when the browser cannot share GPS. */
+function fallbackUserLocation(): { lat: number; lng: number } {
+  const region = getDefaultRegionConfig();
+  return { lat: region.center.lat, lng: region.center.lng };
+}
+
+/** localStorage key — favorites stay separate per metro region. */
+function favoritesStorageKey(): string {
+  const regionId = activeRegionId ?? getDefaultRegionConfig().id;
+  return `lap-lane-favorites-${regionId}`;
+}
+
+/** Legacy key from the SD-only prototype (migrate once per browser). */
+const LEGACY_FAVORITES_STORAGE_KEY = "sd-lap-lane-favorites";
 
 interface FavoriteEntry {
   poolId: string;
@@ -273,6 +322,7 @@ const timeWheel = document.getElementById("time-wheel")!;
 const timePicker = document.getElementById("time-picker") as HTMLInputElement;
 const timeHint = document.getElementById("time-hint")!;
 const locationLabel = document.getElementById("location-label")!;
+const regionLabel = document.getElementById("region-label")!;
 const findButton = document.getElementById("find-lanes")!;
 const navSearchButton = document.getElementById("nav-search") as HTMLButtonElement;
 const resultsHeader = document.getElementById("results-header")!;
@@ -304,9 +354,15 @@ let selectedTime = roundUpTo15Min(pickedTime);
 let timePickerOpen = false;
 /** Distance first when GPS or fallback lat/lng is sent. */
 let selectedSort: "distance" | "cost" = "distance";
+/** Set when the server resolves a region from GPS or fallback. */
+let activeRegionId: string | null = null;
+/** Human-readable region name for UI copy. */
+let activeRegionName: string | null = null;
 /** Set when geolocation succeeds; search uses real distance from here. */
 let userLocation: { lat: number; lng: number } | null = null;
 let locationStatus: "pending" | "ready" | "denied" | "unsupported" = "pending";
+/** True when lat/lng came from the browser GPS prompt (not fallback center). */
+let usingRealGps = false;
 /** Where favorites are saved: local, session (Safari private), or memory. */
 let favoritesStorageKind: "local" | "session" | "memory" = "memory";
 /** True after the first storage probe (Safari private mode, etc.). */
@@ -777,12 +833,52 @@ function showScreen(which: AppScreen): void {
   scrollAppToTopAfterLayout();
 }
 
-/** Load pool directory once (names + addresses for favorites cards). */
+/** Load pool directory for the active (or default) region. */
 async function fetchPoolDirectory(): Promise<PoolDirectoryEntryJson[]> {
-  const res = await fetch("/api/pools");
+  const params = new URLSearchParams();
+  if (activeRegionId) {
+    params.set("regionId", activeRegionId);
+  } else {
+    const origin = userLocation ?? fallbackUserLocation();
+    params.set("lat", String(origin.lat));
+    params.set("lng", String(origin.lng));
+    params.set(
+      "locationSource",
+      usingRealGps && locationStatus === "ready" ? "user" : "fallback"
+    );
+  }
+  const res = await fetch(`/api/pools?${params}`);
   if (!res.ok) return [];
-  const data = (await res.json()) as { pools: PoolDirectoryEntryJson[] };
+  const data = (await res.json()) as {
+    pools: PoolDirectoryEntryJson[];
+    region?: { id: string; displayName: string };
+  };
+  if (data.region) {
+    applyActiveRegion(data.region);
+  }
   return data.pools ?? [];
+}
+
+/** Remember which metro region the server picked (GPS or fallback). */
+function applyActiveRegion(region: { id: string; displayName: string }): void {
+  if (activeRegionId === region.id && activeRegionName === region.displayName) {
+    return;
+  }
+  activeRegionId = region.id;
+  activeRegionName = region.displayName;
+  setAnalyticsRegion(region.id);
+  syncRegionLabel();
+}
+
+/** Show the active region name under the search button. */
+function syncRegionLabel(): void {
+  if (!activeRegionName) {
+    regionLabel.hidden = true;
+    regionLabel.textContent = "";
+    return;
+  }
+  regionLabel.hidden = false;
+  regionLabel.textContent = `Showing ${activeRegionName} pools`;
 }
 
 /** One saved pool card (Favorites tab and Home). */
@@ -984,8 +1080,23 @@ function favoritesStorage(): Storage | null {
 function loadFavoriteEntries(): FavoriteEntry[] {
   probeFavoritesStorage();
   const storage = favoritesStorage();
+  const key = favoritesStorageKey();
   if (storage) {
-    return parseFavoriteEntries(storage.getItem(FAVORITES_STORAGE_KEY));
+    const raw = storage.getItem(key);
+    if (raw) {
+      return parseFavoriteEntries(raw);
+    }
+    // One-time migration from the SD-only prototype key.
+    if (key.endsWith("san-diego")) {
+      const legacy = storage.getItem(LEGACY_FAVORITES_STORAGE_KEY);
+      const entries = parseFavoriteEntries(legacy);
+      if (entries.length > 0) {
+        saveFavoriteEntries(entries);
+        storage.removeItem(LEGACY_FAVORITES_STORAGE_KEY);
+      }
+      return entries;
+    }
+    return [];
   }
   return [...favoritesMemoryStore];
 }
@@ -994,12 +1105,11 @@ function loadFavoriteEntries(): FavoriteEntry[] {
 function saveFavoriteEntries(entries: FavoriteEntry[]): boolean {
   probeFavoritesStorage();
   const storage = favoritesStorage();
+  const key = favoritesStorageKey();
   if (storage) {
     try {
-      storage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(entries));
-      if (
-        storage.getItem(FAVORITES_STORAGE_KEY) !== JSON.stringify(entries)
-      ) {
+      storage.setItem(key, JSON.stringify(entries));
+      if (storage.getItem(key) !== JSON.stringify(entries)) {
         favoritesStorageKind = "memory";
         favoritesMemoryStore = [...entries];
         return true;
@@ -1424,10 +1534,16 @@ function geolocationAvailable(): boolean {
 
 /** Hint before first search — explains http:// LAN limitation on phones. */
 function defaultLocationHint(): string {
+  const regionName = getDefaultRegionConfig().displayName;
   if (!window.isSecureContext) {
-    return "This link is not https, so your phone can’t use GPS — search still works, sorted from downtown San Diego.";
+    return `This link is not https, so your phone can’t use GPS — search uses ${regionName} as a fallback.`;
   }
-  return "Tap Find Open Lanes — we’ll ask for your location to sort by distance";
+  return "Tap Find Open Lanes — we’ll ask for your location to find pools near you";
+}
+
+/** Fallback region center label for results footer and error copy. */
+function fallbackRegionLabel(): string {
+  return activeRegionName ?? getDefaultRegionConfig().displayName;
 }
 
 /** Ask the browser for GPS (must run after a tap — browsers block silent requests). */
@@ -1452,41 +1568,44 @@ function requestUserLocation(): Promise<{ lat: number; lng: number }> {
 
 /** Turn a GeolocationPositionError into text the user can act on. */
 function locationErrorMessage(err: unknown): string {
+  const regionName = fallbackRegionLabel();
   if (err instanceof Error && err.message === "insecure") {
-    return "GPS needs https — using downtown San Diego. See MOBILE.md for tunnel or Render.";
+    return `GPS needs https — using ${regionName} as fallback. See MOBILE.md for tunnel or Render.`;
   }
   if (err instanceof GeolocationPositionError) {
     if (err.code === err.PERMISSION_DENIED) {
       if (!window.isSecureContext) {
-        return "GPS needs https on your phone — using downtown San Diego. Try a tunnel or Render link.";
+        return `GPS needs https on your phone — using ${regionName} as fallback. Try a tunnel or Render link.`;
       }
-      return "Location denied — showing pools sorted from San Diego center.";
+      return `Location denied — showing ${regionName} pools sorted from the area center.`;
     }
     if (err.code === err.POSITION_UNAVAILABLE) {
-      return "Location unavailable — using San Diego center; pools still sorted by distance from there.";
+      return `Location unavailable — using ${regionName} center for distance sorting.`;
     }
     if (err.code === err.TIMEOUT) {
-      return "Location timed out — using San Diego center for now.";
+      return `Location timed out — using ${regionName} center for now.`;
     }
   }
   if (err instanceof Error && err.message === "unsupported") {
-    return "This browser does not support location — using San Diego center.";
+    return `This browser does not support location — using ${regionName} center.`;
   }
-  return "Could not get location — using San Diego center.";
+  return `Could not get location — using ${regionName} center.`;
 }
 
 /** Request GPS after Find Open Lanes tap (required by Chrome/Safari). */
 async function ensureUserLocationFromGesture(): Promise<void> {
   if (locationStatus === "ready" && userLocation) return;
-  // After deny/unsupported, keep SD center — don’t re-prompt every search.
+  // After deny/unsupported, keep fallback center — don’t re-prompt every search.
   if (locationStatus === "denied" || locationStatus === "unsupported") {
-    userLocation = DEFAULT_USER_LOCATION;
+    usingRealGps = false;
+    userLocation = fallbackUserLocation();
     return;
   }
 
   if (!geolocationAvailable()) {
     locationStatus = "unsupported";
-    userLocation = DEFAULT_USER_LOCATION;
+    usingRealGps = false;
+    userLocation = fallbackUserLocation();
     setLocationLabel(locationErrorMessage(new Error("insecure")));
     return;
   }
@@ -1494,14 +1613,16 @@ async function ensureUserLocationFromGesture(): Promise<void> {
   try {
     userLocation = await requestUserLocation();
     locationStatus = "ready";
-    setLocationLabel("Sorted by distance from you");
+    usingRealGps = true;
+    setLocationLabel("Finding pools near you…");
   } catch (err) {
     locationStatus =
       err instanceof Error &&
       (err.message === "unsupported" || err.message === "insecure")
         ? "unsupported"
         : "denied";
-    userLocation = DEFAULT_USER_LOCATION;
+    usingRealGps = false;
+    userLocation = fallbackUserLocation();
     setLocationLabel(locationErrorMessage(err));
   }
 }
@@ -1526,9 +1647,13 @@ async function runSearch(): Promise<void> {
     sortBy: selectedSort,
   });
 
-  const origin = userLocation ?? DEFAULT_USER_LOCATION;
+  const origin = userLocation ?? fallbackUserLocation();
   params.set("lat", String(origin.lat));
   params.set("lng", String(origin.lng));
+  params.set(
+    "locationSource",
+    usingRealGps && locationStatus === "ready" ? "user" : "fallback"
+  );
 
   const res = await fetch(`/api/search?${params}`);
   if (!res.ok) {
@@ -1545,11 +1670,44 @@ async function runSearch(): Promise<void> {
 
   const data = (await res.json()) as SearchResponse;
   resetResultsExpandState();
+
+  if (data.noRegionNearby || !data.region) {
+    activeRegionId = null;
+    activeRegionName = null;
+    setAnalyticsRegion(null);
+    syncRegionLabel();
+    trackSearchSubmitted({
+      date: data.query.date,
+      time: data.query.time,
+      sort_by: data.query.sortBy ?? selectedSort,
+      results_count: 0,
+      region: null,
+    });
+    resultsHeader.textContent = formatResultsHeader(
+      data.query.date,
+      data.query.time
+    );
+    resultsList.innerHTML = `<p class="empty">We don’t have pool schedules near you yet. Lap Lane Finder is expanding to more cities soon.</p>`;
+    resultsSeeMore.hidden = true;
+    favoriteUnavailableSection.hidden = true;
+    favoriteUnavailableSeeMore.hidden = true;
+    unavailableSection.hidden = true;
+    unavailableSeeMore.hidden = true;
+    noScheduleSection.hidden = true;
+    resultsFooter.textContent =
+      "Allow location on https so we can match you to the nearest supported region.";
+    setLocationLabel("No supported region near your location yet.");
+    showScreen("results");
+    return;
+  }
+
+  applyActiveRegion(data.region);
   trackSearchSubmitted({
     date: data.query.date,
     time: data.query.time,
     sort_by: data.query.sortBy ?? selectedSort,
     results_count: data.results.length,
+    region: data.region.id,
   });
   resultsHeader.textContent = formatResultsHeader(
     data.query.date,
@@ -1563,10 +1721,13 @@ async function runSearch(): Promise<void> {
   renderOtherUnavailableSection(data.unavailablePools);
 
   const locationHint =
-    locationStatus === "ready"
+    usingRealGps && locationStatus === "ready"
       ? " Sorted closest first from your location."
-      : " Sorted by distance from San Diego center.";
-  resultsFooter.textContent = `Showing all pools in the app.${locationHint}`;
+      : ` Sorted by distance from ${data.region.displayName} center.`;
+  resultsFooter.textContent = `Showing ${data.region.displayName} pools.${locationHint}`;
+  if (usingRealGps && locationStatus === "ready") {
+    setLocationLabel(`Showing ${data.region.displayName} pools near you`);
+  }
   showScreen("results");
 }
 
@@ -1691,7 +1852,8 @@ function bootApp(): void {
   syncTimeControls();
   renderSortPills();
   setLocationLabel(defaultLocationHint());
-  userLocation = DEFAULT_USER_LOCATION;
+  userLocation = fallbackUserLocation();
+  applyActiveRegion(getDefaultRegionConfig());
 
   feedbackButton.addEventListener("click", () => triggerFeedback());
 
