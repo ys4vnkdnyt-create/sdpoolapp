@@ -1,5 +1,27 @@
 import pdf from "pdf-parse/lib/pdf-parse.js";
 
+/** Download a PDF URL and return the raw bytes (or null on failure). */
+export async function fetchPdfBuffer(url: string): Promise<Buffer | null> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 25_000);
+  try {
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: {
+        Accept: "application/pdf,*/*",
+        "User-Agent":
+          "LapLaneFinder-Ingest/0.1 (schedule research; contact via github)",
+      },
+    });
+    if (!res.ok) return null;
+    return Buffer.from(await res.arrayBuffer());
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 /** Pull plain text from a PDF buffer (first pages only for quick validation). */
 export async function extractPdfText(buffer: Buffer): Promise<string> {
   const data = await pdf(buffer);
@@ -24,25 +46,13 @@ export function pdfTextLooksLikeSchedule(text: string): boolean {
 
 /** Download a PDF and return its text when it looks schedule-related. */
 export async function fetchPdfScheduleText(url: string): Promise<string | null> {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 25_000);
+  const buf = await fetchPdfBuffer(url);
+  if (!buf) return null;
   try {
-    const res = await fetch(url, {
-      signal: controller.signal,
-      headers: {
-        Accept: "application/pdf,*/*",
-        "User-Agent":
-          "LapLaneFinder-Ingest/0.1 (schedule research; contact via github)",
-      },
-    });
-    if (!res.ok) return null;
-    const buf = Buffer.from(await res.arrayBuffer());
     const text = await extractPdfText(buf);
     if (!pdfTextLooksLikeSchedule(text)) return null;
     return text.slice(0, 14_000);
   } catch {
     return null;
-  } finally {
-    clearTimeout(timer);
   }
 }

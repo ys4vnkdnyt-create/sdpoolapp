@@ -66,7 +66,9 @@ Options:
   --skip-transcribe       Find schedule URLs only; do not call OpenAI
 
 Environment (.env in project root is loaded automatically):
-  OPENAI_API_KEY          Optional — transcribe schedule pages/PDFs
+  OPENAI_API_KEY          Transcribe schedule pages/PDFs (required for auto-transcribe)
+  OPENAI_VISION_MODEL     Vision PDF model (default gpt-4o)
+  OPENAI_MODEL            Text fallback model (default gpt-4o-mini)
   INGEST_DELAY_MS         Milliseconds between HTTP requests (default 800)
 
 Examples:

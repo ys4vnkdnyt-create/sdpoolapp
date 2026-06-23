@@ -10,8 +10,10 @@ import {
   findBestScheduleUrl,
 } from "./fetchSchedule.js";
 import type { DiscoveredCandidate, ScheduleAttemptResult } from "./types.js";
+import { fetchPdfBuffer, fetchPdfScheduleText } from "./extractPdf.js";
+import { pdfBufferToPngImages } from "./pdfToImages.js";
 import { transcribeScheduleWithOpenAI } from "./transcribe.js";
-import { fetchPdfScheduleText } from "./extractPdf.js";
+import { transcribeScheduleFromPdfImages } from "./transcribeVision.js";
 
 /** Default guest pass placeholder until a human verifies pricing. */
 export function defaultGuestPass(): Pool["guestPass"] {
@@ -80,36 +82,79 @@ async function ingestPdfUrl(
     };
   }
 
-  const pdfText = await fetchPdfScheduleText(pdfUrl);
-  if (!pdfText) {
+  const pdfBuffer = await fetchPdfBuffer(pdfUrl);
+  if (!pdfBuffer) {
     return {
       availability: [],
       scheduleSource,
       status: "pdf_only",
-      detail:
-        "PDF found but could not read or validate — link saved; transcribe manually",
+      detail: "PDF found but download failed — link saved",
     };
   }
 
+  // Vision first — grid PDFs (YMCA, city pools) lose structure in plain text.
+  let visionRanEmpty = false;
   try {
-    const windows = await transcribeScheduleWithOpenAI(
+    const pngPages = await pdfBufferToPngImages(pdfBuffer);
+    const visionWindows = await transcribeScheduleFromPdfImages(
       pool.name,
       pdfUrl,
-      pdfText
+      pngPages
     );
+    const visionValid = visionWindows.filter(isValidWindow);
+    if (visionValid.length > 0) {
+      return {
+        availability: normalizeExplicitBlocks(visionValid),
+        scheduleSource,
+        status: "transcribed",
+        detail: `vision (${visionValid.length} windows)`,
+      };
+    }
+    visionRanEmpty = pngPages.length > 0;
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    // Fall through to text path unless vision hard-failed (auth/quota).
+    if (/401|403|429/.test(msg)) {
+      return {
+        availability: [],
+        scheduleSource,
+        status: "fetch_failed",
+        detail: `Vision transcription failed: ${msg}`,
+      };
+    }
+  }
+
+  // Text fallback when vision returns nothing or soft-fails.
+  try {
+    const text = await fetchPdfScheduleText(pdfUrl);
+    if (!text) {
+      return {
+        availability: [],
+        scheduleSource,
+        status: "pdf_only",
+        detail: visionRanEmpty
+          ? "PDF read — no lap swim schedule found (closure or non-schedule doc)"
+          : "PDF found but vision and text could not read it — link saved",
+      };
+    }
+
+    const windows = await transcribeScheduleWithOpenAI(pool.name, pdfUrl, text);
     const valid = windows.filter(isValidWindow);
     if (valid.length === 0) {
       return {
         availability: [],
         scheduleSource,
         status: "pdf_only",
-        detail: "LLM returned no valid lap windows from PDF — link saved",
+        detail: visionRanEmpty
+          ? "PDF read — no lap swim schedule found"
+          : "LLM returned no valid lap windows from PDF — link saved",
       };
     }
     return {
       availability: normalizeExplicitBlocks(valid),
       scheduleSource,
       status: "transcribed",
+      detail: `text (${valid.length} windows)`,
     };
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
