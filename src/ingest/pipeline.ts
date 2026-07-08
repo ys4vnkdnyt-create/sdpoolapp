@@ -26,6 +26,12 @@ function isYmcPdfPool(pool: Pool): boolean {
   return pool.id.includes("ymca") && url.includes("ymcasd.org") && url.endsWith(".pdf");
 }
 
+/** True when a pool has a City of San Diego PDF schedule URL. */
+function isCityPdfPool(pool: Pool): boolean {
+  const url = pool.scheduleSource?.url?.toLowerCase() ?? "";
+  return url.includes("sandiego.gov") && url.endsWith(".pdf");
+}
+
 async function sleep(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -107,6 +113,26 @@ export async function runIngestPipeline(
       await sleep(ingestDelayMs());
     }
     report.lines.push(`YMCA PDF pools processed: ${attempted}`);
+  } else if (options.cityPdf) {
+    report.lines.push("Mode: re-transcribe City of SD PDF schedules (vision)");
+    let attempted = 0;
+    let skipped = 0;
+    for (const pool of merged) {
+      if (!isCityPdfPool(pool)) continue;
+      if (options.skip > 0 && skipped < options.skip) {
+        skipped += 1;
+        continue;
+      }
+      if (options.limit > 0 && attempted >= options.limit) break;
+      attempted += 1;
+
+      report.lines.push(`City PDF: ${pool.name} (${pool.id})`);
+      const result = await ingestScheduleForPool(pool, options.skipTranscribe);
+      applyScheduleAttempt(pool, result, { preserveSourceOnMiss: true });
+      tallyScheduleResult(report, pool.name, result);
+      await sleep(ingestDelayMs());
+    }
+    report.lines.push(`City PDF pools processed: ${attempted}`);
   } else if (options.poolId) {
     const pool = merged.find((p) => p.id === options.poolId);
     if (!pool) {

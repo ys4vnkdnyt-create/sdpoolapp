@@ -30,6 +30,8 @@ export interface IngestOptions {
   skip: number;
   /** Re-transcribe all YMCA pools with a ymcasd.org PDF schedule link. */
   ymcaPdf: boolean;
+  /** Re-transcribe City of San Diego pools with sandiego.gov PDF schedule links. */
+  cityPdf: boolean;
 }
 
 /** One pool row returned from OpenStreetMap discovery. */
