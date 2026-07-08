@@ -31,7 +31,8 @@ You are reading a PDF schedule grid image (often YMCA-style: days as columns, ti
 - Numbers in parentheses like (6) or "Lap Swim (4)" mean lanes available for lap swim in that block.
 - Omit blocks with 0 lanes or no lap swim.
 - When camp swim and lap swim overlap, use the lap swim lane count shown for that block.
-- Transcribe every distinct lap swim block on each day with its lane count.`;
+- Transcribe every distinct lap swim block on each day with its lane count.
+- lanesAvailable is REQUIRED on every row (integer >= 1). Never omit it.`;
 
 /** Read OPENAI_API_KEY from the environment — never commit the key. */
 export function getOpenAiApiKey(): string {
@@ -49,10 +50,20 @@ export function parseLlmAvailabilityJson(
   const parsed = JSON.parse(content) as LlmSchedulePayload;
   const rows = parsed.availability ?? [];
 
-  return rows.map((w) => ({
-    dayOfWeek: w.dayOfWeek as LaneAvailabilityWindow["dayOfWeek"],
-    startTime: w.startTime,
-    endTime: w.endTime,
-    lanesAvailable: w.lanesAvailable,
-  }));
+  return rows
+    .map((w) => ({
+      dayOfWeek: w.dayOfWeek as LaneAvailabilityWindow["dayOfWeek"],
+      startTime: w.startTime,
+      endTime: w.endTime,
+      lanesAvailable: w.lanesAvailable,
+    }))
+    .filter(
+      (w) =>
+        w.dayOfWeek >= 0 &&
+        w.dayOfWeek <= 6 &&
+        typeof w.startTime === "string" &&
+        typeof w.endTime === "string" &&
+        Number.isFinite(w.lanesAvailable) &&
+        (w.lanesAvailable as number) >= 1
+    );
 }

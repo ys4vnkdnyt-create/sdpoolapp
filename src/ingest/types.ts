@@ -28,6 +28,8 @@ export interface IngestOptions {
   poolId?: string;
   /** Skip the first N pools in retry-no-schedule mode. */
   skip: number;
+  /** Re-transcribe all YMCA pools with a ymcasd.org PDF schedule link. */
+  ymcaPdf: boolean;
 }
 
 /** One pool row returned from OpenStreetMap discovery. */

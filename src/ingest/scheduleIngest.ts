@@ -10,6 +10,11 @@ import {
   findBestScheduleUrl,
 } from "./fetchSchedule.js";
 import type { DiscoveredCandidate, ScheduleAttemptResult } from "./types.js";
+import {
+  availabilityIsHealthy,
+  filterValidWindows,
+  shouldReplaceAvailability,
+} from "./availabilityGuards.js";
 import { fetchPdfBuffer, fetchPdfScheduleText } from "./extractPdf.js";
 import { pdfBufferToPngImages } from "./pdfToImages.js";
 import { transcribeScheduleWithOpenAI } from "./transcribe.js";
@@ -45,12 +50,14 @@ export function candidateToPool(
 
 /** Validate one availability window from the LLM before saving. */
 function isValidWindow(w: LaneAvailabilityWindow): boolean {
-  if (w.dayOfWeek < 0 || w.dayOfWeek > 6) return false;
-  if (!/^\d{2}:\d{2}$/.test(w.startTime) || !/^\d{2}:\d{2}$/.test(w.endTime)) {
-    return false;
-  }
-  if (w.lanesAvailable < 1) return false;
-  return true;
+  return filterValidWindows([w]).length === 1;
+}
+
+/** Normalize LLM rows and drop any that became invalid after merge. */
+function normalizeTranscribedWindows(
+  windows: LaneAvailabilityWindow[]
+): LaneAvailabilityWindow[] {
+  return filterValidWindows(normalizeExplicitBlocks(windows));
 }
 
 /** True when a URL path ends in .pdf (query strings ignored). */
@@ -102,12 +109,13 @@ async function ingestPdfUrl(
       pngPages
     );
     const visionValid = visionWindows.filter(isValidWindow);
-    if (visionValid.length > 0) {
+    const normalized = normalizeTranscribedWindows(visionValid);
+    if (availabilityIsHealthy(normalized)) {
       return {
-        availability: normalizeExplicitBlocks(visionValid),
+        availability: normalized,
         scheduleSource,
         status: "transcribed",
-        detail: `vision (${visionValid.length} windows)`,
+        detail: `vision (${normalized.length} windows)`,
       };
     }
     visionRanEmpty = pngPages.length > 0;
@@ -140,7 +148,8 @@ async function ingestPdfUrl(
 
     const windows = await transcribeScheduleWithOpenAI(pool.name, pdfUrl, text);
     const valid = windows.filter(isValidWindow);
-    if (valid.length === 0) {
+    const normalized = normalizeTranscribedWindows(valid);
+    if (!availabilityIsHealthy(normalized)) {
       return {
         availability: [],
         scheduleSource,
@@ -151,10 +160,10 @@ async function ingestPdfUrl(
       };
     }
     return {
-      availability: normalizeExplicitBlocks(valid),
+      availability: normalized,
       scheduleSource,
       status: "transcribed",
-      detail: `text (${valid.length} windows)`,
+      detail: `text (${normalized.length} windows)`,
     };
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
@@ -241,7 +250,8 @@ export async function ingestScheduleForPool(
       pageText
     );
     const valid = windows.filter(isValidWindow);
-    if (valid.length === 0) {
+    const normalized = normalizeTranscribedWindows(valid);
+    if (!availabilityIsHealthy(normalized)) {
       return {
         availability: [],
         scheduleSource,
@@ -250,7 +260,7 @@ export async function ingestScheduleForPool(
       };
     }
     return {
-      availability: normalizeExplicitBlocks(valid),
+      availability: normalized,
       scheduleSource,
       status: "transcribed",
     };
@@ -271,10 +281,20 @@ export function applyScheduleAttempt(
   result: ScheduleAttemptResult,
   options?: { preserveSourceOnMiss?: boolean }
 ): void {
-  // Keep existing lanes when a retry misses — do not wipe good pantry data.
-  if (result.status === "transcribed" || result.availability.length > 0) {
+  const previous = [...pool.availability];
+
+  if (result.status === "transcribed" && result.availability.length > 0) {
+    if (shouldReplaceAvailability(previous, result.availability)) {
+      pool.availability = result.availability;
+    } else {
+      pool.availability = previous;
+      result.status = "pdf_only";
+      result.availability = [];
+      result.detail = `kept existing ${previous.length} windows — new output failed quality check`;
+    }
+  } else if (result.availability.length > 0) {
     pool.availability = result.availability;
-  } else if (pool.availability.length === 0) {
+  } else if (previous.length === 0) {
     pool.availability = result.availability;
   }
 

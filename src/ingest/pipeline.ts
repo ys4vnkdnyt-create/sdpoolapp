@@ -20,6 +20,12 @@ function ingestDelayMs(): number {
   return Number.isFinite(n) && n >= 0 ? n : 800;
 }
 
+/** True when a pool has a YMCA San Diego PDF schedule URL. */
+function isYmcPdfPool(pool: Pool): boolean {
+  const url = pool.scheduleSource?.url?.toLowerCase() ?? "";
+  return pool.id.includes("ymca") && url.includes("ymcasd.org") && url.endsWith(".pdf");
+}
+
 async function sleep(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -81,6 +87,26 @@ export async function runIngestPipeline(
       tallyScheduleResult(report, pool.name, result);
       await sleep(ingestDelayMs());
     }
+  } else if (options.ymcaPdf) {
+    report.lines.push("Mode: re-transcribe YMCA PDF schedules (vision)");
+    let attempted = 0;
+    let skipped = 0;
+    for (const pool of merged) {
+      if (!isYmcPdfPool(pool)) continue;
+      if (options.skip > 0 && skipped < options.skip) {
+        skipped += 1;
+        continue;
+      }
+      if (options.limit > 0 && attempted >= options.limit) break;
+      attempted += 1;
+
+      report.lines.push(`YMCA PDF: ${pool.name} (${pool.id})`);
+      const result = await ingestScheduleForPool(pool, options.skipTranscribe);
+      applyScheduleAttempt(pool, result, { preserveSourceOnMiss: true });
+      tallyScheduleResult(report, pool.name, result);
+      await sleep(ingestDelayMs());
+    }
+    report.lines.push(`YMCA PDF pools processed: ${attempted}`);
   } else if (options.poolId) {
     const pool = merged.find((p) => p.id === options.poolId);
     if (!pool) {
