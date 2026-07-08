@@ -32,6 +32,8 @@ export interface IngestOptions {
   ymcaPdf: boolean;
   /** Re-transcribe City of San Diego pools with sandiego.gov PDF schedule links. */
   cityPdf: boolean;
+  /** Re-transcribe all YMCA + City of SD PDF schedules in one pass. */
+  refreshPdfs: boolean;
 }
 
 /** One pool row returned from OpenStreetMap discovery. */

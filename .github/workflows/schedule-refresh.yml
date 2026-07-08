@@ -1,0 +1,30 @@
+# Monthly PDF schedule refresh — writes a draft pantry for human review (never auto-applies).
+name: Schedule refresh (draft)
+
+on:
+  schedule:
+    # 1st of each month, 14:00 UTC (~7am Pacific)
+    - cron: "0 14 1 * *"
+  workflow_dispatch:
+
+jobs:
+  refresh-san-diego-pdfs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+      - run: npm run ingest:refresh
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: san-diego-draft-${{ github.run_number }}
+          path: src/data/pools/san-diego.draft.json
+          if-no-files-found: error

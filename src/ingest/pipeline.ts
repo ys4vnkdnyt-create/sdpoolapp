@@ -32,6 +32,11 @@ function isCityPdfPool(pool: Pool): boolean {
   return url.includes("sandiego.gov") && url.endsWith(".pdf");
 }
 
+/** True when a pool has a PDF schedule worth auto-refreshing (YMCA or City of SD). */
+function isRefreshPdfPool(pool: Pool): boolean {
+  return isYmcPdfPool(pool) || isCityPdfPool(pool);
+}
+
 async function sleep(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -133,6 +138,26 @@ export async function runIngestPipeline(
       await sleep(ingestDelayMs());
     }
     report.lines.push(`City PDF pools processed: ${attempted}`);
+  } else if (options.refreshPdfs) {
+    report.lines.push("Mode: refresh YMCA + City of SD PDF schedules (vision)");
+    let attempted = 0;
+    let skipped = 0;
+    for (const pool of merged) {
+      if (!isRefreshPdfPool(pool)) continue;
+      if (options.skip > 0 && skipped < options.skip) {
+        skipped += 1;
+        continue;
+      }
+      if (options.limit > 0 && attempted >= options.limit) break;
+      attempted += 1;
+
+      report.lines.push(`PDF refresh: ${pool.name} (${pool.id})`);
+      const result = await ingestScheduleForPool(pool, options.skipTranscribe);
+      applyScheduleAttempt(pool, result, { preserveSourceOnMiss: true });
+      tallyScheduleResult(report, pool.name, result);
+      await sleep(ingestDelayMs());
+    }
+    report.lines.push(`PDF refresh pools processed: ${attempted}`);
   } else if (options.poolId) {
     const pool = merged.find((p) => p.id === options.poolId);
     if (!pool) {

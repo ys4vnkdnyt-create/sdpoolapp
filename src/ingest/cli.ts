@@ -61,6 +61,7 @@ Options:
   --pool-id <id>          Re-run schedule ingest for one pantry pool (e.g. ryan-family-ymca)
   --ymca-pdf              Re-transcribe all YMCA pools with ymcasd.org PDF links
   --city-pdf              Re-transcribe City of SD pools with sandiego.gov PDF links
+  --refresh-pdfs          Re-transcribe all YMCA + City of SD PDF schedules (one pass)
   --dry-run               Report only — do not write JSON
   --write-draft           Write src/data/pools/<region>.draft.json (default when not dry-run)
   --apply                 Write src/data/pools/<pools-file> (overwrites live data)
@@ -78,6 +79,7 @@ Examples:
   npm run ingest -- --region san-diego --pool-id ryan-family-ymca
   npm run ingest -- --region san-diego --ymca-pdf --limit 3
   npm run ingest -- --region san-diego --city-pdf --limit 3
+  npm run ingest -- --region san-diego --refresh-pdfs
   npm run ingest -- --region san-diego --retry-no-schedule --skip 5 --limit 3
   npm run ingest -- --region austin --center 30.2672,-97.7431 --radius-miles 50 --display-name Austin --limit 10
   npm run ingest -- --region san-diego --retry-no-schedule --limit 3 --skip-transcribe
@@ -132,6 +134,7 @@ function parseCliArgs(argv: string[]): IngestOptions | null {
     skip: parseSkip(get("--skip")),
     ymcaPdf: has("--ymca-pdf"),
     cityPdf: has("--city-pdf"),
+    refreshPdfs: has("--refresh-pdfs"),
   };
 }
 

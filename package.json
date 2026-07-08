@@ -11,6 +11,7 @@
     "dev": "npm run build && npm run start",
     "web": "npm run build && node dist/server.js",
     "ingest": "npm run build && node dist/ingest/cli.js",
+    "ingest:refresh": "npm run build && node dist/ingest/cli.js --region san-diego --refresh-pdfs",
     "tunnel": "bash scripts/tunnel.sh",
     "typecheck": "tsc --noEmit"
   },
