@@ -932,19 +932,13 @@
       {
         "dayOfWeek": 4,
         "startTime": "08:00",
-        "endTime": "12:00",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 4,
-        "startTime": "13:00",
         "endTime": "16:00",
         "lanesAvailable": 1
       },
       {
         "dayOfWeek": 4,
-        "startTime": "17:30",
-        "endTime": "19:30",
+        "startTime": "17:00",
+        "endTime": "20:00",
         "lanesAvailable": 1
       },
       {
@@ -968,19 +962,13 @@
       {
         "dayOfWeek": 6,
         "startTime": "08:00",
-        "endTime": "12:00",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 6,
-        "startTime": "13:00",
         "endTime": "16:00",
         "lanesAvailable": 1
       },
       {
         "dayOfWeek": 6,
-        "startTime": "17:30",
-        "endTime": "19:30",
+        "startTime": "17:00",
+        "endTime": "20:00",
         "lanesAvailable": 1
       }
     ]
@@ -1210,7 +1198,7 @@
         "dayOfWeek": 5,
         "startTime": "07:00",
         "endTime": "19:00",
-        "lanesAvailable": 6
+        "lanesAvailable": 7
       },
       {
         "dayOfWeek": 6,
@@ -1387,13 +1375,7 @@
       {
         "dayOfWeek": 6,
         "startTime": "09:00",
-        "endTime": "11:30",
-        "lanesAvailable": 8
-      },
-      {
-        "dayOfWeek": 6,
-        "startTime": "12:30",
-        "endTime": "17:00",
+        "endTime": "18:00",
         "lanesAvailable": 8
       }
     ]
@@ -1429,18 +1411,6 @@
         "lanesAvailable": 1
       },
       {
-        "dayOfWeek": 4,
-        "startTime": "11:00",
-        "endTime": "12:30",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 4,
-        "startTime": "17:00",
-        "endTime": "18:30",
-        "lanesAvailable": 1
-      },
-      {
         "dayOfWeek": 3,
         "startTime": "12:30",
         "endTime": "14:00",
@@ -1450,6 +1420,18 @@
         "dayOfWeek": 3,
         "startTime": "14:45",
         "endTime": "16:15",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "11:00",
+        "endTime": "12:30",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "17:00",
+        "endTime": "18:30",
         "lanesAvailable": 1
       },
       {
@@ -1467,13 +1449,7 @@
       {
         "dayOfWeek": 6,
         "startTime": "13:45",
-        "endTime": "15:30",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 6,
-        "startTime": "15:45",
-        "endTime": "17:00",
+        "endTime": "16:00",
         "lanesAvailable": 1
       }
     ]
@@ -1607,9 +1583,15 @@
     },
     "availability": [
       {
+        "dayOfWeek": 0,
+        "startTime": "09:30",
+        "endTime": "12:30",
+        "lanesAvailable": 1
+      },
+      {
         "dayOfWeek": 1,
         "startTime": "06:30",
-        "endTime": "11:00",
+        "endTime": "15:00",
         "lanesAvailable": 6
       },
       {
@@ -1621,7 +1603,7 @@
       {
         "dayOfWeek": 2,
         "startTime": "06:30",
-        "endTime": "11:00",
+        "endTime": "15:00",
         "lanesAvailable": 6
       },
       {
@@ -1633,7 +1615,7 @@
       {
         "dayOfWeek": 3,
         "startTime": "06:30",
-        "endTime": "11:00",
+        "endTime": "15:00",
         "lanesAvailable": 6
       },
       {
@@ -1645,7 +1627,7 @@
       {
         "dayOfWeek": 4,
         "startTime": "06:30",
-        "endTime": "11:00",
+        "endTime": "15:00",
         "lanesAvailable": 6
       },
       {
@@ -1657,7 +1639,7 @@
       {
         "dayOfWeek": 5,
         "startTime": "06:30",
-        "endTime": "11:00",
+        "endTime": "15:00",
         "lanesAvailable": 6
       },
       {
@@ -1669,12 +1651,6 @@
       {
         "dayOfWeek": 6,
         "startTime": "08:00",
-        "endTime": "13:00",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 0,
-        "startTime": "09:30",
         "endTime": "16:00",
         "lanesAvailable": 1
       }
@@ -1743,46 +1719,46 @@
     },
     "availability": [
       {
-        "dayOfWeek": 1,
-        "startTime": "06:00",
-        "endTime": "12:45",
-        "lanesAvailable": 4
-      },
-      {
-        "dayOfWeek": 2,
-        "startTime": "06:00",
-        "endTime": "12:45",
-        "lanesAvailable": 4
-      },
-      {
-        "dayOfWeek": 3,
-        "startTime": "06:00",
-        "endTime": "12:45",
-        "lanesAvailable": 4
-      },
-      {
-        "dayOfWeek": 4,
-        "startTime": "06:00",
-        "endTime": "12:45",
-        "lanesAvailable": 4
-      },
-      {
-        "dayOfWeek": 5,
-        "startTime": "06:00",
-        "endTime": "12:45",
-        "lanesAvailable": 4
-      },
-      {
-        "dayOfWeek": 6,
-        "startTime": "08:00",
-        "endTime": "12:45",
-        "lanesAvailable": 4
-      },
-      {
         "dayOfWeek": 0,
         "startTime": "08:00",
         "endTime": "12:00",
         "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "05:30",
+        "endTime": "19:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:30",
+        "endTime": "19:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "05:30",
+        "endTime": "19:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "05:30",
+        "endTime": "19:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "05:30",
+        "endTime": "19:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "08:00",
+        "endTime": "15:00",
+        "lanesAvailable": 1
       }
     ]
   },
@@ -1916,42 +1892,24 @@
       },
       {
         "dayOfWeek": 3,
-        "startTime": "13:15",
-        "endTime": "17:00",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 2,
         "startTime": "10:00",
         "endTime": "12:30",
         "lanesAvailable": 1
       },
       {
-        "dayOfWeek": 2,
+        "dayOfWeek": 3,
         "startTime": "16:00",
         "endTime": "17:30",
         "lanesAvailable": 1
       },
       {
-        "dayOfWeek": 4,
+        "dayOfWeek": 6,
         "startTime": "10:00",
         "endTime": "12:30",
         "lanesAvailable": 1
       },
       {
-        "dayOfWeek": 4,
-        "startTime": "16:00",
-        "endTime": "17:30",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 0,
-        "startTime": "10:00",
-        "endTime": "12:30",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 0,
+        "dayOfWeek": 6,
         "startTime": "16:00",
         "endTime": "17:30",
         "lanesAvailable": 1
@@ -2306,8 +2264,8 @@
       {
         "dayOfWeek": 0,
         "startTime": "07:05",
-        "endTime": "09:45",
-        "lanesAvailable": 5
+        "endTime": "08:00",
+        "lanesAvailable": 1
       },
       {
         "dayOfWeek": 0,
@@ -2348,12 +2306,6 @@
       {
         "dayOfWeek": 2,
         "startTime": "06:05",
-        "endTime": "07:05",
-        "lanesAvailable": 4
-      },
-      {
-        "dayOfWeek": 2,
-        "startTime": "07:15",
         "endTime": "16:00",
         "lanesAvailable": 4
       },
@@ -2396,12 +2348,6 @@
       {
         "dayOfWeek": 4,
         "startTime": "06:05",
-        "endTime": "07:05",
-        "lanesAvailable": 4
-      },
-      {
-        "dayOfWeek": 4,
-        "startTime": "07:15",
         "endTime": "16:00",
         "lanesAvailable": 4
       },
@@ -2414,8 +2360,8 @@
       {
         "dayOfWeek": 5,
         "startTime": "07:05",
-        "endTime": "09:15",
-        "lanesAvailable": 5
+        "endTime": "08:00",
+        "lanesAvailable": 1
       },
       {
         "dayOfWeek": 5,
@@ -2426,19 +2372,7 @@
       {
         "dayOfWeek": 6,
         "startTime": "07:05",
-        "endTime": "08:00",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 6,
-        "startTime": "08:05",
-        "endTime": "09:45",
-        "lanesAvailable": 5
-      },
-      {
-        "dayOfWeek": 6,
-        "startTime": "11:00",
-        "endTime": "16:45",
+        "endTime": "09:15",
         "lanesAvailable": 5
       }
     ]
@@ -2594,14 +2528,20 @@
       {
         "dayOfWeek": 5,
         "startTime": "06:00",
-        "endTime": "19:00",
-        "lanesAvailable": 10
+        "endTime": "07:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "08:00",
+        "endTime": "17:00",
+        "lanesAvailable": 8
       },
       {
         "dayOfWeek": 6,
         "startTime": "08:00",
         "endTime": "17:00",
-        "lanesAvailable": 10
+        "lanesAvailable": 8
       }
     ]
   },
@@ -2687,41 +2627,35 @@
     "availability": [
       {
         "dayOfWeek": 0,
+        "startTime": "08:00",
+        "endTime": "17:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
         "startTime": "05:00",
         "endTime": "12:00",
         "lanesAvailable": 1
       },
       {
-        "dayOfWeek": 0,
+        "dayOfWeek": 1,
+        "startTime": "12:15",
+        "endTime": "20:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:00",
+        "endTime": "12:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
         "startTime": "13:00",
         "endTime": "20:00",
         "lanesAvailable": 1
       },
       {
-        "dayOfWeek": 1,
-        "startTime": "05:00",
-        "endTime": "12:00",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 1,
-        "startTime": "12:15",
-        "endTime": "20:00",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 2,
-        "startTime": "05:00",
-        "endTime": "12:00",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 2,
-        "startTime": "12:15",
-        "endTime": "20:00",
-        "lanesAvailable": 1
-      },
-      {
         "dayOfWeek": 3,
         "startTime": "05:00",
         "endTime": "12:00",
@@ -2741,13 +2675,13 @@
       },
       {
         "dayOfWeek": 4,
-        "startTime": "12:15",
+        "startTime": "13:00",
         "endTime": "20:00",
         "lanesAvailable": 1
       },
       {
         "dayOfWeek": 5,
-        "startTime": "06:00",
+        "startTime": "05:00",
         "endTime": "17:00",
         "lanesAvailable": 1
       },
@@ -2755,12 +2689,6 @@
         "dayOfWeek": 6,
         "startTime": "07:00",
         "endTime": "17:00",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 6,
-        "startTime": "19:00",
-        "endTime": "20:00",
         "lanesAvailable": 1
       }
     ]
@@ -3113,7 +3041,7 @@
     "availability": [
       {
         "dayOfWeek": 0,
-        "startTime": "13:00",
+        "startTime": "07:00",
         "endTime": "14:45",
         "lanesAvailable": 6
       },
@@ -3138,7 +3066,7 @@
       {
         "dayOfWeek": 1,
         "startTime": "20:00",
-        "endTime": "21:15",
+        "endTime": "21:00",
         "lanesAvailable": 5
       },
       {
@@ -3156,7 +3084,7 @@
       {
         "dayOfWeek": 2,
         "startTime": "20:00",
-        "endTime": "21:15",
+        "endTime": "21:00",
         "lanesAvailable": 5
       },
       {
@@ -3180,7 +3108,7 @@
       {
         "dayOfWeek": 3,
         "startTime": "20:00",
-        "endTime": "21:15",
+        "endTime": "21:00",
         "lanesAvailable": 5
       },
       {
@@ -3198,7 +3126,7 @@
       {
         "dayOfWeek": 4,
         "startTime": "20:00",
-        "endTime": "21:15",
+        "endTime": "21:00",
         "lanesAvailable": 5
       },
       {
@@ -3221,14 +3149,20 @@
       },
       {
         "dayOfWeek": 5,
+        "startTime": "18:00",
+        "endTime": "19:45",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
         "startTime": "20:00",
-        "endTime": "21:15",
+        "endTime": "21:00",
         "lanesAvailable": 5
       },
       {
         "dayOfWeek": 6,
-        "startTime": "07:00",
-        "endTime": "13:00",
+        "startTime": "08:00",
+        "endTime": "11:45",
         "lanesAvailable": 4
       }
     ]
@@ -3664,9 +3598,21 @@
       },
       {
         "dayOfWeek": 1,
-        "startTime": "16:00",
-        "endTime": "19:00",
+        "startTime": "14:45",
+        "endTime": "19:30",
         "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "05:30",
+        "endTime": "06:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "07:30",
+        "endTime": "08:15",
+        "lanesAvailable": 4
       },
       {
         "dayOfWeek": 2,
@@ -3676,8 +3622,8 @@
       },
       {
         "dayOfWeek": 2,
-        "startTime": "16:00",
-        "endTime": "19:00",
+        "startTime": "14:45",
+        "endTime": "19:30",
         "lanesAvailable": 1
       },
       {
@@ -3700,9 +3646,21 @@
       },
       {
         "dayOfWeek": 3,
-        "startTime": "16:00",
-        "endTime": "19:00",
+        "startTime": "14:45",
+        "endTime": "19:30",
         "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "05:30",
+        "endTime": "06:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "07:30",
+        "endTime": "08:15",
+        "lanesAvailable": 4
       },
       {
         "dayOfWeek": 4,
@@ -3712,8 +3670,8 @@
       },
       {
         "dayOfWeek": 4,
-        "startTime": "16:00",
-        "endTime": "19:00",
+        "startTime": "14:45",
+        "endTime": "19:30",
         "lanesAvailable": 1
       },
       {
@@ -3733,6 +3691,18 @@
         "startTime": "08:30",
         "endTime": "11:15",
         "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "14:45",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "08:15",
+        "endTime": "13:00",
+        "lanesAvailable": 3
       }
     ]
   },
@@ -4034,13 +4004,7 @@
         "lanesAvailable": 1
       },
       {
-        "dayOfWeek": 5,
-        "startTime": "10:30",
-        "endTime": "14:30",
-        "lanesAvailable": 1
-      },
-      {
-        "dayOfWeek": 5,
+        "dayOfWeek": 0,
         "startTime": "15:30",
         "endTime": "17:30",
         "lanesAvailable": 1
@@ -4098,13 +4062,25 @@
       {
         "dayOfWeek": 5,
         "startTime": "05:30",
-        "endTime": "20:30",
+        "endTime": "09:00",
         "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "10:00",
+        "endTime": "20:30",
+        "lanesAvailable": 3
       },
       {
         "dayOfWeek": 6,
         "startTime": "08:00",
         "endTime": "15:00",
+        "lanesAvailable": 3
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "16:00",
+        "endTime": "18:30",
         "lanesAvailable": 3
       }
     ]
@@ -4227,12 +4203,6 @@
     },
     "availability": [
       {
-        "dayOfWeek": 0,
-        "startTime": "11:30",
-        "endTime": "16:30",
-        "lanesAvailable": 1
-      },
-      {
         "dayOfWeek": 1,
         "startTime": "11:30",
         "endTime": "15:00",
@@ -4254,6 +4224,12 @@
         "dayOfWeek": 4,
         "startTime": "11:30",
         "endTime": "15:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "11:30",
+        "endTime": "16:30",
         "lanesAvailable": 1
       }
     ]
