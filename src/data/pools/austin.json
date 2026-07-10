@@ -1,0 +1,516 @@
+[
+  {
+    "id": "austin-parks-recreation",
+    "name": "Austin Parks & Recreation",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.3139534,
+      "lng": -97.673993
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "http://www.austintexas.gov/pools#east",
+    "scheduleSource": {
+      "label": "Austin Parks & Recreation — lap schedule page (ingest agent; verify before trusting)",
+      "url": "https://austin.widen.net/s/gf8ql5f67c/fy26_aquatics-guide-final",
+      "effectiveDate": "2026-07-10"
+    }
+  },
+  {
+    "id": "austin-parks-and-recreation-department",
+    "name": "Austin Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.2769045,
+      "lng": -97.7574067
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "balcones-pool",
+    "name": "Balcones Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.4124523,
+      "lng": -97.7200292
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "barton-creek-pools",
+    "name": "Barton Creek Pools",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.2915534,
+      "lng": -97.8578296
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "barton-springs-pool",
+    "name": "Barton Springs Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.2638274,
+      "lng": -97.7708383
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://www.austintexas.gov/department/barton-springs-pool",
+    "scheduleSource": {
+      "label": "Barton Springs Pool — lap schedule PDF (ingest agent; verify before trusting)",
+      "url": "https://www.austintexas.gov/sites/default/files/files/Parks/Aquatics/Barton%20Springs%20Pool%20coloring%20sheets.pdf",
+      "effectiveDate": "2026-07-10"
+    }
+  },
+  {
+    "id": "bella-mar-pool",
+    "name": "Bella Mar Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.3448328,
+      "lng": -97.9116238
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "big-stacy-swimming-pool",
+    "name": "Big Stacy Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.2401973,
+      "lng": -97.746921
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "broccoli-pool",
+    "name": "Broccoli Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.164947,
+      "lng": -97.8405647
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "buena-vista-pool",
+    "name": "Buena Vista Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.4290753,
+      "lng": -97.7437312
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "canyon-vista-pool",
+    "name": "Canyon Vista Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.4279681,
+      "lng": -97.7854116
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "capistrano-park-pool",
+    "name": "Capistrano Park Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.1701823,
+      "lng": -97.8649788
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "deep-eddy-pool",
+    "name": "Deep Eddy Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.2765214,
+      "lng": -97.7732044
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "dittmar-pool",
+    "name": "Dittmar Pool",
+    "address": "1009 Dittmar Road Austin TX 78745",
+    "location": {
+      "lat": 30.1847468,
+      "lng": -97.8020299
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "dominion-pool",
+    "name": "Dominion Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.4330165,
+      "lng": -97.7471173
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "ella-wooten-pool",
+    "name": "Ella Wooten Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.2925287,
+      "lng": -97.7026667
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "garrison-municipal-pool",
+    "name": "Garrison Municipal Pool",
+    "address": "6001 Manchaca Road Austin TX 78745",
+    "location": {
+      "lat": 30.2124029,
+      "lng": -97.7997699
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "givens-pool",
+    "name": "Givens Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.2775461,
+      "lng": -97.6921462
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "govalle-neighborhood-pool",
+    "name": "Govalle Neighborhood Pool",
+    "address": "5200 Bolm Road Austin TX 78721",
+    "location": {
+      "lat": 30.2598164,
+      "lng": -97.6912054
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "greystar",
+    "name": "Greystar",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.3606891,
+      "lng": -97.6688704
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "hillcrest-pool",
+    "name": "Hillcrest Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.1596712,
+      "lng": -97.8407213
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "john-simpson-pool",
+    "name": "John Simpson Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.376872,
+      "lng": -97.8937126
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "lee-and-joe-jamail-texas-swimming-center",
+    "name": "Lee and Joe Jamail Texas Swimming Center",
+    "address": "1900 Red River Street TX 78712",
+    "location": {
+      "lat": 30.2798225,
+      "lng": -97.7334961
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "martin-pool",
+    "name": "Martin Pool",
+    "address": "1626 Nash Hernandez Senior Road Austin TX 78702",
+    "location": {
+      "lat": 30.2503733,
+      "lng": -97.729158
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://www.austintexas.gov/department/martin-pool",
+    "scheduleSource": {
+      "label": "Martin Pool — lap schedule page (ingest agent; verify before trusting)",
+      "url": "https://austin.widen.net/s/fgqxgqhldx/fy26_aquatics-guide-final",
+      "effectiveDate": "2026-07-10"
+    }
+  },
+  {
+    "id": "metz-swimming-pool",
+    "name": "Metz Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.2528585,
+      "lng": -97.7193355
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "northwest-pool",
+    "name": "Northwest Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.3492131,
+      "lng": -97.740791
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "odom-pool",
+    "name": "Odom Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.2062767,
+      "lng": -97.7890422
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "patterson-neighborhood-pool",
+    "name": "Patterson Neighborhood Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.2968052,
+      "lng": -97.7101991
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "rattan-creek-pool",
+    "name": "Rattan Creek Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.4480606,
+      "lng": -97.7569884
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "ravenscroft-pool",
+    "name": "Ravenscroft Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.1544241,
+      "lng": -97.8327726
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "riata-main-pool",
+    "name": "Riata Main Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.4294161,
+      "lng": -97.7472039
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "the-ridge-pool",
+    "name": "The Ridge Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.3503158,
+      "lng": -97.7542581
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "the-university-of-texas",
+    "name": "The University of Texas",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.3596363,
+      "lng": -97.8908096
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "towne-square-pool",
+    "name": "Towne Square Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.3642443,
+      "lng": -97.899287
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "walnut-creek-municipal-pool",
+    "name": "Walnut Creek Municipal Pool",
+    "address": "12138 North Lamar Boulevard Austin TX 78758",
+    "location": {
+      "lat": 30.3998184,
+      "lng": -97.6832034
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://www.austintexas.gov/pools-splashpads",
+    "scheduleSource": {
+      "label": "Walnut Creek Municipal Pool — lap schedule page (ingest agent; verify before trusting)",
+      "url": "https://austin.widen.net/s/gf8ql5f67c/fy26_aquatics-guide-final",
+      "effectiveDate": "2026-07-10"
+    }
+  },
+  {
+    "id": "willow-bend-pool",
+    "name": "Willow Bend Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 30.4551998,
+      "lng": -97.6799231
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  }
+]

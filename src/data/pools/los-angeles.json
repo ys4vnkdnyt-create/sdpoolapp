@@ -1,0 +1,508 @@
+[
+  {
+    "id": "1984-olympics-pool",
+    "name": "1984 Olympics Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.0122742,
+      "lng": -118.2891668
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "aquatic-center",
+    "name": "Aquatic Center",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.1438505,
+      "lng": -118.1194707
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "braun-pool",
+    "name": "Braun Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.1338266,
+      "lng": -118.1269971
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "courtyard-by-marriott-torrance-palos-verdes",
+    "name": "Courtyard by Marriott Torrance Palos Verdes",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.8237191,
+      "lng": -118.3322265
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "downey-swimming-pool",
+    "name": "Downey Swimming Pool",
+    "address": "1775 North Spring Street",
+    "location": {
+      "lat": 34.0715065,
+      "lng": -118.2240037
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://www.laparks.org/aquatic/summer/downey-pool"
+  },
+  {
+    "id": "duarte-city-pool",
+    "name": "Duarte City Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.1391727,
+      "lng": -117.9709978
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "fairmont-century-plaza",
+    "name": "Fairmont Century Plaza",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.057897,
+      "lng": -118.4160813
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "fitness-pool",
+    "name": "Fitness Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.0160925,
+      "lng": -118.472943
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "george-mannon-aquatic-center",
+    "name": "George Mannon Aquatic Center",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.8236736,
+      "lng": -118.3231132
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "granada-park-pool",
+    "name": "Granada Park Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.067269,
+      "lng": -118.1452073
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "griffith-park-pool",
+    "name": "Griffith Park Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.1179682,
+      "lng": -118.2707889
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "hansen-dam-swim-lake",
+    "name": "Hansen Dam Swim Lake",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.2705729,
+      "lng": -118.3891359
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "highland-park-pool",
+    "name": "Highland Park Pool",
+    "address": "6150 Piedmont Avenue Los Angeles CA 90042",
+    "location": {
+      "lat": 34.1124244,
+      "lng": -118.188377
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://highlandpark.lacitypools.com/",
+    "scheduleSource": {
+      "label": "Highland Park Pool — lap schedule page (ingest agent; verify before trusting)",
+      "url": "https://highlandpark.lacitypools.com/feed/",
+      "effectiveDate": "2026-07-10"
+    }
+  },
+  {
+    "id": "hilton-garden-inn",
+    "name": "Hilton Garden Inn",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.1066472,
+      "lng": -118.3381822
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "lansing-pool",
+    "name": "Lansing Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.9055726,
+      "lng": -118.0135793
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "lightning-pool-service-repair",
+    "name": "Lightning Pool Service & Repair",
+    "address": "13067 Kelowna Street Pacoima CA 91331",
+    "location": {
+      "lat": 34.2527647,
+      "lng": -118.4174859
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://lightningpoolservice.com/",
+    "scheduleSource": {
+      "label": "Lightning Pool Service & Repair — lap schedule page (ingest agent; verify before trusting)",
+      "url": "https://lightningpoolservice.com/",
+      "effectiveDate": "2026-07-10"
+    }
+  },
+  {
+    "id": "lincoln-middle-school-swimming-pool",
+    "name": "Lincoln Middle School Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.0303888,
+      "lng": -118.4898328
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "lincoln-park-pool",
+    "name": "Lincoln Park Pool",
+    "address": "3501 Valley Boulevard Los Angeles CA 90032",
+    "location": {
+      "lat": 34.0663371,
+      "lng": -118.1989166
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://recreation.parks.lacity.gov/aquatic/year-round/lincoln-park-pool"
+  },
+  {
+    "id": "los-angeles-valley-college",
+    "name": "Los Angeles Valley College",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.1749954,
+      "lng": -118.4186341
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "pan-pacific-park-pool",
+    "name": "Pan Pacific Park Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.0717773,
+      "lng": -118.3542267
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "park-pool",
+    "name": "Park Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.0741329,
+      "lng": -118.4514954
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "primm-memorial",
+    "name": "Primm Memorial",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.885209,
+      "lng": -118.3061783
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "ramada-pool",
+    "name": "Ramada Pool",
+    "address": "2156 East Colorado Boulevard Pasadena CA 91107",
+    "location": {
+      "lat": 34.1458333,
+      "lng": -118.1060793
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "residential-pool",
+    "name": "Residential Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.2568334,
+      "lng": -118.3066597
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "ruhs-pool",
+    "name": "RUHS Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.8462996,
+      "lng": -118.3826282
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "springwood-pool",
+    "name": "Springwood Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.8281885,
+      "lng": -118.338592
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "the-plunge",
+    "name": "The Plunge",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.9239275,
+      "lng": -118.4182468
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "the-plunge-2",
+    "name": "The Plunge",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.8380215,
+      "lng": -118.3439703
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "the-village-small-pool",
+    "name": "The Village Small Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.8396876,
+      "lng": -118.3895732
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "titan-pool",
+    "name": "Titan Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.1264308,
+      "lng": -118.0994703
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "vagabond-inn-glendale",
+    "name": "Vagabond Inn Glendale",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.1420945,
+      "lng": -118.255942
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "van-nuys-sherman-oaks-pool",
+    "name": "Van Nuys Sherman Oaks Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.16031,
+      "lng": -118.4430506
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://www.laparks.org/aquatic/year-round/van-nuys-sherman-oaks-pool"
+  },
+  {
+    "id": "verdugo-aquatic-facility",
+    "name": "Verdugo Aquatic Facility",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.1630609,
+      "lng": -118.3392757
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "westchester-pool",
+    "name": "Westchester Pool",
+    "address": "9100 Lincoln Boulevard Los Angeles CA 90045",
+    "location": {
+      "lat": 33.957809,
+      "lng": -118.4164933
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://www.laparks.org/aquatic/summer/westchester-pool"
+  },
+  {
+    "id": "ymca-of-foothills-swimming-pool",
+    "name": "YMCA of Foothills Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 34.2118215,
+      "lng": -118.219048
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  }
+]

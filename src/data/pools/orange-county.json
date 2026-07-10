@@ -1,0 +1,499 @@
+[
+  {
+    "id": "pool",
+    "name": "-",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6332813,
+      "lng": -117.88145
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "aliso-viejo-aquatic-center-pool",
+    "name": "Aliso Viejo Aquatic Center Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6006555,
+      "lng": -117.7259644
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "aquatic-center",
+    "name": "Aquatic Center",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.8748224,
+      "lng": -117.915931
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "aquatic-zone-indoor-swim-center",
+    "name": "Aquatic Zone Indoor Swim Center",
+    "address": "1138 E 6th St Corona CA 92879",
+    "location": {
+      "lat": 33.8741353,
+      "lng": -117.5509541
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "aquatics",
+    "name": "Aquatics",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.789563,
+      "lng": -117.81221
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "aquatics-2",
+    "name": "Aquatics",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.81607,
+      "lng": -117.8170664
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "avendale-village-clubhouse-pool",
+    "name": "Avendale Village Clubhouse Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5510473,
+      "lng": -117.6378148
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "belmont-outdoor-pool",
+    "name": "Belmont Outdoor Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.7576358,
+      "lng": -118.1445569
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "brea-plunge",
+    "name": "Brea Plunge",
+    "address": "440 South Walnut Avenue Brea CA 92821",
+    "location": {
+      "lat": 33.9141566,
+      "lng": -117.9026082
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://www.cityofbrea.gov/433/Aquatics-at-the-Plunge",
+    "scheduleSource": {
+      "label": "Brea Plunge — lap schedule page (ingest agent; verify before trusting)",
+      "url": "https://www.cityofbrea.gov/433/Aquatics-at-the-Plunge#iconClose",
+      "effectiveDate": "2026-07-10"
+    }
+  },
+  {
+    "id": "castaway-river",
+    "name": "Castaway River",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.667567,
+      "lng": -117.7309096
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "college-park-jacuzzi",
+    "name": "College Park Jacuzzi",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.829679,
+      "lng": -118.0186813
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "competition-pool",
+    "name": "Competition Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.7017361,
+      "lng": -117.7803559
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "crawford-pool",
+    "name": "Crawford Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6484167,
+      "lng": -117.847841
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "crown-valley-community-park-pool",
+    "name": "Crown Valley Community Park Pool",
+    "address": "Laguna Niguel CA 92677",
+    "location": {
+      "lat": 33.5316692,
+      "lng": -117.7086463
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "el-dorado-pool",
+    "name": "El Dorado Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.8927335,
+      "lng": -117.8566392
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "irvine-campus-housing-authority",
+    "name": "Irvine Campus Housing Authority",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6408207,
+      "lng": -117.8405432
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "jacuzzi",
+    "name": "Jacuzzi",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6243088,
+      "lng": -117.9326544
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "lansing-pool",
+    "name": "Lansing Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.9055726,
+      "lng": -118.0135793
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "leisure-world-pool",
+    "name": "Leisure World Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.7655509,
+      "lng": -118.0829236
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "monorail-pool",
+    "name": "Monorail Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.8082076,
+      "lng": -117.9269792
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://disneyland.disney.go.com/recreation/disneyland-hotel/pools-disneyland-hotel/"
+  },
+  {
+    "id": "municipal-swim-stadium",
+    "name": "Municipal Swim Stadium",
+    "address": "Buena Park",
+    "location": {
+      "lat": 33.8491034,
+      "lng": -118.0072603
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "oak-knoll-village-clubhouse-lap-pool",
+    "name": "Oak Knoll Village Clubhouse Lap Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.569984,
+      "lng": -117.6380903
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "outdoor-swimming-pool",
+    "name": "Outdoor Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5183089,
+      "lng": -117.6678389
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "pacific-ranch",
+    "name": "Pacific Ranch",
+    "address": "Huntington Beach CA 92648",
+    "location": {
+      "lat": 33.6823174,
+      "lng": -117.9994952
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "polenske-pond",
+    "name": "Polenske Pond",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6819264,
+      "lng": -117.6277196
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "ridgeway-pool",
+    "name": "Ridgeway Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4978738,
+      "lng": -117.7065329
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "rooftop-whirlpool",
+    "name": "Rooftop Whirlpool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.8083785,
+      "lng": -117.9065531
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "sage-hill-swim-dive",
+    "name": "Sage Hill Swim & Dive",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6182313,
+      "lng": -117.8234935
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "saluda-pool",
+    "name": "Saluda Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4723554,
+      "lng": -117.5981301
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "sierra-ridge-pool",
+    "name": "Sierra Ridge Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6313385,
+      "lng": -117.809619
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "soka-pool",
+    "name": "Soka Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5572998,
+      "lng": -117.7348571
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "tidal-wave-bay",
+    "name": "Tidal Wave Bay",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.8401425,
+      "lng": -117.9950857
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "tides-laguna-beach",
+    "name": "Tides Laguna Beach",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5451152,
+      "lng": -117.7911537
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "vista-del-campo-pool",
+    "name": "Vista del Campo Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6401551,
+      "lng": -117.8242582
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "westmod",
+    "name": "Westmod",
+    "address": "2100 West Orangewood Avenue Orange CA 92868",
+    "location": {
+      "lat": 33.7955035,
+      "lng": -117.8745656
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  }
+]

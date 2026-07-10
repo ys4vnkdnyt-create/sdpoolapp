@@ -2,6 +2,15 @@
   "defaultRegionId": "san-diego",
   "regions": [
     {
+      "id": "austin",
+      "displayName": "Austin",
+      "center": {
+        "lat": 30.2672,
+        "lng": -97.7431
+      },
+      "maxDistanceMiles": 50
+    },
+    {
       "id": "boulder",
       "displayName": "Boulder Area",
       "center": {
@@ -18,6 +27,24 @@
         "lng": -104.9903
       },
       "maxDistanceMiles": 45
+    },
+    {
+      "id": "los-angeles",
+      "displayName": "Los Angeles",
+      "center": {
+        "lat": 34.0522,
+        "lng": -118.2437
+      },
+      "maxDistanceMiles": 50
+    },
+    {
+      "id": "orange-county",
+      "displayName": "Orange County",
+      "center": {
+        "lat": 33.7175,
+        "lng": -117.8311
+      },
+      "maxDistanceMiles": 35
     },
     {
       "id": "phoenix",
