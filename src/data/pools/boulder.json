@@ -1,11 +1,11 @@
 [
   {
-    "id": "agua-dulce-pool",
-    "name": "Agua Dulce Pool",
+    "id": "apex-recreation-center-pool",
+    "name": "APEX Recreation Center Pool",
     "address": "Address not listed",
     "location": {
-      "lat": 32.2746381,
-      "lng": -111.0517664
+      "lat": 39.8256769,
+      "lng": -105.146064
     },
     "guestPass": {
       "costUsd": 0,
@@ -14,12 +14,12 @@
     "availability": []
   },
   {
-    "id": "amphitheater-pool",
-    "name": "Amphitheater Pool",
+    "id": "ascent-apartments",
+    "name": "Ascent Apartments",
     "address": "Address not listed",
     "location": {
-      "lat": 32.2700993,
-      "lng": -110.974953
+      "lat": 39.8570328,
+      "lng": -105.0599216
     },
     "guestPass": {
       "costUsd": 0,
@@ -28,12 +28,12 @@
     "availability": []
   },
   {
-    "id": "archer-pool",
-    "name": "Archer Pool",
+    "id": "berthoud-swimming-pool",
+    "name": "Berthoud Swimming Pool",
     "address": "Address not listed",
     "location": {
-      "lat": 32.2015865,
-      "lng": -111.0102921
+      "lat": 40.3027196,
+      "lng": -105.0832477
     },
     "guestPass": {
       "costUsd": 0,
@@ -42,12 +42,12 @@
     "availability": []
   },
   {
-    "id": "catalina-pool",
-    "name": "Catalina Pool",
+    "id": "buff-pool",
+    "name": "Buff Pool",
     "address": "Address not listed",
     "location": {
-      "lat": 32.2460797,
-      "lng": -110.9148515
+      "lat": 40.0098447,
+      "lng": -105.2699819
     },
     "guestPass": {
       "costUsd": 0,
@@ -56,12 +56,12 @@
     "availability": []
   },
   {
-    "id": "clements-pool",
-    "name": "Clements Pool",
+    "id": "carmody-pool",
+    "name": "Carmody Pool",
     "address": "Address not listed",
     "location": {
-      "lat": 32.1684538,
-      "lng": -110.818441
+      "lat": 39.6778564,
+      "lng": -105.1083528
     },
     "guestPass": {
       "costUsd": 0,
@@ -70,12 +70,12 @@
     "availability": []
   },
   {
-    "id": "jesse-owens-pool",
-    "name": "Jesse Owens Pool",
+    "id": "eldorado-springs-pool",
+    "name": "Eldorado Springs Pool",
     "address": "Address not listed",
     "location": {
-      "lat": 32.2156541,
-      "lng": -110.815265
+      "lat": 39.9323438,
+      "lng": -105.2790493
     },
     "guestPass": {
       "costUsd": 0,
@@ -84,12 +84,12 @@
     "availability": []
   },
   {
-    "id": "oro-valley-comunity-center",
-    "name": "Oro Valley Community Center",
+    "id": "fitness-pool",
+    "name": "Fitness Pool",
     "address": "Address not listed",
     "location": {
-      "lat": 32.4037002,
-      "lng": -110.9991277
+      "lat": 39.7471869,
+      "lng": -105.0027795
     },
     "guestPass": {
       "costUsd": 0,
@@ -98,12 +98,12 @@
     "availability": []
   },
   {
-    "id": "purple-heart-park-pool",
-    "name": "Purple Heart Park Pool",
+    "id": "lap-pool",
+    "name": "Lap Pool",
     "address": "Address not listed",
     "location": {
-      "lat": 32.1049432,
-      "lng": -110.7843604
+      "lat": 40.0125859,
+      "lng": -105.2554995
     },
     "guestPass": {
       "costUsd": 0,
@@ -112,12 +112,12 @@
     "availability": []
   },
   {
-    "id": "sunnyside-pool",
-    "name": "Sunnyside Pool",
+    "id": "little-bear-pond",
+    "name": "Little Bear Pond",
     "address": "Address not listed",
     "location": {
-      "lat": 32.1409351,
-      "lng": -110.9456323
+      "lat": 39.8552677,
+      "lng": -105.0081304
     },
     "guestPass": {
       "costUsd": 0,
@@ -126,12 +126,12 @@
     "availability": []
   },
   {
-    "id": "turquesa-pool",
-    "name": "Turquesa Pool",
+    "id": "memory-square-pool",
+    "name": "Memory Square Pool",
     "address": "Address not listed",
     "location": {
-      "lat": 32.4790881,
-      "lng": -111.0880049
+      "lat": 39.9781758,
+      "lng": -105.1359988
     },
     "guestPass": {
       "costUsd": 0,
@@ -140,18 +140,45 @@
     "availability": []
   },
   {
-    "id": "u-of-a-south-rec-pool",
-    "name": "University of Arizona — Pool & Pool Deck (South Rec)",
-    "address": "1400 E. 6th Street, Tucson, AZ 85721",
+    "id": "roosevelt-activity-pool",
+    "name": "Roosevelt Activity Pool",
+    "address": "Address not listed",
     "location": {
-      "lat": 32.2314,
-      "lng": -110.9456
+      "lat": 40.1723884,
+      "lng": -105.1073132
     },
     "guestPass": {
-      "costUsd": 8,
-      "notes": "Adult day pool pass ~$8; 1-day passes require an active member sponsor — verify at Campus Recreation."
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "websiteUrl": "https://rec.arizona.edu/hours-locations/locations/pool-pool-deck",
+    "availability": []
+  },
+  {
+    "id": "shallow-kid-s-pool",
+    "name": "Shallow (Kid's) Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.9214547,
+      "lng": -105.1551134
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "sunset-pool",
+    "name": "Sunset Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 40.17124,
+      "lng": -105.124363
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
     "availability": []
   }
 ]

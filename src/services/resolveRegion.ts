@@ -1,5 +1,5 @@
 import type { Region } from "../data/regions.js";
-import { REGIONS } from "../data/regions.js";
+import { getAllRegions } from "../data/regions.js";
 import type { GeoLocation } from "../types/index.js";
 import { distanceMiles } from "./distance.js";
 
@@ -9,7 +9,7 @@ import { distanceMiles } from "./distance.js";
  */
 export function resolveRegionForLocation(
   location: GeoLocation,
-  regions: Region[] = REGIONS
+  regions: Region[] = getAllRegions()
 ): Region | null {
   let best: Region | null = null;
   let bestDistance = Infinity;

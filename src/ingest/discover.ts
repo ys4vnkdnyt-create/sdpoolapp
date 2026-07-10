@@ -1,20 +1,11 @@
 import type { GeoLocation } from "../types/index.js";
 import { distanceMiles } from "../services/distance.js";
+import { isLikelyNonLapPool } from "./poolNoiseFilter.js";
 import type { DiscoveredCandidate } from "./types.js";
 
 /** Miles → meters for the Overpass `around:` filter. */
 function milesToMeters(miles: number): number {
   return Math.round(miles * 1609.34);
-}
-
-/** Skip hotel / private backyard pools that rarely publish lap schedules. */
-function isLikelyNoise(name: string, tags: Record<string, string>): boolean {
-  const lower = name.toLowerCase();
-  if (tags.access === "private" && !tags.military) return true;
-  if (/\bhotel\b|\bresort\b|\bspa\b|\bapartment\b|\bhoa\b/.test(lower)) {
-    return true;
-  }
-  return false;
 }
 
 /** Build a street address string from OSM addr:* tags. */
@@ -38,7 +29,7 @@ function parseOverpassElement(
   const tags = el.tags ?? {};
   const name = tags.name ?? tags.operator;
   if (!name) return null;
-  if (isLikelyNoise(name, tags)) return null;
+  if (isLikelyNonLapPool(name, tags)) return null;
 
   let lat = el.lat;
   let lng = el.lon;

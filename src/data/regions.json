@@ -1,0 +1,50 @@
+{
+  "defaultRegionId": "san-diego",
+  "regions": [
+    {
+      "id": "boulder",
+      "displayName": "Boulder Area",
+      "center": {
+        "lat": 40.015,
+        "lng": -105.2705
+      },
+      "maxDistanceMiles": 25
+    },
+    {
+      "id": "denver",
+      "displayName": "Denver",
+      "center": {
+        "lat": 39.7392,
+        "lng": -104.9903
+      },
+      "maxDistanceMiles": 45
+    },
+    {
+      "id": "phoenix",
+      "displayName": "Phoenix",
+      "center": {
+        "lat": 33.4484,
+        "lng": -112.074
+      },
+      "maxDistanceMiles": 50
+    },
+    {
+      "id": "san-diego",
+      "displayName": "San Diego",
+      "center": {
+        "lat": 32.7157,
+        "lng": -117.1611
+      },
+      "maxDistanceMiles": 80
+    },
+    {
+      "id": "tucson",
+      "displayName": "Tucson & Oro Valley",
+      "center": {
+        "lat": 32.26,
+        "lng": -110.975
+      },
+      "maxDistanceMiles": 50
+    }
+  ]
+}

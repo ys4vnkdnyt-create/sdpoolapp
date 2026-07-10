@@ -1,0 +1,366 @@
+[
+  {
+    "id": "apex-recreation-center-pool",
+    "name": "APEX Recreation Center Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.8256769,
+      "lng": -105.146064
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "ascent-apartments",
+    "name": "Ascent Apartments",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.8570328,
+      "lng": -105.0599216
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "aviator-pool",
+    "name": "Aviator Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.7559455,
+      "lng": -104.8945067
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "beck-rec-center-pool",
+    "name": "Beck Rec Center Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.7309394,
+      "lng": -104.7800298
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "carmody-pool",
+    "name": "Carmody Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.6778564,
+      "lng": -105.1083528
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "castaway-creek",
+    "name": "Castaway Creek",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.750984,
+      "lng": -105.0102389
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "cherry-creek-vista-swimming-pool",
+    "name": "Cherry Creek Vista Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.6090784,
+      "lng": -104.8570815
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "colorado-academy-pool",
+    "name": "Colorado Academy Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.6473458,
+      "lng": -105.0703443
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "congress-park-outdoor-pool",
+    "name": "Congress Park Outdoor Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.7299882,
+      "lng": -104.9562534
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "cook-park-pool",
+    "name": "Cook Park Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.6866466,
+      "lng": -104.9087531
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "del-mar-swimming-pool",
+    "name": "Del Mar Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.7248315,
+      "lng": -104.848245
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "eisenhower-pool",
+    "name": "Eisenhower Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.6593441,
+      "lng": -104.9375822
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "f-15-pool",
+    "name": "F-15 Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.7570064,
+      "lng": -104.8678166
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "fitness-pool",
+    "name": "Fitness Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.7471869,
+      "lng": -105.0027795
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "hills-west-pool",
+    "name": "Hills West Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.6175032,
+      "lng": -104.8671775
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "kings-point-pool",
+    "name": "Kings Point Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.6051827,
+      "lng": -104.9417196
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "little-bear-pond",
+    "name": "Little Bear Pond",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.8552677,
+      "lng": -105.0081304
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "maverick-pool",
+    "name": "Maverick Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.789397,
+      "lng": -104.8853156
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "parklane-pool",
+    "name": "Parklane Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.7585674,
+      "lng": -104.8361225
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "permitted-swimming-area",
+    "name": "Permitted Swimming Area",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.6473826,
+      "lng": -104.8469208
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "pirates-cove",
+    "name": "Pirates Cove",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.6250912,
+      "lng": -105.0027989
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "puddle-jumper-pool",
+    "name": "Puddle Jumper Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.7519218,
+      "lng": -104.8866805
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "ruby-hill-swimming-pool",
+    "name": "Ruby Hill Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.6867456,
+      "lng": -105.0054799
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "runway-35-pool",
+    "name": "Runway 35 Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.7827984,
+      "lng": -104.8855671
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "silverbrook-pool",
+    "name": "Silverbrook Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.7188855,
+      "lng": -104.8085827
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "utah-park-indoor-pool",
+    "name": "Utah Park Indoor Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 39.6841078,
+      "lng": -104.8463397
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  }
+]

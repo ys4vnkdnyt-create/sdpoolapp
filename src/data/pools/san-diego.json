@@ -1,62 +1,5 @@
 [
   {
-    "id": "24-hour-fitness-balboa",
-    "name": "24 Hour Fitness — Balboa Ultra-Sport (lap pool)",
-    "address": "7715 Balboa Ave, San Diego, CA 92111",
-    "location": {
-      "lat": 32.821,
-      "lng": -117.166
-    },
-    "guestPass": {
-      "costUsd": 20,
-      "notes": "Guest/day pass varies; no public lap-lane schedule — excluded from search until a source exists."
-    },
-    "scheduleSource": {
-      "label": "24 Hour Fitness — Balboa (no lane schedule published)",
-      "url": "https://www.24hourfitness.com/gyms/san-diego-ca/balboa-ultra-sport",
-      "effectiveDate": "2026-06-01"
-    },
-    "availability": []
-  },
-  {
-    "id": "24-hour-fitness-la-jolla-village",
-    "name": "24 Hour Fitness — La Jolla Village (lap pool)",
-    "address": "4425 La Jolla Village Dr, San Diego, CA 92122",
-    "location": {
-      "lat": 32.874,
-      "lng": -117.212
-    },
-    "guestPass": {
-      "costUsd": 20,
-      "notes": "Guest/day pass varies; no public lap-lane schedule — excluded from search until a source exists."
-    },
-    "scheduleSource": {
-      "label": "24 Hour Fitness — La Jolla Village (no lane schedule published)",
-      "url": "https://www.24hourfitness.com/gyms/san-diego-ca/la-jolla-village-sport",
-      "effectiveDate": "2026-06-01"
-    },
-    "availability": []
-  },
-  {
-    "id": "24-hour-fitness-rancho-penasquitos",
-    "name": "24 Hour Fitness — Rancho Peñasquitos (lap pool)",
-    "address": "10025 Carmel Mountain Rd, San Diego, CA 92129",
-    "location": {
-      "lat": 32.957,
-      "lng": -117.101
-    },
-    "guestPass": {
-      "costUsd": 20,
-      "notes": "Guest/day pass varies; no public lap-lane schedule — excluded from search until a source exists."
-    },
-    "scheduleSource": {
-      "label": "24 Hour Fitness — Rancho Peñasquitos (no lane schedule published)",
-      "url": "https://www.24hourfitness.com/gyms/san-diego-ca/rancho-penasquitos-sport",
-      "effectiveDate": "2026-06-01"
-    },
-    "availability": []
-  },
-  {
     "id": "admiral-baker-pool",
     "name": "Admiral Baker Pool (Naval Medical Center San Diego)",
     "address": "Balboa Naval Hospital, San Diego, CA 92134",
@@ -1917,25 +1860,6 @@
     ]
   },
   {
-    "id": "la-fitness-mission-valley",
-    "name": "LA Fitness — Mission Valley (pool)",
-    "address": "2348 Russell Park Way, Ste 100, San Diego, CA 92108",
-    "location": {
-      "lat": 32.769,
-      "lng": -117.148
-    },
-    "guestPass": {
-      "costUsd": 20,
-      "notes": "Guest/day pass varies; no public lap-lane schedule — excluded from search until a source exists."
-    },
-    "scheduleSource": {
-      "label": "LA Fitness — Mission Valley (no lane schedule published)",
-      "url": "https://www.lafitness.com/Pages/clubhome.aspx?clubid=1279",
-      "effectiveDate": "2026-06-01"
-    },
-    "availability": []
-  },
-  {
     "id": "la-mesa-municipal-pool",
     "name": "La Mesa Municipal Pool",
     "address": "5100 Memorial Dr, La Mesa, CA 91941",
@@ -3002,26 +2926,6 @@
     ]
   },
   {
-    "id": "poway-rancho-arbolitos-pool",
-    "name": "Rancho Arbolitos Swim & Tennis Club (private, Poway)",
-    "address": "14343 Silverset St, Poway, CA 92064",
-    "location": {
-      "lat": 32.939,
-      "lng": -117.05
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Private club — call for lap swim / guest access"
-    },
-    "scheduleSource": {
-      "label": "Rancho Arbolitos Swim & Tennis Club (private, Poway) — lap schedule page (ingest agent; verify before trusting)",
-      "url": "https://www.ranchoarbolitos.com/swimming",
-      "effectiveDate": "2026-06-15"
-    },
-    "availability": [],
-    "websiteUrl": "http://ranchoarbolitos.com/"
-  },
-  {
     "id": "rancho-family-ymca",
     "name": "Rancho Family YMCA (indoor lap pool)",
     "address": "9410 Fairgrove Ln, San Diego, CA 92129",
@@ -3533,26 +3437,6 @@
     },
     "availability": [],
     "websiteUrl": "https://www.guhsd.net/Departments/Business-Services/Facilities-and-Construction/Aquatics/index.html"
-  },
-  {
-    "id": "scripps-ranch-swim-racquet-club",
-    "name": "Scripps Ranch Swim & Racquet Club (private)",
-    "address": "9875 Aviary Dr, San Diego, CA 92131",
-    "location": {
-      "lat": 32.913,
-      "lng": -117.091
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Private club — call 858-271-6222 for guest/lap policy"
-    },
-    "scheduleSource": {
-      "label": "Scripps Ranch Swim & Racquet Club (private) — lap schedule page (ingest agent; verify before trusting)",
-      "url": "https://www.srsrc.com/swim",
-      "effectiveDate": "2026-06-15"
-    },
-    "availability": [],
-    "websiteUrl": "http://www.srsrc.com/"
   },
   {
     "id": "south-bay-family-ymca",

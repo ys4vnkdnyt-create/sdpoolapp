@@ -4,10 +4,10 @@ import { fileURLToPath } from "node:url";
 import type { Pool } from "../types/index.js";
 import { loadPoolsFromJson } from "./loadPools.js";
 import {
+  getAllRegions,
   getDefaultRegion,
   getRegionById,
   type Region,
-  REGIONS,
 } from "./regions.js";
 
 /** Folder containing compiled data files (dist/data/). */
@@ -20,7 +20,7 @@ const poolsByRegion = new Map<string, Pool[]>();
 
 /** Load every region's pantry file once. */
 function loadAllRegionPools(): void {
-  for (const region of REGIONS) {
+  for (const region of getAllRegions()) {
     const filePath = path.join(POOLS_DIR, region.poolsFile);
     if (!fs.existsSync(filePath)) {
       throw new Error(`Missing pool file for region "${region.id}": ${filePath}`);
@@ -47,7 +47,7 @@ export function listRegionsPublic(): Array<{
   maxDistanceMiles: number;
   poolCount: number;
 }> {
-  return REGIONS.map((region) => ({
+  return getAllRegions().map((region) => ({
     id: region.id,
     displayName: region.displayName,
     center: region.center,
@@ -57,4 +57,4 @@ export function listRegionsPublic(): Array<{
 }
 
 /** Resolve region id string to config, or undefined. */
-export { getRegionById, getDefaultRegion, REGIONS };
+export { getRegionById, getDefaultRegion, getAllRegions as REGIONS };

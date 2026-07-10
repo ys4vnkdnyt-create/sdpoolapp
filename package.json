@@ -5,13 +5,14 @@
   "description": "Lap lane availability by region (San Diego first)",
   "type": "module",
   "scripts": {
-    "build": "tsc && mkdir -p dist/data/pools && cp src/data/pools/*.json dist/data/pools/",
+    "build": "tsc && mkdir -p dist/data/pools dist/data && cp src/data/regions.json dist/data/ && find dist/data/pools -maxdepth 1 -name '*.json' -delete && find src/data/pools -maxdepth 1 -name '*.json' ! -name '*.draft.json' -exec cp {} dist/data/pools/ \\;",
     "start": "node dist/index.js",
     "start:web": "node dist/server.js",
     "dev": "npm run build && npm run start",
     "web": "npm run build && node dist/server.js",
     "ingest": "npm run build && node dist/ingest/cli.js",
     "ingest:refresh": "npm run build && node dist/ingest/cli.js --region san-diego --refresh-pdfs",
+    "ingest:clean": "npm run build && node dist/ingest/cleanPantries.js",
     "tunnel": "bash scripts/tunnel.sh",
     "typecheck": "tsc --noEmit"
   },

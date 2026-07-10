@@ -70,20 +70,6 @@
     "availability": []
   },
   {
-    "id": "children-s-pool",
-    "name": "Children's Pool",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.7319408,
-      "lng": -111.8540126
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
     "id": "city-of-chandler",
     "name": "City of Chandler",
     "address": "Address not listed",
@@ -532,40 +518,12 @@
     "availability": []
   },
   {
-    "id": "eastmark-community-pool",
-    "name": "Eastmark Community Pool",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.3221516,
-      "lng": -111.6157262
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
     "id": "escalante-swimming-pool",
     "name": "Escalante Swimming Pool",
     "address": "Address not listed",
     "location": {
       "lat": 33.4194622,
       "lng": -111.8944226
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "evo-swim-school",
-    "name": "Evo Swim School",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.2918156,
-      "lng": -111.7436297
     },
     "guestPass": {
       "costUsd": 0,
@@ -588,69 +546,12 @@
     "availability": []
   },
   {
-    "id": "hollyhock-community-pool",
-    "name": "Hollyhock Community Pool",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.6276746,
-      "lng": -112.3316031
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "hot-tub",
-    "name": "hot tub",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.3799074,
-      "lng": -111.9221739
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "hurricane-bay",
-    "name": "Hurricane Bay",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.6965701,
-      "lng": -112.1501045
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": [],
-    "websiteUrl": "https://www.sixflags.com/phoenix/attractions/hurricane-bay"
-  },
-  {
     "id": "kerry-croswhite-aquatic-center",
     "name": "Kerry Croswhite Aquatic Center",
     "address": "Address not listed",
     "location": {
       "lat": 33.3093905,
       "lng": -111.8445382
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "la-quinta",
-    "name": "La Quinta",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.5835639,
-      "lng": -111.8899062
     },
     "guestPass": {
       "costUsd": 0,
@@ -673,54 +574,12 @@
     "availability": []
   },
   {
-    "id": "leslie-s-pool-supplies",
-    "name": "Leslie's Pool Supplies",
-    "address": "4410 East University Drive Mesa AZ 85205",
-    "location": {
-      "lat": 33.4239395,
-      "lng": -111.735947
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "lifetime-rooftop-pool",
-    "name": "Lifetime Rooftop Pool",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.5045388,
-      "lng": -111.9319457
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
     "id": "mcclintock-pool",
     "name": "McClintock Pool",
     "address": "Address not listed",
     "location": {
       "lat": 33.3978151,
       "lng": -111.9047951
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "nw-gardens-swimming-pool",
-    "name": "NW Gardens Swimming Pool",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.326859,
-      "lng": -111.7014808
     },
     "guestPass": {
       "costUsd": 0,
@@ -743,82 +602,12 @@
     "availability": []
   },
   {
-    "id": "pool",
-    "name": "Pool",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.75121,
-      "lng": -111.7637897
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
     "id": "princess-pool",
     "name": "Princess Pool",
     "address": "Address not listed",
     "location": {
       "lat": 33.6445336,
       "lng": -111.9175479
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "privado-villas-pool",
-    "name": "Privado Villas Pool",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.6433393,
-      "lng": -111.9199191
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "racoon-lagoon",
-    "name": "Racoon Lagoon",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.5435459,
-      "lng": -111.8896182
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "revel-surf",
-    "name": "Revel Surf",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.3344857,
-      "lng": -111.6848203
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "splash-pad",
-    "name": "Splash Pad",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.2627595,
-      "lng": -111.7516754
     },
     "guestPass": {
       "costUsd": 0,
@@ -847,48 +636,6 @@
     "location": {
       "lat": 33.6770584,
       "lng": -112.243976
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "the-phoenician-pool",
-    "name": "The Phoenician Pool",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.5067973,
-      "lng": -111.9495146
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "thunderbay-wave-pool",
-    "name": "ThunderBay Wave Pool",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.3882493,
-      "lng": -111.8386041
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "troon-country-club-swimming-pool",
-    "name": "Troon Country Club Swimming Pool",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.7121438,
-      "lng": -111.8531379
     },
     "guestPass": {
       "costUsd": 0,

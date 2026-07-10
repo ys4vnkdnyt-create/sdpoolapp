@@ -13,6 +13,7 @@
 import { loadDotEnv } from "./loadEnv.js";
 import { getRegionById } from "../data/regions.js";
 import { runIngestPipeline, printIngestReport } from "./pipeline.js";
+import { ensureEmptyPantryFile, upsertRegionInConfig } from "./regionConfig.js";
 import type { IngestOptions } from "./types.js";
 
 /** Parse "lat,lng" from --center. */
@@ -52,7 +53,7 @@ Usage:
 
 Options:
   --region <id>           Region slug (e.g. san-diego, austin)
-  --center <lat,lng>      Map center (required for new regions not in regions.ts)
+  --center <lat,lng>      Map center (required when region is not in regions.json yet)
   --radius-miles <n>      Search radius (default: region config or 50)
   --display-name <name>   Label for reports (default: region id)
   --pools-file <file>     Pantry filename (default: <region>.json)
@@ -107,7 +108,7 @@ function parseCliArgs(argv: string[]): IngestOptions | null {
   const center = centerFromFlag ?? known?.center;
   if (!center) {
     console.error(
-      `Unknown region "${regionId}" and no --center provided. Add the region to src/data/regions.ts or pass --center lat,lng`
+      `Unknown region "${regionId}" and no --center provided. Pass --center lat,lng or add the region to src/data/regions.json`
     );
     return null;
   }
@@ -151,6 +152,17 @@ async function main(): Promise<void> {
     console.warn(
       "\n⚠ --apply will overwrite the live pantry file. Review drafts first.\n"
     );
+  }
+
+  // Register new metros in regions.json and ensure the pantry file exists.
+  if (!options.dryRun) {
+    ensureEmptyPantryFile(options.poolsFile);
+    upsertRegionInConfig({
+      id: options.regionId,
+      displayName: options.displayName,
+      center: options.center,
+      maxDistanceMiles: options.radiusMiles,
+    });
   }
 
   try {
