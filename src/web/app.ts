@@ -96,6 +96,12 @@ interface SearchResponse {
   };
   region: { id: string; displayName: string } | null;
   noRegionNearby?: boolean;
+  outsideCoverage?: boolean;
+  nearestRegion?: {
+    id: string;
+    displayName: string;
+    distanceMiles: number;
+  } | null;
   results: SearchResultJson[];
   noSchedulePools?: NoSchedulePoolJson[];
   unavailablePools?: UnavailablePoolJson[];
@@ -1659,6 +1665,46 @@ function escapeHtml(text: string): string {
   return div.innerHTML;
 }
 
+/** Results empty state when GPS is outside all metros — offer nearest browse. */
+function renderOutsideCoverageResults(data: SearchResponse): void {
+  const nearest = data.nearestRegion;
+  if (data.outsideCoverage && nearest) {
+    const dist =
+      nearest.distanceMiles >= 100
+        ? `${Math.round(nearest.distanceMiles)} mi`
+        : `${nearest.distanceMiles.toFixed(1)} mi`;
+    resultsList.innerHTML = `
+      <div class="region-suggest">
+        <p class="empty">We don’t have pool data right where you are yet.</p>
+        <p class="region-suggest__lead">Closest metro: <strong>${escapeHtml(nearest.displayName)}</strong> (${dist} from you)</p>
+        <button
+          type="button"
+          class="btn btn--primary region-suggest__browse"
+          data-browse-region-id="${escapeAttr(nearest.id)}"
+        >
+          Browse ${escapeHtml(nearest.displayName)} pools
+        </button>
+        <p class="region-suggest__hint">Or pick a region on the search screen.</p>
+      </div>`;
+    resultsFooter.textContent =
+      "Browsing a metro shows its public pool list — lap schedules vary by city.";
+    setLocationLabel(`Outside our coverage areas — nearest: ${nearest.displayName} (${dist})`);
+    return;
+  }
+
+  resultsList.innerHTML = `<p class="empty">We don’t have pool schedules near you yet. Lap Lane Finder is expanding to more cities soon.</p>`;
+  resultsFooter.textContent =
+    "Allow location on https so we can match you to the nearest supported region.";
+  setLocationLabel("No supported region near your location yet.");
+}
+
+/** User chose to browse the nearest metro from the outside-coverage screen. */
+function browseSuggestedRegion(regionId: string): void {
+  regionPicker.value = regionId;
+  applyManualRegionSelection(regionId);
+  void runSearch();
+}
+
 /** Update the location status line on the search screen. */
 function setLocationLabel(text: string): void {
   locationLabel.textContent = text;
@@ -1829,16 +1875,13 @@ async function runSearch(): Promise<void> {
       data.query.date,
       data.query.time
     );
-    resultsList.innerHTML = `<p class="empty">We don’t have pool schedules near you yet. Lap Lane Finder is expanding to more cities soon.</p>`;
+    renderOutsideCoverageResults(data);
     resultsSeeMore.hidden = true;
     favoriteUnavailableSection.hidden = true;
     favoriteUnavailableSeeMore.hidden = true;
     unavailableSection.hidden = true;
     unavailableSeeMore.hidden = true;
     noScheduleSection.hidden = true;
-    resultsFooter.textContent =
-      "Allow location on https so we can match you to the nearest supported region.";
-    setLocationLabel("No supported region near your location yet.");
     showScreen("results");
     return;
   }
@@ -1969,6 +2012,13 @@ sortPills.addEventListener("click", (e) => {
 });
 
 resultsSeeMore.addEventListener("click", () => expandOpenResults());
+resultsList.addEventListener("click", (e) => {
+  const btn = eventTargetElement(e)?.closest<HTMLButtonElement>(
+    "[data-browse-region-id]"
+  );
+  if (!btn?.dataset.browseRegionId) return;
+  browseSuggestedRegion(btn.dataset.browseRegionId);
+});
 unavailableSeeMore.addEventListener("click", () => expandOtherUnavailableResults());
 favoriteUnavailableSeeMore.addEventListener("click", () =>
   expandFavoriteUnavailableResults()

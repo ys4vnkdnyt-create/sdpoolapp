@@ -12,7 +12,7 @@ import {
 } from "./data/poolRegistry.js";
 import { searchPools } from "./services/searchPools.js";
 import { resolvePoolLinks } from "./services/poolLinks.js";
-import { resolveRegionForLocation } from "./services/resolveRegion.js";
+import { resolveRegionForLocation, resolveRegionGpsMatch } from "./services/resolveRegion.js";
 import type {
   GeoLocation,
   NoSchedulePoolResult,
@@ -258,7 +258,7 @@ function resolveRegionFromRequest(url: URL): {
   return { id: fallback.id, displayName: fallback.displayName };
 }
 
-/** Region for search — manual regionId overrides GPS; null when outside all regions. */
+/** Region for search — manual regionId overrides GPS; suggest nearest when outside coverage. */
 function resolveSearchRegion(
   userLocation: GeoLocation | undefined,
   locationSource: LocationSource,
@@ -266,6 +266,8 @@ function resolveSearchRegion(
 ): {
   region: { id: string; displayName: string } | null;
   noRegionNearby: boolean;
+  nearestRegion: { id: string; displayName: string; distanceMiles: number } | null;
+  outsideCoverage: boolean;
 } {
   if (regionIdParam) {
     const byId = getRegionById(regionIdParam);
@@ -273,6 +275,8 @@ function resolveSearchRegion(
       return {
         region: { id: byId.id, displayName: byId.displayName },
         noRegionNearby: false,
+        nearestRegion: null,
+        outsideCoverage: false,
       };
     }
   }
@@ -282,17 +286,39 @@ function resolveSearchRegion(
     return {
       region: { id: fallback.id, displayName: fallback.displayName },
       noRegionNearby: false,
+      nearestRegion: null,
+      outsideCoverage: false,
     };
   }
 
-  const match = resolveRegionForLocation(userLocation);
-  if (!match) {
-    return { region: null, noRegionNearby: true };
+  const gpsMatch = resolveRegionGpsMatch(userLocation);
+  const nearestOverall = gpsMatch.nearestOverall;
+  const nearestRegion = nearestOverall
+    ? {
+        id: nearestOverall.region.id,
+        displayName: nearestOverall.region.displayName,
+        distanceMiles: nearestOverall.distanceMiles,
+      }
+    : null;
+
+  const inCoverage = gpsMatch.inCoverage;
+  if (!inCoverage) {
+    return {
+      region: null,
+      noRegionNearby: true,
+      nearestRegion,
+      outsideCoverage: nearestRegion !== null,
+    };
   }
 
   return {
-    region: { id: match.id, displayName: match.displayName },
+    region: {
+      id: inCoverage.region.id,
+      displayName: inCoverage.region.displayName,
+    },
     noRegionNearby: false,
+    nearestRegion,
+    outsideCoverage: false,
   };
 }
 
@@ -412,11 +438,12 @@ function handleApiSearch(
   const locationSource = parseLocationSource(
     url.searchParams.get("locationSource")
   );
-  const { region, noRegionNearby } = resolveSearchRegion(
-    query.userLocation,
-    locationSource,
-    url.searchParams.get("regionId")
-  );
+  const { region, noRegionNearby, nearestRegion, outsideCoverage } =
+    resolveSearchRegion(
+      query.userLocation,
+      locationSource,
+      url.searchParams.get("regionId")
+    );
 
   if (noRegionNearby || !region) {
     res.writeHead(200, { "Content-Type": "application/json" });
@@ -425,6 +452,8 @@ function handleApiSearch(
         query,
         region: null,
         noRegionNearby: true,
+        outsideCoverage,
+        nearestRegion,
         results: [],
         noSchedulePools: [],
         unavailablePools: [],
@@ -444,6 +473,8 @@ function handleApiSearch(
       query,
       region,
       noRegionNearby: false,
+      outsideCoverage: false,
+      nearestRegion,
       results: resultsToJson(results),
       noSchedulePools: noScheduleToJson(noSchedulePools),
       unavailablePools: unavailableToJson(unavailablePools),

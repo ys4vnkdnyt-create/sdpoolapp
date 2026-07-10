@@ -647,6 +647,32 @@ html {
   text-align: center;
 }
 
+/* Outside-coverage screen — suggest nearest metro to browse */
+.region-suggest {
+  text-align: center;
+  padding: 0.25rem 0 0.5rem;
+}
+
+.region-suggest__lead {
+  margin: 0.75rem 0 1rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+.region-suggest__browse {
+  width: 100%;
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+.region-suggest__hint {
+  margin: 0.85rem 0 0;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
 .location-hint {
   margin: 0.4rem 0 0;
   font-size: 0.72rem;
