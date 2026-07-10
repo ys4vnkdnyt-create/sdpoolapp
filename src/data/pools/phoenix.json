@@ -1,1 +1,899 @@
-[]
+[
+  {
+    "id": "azure-swimming-pool",
+    "name": "Azure Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.515078,
+      "lng": -111.9249676
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "barn-pool",
+    "name": "Barn Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.2845625,
+      "lng": -111.6985674
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "canyon-pool",
+    "name": "Canyon Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5069412,
+      "lng": -111.9529202
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "casa-del-rey-swimming-pool",
+    "name": "Casa Del Rey Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6833506,
+      "lng": -112.2816428
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "centennial-pool",
+    "name": "Centennial Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6169186,
+      "lng": -112.2323971
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "children-s-pool",
+    "name": "Children's Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.7319408,
+      "lng": -111.8540126
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-chandler",
+    "name": "City of Chandler",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.2970464,
+      "lng": -111.946843
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-glendale",
+    "name": "City of Glendale",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5286059,
+      "lng": -112.1682376
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-glendale-2",
+    "name": "City of Glendale",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6554417,
+      "lng": -112.1778853
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4346424,
+      "lng": -112.0797544
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-2",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4464374,
+      "lng": -112.0483632
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-3",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4675638,
+      "lng": -112.0557529
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-4",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4721177,
+      "lng": -112.0898387
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-5",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4592845,
+      "lng": -112.1321526
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-6",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4989343,
+      "lng": -112.0504152
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-7",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4782578,
+      "lng": -112.0135645
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-8",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.3891139,
+      "lng": -112.0659446
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-9",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.3944806,
+      "lng": -112.0382598
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-10",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.3881529,
+      "lng": -112.1000706
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-11",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5039496,
+      "lng": -112.1325579
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-12",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4704766,
+      "lng": -111.9836213
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-13",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5344491,
+      "lng": -112.1073115
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-14",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5017032,
+      "lng": -112.1697122
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-15",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.567245,
+      "lng": -112.0782336
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-16",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5680401,
+      "lng": -112.1322413
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-17",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4879007,
+      "lng": -112.227752
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-18",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5943473,
+      "lng": -112.1412736
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-19",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5980871,
+      "lng": -112.00699
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-20",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.2918238,
+      "lng": -111.9820467
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-21",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6481769,
+      "lng": -112.0598559
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-22",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.649214,
+      "lng": -112.1018179
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-23",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6474503,
+      "lng": -111.997502
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-phoenix-parks-and-recreation-department-24",
+    "name": "City of Phoenix Parks and Recreation Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6628709,
+      "lng": -112.1003633
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-scottsdale",
+    "name": "City of Scottsdale",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4726275,
+      "lng": -111.9168602
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-scottsdale-2",
+    "name": "City of Scottsdale",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5149933,
+      "lng": -111.9064652
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-scottsdale-3",
+    "name": "City of Scottsdale",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.597484,
+      "lng": -111.9241717
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "city-of-scottsdale-4",
+    "name": "City of Scottsdale",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6256217,
+      "lng": -111.864414
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "clark-swimming-pool",
+    "name": "Clark Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4088511,
+      "lng": -111.9484052
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "eastmark-community-pool",
+    "name": "Eastmark Community Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.3221516,
+      "lng": -111.6157262
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "escalante-swimming-pool",
+    "name": "Escalante Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.4194622,
+      "lng": -111.8944226
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "evo-swim-school",
+    "name": "Evo Swim School",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.2918156,
+      "lng": -111.7436297
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "folley-pool",
+    "name": "Folley Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.2956261,
+      "lng": -111.8324907
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "hollyhock-community-pool",
+    "name": "Hollyhock Community Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6276746,
+      "lng": -112.3316031
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "hot-tub",
+    "name": "hot tub",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.3799074,
+      "lng": -111.9221739
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "hurricane-bay",
+    "name": "Hurricane Bay",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6965701,
+      "lng": -112.1501045
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://www.sixflags.com/phoenix/attractions/hurricane-bay"
+  },
+  {
+    "id": "kerry-croswhite-aquatic-center",
+    "name": "Kerry Croswhite Aquatic Center",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.3093905,
+      "lng": -111.8445382
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "la-quinta",
+    "name": "La Quinta",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5835639,
+      "lng": -111.8899062
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "lakeview-pool-1",
+    "name": "Lakeview Pool 1",
+    "address": "995 East Baseline Road Tempe AZ 85283",
+    "location": {
+      "lat": 33.3767564,
+      "lng": -111.9264122
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "leslie-s-pool-supplies",
+    "name": "Leslie's Pool Supplies",
+    "address": "4410 East University Drive Mesa AZ 85205",
+    "location": {
+      "lat": 33.4239395,
+      "lng": -111.735947
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "lifetime-rooftop-pool",
+    "name": "Lifetime Rooftop Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5045388,
+      "lng": -111.9319457
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "mcclintock-pool",
+    "name": "McClintock Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.3978151,
+      "lng": -111.9047951
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "nw-gardens-swimming-pool",
+    "name": "NW Gardens Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.326859,
+      "lng": -111.7014808
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "peoria-pool",
+    "name": "Peoria Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5868645,
+      "lng": -112.2415663
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "pool",
+    "name": "Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.75121,
+      "lng": -111.7637897
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "princess-pool",
+    "name": "Princess Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6445336,
+      "lng": -111.9175479
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "privado-villas-pool",
+    "name": "Privado Villas Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6433393,
+      "lng": -111.9199191
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "racoon-lagoon",
+    "name": "Racoon Lagoon",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5435459,
+      "lng": -111.8896182
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "revel-surf",
+    "name": "Revel Surf",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.3344857,
+      "lng": -111.6848203
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "splash-pad",
+    "name": "Splash Pad",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.2627595,
+      "lng": -111.7516754
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "stardust-pool",
+    "name": "Stardust Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.1551161,
+      "lng": -111.5499402
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "sunrise-pool",
+    "name": "Sunrise Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.6770584,
+      "lng": -112.243976
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "the-phoenician-pool",
+    "name": "The Phoenician Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.5067973,
+      "lng": -111.9495146
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "thunderbay-wave-pool",
+    "name": "ThunderBay Wave Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.3882493,
+      "lng": -111.8386041
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "troon-country-club-swimming-pool",
+    "name": "Troon Country Club Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 33.7121438,
+      "lng": -111.8531379
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  }
+]

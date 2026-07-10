@@ -243,6 +243,9 @@ function favoritesStorageKey(): string {
   return `lap-lane-favorites-${regionId}`;
 }
 
+/** sessionStorage key for manual region override (same tab). */
+const REGION_PICKER_STORAGE_KEY = "lap-lane-region-pick";
+
 /** Legacy key from the SD-only prototype (migrate once per browser). */
 const LEGACY_FAVORITES_STORAGE_KEY = "sd-lap-lane-favorites";
 
@@ -323,6 +326,7 @@ const timePicker = document.getElementById("time-picker") as HTMLInputElement;
 const timeHint = document.getElementById("time-hint")!;
 const locationLabel = document.getElementById("location-label")!;
 const regionLabel = document.getElementById("region-label")!;
+const regionPicker = document.getElementById("region-picker") as HTMLSelectElement;
 const findButton = document.getElementById("find-lanes")!;
 const navSearchButton = document.getElementById("nav-search") as HTMLButtonElement;
 const resultsHeader = document.getElementById("results-header")!;
@@ -358,6 +362,8 @@ let selectedSort: "distance" | "cost" = "distance";
 let activeRegionId: string | null = null;
 /** Human-readable region name for UI copy. */
 let activeRegionName: string | null = null;
+/** User-picked metro id; null means auto-detect from GPS on search. */
+let manualRegionId: string | null = null;
 /** Set when geolocation succeeds; search uses real distance from here. */
 let userLocation: { lat: number; lng: number } | null = null;
 let locationStatus: "pending" | "ready" | "denied" | "unsupported" = "pending";
@@ -836,7 +842,10 @@ function showScreen(which: AppScreen): void {
 /** Load pool directory for the active (or default) region. */
 async function fetchPoolDirectory(): Promise<PoolDirectoryEntryJson[]> {
   const params = new URLSearchParams();
-  if (activeRegionId) {
+  const regionOverride = regionIdForRequests();
+  if (regionOverride) {
+    params.set("regionId", regionOverride);
+  } else if (activeRegionId) {
     params.set("regionId", activeRegionId);
   } else {
     const origin = userLocation ?? fallbackUserLocation();
@@ -870,15 +879,117 @@ function applyActiveRegion(region: { id: string; displayName: string }): void {
   syncRegionLabel();
 }
 
-/** Show the active region name under the search button. */
+/** Show the active region name under the search button (manual pick only). */
 function syncRegionLabel(): void {
-  if (!activeRegionName) {
+  if (!manualRegionId || !activeRegionName) {
     regionLabel.hidden = true;
     regionLabel.textContent = "";
     return;
   }
   regionLabel.hidden = false;
   regionLabel.textContent = `Showing ${activeRegionName} pools`;
+}
+
+/** Look up one region row from injected app config. */
+function findRegionConfig(regionId: string): RegionConfigJson | undefined {
+  return readAppConfig().regions.find((r) => r.id === regionId);
+}
+
+/** Read ?regionId= from the page URL (testing / shared links). */
+function readRegionPickFromUrl(): string | null {
+  const id = new URLSearchParams(window.location.search).get("regionId");
+  if (!id) return null;
+  return findRegionConfig(id) ? id : null;
+}
+
+/** Restore manual region pick from sessionStorage. */
+function readStoredRegionPick(): string | null {
+  try {
+    const stored = sessionStorage.getItem(REGION_PICKER_STORAGE_KEY);
+    if (!stored || stored === "auto") return null;
+    return findRegionConfig(stored) ? stored : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Remember manual region choice for this browser tab. */
+function storeRegionPick(regionId: string | null): void {
+  try {
+    sessionStorage.setItem(
+      REGION_PICKER_STORAGE_KEY,
+      regionId ?? "auto"
+    );
+  } catch {
+    /* Safari private mode */
+  }
+}
+
+/** regionId for API calls when the user picked a metro manually. */
+function regionIdForRequests(): string | null {
+  return manualRegionId;
+}
+
+/** Fill region dropdown; apply URL param or stored pick. */
+function initRegionPicker(): void {
+  const cfg = readAppConfig();
+  regionPicker.innerHTML = "";
+
+  const autoOpt = document.createElement("option");
+  autoOpt.value = "auto";
+  autoOpt.textContent = "Auto — near me (GPS)";
+  regionPicker.appendChild(autoOpt);
+
+  for (const region of cfg.regions) {
+    const opt = document.createElement("option");
+    opt.value = region.id;
+    const countLabel =
+      region.poolCount > 0 ? ` (${region.poolCount} pools)` : " (schedules pending)";
+    opt.textContent = `${region.displayName}${countLabel}`;
+    regionPicker.appendChild(opt);
+  }
+
+  const pick = readRegionPickFromUrl() ?? readStoredRegionPick();
+  if (pick) {
+    regionPicker.value = pick;
+    applyManualRegionSelection(pick);
+  } else {
+    regionPicker.value = "auto";
+  }
+}
+
+/** Switch to a fixed metro or back to GPS auto-detect. */
+function applyManualRegionSelection(regionId: string | "auto"): void {
+  if (regionId === "auto") {
+    manualRegionId = null;
+    storeRegionPick(null);
+    applyActiveRegion(getDefaultRegionConfig());
+    userLocation = fallbackUserLocation();
+    setLocationLabel(defaultLocationHint());
+    syncRegionLabel();
+    return;
+  }
+
+  const region = findRegionConfig(regionId);
+  if (!region) return;
+
+  manualRegionId = region.id;
+  storeRegionPick(region.id);
+  applyActiveRegion({ id: region.id, displayName: region.displayName });
+  userLocation = { lat: region.center.lat, lng: region.center.lng };
+  usingRealGps = false;
+  setLocationLabel(
+    `Searching ${region.displayName} — distance from region center`
+  );
+  syncRegionLabel();
+}
+
+/** Wire region dropdown change events. */
+function wireRegionPicker(): void {
+  regionPicker.addEventListener("change", () => {
+    const value = regionPicker.value;
+    applyManualRegionSelection(value === "auto" ? "auto" : value);
+  });
 }
 
 /** One saved pool card (Favorites tab and Home). */
@@ -1681,6 +1792,11 @@ async function runSearch(): Promise<void> {
     usingRealGps && locationStatus === "ready" ? "user" : "fallback"
   );
 
+  const regionOverride = regionIdForRequests();
+  if (regionOverride) {
+    params.set("regionId", regionOverride);
+  }
+
   const res = await fetch(`/api/search?${params}`);
   if (!res.ok) {
     resultsList.innerHTML = `<p class="empty">Search failed. Is the server running?</p>`;
@@ -1871,6 +1987,8 @@ function bootApp(): void {
   probeFavoritesStorage();
   initDatePickerMin();
   renderDatePills();
+  initRegionPicker();
+  wireRegionPicker();
   syncDatePickerValue();
   ensurePickedTimeValid();
   syncTimeTriggerLabel();
@@ -1879,7 +1997,9 @@ function bootApp(): void {
   renderSortPills();
   setLocationLabel(defaultLocationHint());
   userLocation = fallbackUserLocation();
-  applyActiveRegion(getDefaultRegionConfig());
+  if (!manualRegionId) {
+    applyActiveRegion(getDefaultRegionConfig());
+  }
 
   feedbackButton.addEventListener("click", () => triggerFeedback());
 

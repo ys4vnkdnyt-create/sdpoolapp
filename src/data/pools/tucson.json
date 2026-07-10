@@ -1,0 +1,205 @@
+[
+  {
+    "id": "agua-dulce-pool",
+    "name": "Agua Dulce Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 32.2746381,
+      "lng": -111.0517664
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "amphitheater-pool",
+    "name": "Amphitheater Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 32.2700993,
+      "lng": -110.974953
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "archer-pool",
+    "name": "Archer Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 32.2015865,
+      "lng": -111.0102921
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "catalina-pool",
+    "name": "Catalina Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 32.2460797,
+      "lng": -110.9148515
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "clements-pool",
+    "name": "Clements Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 32.1684538,
+      "lng": -110.818441
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "econo-lodge-pool",
+    "name": "Econo Lodge pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 32.2370557,
+      "lng": -110.971513
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "jesse-owens-pool",
+    "name": "Jesse Owens Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 32.2156541,
+      "lng": -110.815265
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "oro-valley-comunity-center",
+    "name": "Oro Valley Community Center",
+    "address": "Address not listed",
+    "location": {
+      "lat": 32.4037002,
+      "lng": -110.9991277
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "picture-rocks-pool-and-splash-pad",
+    "name": "Picture Rocks Pool and Splash Pad",
+    "address": "5615 North Sanders Road Tucson AZ 85743",
+    "location": {
+      "lat": 32.3084985,
+      "lng": -111.2358271
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "http://webcms.pima.gov/cms/one.aspx?portalId=169&pageId=1575",
+    "scheduleSource": {
+      "label": "Picture Rocks Pool and Splash Pad — lap schedule page (ingest agent; verify before trusting)",
+      "url": "http://webcms.pima.gov/974/Emergency-Services-Program",
+      "effectiveDate": "2026-07-09"
+    }
+  },
+  {
+    "id": "purple-heart-park-pool",
+    "name": "Purple Heart Park Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 32.1049432,
+      "lng": -110.7843604
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "sunnyside-pool",
+    "name": "Sunnyside Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 32.1409351,
+      "lng": -110.9456323
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "super-8-marana",
+    "name": "Super 8 Marana",
+    "address": "Address not listed",
+    "location": {
+      "lat": 32.3583828,
+      "lng": -111.0921048
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "turquesa-pool",
+    "name": "Turquesa Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 32.4790881,
+      "lng": -111.0880049
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "u-of-a-south-rec-pool",
+    "name": "University of Arizona — Pool & Pool Deck (South Rec)",
+    "address": "1400 E. 6th Street, Tucson, AZ 85721",
+    "location": {
+      "lat": 32.2314,
+      "lng": -110.9456
+    },
+    "guestPass": {
+      "costUsd": 8,
+      "notes": "Adult day pool pass ~$8; 1-day passes require an active member sponsor — verify at Campus Recreation."
+    },
+    "websiteUrl": "https://rec.arizona.edu/hours-locations/locations/pool-pool-deck",
+    "availability": []
+  }
+]

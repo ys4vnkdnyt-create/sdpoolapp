@@ -258,14 +258,25 @@ function resolveRegionFromRequest(url: URL): {
   return { id: fallback.id, displayName: fallback.displayName };
 }
 
-/** Region for search — null when GPS user is outside all supported regions. */
+/** Region for search — manual regionId overrides GPS; null when outside all regions. */
 function resolveSearchRegion(
   userLocation: GeoLocation | undefined,
-  locationSource: LocationSource
+  locationSource: LocationSource,
+  regionIdParam: string | null
 ): {
   region: { id: string; displayName: string } | null;
   noRegionNearby: boolean;
 } {
+  if (regionIdParam) {
+    const byId = getRegionById(regionIdParam);
+    if (byId) {
+      return {
+        region: { id: byId.id, displayName: byId.displayName },
+        noRegionNearby: false,
+      };
+    }
+  }
+
   if (locationSource !== "user" || !userLocation) {
     const fallback = getDefaultRegion();
     return {
@@ -403,7 +414,8 @@ function handleApiSearch(
   );
   const { region, noRegionNearby } = resolveSearchRegion(
     query.userLocation,
-    locationSource
+    locationSource,
+    url.searchParams.get("regionId")
   );
 
   if (noRegionNearby || !region) {

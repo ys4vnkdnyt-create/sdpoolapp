@@ -12,7 +12,7 @@ export interface Region {
   poolsFile: string;
 }
 
-/** Default region when GPS is denied or unavailable (only one region today). */
+/** Default region when GPS is denied or unavailable. */
 export const DEFAULT_REGION_ID = "san-diego";
 
 /** All regions shipped in this deploy — add entries here when a new city is ready. */
@@ -30,6 +30,13 @@ export const REGIONS: Region[] = [
     center: { lat: 33.4484, lng: -112.074 },
     maxDistanceMiles: 50,
     poolsFile: "phoenix.json",
+  },
+  {
+    id: "tucson",
+    displayName: "Tucson & Oro Valley",
+    center: { lat: 32.26, lng: -110.975 },
+    maxDistanceMiles: 50,
+    poolsFile: "tucson.json",
   },
 ];
 
