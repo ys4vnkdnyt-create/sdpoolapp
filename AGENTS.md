@@ -32,6 +32,21 @@ I am learning how to build with AI and am giving myself a prototype project. The
 
 I want to create an application that tells me local San Diego swim pool **lap lane availability (open or not) at the date and time I ask about**—that is the most important part of the project. Distance and guest pass cost help me choose among pools that already have a lane open; they are secondary. I will ask for more information when we work on this further.
 
+## Learning plan: fresh schedules on search (complex path)
+
+Goal: fetch and read pool schedules **at search time** (not a big stored library of weekly grids). Keep long-term storage small: pool metadata + `scheduleSource.url` only.
+
+**Four steps:**
+
+1. **User** → location + date/time  
+2. **Server** → nearby pools (geo + `/api/search`)  
+3. **Server** → for each nearby pool, **fetch** its PDF/page **now**, **parse** into `availability[]`  
+4. **Server** → answer open/closed, return JSON (parsed schedule can be discarded after; optional short in-memory cache)
+
+**Learning order:** (1) live fetch on search for one pool type → (2) add short cache → (3) add a second schedule format → (4) skills per format (City PDF, YMCA PDF, web table).
+
+**Skill vs app:** Skills teach the AI how to build/maintain parsers and transcription rules. Live user search is **code** on the server.
+
 ## About Me
 
 - I used to work in tech (small startup ops) but have been a professional athlete for the last ~7 years (triathlon)
