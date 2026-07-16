@@ -2,6 +2,15 @@
   "defaultRegionId": "san-diego",
   "regions": [
     {
+      "id": "ann-arbor",
+      "displayName": "Ann Arbor",
+      "center": {
+        "lat": 42.2808,
+        "lng": -83.743
+      },
+      "maxDistanceMiles": 35
+    },
+    {
       "id": "austin",
       "displayName": "Austin",
       "center": {
@@ -9,6 +18,15 @@
         "lng": -97.7431
       },
       "maxDistanceMiles": 50
+    },
+    {
+      "id": "bay-area",
+      "displayName": "Bay Area",
+      "center": {
+        "lat": 37.3382,
+        "lng": -121.8863
+      },
+      "maxDistanceMiles": 30
     },
     {
       "id": "boulder",

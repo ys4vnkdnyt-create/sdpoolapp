@@ -39,7 +39,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "casa-del-rey-swimming-pool",
@@ -67,7 +73,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-chandler",
@@ -81,7 +93,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.chandleraz.gov/explore/parks-and-recreation/aquatics",
+    "scheduleSource": {
+      "label": "City of Chandler — Aquatics",
+      "url": "https://www.chandleraz.gov/explore/parks-and-recreation/aquatics",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-glendale",
@@ -95,7 +113,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.glendaleaz.com/living/recreation_and_aquatics",
+    "scheduleSource": {
+      "label": "City of Glendale AZ — Recreation & Aquatics",
+      "url": "https://www.glendaleaz.com/living/recreation_and_aquatics",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-glendale-2",
@@ -109,7 +133,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.glendaleaz.com/living/recreation_and_aquatics",
+    "scheduleSource": {
+      "label": "City of Glendale AZ — Recreation & Aquatics",
+      "url": "https://www.glendaleaz.com/living/recreation_and_aquatics",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department",
@@ -123,7 +153,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-2",
@@ -137,7 +173,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-3",
@@ -151,7 +193,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-4",
@@ -165,7 +213,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-5",
@@ -179,7 +233,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-6",
@@ -193,7 +253,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-7",
@@ -207,7 +273,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-8",
@@ -221,7 +293,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-9",
@@ -235,7 +313,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-10",
@@ -249,7 +333,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-11",
@@ -263,7 +353,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-12",
@@ -277,7 +373,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-13",
@@ -291,7 +393,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-14",
@@ -305,7 +413,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-15",
@@ -319,7 +433,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-16",
@@ -333,7 +453,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-17",
@@ -347,7 +473,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-18",
@@ -361,7 +493,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-19",
@@ -375,7 +513,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-20",
@@ -389,7 +533,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-21",
@@ -403,7 +553,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-22",
@@ -417,7 +573,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-23",
@@ -431,7 +593,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-phoenix-parks-and-recreation-department-24",
@@ -445,7 +613,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-scottsdale",
@@ -459,7 +633,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.scottsdaleaz.gov/recreation/aquatics",
+    "scheduleSource": {
+      "label": "City of Scottsdale — Aquatics",
+      "url": "https://www.scottsdaleaz.gov/recreation/aquatics",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-scottsdale-2",
@@ -473,7 +653,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.scottsdaleaz.gov/recreation/aquatics",
+    "scheduleSource": {
+      "label": "City of Scottsdale — Aquatics",
+      "url": "https://www.scottsdaleaz.gov/recreation/aquatics",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-scottsdale-3",
@@ -487,7 +673,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.scottsdaleaz.gov/recreation/aquatics",
+    "scheduleSource": {
+      "label": "City of Scottsdale — Aquatics",
+      "url": "https://www.scottsdaleaz.gov/recreation/aquatics",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "city-of-scottsdale-4",
@@ -501,7 +693,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.scottsdaleaz.gov/recreation/aquatics",
+    "scheduleSource": {
+      "label": "City of Scottsdale — Aquatics",
+      "url": "https://www.scottsdaleaz.gov/recreation/aquatics",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "clark-swimming-pool",
@@ -529,7 +727,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "folley-pool",
@@ -543,7 +747,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "kerry-croswhite-aquatic-center",
@@ -557,7 +767,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "lakeview-pool-1",
@@ -585,7 +801,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "peoria-pool",
@@ -599,7 +821,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+    "scheduleSource": {
+      "label": "City of Phoenix — Aquatics / Pools directory",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/pools.html",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "princess-pool",

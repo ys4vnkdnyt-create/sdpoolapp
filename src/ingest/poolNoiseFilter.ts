@@ -79,6 +79,14 @@ export function isLikelyNonLapPool(
   if (/\btennis club\b|\bracquet club\b|\bswim & tennis\b/.test(lower)) return true;
   if (/\b24 hour fitness\b|\bla fitness\b/.test(lower)) return true;
   if (/\bprivate\b/.test(lower)) return true;
+  if (/\bmarriott\b|\bdays inn\b|\bextended stay\b|\bhilton\b|\bramada\b|\bfairmont\b/.test(lower)) {
+    return true;
+  }
+  if (/\bcabana club\b|\bhomeowners association\b|\bicha\b/.test(lower)) return true;
+  if (/\bbaby pool\b|\bkid'?s\)? pool\b|\bshallow \(kid/.test(lower)) return true;
+  if (/\bdisneyland\b|\bmonorail pool\b/.test(lower)) return true;
+  if (/\bpool service\b|\bgreystar\b/.test(lower)) return true;
+  if (lower === "-" || lower === "jacuzzi") return true;
 
   // Public venues override HOA-style naming below.
   if (isLikelyPublicLapVenue(name)) return false;
