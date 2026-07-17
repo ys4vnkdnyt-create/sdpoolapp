@@ -1,0 +1,382 @@
+[
+  {
+    "id": "buhr-pool",
+    "name": "Buhr Pool",
+    "address": "2751 Packard Rd, Ann Arbor, MI 48108",
+    "location": {
+      "lat": 42.2472701,
+      "lng": -83.7114076
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "City of Ann Arbor day admission — outdoor summer season (verify rates on a2gov.org)."
+    },
+    "websiteUrl": "https://www.a2gov.org/parks-and-recreation/parks-and-places/buhr-pool-and-ice-arena/",
+    "scheduleSource": {
+      "label": "City of Ann Arbor — Buhr Pool (open + lap swim)",
+      "url": "https://www.a2gov.org/parks-and-recreation/parks-and-places/buhr-pool-and-ice-arena/",
+      "effectiveDate": "2026-06-12"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "12:00",
+        "endTime": "19:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "19:00",
+        "endTime": "20:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "12:00",
+        "endTime": "19:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "19:00",
+        "endTime": "20:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "12:00",
+        "endTime": "19:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "19:00",
+        "endTime": "20:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "12:00",
+        "endTime": "19:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "19:00",
+        "endTime": "20:30",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "12:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "13:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "09:00",
+        "endTime": "13:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "13:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      }
+    ]
+  },
+  {
+    "id": "fuller-park-pool",
+    "name": "Fuller Park Outdoor Pool",
+    "address": "1519 Fuller Rd, Ann Arbor, MI 48105",
+    "location": {
+      "lat": 42.2855,
+      "lng": -83.7275
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "City of Ann Arbor — at least 4 lap lanes in 50m pool (some lanes used for lessons midday)."
+    },
+    "websiteUrl": "https://www.a2gov.org/parks-and-recreation/parks-and-places/fuller-park-outdoor-pool/",
+    "scheduleSource": {
+      "label": "City of Ann Arbor — Fuller Park Pool (lap swim)",
+      "url": "https://www.a2gov.org/parks-and-recreation/parks-and-places/fuller-park-outdoor-pool/",
+      "effectiveDate": "2026-05-10"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "07:00",
+        "endTime": "19:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "07:00",
+        "endTime": "19:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "07:00",
+        "endTime": "19:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "07:00",
+        "endTime": "19:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "07:00",
+        "endTime": "19:30",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "09:00",
+        "endTime": "20:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "09:00",
+        "endTime": "20:00",
+        "lanesAvailable": 4
+      }
+    ]
+  },
+  {
+    "id": "mack-indoor-pool",
+    "name": "Mack Indoor Pool",
+    "address": "715 Brooks St, Ann Arbor, MI 48103",
+    "location": {
+      "lat": 42.2735,
+      "lng": -83.7595
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Indoor season typically mid-Sept through early May — closed in summer outdoor season; verify a2gov.org."
+    },
+    "websiteUrl": "https://www.a2gov.org/parks-and-recreation/parks-and-places/mack-indoor-pool/",
+    "scheduleSource": {
+      "label": "City of Ann Arbor — Mack Indoor Pool (public / lap swim)",
+      "url": "https://www.a2gov.org/parks-and-recreation/parks-and-places/mack-indoor-pool/",
+      "effectiveDate": "2025-09-23"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "07:00",
+        "endTime": "08:15",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "12:30",
+        "endTime": "16:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "19:30",
+        "endTime": "21:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "07:00",
+        "endTime": "08:15",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "12:30",
+        "endTime": "16:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "07:00",
+        "endTime": "08:15",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "12:30",
+        "endTime": "16:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "19:30",
+        "endTime": "21:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "07:00",
+        "endTime": "08:15",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "12:30",
+        "endTime": "16:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "07:00",
+        "endTime": "08:15",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "12:30",
+        "endTime": "16:00",
+        "lanesAvailable": 5
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "19:30",
+        "endTime": "21:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "09:00",
+        "endTime": "14:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "14:00",
+        "endTime": "18:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "09:00",
+        "endTime": "14:00",
+        "lanesAvailable": 4
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "14:00",
+        "endTime": "18:00",
+        "lanesAvailable": 4
+      }
+    ]
+  },
+  {
+    "id": "umich-ncrb-pools",
+    "name": "University of Michigan — NCRB / Campus Rec Pools",
+    "address": "2370 Hubbard St, Ann Arbor, MI 48109",
+    "location": {
+      "lat": 42.295,
+      "lng": -83.715
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Campus Rec guest/day-pass rules — hours change by semester; verify recsports.umich.edu."
+    },
+    "websiteUrl": "https://recsports.umich.edu/facilities/",
+    "scheduleSource": {
+      "label": "UMich Rec Sports — facilities & hours",
+      "url": "https://recsports.umich.edu/facilities/",
+      "effectiveDate": "2026-07-16"
+    },
+    "availability": []
+  },
+  {
+    "id": "veterans-memorial-pool",
+    "name": "Veterans Memorial Park Pool",
+    "address": "2150 Jackson Ave, Ann Arbor, MI 48103",
+    "location": {
+      "lat": 42.2818,
+      "lng": -83.7775
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "City of Ann Arbor day admission — outdoor summer season."
+    },
+    "websiteUrl": "https://www.a2gov.org/parks-and-recreation/parks-and-places/veterans-memorial-park-pool-and-ice-arena/",
+    "scheduleSource": {
+      "label": "City of Ann Arbor — Veterans Memorial Park Pool",
+      "url": "https://www.a2gov.org/parks-and-recreation/parks-and-places/veterans-memorial-park-pool-and-ice-arena/",
+      "effectiveDate": "2026-06-10"
+    },
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "13:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "11:30",
+        "endTime": "13:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "13:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "13:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "11:30",
+        "endTime": "13:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "13:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "11:30",
+        "endTime": "13:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "13:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "10:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "10:00",
+        "endTime": "20:00",
+        "lanesAvailable": 2
+      }
+    ]
+  }
+]

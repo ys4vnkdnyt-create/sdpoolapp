@@ -25,7 +25,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.laparks.org/aquatic",
+    "scheduleSource": {
+      "label": "City of LA Parks — Aquatics",
+      "url": "https://www.laparks.org/aquatic",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "braun-pool",
@@ -34,20 +40,6 @@
     "location": {
       "lat": 34.1338266,
       "lng": -118.1269971
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "courtyard-by-marriott-torrance-palos-verdes",
-    "name": "Courtyard by Marriott Torrance Palos Verdes",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.8237191,
-      "lng": -118.3322265
     },
     "guestPass": {
       "costUsd": 0,
@@ -85,20 +77,6 @@
     "availability": []
   },
   {
-    "id": "fairmont-century-plaza",
-    "name": "Fairmont Century Plaza",
-    "address": "Address not listed",
-    "location": {
-      "lat": 34.057897,
-      "lng": -118.4160813
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
     "id": "fitness-pool",
     "name": "Fitness Pool",
     "address": "Address not listed",
@@ -124,7 +102,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.laparks.org/aquatic",
+    "scheduleSource": {
+      "label": "City of LA Parks — Aquatics directory",
+      "url": "https://www.laparks.org/aquatic",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "granada-park-pool",
@@ -189,20 +173,6 @@
     }
   },
   {
-    "id": "hilton-garden-inn",
-    "name": "Hilton Garden Inn",
-    "address": "Address not listed",
-    "location": {
-      "lat": 34.1066472,
-      "lng": -118.3381822
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
     "id": "lansing-pool",
     "name": "Lansing Pool",
     "address": "Address not listed",
@@ -215,26 +185,6 @@
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
     "availability": []
-  },
-  {
-    "id": "lightning-pool-service-repair",
-    "name": "Lightning Pool Service & Repair",
-    "address": "13067 Kelowna Street Pacoima CA 91331",
-    "location": {
-      "lat": 34.2527647,
-      "lng": -118.4174859
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": [],
-    "websiteUrl": "https://lightningpoolservice.com/",
-    "scheduleSource": {
-      "label": "Lightning Pool Service & Repair — lap schedule page (ingest agent; verify before trusting)",
-      "url": "https://lightningpoolservice.com/",
-      "effectiveDate": "2026-07-10"
-    }
   },
   {
     "id": "lincoln-middle-school-swimming-pool",
@@ -314,20 +264,6 @@
     "location": {
       "lat": 33.885209,
       "lng": -118.3061783
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "ramada-pool",
-    "name": "Ramada Pool",
-    "address": "2156 East Colorado Boulevard Pasadena CA 91107",
-    "location": {
-      "lat": 34.1458333,
-      "lng": -118.1060793
     },
     "guestPass": {
       "costUsd": 0,
@@ -474,7 +410,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.laparks.org/aquatic",
+    "scheduleSource": {
+      "label": "City of LA Parks — Aquatics directory",
+      "url": "https://www.laparks.org/aquatic",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "westchester-pool",

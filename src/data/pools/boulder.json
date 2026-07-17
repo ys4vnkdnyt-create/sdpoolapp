@@ -11,7 +11,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://bouldercolorado.gov/services/pools-and-aquatics",
+    "scheduleSource": {
+      "label": "City of Boulder — Pools & Aquatics",
+      "url": "https://bouldercolorado.gov/services/pools-and-aquatics",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "ascent-apartments",
@@ -146,20 +152,6 @@
     "location": {
       "lat": 40.1723884,
       "lng": -105.1073132
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "shallow-kid-s-pool",
-    "name": "Shallow (Kid's) Pool",
-    "address": "Address not listed",
-    "location": {
-      "lat": 39.9214547,
-      "lng": -105.1551134
     },
     "guestPass": {
       "costUsd": 0,

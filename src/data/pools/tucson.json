@@ -39,7 +39,56 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [
+      {
+        "dayOfWeek": 0,
+        "startTime": "12:00",
+        "endTime": "15:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 1,
+        "startTime": "11:00",
+        "endTime": "14:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "11:00",
+        "endTime": "14:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "11:00",
+        "endTime": "14:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "11:00",
+        "endTime": "14:00",
+        "lanesAvailable": 1
+      }
+    ],
+    "websiteUrl": "https://www.tucsonaz.gov/Departments/Parks-and-Recreation/Pools-and-Splash-Pads",
+    "scheduleSource": {
+      "label": "City of Tucson — Winter pool schedule PDF",
+      "url": "https://www.tucsonaz.gov/files/sharedassets/public/v/5/living-and-working/parks-and-recreation/documents/aquatics/winter-pool-schedule.pdf",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "catalina-pool",
@@ -53,7 +102,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.tucsonaz.gov/Departments/Parks-and-Recreation/Pools-and-Splash-Pads",
+    "scheduleSource": {
+      "label": "City of Tucson — Winter pool schedule PDF",
+      "url": "https://www.tucsonaz.gov/files/sharedassets/public/v/5/living-and-working/parks-and-recreation/documents/aquatics/winter-pool-schedule.pdf",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "clements-pool",
@@ -67,7 +122,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.tucsonaz.gov/Departments/Parks-and-Recreation/Pools-and-Splash-Pads",
+    "scheduleSource": {
+      "label": "City of Tucson — Winter pool schedule PDF",
+      "url": "https://www.tucsonaz.gov/files/sharedassets/public/v/5/living-and-working/parks-and-recreation/documents/aquatics/winter-pool-schedule.pdf",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "jesse-owens-pool",
@@ -81,7 +142,38 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [
+      {
+        "dayOfWeek": 1,
+        "startTime": "13:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "13:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "13:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "13:00",
+        "endTime": "19:00",
+        "lanesAvailable": 1
+      }
+    ],
+    "websiteUrl": "https://www.tucsonaz.gov/Departments/Parks-and-Recreation/Pools-and-Splash-Pads",
+    "scheduleSource": {
+      "label": "Jesse Owens Pool — lap schedule PDF (ingest agent; verify before trusting)",
+      "url": "https://www.tucsonaz.gov/files/sharedassets/public/v/12/living-and-working/parks-and-recreation/documents/aquatics/summer-pool-schedule.pdf",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "oro-valley-comunity-center",
@@ -123,7 +215,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.tucsonaz.gov/Departments/Parks-and-Recreation/Pools-and-Splash-Pads",
+    "scheduleSource": {
+      "label": "Sunnyside Pool — lap schedule PDF (ingest agent; verify before trusting)",
+      "url": "https://www.tucsonaz.gov/files/sharedassets/public/v/12/living-and-working/parks-and-recreation/documents/aquatics/summer-pool-schedule.pdf",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "turquesa-pool",
@@ -152,6 +250,11 @@
       "notes": "Adult day pool pass ~$8; 1-day passes require an active member sponsor — verify at Campus Recreation."
     },
     "websiteUrl": "https://rec.arizona.edu/hours-locations/locations/pool-pool-deck",
-    "availability": []
+    "availability": [],
+    "scheduleSource": {
+      "label": "U of A Campus Rec — Pool & Pool Deck",
+      "url": "https://rec.arizona.edu/hours-locations/locations/pool-pool-deck",
+      "effectiveDate": "2026-07-16"
+    }
   }
 ]

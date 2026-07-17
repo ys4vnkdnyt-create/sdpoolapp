@@ -1,19 +1,5 @@
 [
   {
-    "id": "pool",
-    "name": "-",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.6332813,
-      "lng": -117.88145
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
     "id": "aliso-viejo-aquatic-center-pool",
     "name": "Aliso Viejo Aquatic Center Pool",
     "address": "Address not listed",
@@ -25,7 +11,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://ocparks.com/",
+    "scheduleSource": {
+      "label": "Orange County parks / aquatics (verify facility page)",
+      "url": "https://www.ocparks.com/",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "aquatic-center",
@@ -39,7 +31,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://ocparks.com/",
+    "scheduleSource": {
+      "label": "Orange County parks / aquatics (verify facility page)",
+      "url": "https://www.ocparks.com/",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "aquatic-zone-indoor-swim-center",
@@ -53,7 +51,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://ocparks.com/",
+    "scheduleSource": {
+      "label": "Orange County parks / aquatics (verify facility page)",
+      "url": "https://www.ocparks.com/",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "aquatics",
@@ -67,7 +71,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://ocparks.com/",
+    "scheduleSource": {
+      "label": "Orange County parks / aquatics (verify facility page)",
+      "url": "https://www.ocparks.com/",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "aquatics-2",
@@ -81,7 +91,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://ocparks.com/",
+    "scheduleSource": {
+      "label": "Orange County parks / aquatics (verify facility page)",
+      "url": "https://www.ocparks.com/",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "avendale-village-clubhouse-pool",
@@ -230,20 +246,6 @@
     "availability": []
   },
   {
-    "id": "jacuzzi",
-    "name": "Jacuzzi",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.6243088,
-      "lng": -117.9326544
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
     "id": "lansing-pool",
     "name": "Lansing Pool",
     "address": "Address not listed",
@@ -272,21 +274,6 @@
     "availability": []
   },
   {
-    "id": "monorail-pool",
-    "name": "Monorail Pool",
-    "address": "Address not listed",
-    "location": {
-      "lat": 33.8082076,
-      "lng": -117.9269792
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": [],
-    "websiteUrl": "https://disneyland.disney.go.com/recreation/disneyland-hotel/pools-disneyland-hotel/"
-  },
-  {
     "id": "municipal-swim-stadium",
     "name": "Municipal Swim Stadium",
     "address": "Buena Park",
@@ -298,7 +285,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://ocparks.com/",
+    "scheduleSource": {
+      "label": "Orange County parks / aquatics (verify facility page)",
+      "url": "https://www.ocparks.com/",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "oak-knoll-village-clubhouse-lap-pool",

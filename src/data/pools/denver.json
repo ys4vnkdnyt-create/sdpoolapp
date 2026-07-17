@@ -11,7 +11,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.apexcenter.org/",
+    "scheduleSource": {
+      "label": "APEX Center — aquatics",
+      "url": "https://www.apexcenter.org/",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "ascent-apartments",
@@ -67,7 +73,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.lakewood.org/Community/Parks-and-Recreation",
+    "scheduleSource": {
+      "label": "City of Lakewood — Parks & Recreation (Carmody area)",
+      "url": "https://www.lakewood.org/Community/Parks-and-Recreation",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "castaway-creek",
@@ -123,7 +135,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Parks-Recreation/Recreation-Centers-Pools/Swimming-Pools-and-Splash-Pads",
+    "scheduleSource": {
+      "label": "Congress Park Outdoor Pool — lap schedule PDF (ingest agent; verify before trusting)",
+      "url": "https://www.denvergov.org/files/assets/public/v/1/parks-and-recreation/documents/recreation/aquatics/group-daycamp-guidelines-2025.pdf",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "cook-park-pool",
@@ -137,7 +155,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Parks-Recreation/Recreation-Centers-Pools/Swimming-Pools-and-Splash-Pads",
+    "scheduleSource": {
+      "label": "Denver Parks — Swimming Pools hub",
+      "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Parks-Recreation/Recreation-Centers-Pools/Swimming-Pools-and-Splash-Pads",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "del-mar-swimming-pool",
@@ -165,7 +189,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Parks-Recreation/Recreation-Centers-Pools/Swimming-Pools-and-Splash-Pads",
+    "scheduleSource": {
+      "label": "Denver Parks — Swimming Pools hub",
+      "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Parks-Recreation/Recreation-Centers-Pools/Swimming-Pools-and-Splash-Pads",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "f-15-pool",
@@ -319,7 +349,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Parks-Recreation/Recreation-Centers-Pools/Swimming-Pools-and-Splash-Pads",
+    "scheduleSource": {
+      "label": "Denver Parks — Swimming Pools hub",
+      "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Parks-Recreation/Recreation-Centers-Pools/Swimming-Pools-and-Splash-Pads",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "runway-35-pool",
@@ -361,6 +397,12 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Parks-Recreation/Recreation-Centers-Pools/Swimming-Pools-and-Splash-Pads",
+    "scheduleSource": {
+      "label": "Denver Parks — Swimming Pools hub",
+      "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Parks-Recreation/Recreation-Centers-Pools/Swimming-Pools-and-Splash-Pads",
+      "effectiveDate": "2026-07-16"
+    }
   }
 ]

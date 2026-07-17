@@ -76,9 +76,9 @@
     "availability": [],
     "websiteUrl": "https://www.austintexas.gov/department/barton-springs-pool",
     "scheduleSource": {
-      "label": "Barton Springs Pool — lap schedule PDF (ingest agent; verify before trusting)",
-      "url": "https://www.austintexas.gov/sites/default/files/files/Parks/Aquatics/Barton%20Springs%20Pool%20coloring%20sheets.pdf",
-      "effectiveDate": "2026-07-10"
+      "label": "Austin Parks — Barton Springs Pool",
+      "url": "https://www.austintexas.gov/department/barton-springs-pool",
+      "effectiveDate": "2026-07-16"
     }
   },
   {
@@ -105,9 +105,76 @@
     },
     "guestPass": {
       "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+      "notes": "Free admission — closed Mondays in Jun–mid-Jul season block; verify austintexas.gov."
     },
-    "availability": []
+    "availability": [
+      {
+        "dayOfWeek": 2,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 2,
+        "startTime": "10:00",
+        "endTime": "20:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 3,
+        "startTime": "10:00",
+        "endTime": "20:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 4,
+        "startTime": "10:00",
+        "endTime": "20:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "06:00",
+        "endTime": "08:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 5,
+        "startTime": "10:00",
+        "endTime": "20:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 6,
+        "startTime": "12:00",
+        "endTime": "19:00",
+        "lanesAvailable": 6
+      },
+      {
+        "dayOfWeek": 0,
+        "startTime": "12:00",
+        "endTime": "19:00",
+        "lanesAvailable": 6
+      }
+    ],
+    "websiteUrl": "https://www.austintexas.gov/parks/locations/big-stacy-pool",
+    "scheduleSource": {
+      "label": "City of Austin — Big Stacy Pool hours",
+      "url": "https://www.austintexas.gov/parks/locations/big-stacy-pool",
+      "effectiveDate": "2026-06-01"
+    }
   },
   {
     "id": "broccoli-pool",
@@ -177,7 +244,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.austintexas.gov/department/deep-eddy-pool",
+    "scheduleSource": {
+      "label": "Austin Parks — Deep Eddy Pool",
+      "url": "https://www.austintexas.gov/department/deep-eddy-pool",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "dittmar-pool",
@@ -191,7 +264,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.austintexas.gov/parks/locations/dittmar-pool",
+    "scheduleSource": {
+      "label": "Austin Parks — Dittmar Pool",
+      "url": "https://www.austintexas.gov/parks/locations/dittmar-pool",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "dominion-pool",
@@ -247,7 +326,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.austintexas.gov/parks/locations/givens-pool",
+    "scheduleSource": {
+      "label": "Austin Parks — Givens Pool",
+      "url": "https://www.austintexas.gov/parks/locations/givens-pool",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "govalle-neighborhood-pool",
@@ -256,20 +341,6 @@
     "location": {
       "lat": 30.2598164,
       "lng": -97.6912054
-    },
-    "guestPass": {
-      "costUsd": 0,
-      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
-    },
-    "availability": []
-  },
-  {
-    "id": "greystar",
-    "name": "Greystar",
-    "address": "Address not listed",
-    "location": {
-      "lat": 30.3606891,
-      "lng": -97.6688704
     },
     "guestPass": {
       "costUsd": 0,
@@ -317,7 +388,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://texassports.com/sports/2013/7/23/GEN_0723134847.aspx",
+    "scheduleSource": {
+      "label": "UT Texas Swimming Center — facility info",
+      "url": "https://texassports.com/sports/2013/7/23/GEN_0723134847.aspx",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "martin-pool",
@@ -365,7 +442,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.austintexas.gov/parks/locations/northwest-pool",
+    "scheduleSource": {
+      "label": "Austin Parks — Northwest Pool",
+      "url": "https://www.austintexas.gov/parks/locations/northwest-pool",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "odom-pool",
@@ -393,7 +476,13 @@
       "costUsd": 0,
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
-    "availability": []
+    "availability": [],
+    "websiteUrl": "https://www.austintexas.gov/parks/locations/patterson-pool",
+    "scheduleSource": {
+      "label": "Austin Parks — Patterson Pool hours",
+      "url": "https://www.austintexas.gov/parks/locations/patterson-pool",
+      "effectiveDate": "2026-07-16"
+    }
   },
   {
     "id": "rattan-creek-pool",
@@ -492,11 +581,11 @@
       "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
     },
     "availability": [],
-    "websiteUrl": "https://www.austintexas.gov/pools-splashpads",
+    "websiteUrl": "https://www.austintexas.gov/parks/locations/walnut-creek-pool",
     "scheduleSource": {
-      "label": "Walnut Creek Municipal Pool — lap schedule page (ingest agent; verify before trusting)",
-      "url": "https://austin.widen.net/s/gf8ql5f67c/fy26_aquatics-guide-final",
-      "effectiveDate": "2026-07-10"
+      "label": "Austin Parks — Walnut Creek Pool",
+      "url": "https://www.austintexas.gov/parks/locations/walnut-creek-pool",
+      "effectiveDate": "2026-07-16"
     }
   },
   {

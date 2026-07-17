@@ -1,0 +1,1424 @@
+[
+  {
+    "id": "50-meter-olympic-pool",
+    "name": "50 Meter Olympic Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.7476792,
+      "lng": -121.9468892
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "50m-pool",
+    "name": "50m Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.3347529,
+      "lng": -121.8790152
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "activity-pool",
+    "name": "Activity Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.335431,
+      "lng": -121.8125645
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "amador-valley-high-school-swimming-pool",
+    "name": "Amador Valley High School Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.6688486,
+      "lng": -121.8747312
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "ann-curtis",
+    "name": "Ann Curtis",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.9973653,
+      "lng": -122.5426759
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "http://www.anncurtis.com/"
+  },
+  {
+    "id": "avery-recreation-pool",
+    "name": "Avery Recreation Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.4266363,
+      "lng": -122.1769661
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "balboa-pool",
+    "name": "Balboa Pool",
+    "address": "94112",
+    "location": {
+      "lat": 37.7262126,
+      "lng": -122.4433015
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://sfrecpark.org/482/Swimming-Pools",
+    "scheduleSource": {
+      "label": "SF Rec & Park — Balboa Pool winter schedule PDF",
+      "url": "https://sfrecpark.org/DocumentCenter/View/28024/2026-Balboa-Pool-Winter-Schedule",
+      "effectiveDate": "2026-07-16"
+    }
+  },
+  {
+    "id": "belardi-pool",
+    "name": "Belardi Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.4311588,
+      "lng": -122.1600908
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "berkeley-city-club-pool",
+    "name": "Berkeley City Club Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8676703,
+      "lng": -122.2625471
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "berkeley-ymca-pool",
+    "name": "Berkeley YMCA Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8694548,
+      "lng": -122.269728
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://www.ymcaeastbay.org/locations/berkeley-ymca",
+    "scheduleSource": {
+      "label": "YMCA of the East Bay — Berkeley",
+      "url": "https://www.ymcaeastbay.org/locations/berkeley-ymca",
+      "effectiveDate": "2026-07-16"
+    }
+  },
+  {
+    "id": "breakers-bay",
+    "name": "Breakers Bay",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.3953628,
+      "lng": -121.968879
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "camp-arroyo-pool",
+    "name": "Camp Arroyo Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.6185091,
+      "lng": -121.7529985
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "campbell-recreation-community-services-department",
+    "name": "Campbell Recreation & Community Services Department",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.2881267,
+      "lng": -121.9518202
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "carlmont-high-school-swimming-pool",
+    "name": "Carlmont High School Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.5058724,
+      "lng": -122.2875128
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "central-ymca",
+    "name": "Central YMCA",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.3376044,
+      "lng": -121.9205709
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "columbia-swim-center",
+    "name": "Columbia Swim Center",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.3948945,
+      "lng": -122.0194362
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "conference-center-pool",
+    "name": "Conference Center Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.05209,
+      "lng": -122.0618278
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "cull-canyon-swim-complex-lagoon",
+    "name": "Cull Canyon Swim Complex Lagoon",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.7081124,
+      "lng": -122.0562375
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "diving-well",
+    "name": "Diving well",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.9179146,
+      "lng": -122.0428961
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "dolores-bengtson-aquatic-center",
+    "name": "Dolores Bengtson Aquatic Center",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.6727628,
+      "lng": -121.8759004
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "dolphinarium",
+    "name": "Dolphinarium",
+    "address": "104 McAllister Way Santa Cruz CA 95060",
+    "location": {
+      "lat": 36.9489334,
+      "lng": -122.0659467
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "don-castro-swim-lagoon",
+    "name": "Don Castro Swim Lagoon",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.6913624,
+      "lng": -122.0530991
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "downtown-oakland-ymca-pool",
+    "name": "Downtown Oakland YMCA Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8125663,
+      "lng": -122.265747
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://www.ymcaeastbay.org/locations/downtown-oakland-ymca",
+    "scheduleSource": {
+      "label": "YMCA of the East Bay — Downtown Oakland",
+      "url": "https://www.ymcaeastbay.org/locations/downtown-oakland-ymca",
+      "effectiveDate": "2026-07-16"
+    }
+  },
+  {
+    "id": "dublin-ranch-swiming-pool",
+    "name": "Dublin Ranch Swiming pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.7171003,
+      "lng": -121.8658327
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "dvra-swim-club",
+    "name": "DVRA Swim Club",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8821922,
+      "lng": -122.0366309
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "east-field-house-pool",
+    "name": "East Field House Pool",
+    "address": "451 East Field Service Road Santa Cruz 95064",
+    "location": {
+      "lat": 36.9947421,
+      "lng": -122.0540763
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "emma-hood-swim-center",
+    "name": "Emma Hood Swim Center",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.7637913,
+      "lng": -122.2454454
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "encinal-swim-center",
+    "name": "Encinal Swim Center",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.7718009,
+      "lng": -122.2889694
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "farrelly-pool",
+    "name": "Farrelly Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.7348807,
+      "lng": -122.1464745
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "garfield-pool-sf",
+    "name": "Garfield Pool (SF Rec & Park)",
+    "address": "1271 Treat Ave, San Francisco, CA 94110",
+    "location": {
+      "lat": 37.7525,
+      "lng": -122.4128
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "SF Rec & Park drop-in — verify fees at sfrecpark.org."
+    },
+    "websiteUrl": "https://sfrecpark.org/facilities/facility/details/Garfield-Pool-214",
+    "scheduleSource": {
+      "label": "SF Rec & Park — Garfield Pool",
+      "url": "https://sfrecpark.org/facilities/facility/details/Garfield-Pool-214",
+      "effectiveDate": "2026-07-16"
+    },
+    "availability": []
+  },
+  {
+    "id": "gates-pool",
+    "name": "Gates Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.456294,
+      "lng": -122.1925077
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "golden-bear-pool",
+    "name": "Golden Bear Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8650425,
+      "lng": -122.2471511
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "hamilton-pool-sf",
+    "name": "Hamilton Pool (SF Rec & Park)",
+    "address": "1900 Geary Blvd, San Francisco, CA 94115",
+    "location": {
+      "lat": 37.7849,
+      "lng": -122.4345
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "SF Rec & Park drop-in — verify fees at sfrecpark.org."
+    },
+    "websiteUrl": "https://sfrecpark.org/facilities/facility/details/Hamilton-Pool-215",
+    "scheduleSource": {
+      "label": "SF Rec & Park — Hamilton Pool",
+      "url": "https://sfrecpark.org/facilities/facility/details/Hamilton-Pool-215",
+      "effectiveDate": "2026-07-16"
+    },
+    "availability": []
+  },
+  {
+    "id": "hampton-inn",
+    "name": "Hampton Inn",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.120892,
+      "lng": -121.6242894
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "hippo-pool-clib",
+    "name": "Hippo Pool Clib",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.5183508,
+      "lng": -121.9887951
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "homestead-valley-pool",
+    "name": "Homestead Valley Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8967815,
+      "lng": -122.5446269
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "hyatt-house-pool",
+    "name": "Hyatt House Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.5324062,
+      "lng": -122.2710599
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "hyatt-regency-san-francisco-airport",
+    "name": "Hyatt Regency San Francisco Airport",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.5934764,
+      "lng": -122.3645754
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "infinity-tub",
+    "name": "Infinity Tub",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.0741424,
+      "lng": -121.9936281
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "instructional-pool",
+    "name": "Instructional Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.5343225,
+      "lng": -122.3348327
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "instructional-pool-2",
+    "name": "Instructional Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.1234439,
+      "lng": -121.6255796
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "kid-swimming-pool",
+    "name": "Kid Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 38.0525952,
+      "lng": -122.2196759
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "la-petite-baleen",
+    "name": "La Petite Baleen",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.4680447,
+      "lng": -122.2078213
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "ladera-oaks-upper-pool",
+    "name": "Ladera Oaks Upper Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.3979066,
+      "lng": -122.1921445
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://laderaoaks.com/"
+  },
+  {
+    "id": "laney-college-competition-pool",
+    "name": "Laney College Competition Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.7959887,
+      "lng": -122.2618612
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "lincoln-pool-big-pool",
+    "name": "Lincoln Pool \"Big Pool\"",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.758308,
+      "lng": -122.2300367
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "little-hills-swimming-pool",
+    "name": "Little Hills Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8098538,
+      "lng": -122.0428268
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "live-oak-memorial-pool",
+    "name": "Live Oak Memorial Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8047422,
+      "lng": -122.2359309
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "los-gatos-high-school",
+    "name": "Los Gatos High School",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.2229111,
+      "lng": -121.9755341
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "main-pool",
+    "name": "Main Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.5200457,
+      "lng": -122.3466404
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "main-pool-2",
+    "name": "Main Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.047236,
+      "lng": -122.0527515
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "main-swimming-pool",
+    "name": "Main swimming pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.4040658,
+      "lng": -122.1982877
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "marin-academy-pool",
+    "name": "Marin Academy Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.9750688,
+      "lng": -122.5344455
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "marin-diving-center-pool",
+    "name": "Marin Diving Center Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.9974484,
+      "lng": -122.5352564
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "marinwood-community-center-pool",
+    "name": "Marinwood Community Center Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 38.0275663,
+      "lng": -122.5520798
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "mlk-pool-sf",
+    "name": "Martin Luther King Jr. Pool (SF Rec & Park)",
+    "address": "3rd St & Carroll Ave, San Francisco, CA",
+    "location": {
+      "lat": 37.7235,
+      "lng": -122.3915
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "SF Rec & Park drop-in — verify fees at sfrecpark.org."
+    },
+    "websiteUrl": "https://sfrecpark.org/482/Swimming-Pools",
+    "scheduleSource": {
+      "label": "SF Rec & Park — Swimming Pools hub",
+      "url": "https://sfrecpark.org/482/Swimming-Pools",
+      "effectiveDate": "2026-07-16"
+    },
+    "availability": []
+  },
+  {
+    "id": "martin-luther-king-jr-swimming-pool",
+    "name": "Martin Luther King Jr. Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.7255448,
+      "lng": -122.393722
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "mary-gomez-pool",
+    "name": "Mary Gomez Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.3367827,
+      "lng": -121.9687706
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "http://santaclaraca.gov/Home/Components/ServiceDirectory/ServiceDirectory/302/2654"
+  },
+  {
+    "id": "may-nissen-swim-center-lap-pool",
+    "name": "May Nissen Swim Center Lap Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.6868021,
+      "lng": -121.7839514
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "mayfair-community-center-pool",
+    "name": "Mayfair Community Center Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.3518687,
+      "lng": -121.8442642
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "mcnears-beach-park-pool",
+    "name": "McNears Beach Park Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.9920505,
+      "lng": -122.4526308
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "meyer-pool",
+    "name": "Meyer Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.5450256,
+      "lng": -122.003782
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "mission-pool",
+    "name": "Mission Pool",
+    "address": "3555 19th Street San Francisco",
+    "location": {
+      "lat": 37.7594621,
+      "lng": -122.4226551
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://sfrecpark.org/482/Swimming-Pools",
+    "scheduleSource": {
+      "label": "SF Rec & Park — Swimming Pools hub",
+      "url": "https://sfrecpark.org/482/Swimming-Pools",
+      "effectiveDate": "2026-07-16"
+    }
+  },
+  {
+    "id": "montclair-swim-club",
+    "name": "Montclair Swim Club",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8414515,
+      "lng": -122.2029322
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "montevideo-pool",
+    "name": "Montevideo Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.2259613,
+      "lng": -121.9026872
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "moraga-county-club",
+    "name": "Moraga County Club",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8361644,
+      "lng": -122.1375486
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "mountain-view-high-school-swimming-pool",
+    "name": "Mountain View High School Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.3599763,
+      "lng": -122.0662901
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "nmhs-pool",
+    "name": "NMHS Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.520856,
+      "lng": -122.0026955
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "oakwood-athletic-club",
+    "name": "Oakwood Athletic Club",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8901125,
+      "lng": -122.1487602
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "orange-memorial-pool",
+    "name": "Orange Memorial Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.6550314,
+      "lng": -122.4256036
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "park-place-apartments-pool",
+    "name": "Park Place Apartments Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.388849,
+      "lng": -122.0845882
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "pleasant-hill-aquatics",
+    "name": "Pleasant Hill Aquatics",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.942458,
+      "lng": -122.0755426
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://www.pleasanthillrec.com/162/Aquatics",
+    "scheduleSource": {
+      "label": "Pleasant Hill Recreation — Aquatics",
+      "url": "https://www.pleasanthillrec.com/162/Aquatics",
+      "effectiveDate": "2026-07-16"
+    }
+  },
+  {
+    "id": "pleasant-hill-education-center-pool",
+    "name": "Pleasant Hill Education Center Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.9372161,
+      "lng": -122.0661203
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "richmond-plunge",
+    "name": "Richmond Plunge",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.9241657,
+      "lng": -122.384298
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://www.ci.richmond.ca.us/2140/Richmond-Plunge",
+    "scheduleSource": {
+      "label": "Richmond Plunge — lap schedule page (ingest agent; verify before trusting)",
+      "url": "https://www.ci.richmond.ca.us/3452/Recreation-Programs",
+      "effectiveDate": "2026-07-16"
+    }
+  },
+  {
+    "id": "riva-terra-swimming-pool",
+    "name": "Riva Terra Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.5351835,
+      "lng": -122.2422448
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "roberts-pool",
+    "name": "Roberts Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8130173,
+      "lng": -122.1744815
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "rossi-pool",
+    "name": "Rossi Pool",
+    "address": "600 Arguello Boulevard",
+    "location": {
+      "lat": 37.7790487,
+      "lng": -122.458299
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://sfrecpark.org/Facilities/Facility/Details/Rossi-Pool-219",
+    "scheduleSource": {
+      "label": "Rossi Pool — lap schedule page (ingest agent; verify before trusting)",
+      "url": "https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsfrecpark.org%2ffacilities%2ffacility%2fdetails%2fRossi-Pool-219&amp;t=Check%20out%20this%20great%20facility%20for%20San%20Francisco%20Recreation%20and%20Parks,%20CA",
+      "effectiveDate": "2026-07-16"
+    }
+  },
+  {
+    "id": "rotary-ryland-pool",
+    "name": "Rotary Ryland Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.342483,
+      "lng": -121.8963008
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "san-bruno-park-pool",
+    "name": "San Bruno Park Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.6144268,
+      "lng": -122.4159068
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "santa-cruz-high-school-pool",
+    "name": "Santa Cruz High School Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 36.970569,
+      "lng": -122.032414
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "sfsu-pool",
+    "name": "SFSU Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.7237517,
+      "lng": -122.478292
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "sms-pool",
+    "name": "SMS Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.3609113,
+      "lng": -122.0529375
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "springbrook-pool",
+    "name": "Springbrook pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.9047176,
+      "lng": -122.0951346
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "strawberry-canyon-pool",
+    "name": "Strawberry Canyon Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8721916,
+      "lng": -122.2465526
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": [],
+    "websiteUrl": "https://recsports.berkeley.edu/"
+  },
+  {
+    "id": "sullivan-aquatic-center",
+    "name": "Sullivan Aquatic Center",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.3489265,
+      "lng": -121.9359238
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "swimming-pool",
+    "name": "Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.3961211,
+      "lng": -121.9586287
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "swimming-pool-2",
+    "name": "Swimming Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.261859,
+      "lng": -122.0090981
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "tamalpais-high-school-pool",
+    "name": "Tamalpais High School Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8916725,
+      "lng": -122.5295367
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "temescal-pool",
+    "name": "Temescal Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8329456,
+      "lng": -122.257661
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "terra-linda-high-school",
+    "name": "Terra Linda High School",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.999252,
+      "lng": -122.5537353
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "the-club-at-city-center",
+    "name": "The Club at City Center",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.8040955,
+      "lng": -122.2737548
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "the-inn-at-8435",
+    "name": "The Inn at 8435",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.0238535,
+      "lng": -121.5657737
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "the-seasons",
+    "name": "The Seasons",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.7264885,
+      "lng": -121.9333345
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "training-pool",
+    "name": "Training Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 36.9839196,
+      "lng": -122.038796
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "trefethen-aquatic-center",
+    "name": "Trefethen Aquatic Center",
+    "address": "Address not listed",
+    "location": {
+      "lat": 37.7832415,
+      "lng": -122.1852804
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "warm-water-pool",
+    "name": "Warm Water Pool",
+    "address": "Address not listed",
+    "location": {
+      "lat": 36.9690581,
+      "lng": -121.9882634
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  },
+  {
+    "id": "washington-community-swim-center-wcsc",
+    "name": "Washington Community Swim Center (WCSC)",
+    "address": "255 South Pastoria Avenue Sunnyvale CA 94086",
+    "location": {
+      "lat": 37.3767178,
+      "lng": -122.0391078
+    },
+    "guestPass": {
+      "costUsd": 0,
+      "notes": "Day pass unknown — verify at front desk (added by ingest agent; not confirmed)."
+    },
+    "availability": []
+  }
+]
